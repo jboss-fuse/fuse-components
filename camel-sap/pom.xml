@@ -15,12 +15,12 @@
 	<parent>
 		<groupId>org.apache.camel</groupId>
 		<artifactId>camel-parent</artifactId>
-		<version>2.15.1.redhat-621084</version>
+		<version>2.15.1.redhat-621106</version>
 	</parent>
 
 	<groupId>org.fusesource</groupId>
 	<artifactId>camel-sap-parent</artifactId>
-	<version>6.2.1.redhat-SNAPSHOT</version>
+	<version>6.2.1.redhat-106</version>
 	<packaging>pom</packaging>
 
 	<name>JBoss Fuse :: Components :: SAP JCO</name>
@@ -30,8 +30,8 @@
 		<tycho-version>0.21.0</tycho-version>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<maven.compiler.source>1.7</maven.compiler.source>
-		<camel-version>2.15.1.redhat-621084</camel-version>
-		<camel.sap.plugin.version>6.2.1-SNAPSHOT</camel.sap.plugin.version>
+		<camel-version>2.15.1.redhat-621106</camel-version>
+		<camel.sap.plugin.version>6.2.1.redhat-106</camel.sap.plugin.version>
 
 		<!-- OSGi bundles properties -->
 		<fuse.osgi.bundle.name>${project.name}</fuse.osgi.bundle.name>
