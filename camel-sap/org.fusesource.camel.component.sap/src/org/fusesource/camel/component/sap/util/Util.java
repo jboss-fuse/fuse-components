@@ -1,5 +1,7 @@
 package org.fusesource.camel.component.sap.util;
 
+import static org.fusesource.camel.component.sap.model.idoc.IdocPackage.eNS_URI;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -8,7 +10,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -21,7 +26,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
@@ -30,6 +34,7 @@ import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -54,8 +59,6 @@ import com.sap.conn.jco.JCoDestination;
 import com.sap.conn.jco.JCoException;
 import com.sap.conn.jco.JCoRequest;
 
-import static org.fusesource.camel.component.sap.model.idoc.IdocPackage.eNS_URI;
-
 /**
  * @author punkhorn
  *
@@ -63,6 +66,26 @@ import static org.fusesource.camel.component.sap.model.idoc.IdocPackage.eNS_URI;
 public class Util {
 
 	public static final Registry registry = EPackage.Registry.INSTANCE;
+	
+	private static final SimpleDateFormat sapDateFormat = new SimpleDateFormat("yyyyMMdd");
+
+	private static final SimpleDateFormat sapTimeFormat = new SimpleDateFormat("HHmmss");
+
+	public static synchronized Date convertSapDateStringToDate(String sapDateString) {
+		try {
+			return sapDateFormat.parse(sapDateString);
+		} catch (ParseException e) {
+			return null;
+		}
+	}
+
+	public static synchronized Date convertSapTimeStringToDate(String sapTimeString) {
+		try {
+			return sapTimeFormat.parse(sapTimeString);
+		} catch (ParseException e) {
+			return null;
+		}
+	}
 
 	/**
 	 * Marshals the given {@link EObject} into a string.
