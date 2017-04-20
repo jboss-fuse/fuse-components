@@ -967,7 +967,7 @@ public class RfcUtil extends Util {
 			if (!jcoListMetaData.isOptional(i))
 				structuralFeature.setLowerBound(1);
 			if (jcoListMetaData.getDefault(i) != null)
-				structuralFeature.setDefaultValueLiteral(checkForKeywordLiterals(jcoListMetaData.getDefault(i)));
+				structuralFeature.setDefaultValue(convertJCoDefaultValue(jcoListMetaData, i));
 			addAnnotation(structuralFeature, GenNS_URI, GenNS_DOCUMENTATION_KEY, jcoListMetaData.getDescription(i));
 			addAnnotation(structuralFeature, eNS_URI, RfcNS_NAME_KEY, jcoListMetaData.getName(i));
 			addAnnotation(structuralFeature, eNS_URI, RfcNS_DESCRIPTION_KEY, jcoListMetaData.getDescription(i));
