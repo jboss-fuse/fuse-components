@@ -96,6 +96,7 @@ public class Util {
 	 * @throws IOException
 	 */
 	public static String marshal(EObject eObject) throws IOException {
+        ensureBasePackages();
 		URI uri = URI.createFileURI("/"); // ensure relative reference URIs
 		XMLResource resource = new XMLResourceImpl(uri);
 		eObject = EcoreUtil.copy(eObject);
@@ -123,7 +124,8 @@ public class Util {
 	 * @throws IOException
 	 */
 	public static EObject unmarshal(String string) throws IOException {
-		URI uri = URI.createFileURI("/"); // ensure relative reference URIs
+        ensureBasePackages();
+        URI uri = URI.createFileURI("/"); // ensure relative reference URIs
 		XMLResource resource = new XMLResourceImpl(uri);
 		StringReader in = new StringReader(string);
 
@@ -151,8 +153,8 @@ public class Util {
 	 * @throws IOException
 	 */
 	public static void save(File file, EObject eObject) throws IOException {
-		ensureXMLPackages();
-		URI uri = URI.createFileURI(file.getAbsolutePath());
+        ensureBasePackages();
+        URI uri = URI.createFileURI(file.getAbsolutePath());
 		Resource res = new XMLResourceImpl(uri);
 		eObject = EcoreUtil.copy(eObject);
 		res.getContents().add(eObject);
@@ -174,7 +176,7 @@ public class Util {
 	 * @throws IOException
 	 */
 	public static EObject load(File file) throws IOException {
-		ensureXMLPackages();
+        ensureBasePackages();
 		URI uri = URI.createFileURI(file.getAbsolutePath());
 		Resource res = new XMLResourceImpl(uri);
 
@@ -290,6 +292,7 @@ public class Util {
 	 * @throws IOException
 	 */
 	public static OutputStream toOutputStream(EObject eObject) throws IOException {
+        ensureBasePackages();
 		XMLResource resource = new XMLResourceImpl();
 		eObject = EcoreUtil.copy(eObject);
 		resource.getContents().add(eObject);
@@ -306,6 +309,7 @@ public class Util {
 	 * @throws IOException
 	 */
 	public static void print(EObject eObject) throws IOException {
+        ensureBasePackages();
 		XMLResource resource = new XMLResourceImpl();
 		resource.getContents().add(eObject);
 		resource.save(System.out, null);
@@ -433,6 +437,7 @@ public class Util {
 	 * @throws IOException
 	 */
 	public static void saveRegistry(File file) throws IOException {
+        ensureBasePackages();
 		ResourceSet resourceSet = new ResourceSetImpl();
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
 
@@ -465,6 +470,7 @@ public class Util {
 	 * @throws IOException
 	 */
 	public static void loadRegistry(File file) throws IOException {
+        ensureBasePackages();
 		ResourceSet resourceSet = new ResourceSetImpl();
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
 		resourceSet.getPackageRegistry().put(eNS_URI, IdocPackage.eINSTANCE);
