@@ -616,9 +616,13 @@ public class Util {
 		}
 	}
 
-	private static void ensureXMLPackages() {
-		Object tmp = XMLTypePackage.eINSTANCE;
+	public static synchronized void ensureBasePackages() {
+		@SuppressWarnings("unused")
+		Object tmp;
+		tmp = XMLTypePackage.eINSTANCE;
 		tmp = XMLNamespacePackage.eINSTANCE;
 		tmp = EcorePackage.eINSTANCE;
+        tmp = RfcPackage.eINSTANCE;
+        tmp = IdocPackage.eINSTANCE;
 	}
 }
