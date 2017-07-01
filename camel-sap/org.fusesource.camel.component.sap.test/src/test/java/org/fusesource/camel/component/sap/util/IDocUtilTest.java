@@ -168,6 +168,7 @@ public class IDocUtilTest {
 		Segment rootSegment = document.getRootSegment();
 		assertEquals("New IDoc document has incorrect root segment type", "ROOT", rootSegment.getType());
 		assertEquals("Root segment of new IDoc document has incorrect hierarchy level", 1, rootSegment.getHierarchyLevel());
+		assertNotNull("Document reference not assigned to root segment", rootSegment.getDocument());
 	}
 
 	@Test
@@ -358,14 +359,17 @@ public class IDocUtilTest {
 
 		rootSegment = document.getRootSegment();
 		assertNotNull("Failed to load ROOT segment", rootSegment);
+		assertNotNull("Document reference not assigned to Root Segment", rootSegment.getDocument());
 
 		assertNotNull("Failed to load Header Segment", rootSegment.getChildren("E1SCU_CRE"));
 		headerSegment = rootSegment.getChildren("E1SCU_CRE").get(0);
 		assertNotNull("Failed to load Header Segment", headerSegment);
+		assertNotNull("Document reference not assigned to Header Segment", headerSegment.getDocument());
 
 		assertNotNull("Failed to load New Customer Segment", headerSegment.getChildren("E1BPSCUNEW"));
 		newCustomerSegment = headerSegment.getChildren("E1BPSCUNEW").get(0);
 		assertNotNull("Failed to load New Customer Segment", newCustomerSegment);
+		assertNotNull("Document reference not assigned to Customer Segment", newCustomerSegment.getDocument());
 
 		assertEquals("Loaded New Customer Segment has unexpected CUSTNAME", "Fred Flintstone", newCustomerSegment.get("CUSTNAME"));
 		assertEquals("Loaded New Customer Segment has unexpected FORM", "Mr.", newCustomerSegment.get("FORM"));
@@ -379,6 +383,8 @@ public class IDocUtilTest {
 		assertEquals("Loaded New Customer Segment has unexpected DISCOUNT", "005", newCustomerSegment.get("DISCOUNT"));
 		assertEquals("Loaded New Customer Segment has unexpected LANGU", "E", newCustomerSegment.get("LANGU"));
 
+		String segmentIdentifierString = IDocUtil.segmentIdentifierString(newCustomerSegment);
+		assertEquals("Segment identifier string has unexpected value", "FLCUSTOMER_CREATEFROMDATA:FLCUSTOMER_CREATEFROMDATA01---:E2BPSCUNEW000", segmentIdentifierString);
 	}
 
 	public void testMarshalUnmarshalIDoc() throws Exception {
@@ -415,6 +421,36 @@ public class IDocUtilTest {
 		document = (Document) IDocUtil.unmarshal(marshalledIDoc);
 
 		System.out.println(IDocUtil.marshal(document));
+	}
+	
+	@Test
+	public void testSegmentIdentifierString() throws Exception {
+		// Load base and derived IDoc packages in global registry from test
+		// file.
+		File file = new File("data/testLoadIDocRegistry.ecore");
+		IDocUtil.loadRegistry(file);
+
+		// Create IDoc document
+		Document document = IDocUtil.createDocument("NPL", "FLCUSTOMER_CREATEFROMDATA01", null, null, null);
+
+		// Fill in control info
+		document.setMessageType("FLCUSTOMER_CREATEFROMDATA");
+		document.setRecipientPartnerNumber("NPLCLNT002");
+		document.setRecipientPartnerType("LS");
+		document.setSenderPartnerNumber("JCOCLIENT");
+		document.setSenderPartnerType("LS");
+
+		Segment rootSegment = document.getRootSegment();
+		String segmentIdentifierString = IDocUtil.segmentIdentifierString(rootSegment);
+		assertEquals("Root Segment identifier string has unexpected value", "FLCUSTOMER_CREATEFROMDATA:FLCUSTOMER_CREATEFROMDATA01---:ROOT", segmentIdentifierString);
+		Segment headerSegment = rootSegment.getChildren("E1SCU_CRE").add();
+		segmentIdentifierString = IDocUtil.segmentIdentifierString(headerSegment);
+		assertEquals("Header Segment identifier string has unexpected value", "FLCUSTOMER_CREATEFROMDATA:FLCUSTOMER_CREATEFROMDATA01---:E2SCU_CRE000", segmentIdentifierString);
+		Segment newCustomerSegment = headerSegment.getChildren("E1BPSCUNEW").add();
+		segmentIdentifierString = IDocUtil.segmentIdentifierString(newCustomerSegment);
+		assertEquals("New Customer Segment identifier string has unexpected value", "FLCUSTOMER_CREATEFROMDATA:FLCUSTOMER_CREATEFROMDATA01---:E2BPSCUNEW000", segmentIdentifierString);
+
+
 	}
 
 	public static class IDocHandlerFactory implements JCoIDocHandlerFactory {

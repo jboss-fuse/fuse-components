@@ -20,7 +20,7 @@
 
 	<groupId>org.fusesource</groupId>
 	<artifactId>camel-sap-parent</artifactId>
-	<version>6.3.0.redhat-SNAPSHOT</version>
+	<version>7.0.0.redhat-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>JBoss Fuse :: Components :: SAP JCO</name>
@@ -29,13 +29,13 @@
 	<properties>
 		<tycho-version>0.24.0</tycho-version>
 		<!-- JBoss Tools Integration Stack version -->
-    	<jbtis.version>4.3.1.Final</jbtis.version>
+    	<jbtis.version>4.4.3.Final</jbtis.version>
 		
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven-surefire-plugin-version>2.19</maven-surefire-plugin-version>
 		<camel-version>2.17.0.redhat-630133</camel-version>
-		<camel.sap.plugin.version>6.3.0-SNAPSHOT</camel.sap.plugin.version>
+		<camel.sap.plugin.version>7.0.0-SNAPSHOT</camel.sap.plugin.version>
 
 		
         <!-- OSGi bundles properties -->
@@ -647,8 +647,8 @@
 	</modules>
 	<repositories>
 		<repository>
-			<id>eclipse-mars</id>
-			<url>http://download.eclipse.org/releases/mars/</url>
+			<id>eclipse-neon</id>
+			<url>http://download.eclipse.org/releases/neon/</url>
 			<layout>p2</layout>
 			<snapshots>
 				<enabled>true</enabled>
@@ -668,7 +668,7 @@
                 <enabled>true</enabled>
                 <updatePolicy>never</updatePolicy>
             </releases>
-        </repository>		
+        </repository>
 		<repository>
 			<id>fusesource-third-party-internal</id>
 			<url>https://repository.jboss.org/nexus/content/repositories/fs-releases/</url>
@@ -685,6 +685,17 @@
 			<url>http://download.eng.bos.redhat.com/brewroot/repos/jb-fsw-6.2-build/latest/maven</url>
 			<layout>default</layout>
 		</repository>
+    <repository>
+      <id>jboss.public.repo</id>
+      <name>JBoss Public Repository</name>
+      <url>http://repository.jboss.org/nexus/content/repositories/public</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
