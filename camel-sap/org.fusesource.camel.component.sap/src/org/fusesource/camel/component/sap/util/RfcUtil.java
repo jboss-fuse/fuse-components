@@ -18,7 +18,9 @@ package org.fusesource.camel.component.sap.util;
 
 import static org.fusesource.camel.component.sap.model.rfc.RfcPackage.eNS_URI;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
