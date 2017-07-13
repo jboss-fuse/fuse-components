@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.fusesource.camel.component.sap.model.rfc.AbapException;
 import org.fusesource.camel.component.sap.model.rfc.DataType;
 import org.fusesource.camel.component.sap.model.rfc.Destination;
@@ -962,6 +963,7 @@ public class RfcUtil extends Util {
 				addAnnotation(structuralFeature, eNS_URI, RfcNS_CLASS_NAME_OF_FIELD_KEY, jcoListMetaData.getClassNameOfField(i));
 			}
 			structuralFeature.setName(jcoListMetaData.getName(i));
+			addAnnotation(structuralFeature, ExtendedMetaData.ANNOTATION_URI, "name", xmlAttributeName(jcoListMetaData.getName(i)));
 			if (!jcoListMetaData.isOptional(i))
 				structuralFeature.setLowerBound(1);
 			if (jcoListMetaData.getDefault(i) != null)
@@ -1123,6 +1125,7 @@ public class RfcUtil extends Util {
 				addAnnotation(structuralFeature, eNS_URI, RfcNS_CLASS_NAME_OF_FIELD_KEY, jcoRecordMetaData.getClassNameOfField(i));
 			}
 			structuralFeature.setName(jcoRecordMetaData.getName(i));
+			addAnnotation(structuralFeature, ExtendedMetaData.ANNOTATION_URI, "name", xmlAttributeName(jcoRecordMetaData.getName(i)));
 			addAnnotation(structuralFeature, GenNS_URI, GenNS_DOCUMENTATION_KEY, jcoRecordMetaData.getDescription(i));
 			addAnnotation(structuralFeature, eNS_URI, RfcNS_NAME_KEY, jcoRecordMetaData.getName(i));
 			addAnnotation(structuralFeature, eNS_URI, RfcNS_DESCRIPTION_KEY, jcoRecordMetaData.getDescription(i));
@@ -1563,4 +1566,9 @@ public class RfcUtil extends Util {
 		}
 		return string;
 	}
+	
+	private static String xmlAttributeName(String name) {
+		return name.replaceFirst("/", "").replaceFirst("/", ":");
+	}
+	
 }
