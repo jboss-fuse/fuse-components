@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.fusesource.camel.component.sap.model.rfc.AbapException;
 import org.fusesource.camel.component.sap.model.rfc.DataType;
 import org.fusesource.camel.component.sap.model.rfc.Destination;
@@ -960,6 +961,7 @@ public class RfcUtil extends Util {
 				addAnnotation(structuralFeature, eNS_URI, RfcNS_CLASS_NAME_OF_FIELD_KEY, jcoListMetaData.getClassNameOfField(i));
 			}
 			structuralFeature.setName(jcoListMetaData.getName(i));
+			addAnnotation(structuralFeature, ExtendedMetaData.ANNOTATION_URI, "name", xmlAttributeName(jcoListMetaData.getName(i)));
 			if (!jcoListMetaData.isOptional(i))
 				structuralFeature.setLowerBound(1);
 			if (jcoListMetaData.getDefault(i) != null)
@@ -1121,6 +1123,7 @@ public class RfcUtil extends Util {
 				addAnnotation(structuralFeature, eNS_URI, RfcNS_CLASS_NAME_OF_FIELD_KEY, jcoRecordMetaData.getClassNameOfField(i));
 			}
 			structuralFeature.setName(jcoRecordMetaData.getName(i));
+			addAnnotation(structuralFeature, ExtendedMetaData.ANNOTATION_URI, "name", xmlAttributeName(jcoRecordMetaData.getName(i)));
 			addAnnotation(structuralFeature, GenNS_URI, GenNS_DOCUMENTATION_KEY, jcoRecordMetaData.getDescription(i));
 			addAnnotation(structuralFeature, eNS_URI, RfcNS_NAME_KEY, jcoRecordMetaData.getName(i));
 			addAnnotation(structuralFeature, eNS_URI, RfcNS_DESCRIPTION_KEY, jcoRecordMetaData.getDescription(i));
@@ -1345,4 +1348,225 @@ public class RfcUtil extends Util {
 		}
 		return value;
 	}
+	
+	/**
+	 * Converts the JCo string representation for a default value into its
+	 * equivalent Java runtime value.
+	 * 
+	 * @param listMetaData
+	 *            - the meta-data for JCoList.
+	 * @param index
+	 *            - the index of the field in the list meta-data whose default value is to be converted.
+	 * @return The Java runtime value of the JCoList field's default value.
+	 */
+	public static Object convertJCoDefaultValue(JCoListMetaData listMetaData, int index) {
+		switch(listMetaData.getType(index)) {
+		case JCoMetaData.TYPE_INT:
+		case JCoMetaData.TYPE_INT1:
+		case JCoMetaData.TYPE_INT2:
+			return convertJcoIntegerDefaultValue(listMetaData.getDefault(index));
+
+		case JCoMetaData.TYPE_CHAR:
+		case JCoMetaData.TYPE_NUM:
+			return convertJCoStringDefaultValue(listMetaData.getDefault(index));
+
+		case JCoMetaData.TYPE_BCD:
+			return convertJcoDecimalDefaultValue(listMetaData.getDefault(index));
+
+		case JCoMetaData.TYPE_DATE:
+			return convertJCoDateDefaultValue(listMetaData.getDefault(index));
+
+		case JCoMetaData.TYPE_TIME:
+			return convertJCoTimeDefaultValue(listMetaData.getDefault(index));
+
+		case JCoMetaData.TYPE_FLOAT:
+			return convertJCoFloatDefaultValue(listMetaData.getDefault(index));
+
+		case JCoMetaData.TYPE_BYTE:
+			return convertJCoBinaryDefaultValue(listMetaData.getDefault(index));
+
+		case JCoMetaData.TYPE_STRING:
+			return convertJCoStringDefaultValue(listMetaData.getDefault(index));
+
+		case JCoMetaData.TYPE_XSTRING:
+			return convertJCoBinaryDefaultValue(listMetaData.getDefault(index));
+
+		case JCoMetaData.TYPE_DECF16:
+			return convertJcoDecimalDefaultValue(listMetaData.getDefault(index));
+
+		case JCoMetaData.TYPE_DECF34:
+			return convertJcoDecimalDefaultValue(listMetaData.getDefault(index));
+
+		default:
+			return null;
+		
+		}
+	}
+	
+	/**
+	 * Converts the JCo string representation for the default value of a
+	 * character type list parameter field into a String.
+	 * 
+	 * @param jcoDefaultStringValue
+	 *            - the JCo string representation for the default value of a
+	 *            character list parameter
+	 * @return The String default value.
+	 */
+	private static String convertJCoStringDefaultValue(String jcoDefaultStringValue) {
+		if (jcoDefaultStringValue == null) {
+			return null;
+		}
+		jcoDefaultStringValue = stripSingleQuotePrefixSuffix(jcoDefaultStringValue);
+		if ("SPACE".equals(jcoDefaultStringValue)) {
+			jcoDefaultStringValue = " ";
+		}
+		return jcoDefaultStringValue;
+		
+	}
+	
+	/**
+	 * Converts the JCo string representation for the default value of an
+	 * integer type list parameter field into an Integer.
+	 * 
+	 * @param jcoDefaultIntegerValue
+	 *            - the JCo string representation for the default value of an
+	 *            integer list parameter
+	 * @return The Integer default value.
+	 */
+	private static Integer convertJcoIntegerDefaultValue(String jcoDefaultIntegerValue) {
+		if (jcoDefaultIntegerValue == null) {
+			return null;
+		}
+		try {
+			return Integer.parseInt(jcoDefaultIntegerValue);
+		} catch (NumberFormatException e) {
+			return null;
+		}
+	}
+	
+	/**
+	 * Converts the JCo string representation for the default value of a decimal
+	 * type list parameter field into a BigDecimal.
+	 * 
+	 * @param jcoDefaultDecimalValue
+	 *            - the JCo string representation for the default value of a
+	 *            decimal list parameter
+	 * @return The BigDecimal default value.
+	 */
+	private static BigDecimal convertJcoDecimalDefaultValue(String jcoDefaultDecimalValue) {
+		if (jcoDefaultDecimalValue == null) {
+			return null;
+		}
+		try {
+			return new BigDecimal(jcoDefaultDecimalValue);
+		} catch (NumberFormatException e) {
+			return null;
+		}
+	}
+	
+	/**
+	 * Converts the JCo string representation for the default value of a date
+	 * type list parameter field into a Date.
+	 * 
+	 * @param jcoDefaultDateValue
+	 *            - the JCo string representation for the default value of a
+	 *            date list parameter
+	 * @return The Date default value.
+	 */
+	private static Date convertJCoDateDefaultValue(String jcoDefaultDateValue) {
+		if (jcoDefaultDateValue == null) {
+			return null;
+		}
+		jcoDefaultDateValue = stripSingleQuotePrefixSuffix(jcoDefaultDateValue);
+		return convertSapDateStringToDate(jcoDefaultDateValue);
+	}
+	
+	/**
+	 * Converts the JCo string representation for the default value of a time
+	 * type list parameter field into a Date.
+	 * 
+	 * @param jcoDefaultTimeValue
+	 *            - the JCo string representation for the default value of a
+	 *            time list parameter
+	 * @return The Date default value
+	 */
+	private static Date convertJCoTimeDefaultValue(String jcoDefaultTimeValue) {
+		if (jcoDefaultTimeValue == null) {
+			return null;
+		}
+		jcoDefaultTimeValue = stripSingleQuotePrefixSuffix(jcoDefaultTimeValue);
+		return convertSapTimeStringToDate(jcoDefaultTimeValue);
+	}
+	
+	/**
+	 * Converts the JCo string representation for the default value of a float
+	 * type list parameter field into a Double.
+	 * 
+	 * @param jcoDefaultFloatValue
+	 *            - the JCo string representation for the default value of a
+	 *            float list parameter
+	 * @return The Double default value.
+	 */
+	private static Double convertJCoFloatDefaultValue(String jcoDefaultFloatValue) {
+		if (jcoDefaultFloatValue == null) {
+			return null;
+		}
+		jcoDefaultFloatValue = stripSingleQuotePrefixSuffix(jcoDefaultFloatValue);
+		try {
+			return Double.valueOf(jcoDefaultFloatValue);
+		} catch (NumberFormatException e) {
+			return null;
+		}
+	}
+	
+	/**
+	 * Convert the JCo string representation for the default value of a binary type
+	 * list parameter field into a byte array.
+	 * 
+	 * @param jcoDefaultBinaryValue
+	 *            - the JCo string representation for the default value of a
+	 *            binary list parameter
+	 * @return The byte array default value.
+	 */
+	private static byte[] convertJCoBinaryDefaultValue(String jcoDefaultBinaryValue) {
+		if (jcoDefaultBinaryValue == null) {
+			return null;
+		}
+		jcoDefaultBinaryValue = stripSingleQuotePrefixSuffix(jcoDefaultBinaryValue);
+		try {
+			int length = jcoDefaultBinaryValue.length();
+			byte[] binaryData = new byte[length / 2];
+			for (int i = 0; i< length; i += 2) {
+				binaryData[i / 2] = (byte) ((Character.digit(jcoDefaultBinaryValue.charAt(i), 16) << 4) + 
+						Character.digit(jcoDefaultBinaryValue.charAt(i + 1), 16));
+			}
+			return binaryData;
+		} catch (NumberFormatException e) {
+			return null;
+		}
+	}
+	
+	/**
+	 * Strip any single quote ("'") prefix and/or suffix in <code>string</code>.
+	 * 
+	 * <p>This is used when converting the default string values returned by JCo
+	 * runtime for ABAP Character, Numerical Character, Binary Data, Float, Date and Time types. 
+	 * 
+	 * @param string - the string to strip
+	 * @return The <code>string</code> stripped of any prefix and/or suffix single quotes.
+	 */
+	private static String stripSingleQuotePrefixSuffix(String string) {
+		if (string.startsWith("'")) {
+			string = string.substring(1);
+		}
+		if (string.endsWith("'")) {
+			string = string.substring(0, string.length() - 1);
+		}
+		return string;
+	}
+	
+	private static String xmlAttributeName(String name) {
+		return name.replaceFirst("/", "").replaceFirst("/", ":");
+	}
+	
 }
