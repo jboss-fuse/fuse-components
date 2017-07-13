@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
+import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 import org.fusesource.camel.component.sap.model.idoc.Document;
 import org.fusesource.camel.component.sap.model.idoc.DocumentList;
 import org.fusesource.camel.component.sap.model.idoc.IdocFactory;
@@ -1136,6 +1137,7 @@ public class IDocUtil extends Util {
 			EAttribute attribute = ecoreFactory.createEAttribute();
 			attribute.setEType(getEDataTypeForField(idocRecordMetaData.getDatatype(i).ordinal()));
 			attribute.setName(idocRecordMetaData.getName(i));
+			addAnnotation(attribute, ExtendedMetaData.ANNOTATION_URI, "name", Util.convertSAPNamespaceToXMLName(idocRecordMetaData.getName(i)));
 			addAnnotation(attribute, GenNS_URI, GenNS_DOCUMENTATION_KEY, idocRecordMetaData.getDescription(i));
 			addAnnotation(attribute, eNS_URI, IDocNS_CLASS_NAME_OF_FIELD_KEY, getClassName(idocRecordMetaData.getType(i)));
 			addAnnotation(attribute, eNS_URI, IDocNS_POSITION_KEY, Integer.toString(i));
@@ -1201,6 +1203,7 @@ public class IDocUtil extends Util {
 				EReference reference = ecoreFactory.createEReference();
 				((EClass) segmentListsClass).getEStructuralFeatures().add(reference);
 				reference.setName(childIDocSegmentMetaData.getType());
+				addAnnotation(reference, ExtendedMetaData.ANNOTATION_URI, "name", Util.convertSAPNamespaceToXMLName(childIDocSegmentMetaData.getType()));
 				reference.setUpperBound(ETypedElement.UNBOUNDED_MULTIPLICITY);
 				reference.setEType(childSegmentClass);
 				reference.setContainment(true);
@@ -1265,10 +1268,10 @@ public class IDocUtil extends Util {
 				throw new IllegalArgumentException("Invalid IDoc namespace uri: " + uri);
 			}
 			repositoryName = components[1];
-			iDocType = components[2];
-			iDocTypeExtension = components[3];
-			systemRelease = components[4];
-			applicationRelease = components[5];
+			iDocType = decodeXMLNameToSAPNamespace(components[2]);
+			iDocTypeExtension = decodeXMLNameToSAPNamespace(components[3]);
+			systemRelease = decodeXMLNameToSAPNamespace(components[4]);
+			applicationRelease = decodeXMLNameToSAPNamespace(components[5]);
 		}
 
 		public IDocID(String repositoryName, String iDocType, String iDocTypeExtension, String systemRelease, String applicationRelease) {
@@ -1291,44 +1294,40 @@ public class IDocUtil extends Util {
 			return iDocType;
 		}
 
-		public void setiDocType(String iDocType) {
-			this.iDocType = iDocType;
-		}
-
 		public String getiDocTypeExtension() {
 			return iDocTypeExtension;
-		}
-
-		public void setiDocTypeExtension(String iDocTypeExtension) {
-			this.iDocTypeExtension = iDocTypeExtension;
 		}
 
 		public String getSystemRelease() {
 			return systemRelease;
 		}
 
-		public void setSystemRelease(String systemRelease) {
-			this.systemRelease = systemRelease;
-		}
-
 		public String getApplicationRelease() {
 			return applicationRelease;
 		}
 
-		public void setApplicationRelease(String applicationRelease) {
-			this.applicationRelease = applicationRelease;
-		}
-
 		public String getPackageName() {
-			return iDocType + "_" + iDocTypeExtension + "_" + systemRelease + "_" + applicationRelease;
+			return encodeSAPNamespaceToXMLName(iDocType) + "_" + encodeSAPNamespaceToXMLName(iDocTypeExtension) + "_" + encodeSAPNamespaceToXMLName(systemRelease) + "_" + encodeSAPNamespaceToXMLName(applicationRelease);
 		}
 
 		public String getPackageNamespacePrefix() {
-			return iDocType + "-" + iDocTypeExtension + "-" + systemRelease + "-" + applicationRelease;
+			return encodeSAPNamespaceToXMLPrefix(iDocType) + "-" + encodeSAPNamespaceToXMLPrefix(iDocTypeExtension) + "-" + encodeSAPNamespaceToXMLPrefix(systemRelease) + "-" + encodeSAPNamespaceToXMLPrefix(applicationRelease);
 		}
 
 		public String getPackageNamespaceURI() {
-			return eNS_URI + "/" + repositoryName + "/" + iDocType + "/" + iDocTypeExtension + "/" + systemRelease + "/" + applicationRelease;
+			return eNS_URI + "/" + repositoryName + "/" + encodeSAPNamespaceToXMLName(iDocType) + "/" + encodeSAPNamespaceToXMLName(iDocTypeExtension) + "/" + encodeSAPNamespaceToXMLName(systemRelease) + "/" + encodeSAPNamespaceToXMLName(applicationRelease);
+		}
+		
+		protected String encodeSAPNamespaceToXMLPrefix(String name) {
+			return Util.convertSAPNamespaceToXMLPrefix(name);
+		}
+		
+		protected String encodeSAPNamespaceToXMLName(String name) {
+			return Util.convertSAPNamespaceToXMLName(name);
+		}
+		
+		protected String decodeXMLNameToSAPNamespace(String name) {
+			return Util.convertXMLNameToSAPNamespace(name);
 		}
 	}
 
