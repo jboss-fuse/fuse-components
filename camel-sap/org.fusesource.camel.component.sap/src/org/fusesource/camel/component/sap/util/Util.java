@@ -9,7 +9,10 @@ import java.io.OutputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -71,7 +74,27 @@ public class Util {
 
 	public static final Registry registry = EPackage.Registry.INSTANCE;
 
-	/**
+    private static final SimpleDateFormat sapDateFormat = new SimpleDateFormat("yyyyMMdd");
+    
+    private static final SimpleDateFormat sapTimeFormat = new SimpleDateFormat("HHmmss");
+ 
+    public static synchronized Date convertSapDateStringToDate(String sapDateString) {
+        try {
+            return sapDateFormat.parse(sapDateString);
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+ 
+    public static synchronized Date convertSapTimeStringToDate(String sapTimeString) {
+        try {
+            return sapTimeFormat.parse(sapTimeString);
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+
+    /**
 	 * Marshals the given {@link EObject} into a string.
 	 * 
 	 * @param eObject
@@ -565,11 +588,15 @@ public class Util {
 		}
 	}
 
-	private static void ensureXMLPackages() {
-		Object tmp = XMLTypePackage.eINSTANCE;
-		tmp = XMLNamespacePackage.eINSTANCE;
-		tmp = EcorePackage.eINSTANCE;
-	}
+    public static synchronized void ensureBasePackages() {
+        @SuppressWarnings("unused")
+        Object tmp;
+        tmp = XMLTypePackage.eINSTANCE;
+        tmp = XMLNamespacePackage.eINSTANCE;
+        tmp = EcorePackage.eINSTANCE;
+        tmp = RfcPackage.eINSTANCE;
+        tmp = IdocPackage.eINSTANCE;
+    }
 
 	public static void addNameSpaceDeclarations(EObject o, XMLString doc) {
 		Set<String> prefixes = new HashSet<String>();
