@@ -137,7 +137,7 @@ public class Util {
 	 */
 	public static void save(File file, EObject eObject) throws IOException {
 		ensureBasePackages();
-		Resource res = createXMLResource();
+		Resource res = createXMLResource(file);
 		eObject = EcoreUtil.copy(eObject);
 		res.getContents().add(eObject);
 		Map<String, Object> options = new HashMap<String, Object>();
@@ -158,9 +158,8 @@ public class Util {
 	 * @throws IOException
 	 */
 	public static EObject load(File file) throws IOException {
-		ensureXMLPackages();
-		URI uri = URI.createFileURI(file.getAbsolutePath());
-		Resource res = createXMLResource(uri);
+		ensureBasePackages();
+		Resource res = createXMLResource(file);
 
 		Map<String, Object> options = new HashMap<String, Object>();
 		XMLParserPool parserPool = new XMLParserPoolImpl();
@@ -634,6 +633,11 @@ public class Util {
 		}
 	}
 	
+	public static XMLResource createXMLResource(File file) {
+		URI uri = URI.createFileURI(file.getAbsolutePath());
+		return createXMLResource(uri);
+	}
+	
 	public static XMLResource createXMLResource() {
 		URI uri = URI.createFileURI("/"); // ensure relative reference URIs
 		return createXMLResource(uri);
@@ -665,7 +669,7 @@ public class Util {
 
 							@Override
 							protected EStructuralFeature getFeature(EObject object, String prefix, String name, boolean isElement) {
-								if (prefix != null) {
+								if (prefix != null && prefix.length() > 0) {
 									name = "/" + prefix + "/" + name;
 									prefix = null;
 								}
