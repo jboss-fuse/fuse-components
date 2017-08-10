@@ -1,7 +1,5 @@
 package org.fusesource.camel.component.sap.util;
 
-import static org.fusesource.camel.component.sap.model.idoc.IdocPackage.eNS_URI;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -27,7 +25,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
@@ -36,16 +33,25 @@ import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.XMLDefaultHandler;
+import org.eclipse.emf.ecore.xmi.XMLLoad;
 import org.eclipse.emf.ecore.xmi.XMLParserPool;
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.XMLSave;
+import org.eclipse.emf.ecore.xmi.impl.SAXXMIHandler;
+import org.eclipse.emf.ecore.xmi.impl.SAXXMLHandler;
+import org.eclipse.emf.ecore.xmi.impl.XMILoadImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMISaveImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMLLoadImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLParserPoolImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMLSaveImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMLString;
 import org.eclipse.emf.ecore.xml.namespace.XMLNamespacePackage;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 import org.eclipse.emf.edit.command.SetCommand;
@@ -98,18 +104,12 @@ public class Util {
 	 */
 	public static String marshal(EObject eObject) throws IOException {
 		ensureBasePackages();
-		URI uri = URI.createFileURI("/"); // ensure relative reference URIs
-		XMLResource resource = new XMLResourceImpl(uri);
+		XMLResource resource = createXMLResource();
 		eObject = EcoreUtil.copy(eObject);
 		resource.getContents().add(eObject);
 		StringWriter out = new StringWriter();
 
-		Map<String, Object> options = new HashMap<String, Object>();
-		List<Object> lookupTable = new ArrayList<Object>();
-		options.put(XMIResource.OPTION_CONFIGURATION_CACHE, Boolean.TRUE);
-		options.put(XMIResource.OPTION_USE_CACHED_LOOKUP_TABLE, lookupTable);
-		options.put(XMIResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.FALSE);
-		options.put(XMIResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
+		Map<String, Object> options = serializeOptions();
 
 		resource.save(out, options);
 		return out.toString();
@@ -126,19 +126,10 @@ public class Util {
 	 */
 	public static EObject unmarshal(String string) throws IOException {
 		ensureBasePackages();
-		URI uri = URI.createFileURI("/"); // ensure relative reference URIs
-		XMLResource resource = new XMLResourceImpl(uri);
+		XMLResource resource = createXMLResource();
 		StringReader in = new StringReader(string);
 
-		Map<String, Object> options = new HashMap<String, Object>();
-		XMLParserPool parserPool = new XMLParserPoolImpl();
-		Map<Object, Object> nameToFeatureMap = new HashMap<Object, Object>();
-		options.put(XMIResource.OPTION_DEFER_ATTACHMENT, Boolean.TRUE);
-		options.put(XMIResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.TRUE);
-		options.put(XMIResource.OPTION_USE_DEPRECATED_METHODS, Boolean.TRUE);
-		options.put(XMIResource.OPTION_USE_PARSER_POOL, parserPool);
-		options.put(XMIResource.OPTION_USE_XML_NAME_TO_FEATURE_MAP, nameToFeatureMap);
-		options.put(XMIResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
+		Map<String, Object> options = unserializeOptions();
 
 		resource.load(new InputSource(in), options);
 		return resource.getContents().get(0);
@@ -155,16 +146,10 @@ public class Util {
 	 */
 	public static void save(File file, EObject eObject) throws IOException {
 		ensureBasePackages();
-		URI uri = URI.createFileURI(file.getAbsolutePath());
-		Resource res = new XMLResourceImpl(uri);
+		Resource res = createXMLResource(file);
 		eObject = EcoreUtil.copy(eObject);
 		res.getContents().add(eObject);
-		Map<String, Object> options = new HashMap<String, Object>();
-		List<Object> lookupTable = new ArrayList<Object>();
-		options.put(XMIResource.OPTION_CONFIGURATION_CACHE, Boolean.TRUE);
-		options.put(XMIResource.OPTION_USE_CACHED_LOOKUP_TABLE, lookupTable);
-		options.put(XMIResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.FALSE);
-		options.put(XMIResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
+		Map<String, Object> options = serializeOptions();
 		res.save(options);
 	}
 
@@ -178,18 +163,9 @@ public class Util {
 	 */
 	public static EObject load(File file) throws IOException {
 		ensureBasePackages();
-		URI uri = URI.createFileURI(file.getAbsolutePath());
-		Resource res = new XMLResourceImpl(uri);
+		Resource res = createXMLResource(file);
 
-		Map<String, Object> options = new HashMap<String, Object>();
-		XMLParserPool parserPool = new XMLParserPoolImpl();
-		Map<Object, Object> nameToFeatureMap = new HashMap<Object, Object>();
-		options.put(XMIResource.OPTION_DEFER_ATTACHMENT, Boolean.TRUE);
-		options.put(XMIResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.TRUE);
-		options.put(XMIResource.OPTION_USE_DEPRECATED_METHODS, Boolean.TRUE);
-		options.put(XMIResource.OPTION_USE_PARSER_POOL, parserPool);
-		options.put(XMIResource.OPTION_USE_XML_NAME_TO_FEATURE_MAP, nameToFeatureMap);
-		options.put(XMIResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
+		Map<String, Object> options = unserializeOptions();
 
 		res.load(options);
 		return res.getContents().get(0);
@@ -294,11 +270,14 @@ public class Util {
 	 */
 	public static OutputStream toOutputStream(EObject eObject) throws IOException {
 		ensureBasePackages();
-		XMLResource resource = new XMLResourceImpl();
+		XMLResource resource = createXMLResource();
 		eObject = EcoreUtil.copy(eObject);
 		resource.getContents().add(eObject);
 		OutputStream out = new ByteArrayOutputStream();
-		resource.save(out, null);
+
+		Map<String, Object> options = serializeOptions();
+
+		resource.save(out, options);
 		return out;
 	}
 
@@ -311,9 +290,12 @@ public class Util {
 	 */
 	public static void print(EObject eObject) throws IOException {
 		ensureBasePackages();
-		XMLResource resource = new XMLResourceImpl();
+		XMLResource resource = createXMLResource();
+		eObject = EcoreUtil.copy(eObject);
 		resource.getContents().add(eObject);
-		resource.save(System.out, null);
+		Map<String, Object> options = serializeOptions();
+		
+		resource.save(System.out, options);
 	}
 
 	/**
@@ -338,9 +320,13 @@ public class Util {
 	 * @throws IOException
 	 */
 	public static EObject fromInputStream(InputStream in) throws IOException {
-		XMLResource resource = new XMLResourceImpl();
-		resource.load(in, null);
-		return resource.getContents().get(0);
+		ensureBasePackages();
+		Resource res = createXMLResource();
+
+		Map<String, Object> options = unserializeOptions();
+
+		res.load(in, options);
+		return res.getContents().get(0);
 	}
 
 	/**
@@ -438,30 +424,21 @@ public class Util {
 	 */
 	public static void saveRegistry(File file) throws IOException {
 		ensureBasePackages();
-		ResourceSet resourceSet = new ResourceSetImpl();
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
 
-		URI fileURI = URI.createFileURI(file.getAbsolutePath());
-		Resource resource = resourceSet.createResource(fileURI);
+		Resource resource = createXMIResource(file);
 
 		Set<String> nsURIs = new HashSet<>();
 		nsURIs.addAll(registry.keySet());
 		for (String nsURI : nsURIs) {
-			if (nsURI.startsWith(IdocPackage.eNS_URI) || nsURI.startsWith(RfcPackage.eNS_URI)) {
-				EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(nsURI);
-				resource.getContents().add(ePackage);
-			}
+			EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(nsURI);
+			resource.getContents().add(ePackage);
 		}
 
-		Map<String, Object> options = new HashMap<>();
-		List<Object> lookupTable = new ArrayList<>();
-		options.put(XMIResource.OPTION_CONFIGURATION_CACHE, Boolean.TRUE);
-		options.put(XMIResource.OPTION_USE_CACHED_LOOKUP_TABLE, lookupTable);
-		options.put(XMIResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.FALSE);
+		Map<String, Object> options = serializeOptions();
 		resource.save(options);
 	}
 
-/**
+	/**
 	 * Loads packages stored in given file into Global Package Repository.
 	 * 
 	 * @param file
@@ -471,22 +448,11 @@ public class Util {
 	 */
 	public static void loadRegistry(File file) throws IOException {
 		ensureBasePackages();
-		ResourceSet resourceSet = new ResourceSetImpl();
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
-		resourceSet.getPackageRegistry().put(eNS_URI, IdocPackage.eINSTANCE);
+		
+		XMIResource resource = createXMIResource(file);
 
-		URI fileURI = URI.createFileURI(file.getAbsolutePath());
-		Resource resource = resourceSet.createResource(fileURI);
-
-		Map<String, Object> options = new HashMap<>();
-		XMLParserPool parserPool = new XMLParserPoolImpl();
-		Map<Object, Object> nameToFeatureMap = new HashMap<>();
-		options.put(XMIResource.OPTION_DEFER_ATTACHMENT, Boolean.TRUE);
-		options.put(XMIResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.TRUE);
-		options.put(XMIResource.OPTION_USE_DEPRECATED_METHODS, Boolean.TRUE);
-		options.put(XMIResource.OPTION_USE_PARSER_POOL, parserPool);
-		options.put(XMIResource.OPTION_USE_XML_NAME_TO_FEATURE_MAP, nameToFeatureMap);
-		resource.load(null);
+		Map<String, Object> options = unserializeOptions();
+		resource.load(options);
 
 		ListIterator<EObject> it = resource.getContents().listIterator();
 		while (it.hasNext()) {
@@ -630,5 +596,214 @@ public class Util {
 		tmp = EcorePackage.eINSTANCE;
 		tmp = RfcPackage.eINSTANCE;
 		tmp = IdocPackage.eINSTANCE;
+	}
+
+	public static void addNameSpaceDeclarations(EObject o, XMLString doc) {
+		Set<String> prefixes = new HashSet<String>();
+		
+		// find all features with namespace prefixes
+		for (EStructuralFeature feature: o.eClass().getEAllStructuralFeatures()) {
+			if (feature.getName().contains("/")) { // feature got a namespace?
+				if (o.eGet(feature) == null) {
+					continue; // no value to save in XML so no need for prefix
+				}
+
+				// get namespace prefix 
+				String name = feature.getName();
+				String[] tmp = name.split("/");
+				String prefix = tmp[1];
+				prefixes.add(prefix);
+			}
+		}
+		
+
+		// get object's package
+		EPackage ePackage = (EPackage) EcoreUtil.getRootContainer(o.eClass());
+
+		for (String prefix: prefixes) {
+			doc.addAttribute(XMLResource.XML_NS + ":" + prefix, ePackage.getNsURI());
+		}
+	}
+	
+	public static XMLResource createXMLResource(File file) {
+		URI uri = URI.createFileURI(file.getAbsolutePath());
+		return createXMLResource(uri);
+	}
+	
+	public static XMLResource createXMLResource() {
+		URI uri = URI.createFileURI("/"); // ensure relative reference URIs
+		return createXMLResource(uri);
+	}
+	
+	public static XMLResource createXMLResource(URI uri) {
+		XMLResource xmlResource = new XMLResourceImpl(uri) {
+
+			@Override
+			protected XMLSave createXMLSave() {
+				return new XMLSaveImpl(createXMLHelper()) {
+					
+					@Override
+					protected void saveElementID(EObject o) {
+						addNameSpaceDeclarations(o,doc);
+						super.saveElementID(o);
+					}
+					
+				};
+			}
+			
+			@Override
+			protected XMLLoad createXMLLoad() {
+				return new XMLLoadImpl(createXMLHelper()) {
+					
+					@Override
+					public XMLDefaultHandler createDefaultHandler() {
+						return new SAXXMLHandler(resource, helper, options) {
+
+							@Override
+							protected EStructuralFeature getFeature(EObject object, String prefix, String name, boolean isElement) {
+								if (prefix != null && prefix.length() > 0) {
+									name = "/" + prefix + "/" + name;
+									prefix = null;
+								}
+								return super.getFeature(object, prefix, name, isElement);
+							}
+							
+							@Override
+							protected void setValueFromId(EObject object, EReference eReference, String ids) {
+								if ("parent".equals(eReference.getName())) {
+							        SingleReference ref = new SingleReference
+			                                   (object,
+			                                    eReference,
+			                                    ids,
+			                                    -1,
+			                                    getLineNumber(),
+			                                    getColumnNumber());
+									forwardSingleReferences.add(ref);
+									return;
+								}
+								super.setValueFromId(object, eReference, ids);
+							}
+
+						};
+					}
+					
+				};
+			}
+			
+		};
+		return xmlResource;
+	}
+
+	public static XMIResource createXMIResource(File file) {
+		URI uri = URI.createFileURI(file.getAbsolutePath());
+		return createXMIResource(uri);
+	}
+	
+	public static XMIResource createXMIResource() {
+		URI uri = URI.createFileURI("/"); // ensure relative reference URIs
+		return createXMIResource(uri);
+	}
+	
+	public static XMIResource createXMIResource(URI uri) {
+		XMIResource xmiResource = new XMIResourceImpl(uri) {
+
+			@Override
+			protected XMLSave createXMLSave() {
+				return new XMISaveImpl(createXMLHelper()) {
+					
+					@Override
+					protected void saveElementID(EObject o) {
+						addNameSpaceDeclarations(o,doc);
+						super.saveElementID(o);
+					}
+					
+				};
+			}
+			
+			@Override
+			protected XMLLoad createXMLLoad() {
+				return new XMILoadImpl(createXMLHelper()) {
+					
+					@Override
+					public XMLDefaultHandler createDefaultHandler() {
+						return new SAXXMIHandler(resource, helper, options) {
+
+							@Override
+							protected EStructuralFeature getFeature(EObject object, String prefix, String name, boolean isElement) {
+								if (prefix != null && prefix.length() > 0) {
+									name = "/" + prefix + "/" + name;
+									prefix = null;
+								}
+								return super.getFeature(object, prefix, name, isElement);
+							}
+							
+							@Override
+							protected void setValueFromId(EObject object, EReference eReference, String ids) {
+								if ("parent".equals(eReference.getName())) {
+							        SingleReference ref = new SingleReference
+			                                   (object,
+			                                    eReference,
+			                                    ids,
+			                                    -1,
+			                                    getLineNumber(),
+			                                    getColumnNumber());
+									forwardSingleReferences.add(ref);
+									return;
+								}
+								super.setValueFromId(object, eReference, ids);
+							}
+
+						};
+					}
+					
+				};
+			}
+			
+		};
+		return xmiResource;
+	}
+
+	protected static Map<String, Object> serializeOptions() {
+		Map<String, Object> options = new HashMap<String, Object>();
+		List<Object> lookupTable = new ArrayList<Object>();
+		options.put(XMIResource.OPTION_CONFIGURATION_CACHE, Boolean.TRUE);
+		options.put(XMIResource.OPTION_USE_CACHED_LOOKUP_TABLE, lookupTable);
+		options.put(XMIResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.FALSE);
+		options.put(XMIResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
+		return options;
+	}
+	
+	protected static Map<String, Object> unserializeOptions() {
+		Map<String, Object> options = new HashMap<String, Object>();
+		XMLParserPool parserPool = new XMLParserPoolImpl();
+		Map<Object, Object> nameToFeatureMap = new HashMap<Object, Object>();
+		options.put(XMIResource.OPTION_DEFER_ATTACHMENT, Boolean.TRUE);
+		options.put(XMIResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.TRUE);
+		options.put(XMIResource.OPTION_USE_DEPRECATED_METHODS, Boolean.TRUE);
+		options.put(XMIResource.OPTION_USE_PARSER_POOL, parserPool);
+		options.put(XMIResource.OPTION_USE_XML_NAME_TO_FEATURE_MAP, nameToFeatureMap);
+		options.put(XMIResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
+		return options;
+	}
+
+	protected static String convertSAPNamespaceToXMLName(String name) {
+		if (name != null && name.contains("/")) {
+			name = name.replaceFirst("/", "").replaceFirst("/", ":");
+		}
+		return name;
+	}
+
+	protected static String convertXMLNameToSAPNamespace(String name) {
+		if (name != null && name.contains(":")) {
+			name = "/" + name.replace(":", "/");
+		}
+		return name;
+	}
+
+	protected static String convertSAPNamespaceToXMLPrefix(String name) {
+		if (name != null && name.contains("/")) {
+			name = name.replaceFirst("/", "").replaceFirst("/", "_");
+		}
+		return name;
 	}
 }
