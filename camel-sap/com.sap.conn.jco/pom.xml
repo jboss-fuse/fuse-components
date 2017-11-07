@@ -26,6 +26,7 @@
 		<version>1.9</version>
 	</parent>
         <properties>
+                <skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
                 <maven.deploy.skip>true</maven.deploy.skip>
         </properties>
 	<build>
