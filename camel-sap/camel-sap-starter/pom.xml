@@ -5,7 +5,7 @@
 
 	<groupId>org.fusesource</groupId>
 	<artifactId>camel-sap-starter</artifactId>
-	<version>7.0.0-SNAPSHOT</version>
+	<version>7.0.0.fuse-000113</version>
 	<packaging>jar</packaging>
 
 	<name>JBoss Fuse :: Components :: SAP JCO :: Spring-Boot Starter</name>
@@ -79,6 +79,20 @@
 		</resources>
 		
 		<plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <phase>process-classes</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -112,7 +126,18 @@
 			</plugin>
 		</plugins>
 	</build>	
-	
+    <distributionManagement>
+        <repository>
+            <id>jboss-releases-repository</id>
+            <name>JBoss Releases Repository</name>
+            <url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2</url>
+       </repository>
+        <snapshotRepository>
+            <id>jboss-snapshots-repository</id>
+            <name>JBoss Snapshots Repository</name>
+            <url>https://repository.jboss.org/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 	<repositories>
 		<repository>
 			<id>fusesource-third-party-internal</id>
