@@ -13,6 +13,7 @@
   <name>SAP IDoc Class Library v3 Plugin</name>
   <description>Builds Plugin exporting the IDoc Class Library v3</description>
   <properties>
+        <skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
         <maven.deploy.skip>true</maven.deploy.skip>
   </properties>
 	<build>
