@@ -27,6 +27,7 @@
 		<relativePath></relativePath>
 	</parent>
         <properties>
+                <skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
                 <maven.deploy.skip>true</maven.deploy.skip>
         </properties>
 	<build>
