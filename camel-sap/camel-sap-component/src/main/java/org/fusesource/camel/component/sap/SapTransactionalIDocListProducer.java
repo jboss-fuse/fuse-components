@@ -43,7 +43,7 @@ public class SapTransactionalIDocListProducer extends DefaultProducer {
 	public void process(Exchange exchange) throws Exception {
 		DocumentList documentList = exchange.getIn().getBody(DocumentList.class);
 		if (documentList == null) {
-			LOG.warn("Exchange input message body does not contain IDoc document list");
+			LOG.warn("Exchange input message body does not contain a valid IDoc document list");
 			return;
 		}
 		if (LOG.isDebugEnabled()) {
