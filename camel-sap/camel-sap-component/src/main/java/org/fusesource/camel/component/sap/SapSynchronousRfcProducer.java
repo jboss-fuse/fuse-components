@@ -49,6 +49,10 @@ public class SapSynchronousRfcProducer extends DefaultProducer {
 		}
 
 		Structure request = exchange.getIn().getBody(Structure.class);
+		if (request == null) {
+			LOG.warn("Exchange input message body does not contain a valid SAP request");
+			return;
+		}
 		if (LOG.isDebugEnabled()) {
 			try {
 				LOG.debug("Calling '{}' RFC", getEndpoint().getRfcName());
