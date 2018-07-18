@@ -24,10 +24,11 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import com.sap.conn.idoc.jco.JCoIDoc;
 import com.sap.conn.jco.JCoDestinationManager;
 import com.sap.conn.jco.ext.Environment;
+import com.sap.conn.jco.server.JCoServerFactory;
 
 @RunWith(PowerMockRunner.class)
 @MockPolicy({Slf4jMockPolicy.class})
-@PrepareForTest({ JCoDestinationManager.class, Environment.class, JCoIDoc.class })
+@PrepareForTest({ JCoDestinationManager.class, Environment.class, JCoServerFactory.class })
 public class StructureConverterRecoveryTest extends SapRfcTestSupport {
 
 	public static final String REQUEST_STRING = 
@@ -39,13 +40,15 @@ public class StructureConverterRecoveryTest extends SapRfcTestSupport {
 			  "</PARAM_LIST_TABLE_PARAM>" +
 			"</TEST_FUNCTION_MODULE:Request>";
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void doPreSetup() throws Exception {
 		super.doPreSetup();
 
-		PowerMockito.mockStatic(JCoDestinationManager.class, JCoIDoc.class);
+		PowerMockito.mockStatic(JCoDestinationManager.class, JCoServerFactory.class);
 		when(JCoDestinationManager.getDestination(DESTINATION_NAME)).thenReturn(mockDestination);
-		when(JCoIDoc.getServer(SERVER_NAME)).thenReturn(mockServer);
+		when(JCoServerFactory.get()).thenReturn(mockServerFactory);
+		when(JCoServerFactory.getServer(SERVER_NAME)).thenReturn(mockServer);
 	}
 
 	@Test
