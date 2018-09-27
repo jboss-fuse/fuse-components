@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 import java.io.File;
 import java.util.List;
 
+import org.apache.camel.CamelExecutionException;
 import org.apache.camel.Exchange;
 import org.apache.camel.Message;
 import org.apache.camel.builder.RouteBuilder;
@@ -78,7 +79,7 @@ public class DocumentConverterRecoveryTest extends SapIDocTestSupport {
 		
 	}
 
-	@Test
+	@Test(expected = CamelExecutionException.class)
 	public void testToDocumentFromStringWithBadInput() throws Exception {
 		
 		//
@@ -88,14 +89,12 @@ public class DocumentConverterRecoveryTest extends SapIDocTestSupport {
 		File file = new File("data/testRegistry.ecore");
 		Util.loadRegistry(file);
 		String badDocument = DOCUMENT_STRING.replace("CHAR_FIELD=\"1234ABCDEF\"", "CHAR_FIELD=\"&1234ABCDEF\"");
-		String goodDocument = DOCUMENT_STRING;
 		
 		//
 		// When
 		//
 
 		template.sendBody("direct:document", badDocument);
-		template.sendBody("direct:document", goodDocument);
 		
 		//
 		// Then
@@ -107,50 +106,6 @@ public class DocumentConverterRecoveryTest extends SapIDocTestSupport {
 		Message message1 = exchange1.getIn();
 		Document document1 = message1.getBody(Document.class);
 		assertNull("Invalid document string inadvertantly converted", document1);
-		
-		// Second document string sent is valid and should return a non-null document 
-		Exchange exchange2 = exchanges.get(1);
-		Message message2 = exchange2.getIn();
-		Document document2 = message2.getBody(Document.class);
-		assertNotNull("Subsequent valid document string not converted", document2);
-		
-	}
-
-	@Test
-	public void testToDocumentListFromStringWithBadInput() throws Exception {
-		
-		//
-		// Given
-		//
-		
-		File file = new File("data/testRegistry.ecore");
-		Util.loadRegistry(file);
-		String badDocumentList = DOCUMENT_LIST_STRING.replace("CHAR_FIELD=\"1234ABCDEF\"", "CHAR_FIELD=\"&1234ABCDEF\"");
-		String goodDocumentList = DOCUMENT_LIST_STRING;
-		
-		//
-		// When
-		//
-
-		template.sendBody("direct:documentlist", badDocumentList);
-		template.sendBody("direct:documentlist", goodDocumentList);
-		
-		//
-		// Then
-		//
-		List<Exchange> exchanges = getMockEndpoint("mock:result").getExchanges();
-		
-		// First document list string sent is invalid and should return a null document 
-		Exchange exchange1 = exchanges.get(0);
-		Message message1 = exchange1.getIn();
-		DocumentList  documentList1 = message1.getBody(DocumentList.class);
-		assertNull("Invalid document list string inadvertantly converted", documentList1);
-		
-		// Second document List string sent is valid and should return a non-null document 
-		Exchange exchange2 = exchanges.get(1);
-		Message message2 = exchange2.getIn();
-		DocumentList documentList2 = message2.getBody(DocumentList.class);
-		assertNotNull("Subsequent valid document list string not converted", documentList2);
 		
 	}
 
