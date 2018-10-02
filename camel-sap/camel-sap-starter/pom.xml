@@ -44,11 +44,15 @@
 			<groupId>com.sap.conn.jco</groupId>
 			<artifactId>sapjco3</artifactId>
 			<version>${sapjco3-version}</version>
+			<scope>system</scope>
+			<systemPath>${lib.directory}/sapjco3.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.sap.conn.idoc</groupId>
 			<artifactId>sapidoc3</artifactId>
 			<version>${sapidoc3-version}</version>
+			<scope>system</scope>
+			<systemPath>${lib.directory}/sapidoc3.jar</systemPath>
 		</dependency>
 		
 		<dependency>
@@ -77,21 +81,20 @@
 				<filtering>true</filtering>
 			</resource>
 		</resources>
-		
 		<plugins>
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-source-plugin</artifactId>
-                            <executions>
-                                <execution>
-                                    <id>attach-sources</id>
-                                    <phase>process-classes</phase>
-                                    <goals>
-                                        <goal>jar</goal>
-                                    </goals>
-                                </execution>
-                            </executions>
-                        </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -150,5 +153,17 @@
 				<enabled>true</enabled>
 			</releases>
 		</repository>
+		<repository>
+            <id>brewroot</id>
+            <name>Brew Repository</name>
+            <url>http://download.eng.bos.redhat.com/brewroot/repos/jb-fuse-6.2-build/latest/maven</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+        </repository>
 	</repositories>
 </project>
