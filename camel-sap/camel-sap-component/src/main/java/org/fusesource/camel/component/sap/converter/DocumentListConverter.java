@@ -20,13 +20,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import org.apache.camel.CamelException;
 import org.apache.camel.Converter;
 import org.eclipse.emf.ecore.EObject;
 import org.fusesource.camel.component.sap.model.idoc.DocumentList;
 import org.fusesource.camel.component.sap.model.idoc.impl.DocumentListImpl;
 import org.fusesource.camel.component.sap.util.Util;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * A Type Converter for SAP document list objects.
@@ -38,80 +37,75 @@ import org.slf4j.LoggerFactory;
 public enum DocumentListConverter {
 	INSTANCE;
 	
-	private static final Logger LOG = LoggerFactory.getLogger(DocumentListConverter.class);
-
-	@Converter(allowNull = true)
-	public static DocumentList toDocumentList(String string) {
+	@Converter()
+	public static DocumentList toDocumentList(String string) throws CamelException {
 		try {
 			EObject eObject = Util.unmarshal(string);
 			
 			if (DocumentListImpl.class.isInstance(eObject)) {
 				return (DocumentListImpl) eObject;
+			} else {
+				throw new CamelException("Failed to convert String to DocumentList");
 			}
 		} catch (IOException e) {
-			// Ignore
-			LOG.warn("Failed to convert String to DocumentList", e);
+			throw new CamelException("Failed to convert String to DocumentList", e);
 		} 
-		return null; 
 	}
 
-	@Converter(allowNull = true)
-	public static DocumentList toDocumentList(InputStream in) {
+	@Converter()
+	public static DocumentList toDocumentList(InputStream in) throws CamelException {
 		try {
 			EObject eObject = Util.fromInputStream(in);
 			
 			if (DocumentListImpl.class.isInstance(eObject)) {
 				return (DocumentListImpl) eObject;
+			} else {
+				throw new CamelException("Failed to convert InputStream to DocumentList");
 			}
 		} catch (IOException e) {
-			// Ignore
-			LOG.warn("Failed to convert InputStream to DocumentList", e);
+			throw new CamelException("Failed to convert InputStream to DocumentList", e);
 		} 
-		return null; 
 	}
 
-	@Converter(allowNull = true)
-	public static DocumentList toDocumentList(byte[] byteArray) {
+	@Converter()
+	public static DocumentList toDocumentList(byte[] byteArray) throws CamelException {
 		try {
 			EObject eObject = Util.unmarshal(new String(byteArray));
 			
 			if (DocumentListImpl.class.isInstance(eObject)) {
 				return (DocumentListImpl) eObject;
+			} else {
+				throw new CamelException("Failed to convert byte array to DocumentList");
 			}
 		} catch (IOException e) {
-			// Ignore
-			LOG.warn("Failed to convert byte array to DocumentList", e);
+			throw new CamelException("Failed to convert byte array to DocumentList", e);
 		} 
-		return null; 
 	}
 
-	@Converter(allowNull = true)
-	public static String toString(DocumentListImpl documentList) {
+	@Converter()
+	public static String toString(DocumentListImpl documentList) throws CamelException {
 		try {
 			return Util.marshal(documentList);
 		} catch (IOException e) {
-			LOG.warn("Failed to convert DocumentList to String", e);
-			return null;
+			throw new CamelException("Failed to convert DocumentList to String", e);
 		}
 	}
 	
-	@Converter(allowNull = true)
-	public static OutputStream toOutputStream(DocumentListImpl documentList) {
+	@Converter()
+	public static OutputStream toOutputStream(DocumentListImpl documentList) throws CamelException {
 		try {
 			return Util.toOutputStream(documentList);
 		} catch (IOException e) {
-			LOG.warn("Failed to convert DocumentList to OutputStream", e);
-			return null;
+			throw new CamelException("Failed to convert DocumentList to OutputStream", e);
 		}
 	}
 	
-	@Converter(allowNull = true)
-	public static InputStream toInputStream(DocumentListImpl documentList) {
+	@Converter()
+	public static InputStream toInputStream(DocumentListImpl documentList) throws CamelException {
 		try {
 			return Util.toInputStream(documentList);
 		} catch (IOException e) {
-			LOG.warn("Failed to convert DocumentList to InputStream", e);
-			return null;
+			throw new CamelException("Failed to convert DocumentList to InputStream", e);
 		}
 	}
 	

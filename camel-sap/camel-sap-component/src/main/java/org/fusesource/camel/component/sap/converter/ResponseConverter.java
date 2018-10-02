@@ -20,13 +20,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import org.apache.camel.CamelException;
 import org.apache.camel.Converter;
 import org.eclipse.emf.ecore.EObject;
 import org.fusesource.camel.component.sap.model.rfc.Response;
 import org.fusesource.camel.component.sap.model.rfc.impl.ResponseImpl;
 import org.fusesource.camel.component.sap.util.Util;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * A Type Converter for SAP Response objects.
@@ -38,80 +37,75 @@ import org.slf4j.LoggerFactory;
 public enum ResponseConverter {
 	INSTANCE;
 	
-	private static final Logger LOG = LoggerFactory.getLogger(ResponseConverter.class);
-
-	@Converter(allowNull = true)
-	public static Response toResponse(String string) {
+	@Converter()
+	public static Response toResponse(String string) throws CamelException {
 		try {
 			EObject eObject = Util.unmarshal(string);
 			
 			if (ResponseImpl.class.isInstance(eObject)) {
 				return (ResponseImpl) eObject;
+			} else {
+				throw new CamelException("Failed to convert String to Response");
 			}
 		} catch (IOException e) {
-			// Ignore
-			LOG.warn("Failed to convert String to Response", e);
+			throw new CamelException("Failed to convert String to Response", e);
 		} 
-		return null; 
 	}
 
-	@Converter(allowNull = true)
-	public static Response toResponse(InputStream in) {
+	@Converter()
+	public static Response toResponse(InputStream in) throws CamelException {
 		try {
 			EObject eObject = Util.fromInputStream(in);
 			
 			if (ResponseImpl.class.isInstance(eObject)) {
 				return (ResponseImpl) eObject;
+			} else {
+				throw new CamelException("Failed to convert InputStream to Response");
 			}
 		} catch (IOException e) {
-			// Ignore
-			LOG.warn("Failed to convert InputStream to Response", e);
+			throw new CamelException("Failed to convert InputStream to Response", e);
 		} 
-		return null; 
 	}
 
-	@Converter(allowNull = true)
-	public static Response toResponse(byte[] byteArray) {
+	@Converter()
+	public static Response toResponse(byte[] byteArray) throws CamelException {
 		try {
 			EObject eObject = Util.unmarshal(new String(byteArray));
 			
 			if (ResponseImpl.class.isInstance(eObject)) {
 				return (ResponseImpl) eObject;
+			} else {
+				throw new CamelException("Failed to convert byte array to Response");
 			}
 		} catch (IOException e) {
-			// Ignore
-			LOG.warn("Failed to convert byte array to Response", e);
+			throw new CamelException("Failed to convert byte array to Response", e);
 		} 
-		return null; 
 	}
 
-	@Converter(allowNull = true)
-	public static String toString(ResponseImpl structure) {
+	@Converter()
+	public static String toString(ResponseImpl structure) throws CamelException {
 		try {
 			return Util.marshal(structure);
 		} catch (IOException e) {
-			LOG.warn("Failed to convert Response to String", e);
-			return null;
+			throw new CamelException("Failed to convert Response to String", e);
 		}
 	}
 	
-	@Converter(allowNull = true)
-	public static OutputStream toOutputStream(ResponseImpl structure) {
+	@Converter()
+	public static OutputStream toOutputStream(ResponseImpl structure) throws CamelException {
 		try {
 			return Util.toOutputStream(structure);
 		} catch (IOException e) {
-			LOG.warn("Failed to convert Response to OutputStream", e);
-			return null;
+			throw new CamelException("Failed to convert Response to OutputStream", e);
 		}
 	}
 	
-	@Converter(allowNull = true)
-	public static InputStream toInputStream(ResponseImpl structure) {
+	@Converter()
+	public static InputStream toInputStream(ResponseImpl structure) throws CamelException {
 		try {
 			return Util.toInputStream(structure);
 		} catch (IOException e) {
-			LOG.warn("Failed to convert Response to InputStream", e);
-			return null;
+			throw new CamelException("Failed to convert Response to InputStream", e);
 		}
 	}
 	
