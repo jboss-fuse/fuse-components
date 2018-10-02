@@ -15,7 +15,7 @@
   <parent>
     <groupId>org.fusesource</groupId>
     <artifactId>camel-fusesource-parent</artifactId>
-    <version>7.1.1-SNAPSHOT</version>
+    <version>7.1.1.fuse-711003</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
