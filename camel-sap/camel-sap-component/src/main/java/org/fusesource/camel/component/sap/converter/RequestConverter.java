@@ -20,13 +20,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import org.apache.camel.CamelException;
 import org.apache.camel.Converter;
 import org.eclipse.emf.ecore.EObject;
 import org.fusesource.camel.component.sap.model.rfc.Request;
 import org.fusesource.camel.component.sap.model.rfc.impl.RequestImpl;
 import org.fusesource.camel.component.sap.util.Util;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * A Type Converter for SAP Request objects.
@@ -38,80 +37,75 @@ import org.slf4j.LoggerFactory;
 public enum RequestConverter {
 	INSTANCE;
 	
-	private static final Logger LOG = LoggerFactory.getLogger(RequestConverter.class);
-
 	@Converter
-	public static Request toRequest(String string) {
+	public static Request toRequest(String string) throws CamelException {
 		try {
 			EObject eObject = Util.unmarshal(string);
 			
 			if (RequestImpl.class.isInstance(eObject)) {
 				return (RequestImpl) eObject;
+			} else {
+				throw new CamelException("Failed to convert String to Request");
 			}
 		} catch (IOException e) {
-			// Ignore
-			LOG.warn("Failed to convert String to Request", e);
+			throw new CamelException("Failed to convert String to Request", e);
 		} 
-		return null; 
 	}
 
 	@Converter
-	public static Request toRequest(InputStream in) {
+	public static Request toRequest(InputStream in) throws CamelException {
 		try {
 			EObject eObject = Util.fromInputStream(in);
 			
 			if (RequestImpl.class.isInstance(eObject)) {
 				return (RequestImpl) eObject;
+			} else {
+				throw new CamelException("Failed to convert InputStream to Request");
 			}
 		} catch (IOException e) {
-			// Ignore
-			LOG.warn("Failed to convert InputStream to Request", e);
+			throw new CamelException("Failed to convert InputStream to Request", e);
 		} 
-		return null; 
 	}
 
 	@Converter
-	public static Request toRequest(byte[] byteArray) {
+	public static Request toRequest(byte[] byteArray) throws CamelException {
 		try {
 			EObject eObject = Util.unmarshal(new String(byteArray));
 			
 			if (RequestImpl.class.isInstance(eObject)) {
 				return (RequestImpl) eObject;
+			} else {
+				throw new CamelException("Failed to convert byte array to Request");
 			}
 		} catch (IOException e) {
-			// Ignore
-			LOG.warn("Failed to convert byte array to Request", e);
+			throw new CamelException("Failed to convert byte array to Request", e);
 		} 
-		return null; 
 	}
 
 	@Converter
-	public static String toString(RequestImpl structure) {
+	public static String toString(RequestImpl structure) throws CamelException {
 		try {
 			return Util.marshal(structure);
 		} catch (IOException e) {
-			LOG.warn("Failed to convert Request to String", e);
-			return null;
+			throw new CamelException("Failed to convert Request to String", e);
 		}
 	}
 	
 	@Converter
-	public static OutputStream toOutputStream(RequestImpl structure) {
+	public static OutputStream toOutputStream(RequestImpl structure) throws CamelException {
 		try {
 			return Util.toOutputStream(structure);
 		} catch (IOException e) {
-			LOG.warn("Failed to convert Request to OutputStream", e);
-			return null;
+			throw new CamelException("Failed to convert Request to OutputStream", e);
 		}
 	}
 	
 	@Converter
-	public static InputStream toInputStream(RequestImpl structure) {
+	public static InputStream toInputStream(RequestImpl structure) throws CamelException {
 		try {
 			return Util.toInputStream(structure);
 		} catch (IOException e) {
-			LOG.warn("Failed to convert Request to InputStream", e);
-			return null;
+			throw new CamelException("Failed to convert Request to InputStream", e);
 		}
 	}
 	
