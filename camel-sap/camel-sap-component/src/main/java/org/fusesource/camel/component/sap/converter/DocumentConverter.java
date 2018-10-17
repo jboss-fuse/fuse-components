@@ -20,13 +20,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import org.apache.camel.CamelException;
 import org.apache.camel.Converter;
 import org.eclipse.emf.ecore.EObject;
 import org.fusesource.camel.component.sap.model.idoc.Document;
 import org.fusesource.camel.component.sap.model.idoc.impl.DocumentImpl;
 import org.fusesource.camel.component.sap.util.Util;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * A Type Converter for SAP document objects.
@@ -38,83 +37,75 @@ import org.slf4j.LoggerFactory;
 public enum DocumentConverter {
 	INSTANCE;
 	
-	private static final Logger LOG = LoggerFactory.getLogger(DocumentConverter.class);
-	
 	@Converter
-	public static Document toDocument(String string) {
+	public static Document toDocument(String string) throws CamelException {
 		try {
 			EObject eObject = Util.unmarshal(string);
 			
 			if (DocumentImpl.class.isInstance(eObject)) {
 				return (DocumentImpl) eObject;
+			} else {
+				throw new CamelException("Failed to convert String to Document");
 			}
 		} catch (IOException e) {
-			// Ignore
-			LOG.warn("Failed to convert String to Document", e);
+			throw new CamelException("Failed to convert String to Document", e);
 		} 
-		return null; 
 	}
 
 	@Converter
-	public static Document toDocument(InputStream in) {
+	public static Document toDocument(InputStream in) throws CamelException {
 		try {
 			EObject eObject = Util.fromInputStream(in);
 			
 			if (DocumentImpl.class.isInstance(eObject)) {
 				return (DocumentImpl) eObject;
+			} else {
+				throw new CamelException("Failed to convert InputStream to Document");
 			}
 		} catch (IOException e) {
-			// Ignore
-			LOG.warn("Failed to convert InputStream to Document", e);
+			throw new CamelException("Failed to convert InputStream to Document", e);
 		} 
-		return null; 
 	}
 
 	@Converter
-	public static Document toDocument(byte[] byteArray) {
+	public static Document toDocument(byte[] byteArray) throws CamelException {
 		try {
 			EObject eObject = Util.unmarshal(new String(byteArray));
 			
 			if (DocumentImpl.class.isInstance(eObject)) {
 				return (DocumentImpl) eObject;
+			} else {
+				throw new CamelException("Failed to convert byte array to Document");
 			}
 		} catch (IOException e) {
-			// Ignore
-			LOG.warn("Failed to convert byte array to Document", e);
+			throw new CamelException("Failed to convert byte array to Document", e);
 		} 
-		return null; 
 	}
 
 	@Converter
-	public static String toString(DocumentImpl document) {
+	public static String toString(DocumentImpl document) throws CamelException {
 		try {
 			return Util.marshal(document);
 		} catch (IOException e) {
-			// Ignore
-			LOG.warn("Failed to convert Document to String", e);
-			return null;
+			throw new CamelException("Failed to convert Document to String", e);
 		}
 	}
 	
 	@Converter
-	public static OutputStream toOutputStream(DocumentImpl document) {
+	public static OutputStream toOutputStream(DocumentImpl document) throws CamelException {
 		try {
 			return Util.toOutputStream(document);
 		} catch (IOException e) {
-			// Ignore
-			LOG.warn("Failed to convert Document to OutputStream", e);
-			return null;
+			throw new CamelException("Failed to convert Document to OutputStream", e);
 		}
 	}
 	
 	@Converter
-	public static InputStream toInputStream(DocumentImpl document) {
+	public static InputStream toInputStream(DocumentImpl document) throws CamelException {
 		try {
 			return Util.toInputStream(document);
 		} catch (IOException e) {
-			// Ignore
-			LOG.warn("Failed to convert Document to InputStream", e);
-			return null;
+			throw new CamelException("Failed to convert Document to InputStream", e);
 		}
 	}
 	
