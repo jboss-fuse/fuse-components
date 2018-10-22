@@ -29,9 +29,9 @@
 
     <properties>
         <geronimo-annotation_1.0_spec.version>1.1.1</geronimo-annotation_1.0_spec.version>
-        <camel-version>2.21.0.fuse-710018</camel-version>
+        <camel-version>2.21.0.fuse-710023</camel-version>
         <activemq-version>5.11.0.redhat-630343</activemq-version>
-        <karaf-version>4.2.0.fuse-710024</karaf-version>
+        <karaf-version>4.2.0.fuse-710031</karaf-version>
     </properties>
 
     <dependencyManagement>
