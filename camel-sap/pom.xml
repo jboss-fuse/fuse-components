@@ -15,7 +15,7 @@
 	<parent>
 		<groupId>org.fusesource</groupId>
 		<artifactId>camel-fusesource-parent</artifactId>
-		<version>7.1.0.fuse-710018</version>
+		<version>7.1.0.fuse-710021</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
@@ -35,7 +35,7 @@
 		<maven-surefire-plugin-version>2.19</maven-surefire-plugin-version>
 		<camel-version>2.21.0.fuse-710023</camel-version>
 		<karaf-version>4.2.0.fuse-710031</karaf-version>
-		<camel.sap.plugin.version>7.1.0.fuse-710018</camel.sap.plugin.version>
+		<camel.sap.plugin.version>7.1.0.fuse-710021</camel.sap.plugin.version>
 
 		
         <!-- OSGi bundles properties -->

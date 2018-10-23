@@ -15,12 +15,12 @@
     <parent>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-parent</artifactId>
-        <version>2.21.0.fuse-710018</version>
+        <version>2.21.0.fuse-710023</version>
        </parent>
 
     <groupId>org.fusesource</groupId>
     <artifactId>camel-fusesource-parent</artifactId>
-    <version>7.1.0.fuse-710018</version>
+    <version>7.1.0.fuse-710021</version>
     <packaging>pom</packaging>
 
     <name>JBoss Fuse :: Components </name>
