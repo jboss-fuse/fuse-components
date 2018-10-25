@@ -27,6 +27,9 @@ import com.sap.conn.jco.JCo;
 /**
  * An SAP producer performing a clearing of JCo Repository meta-data and Data Layer registry meta-data. 
  * 
+ * <p><b>WARNING: These producer types are to be used in non-production environments ONLY!</b> 
+ * <p><b>Deployment and use of these producer types in production environments are not supported.</b>
+ * 
  * @author William Collins <punkhornsw@gmail.com>
  *
  */
