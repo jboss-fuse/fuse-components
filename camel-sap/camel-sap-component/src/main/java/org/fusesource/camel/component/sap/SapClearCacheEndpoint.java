@@ -27,6 +27,9 @@ import org.slf4j.LoggerFactory;
 /**
  * An SAP endpoint providing an endpoint to clear meta-data from JCo Repository and Data Layer.
  * 
+ * <p><b>WARNING: These endpoint types are to be used in non-production environments ONLY!</b> 
+ * <p><b>Deployment and use of these endpoint types in production environments are not supported.</b>
+ * 
  * @author William Collins <punkhornsw@gmail.com>
  *
  */

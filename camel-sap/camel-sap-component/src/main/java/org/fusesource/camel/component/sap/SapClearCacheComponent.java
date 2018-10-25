@@ -24,7 +24,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * An SAP component that manages {@link SapSynchronousRfcDestinationEndpoint}.
+ * An SAP component that manages {@link SapClearCacheEndpoint}.
+ * 
+ * <p><b>WARNING: The endpoints of this component are to be used in non-production environments ONLY!</b> 
+ * <p><b>Deployment and use of this component and its endpoints in production environments are not supported.</b>
  * 
  * @author William Collins <punkhornsw@gmail.com>
  * 
