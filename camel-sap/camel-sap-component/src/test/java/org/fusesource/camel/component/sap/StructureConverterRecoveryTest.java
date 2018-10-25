@@ -5,15 +5,13 @@ import static org.mockito.Mockito.when;
 import java.io.File;
 import java.util.List;
 
+import org.apache.camel.CamelExecutionException;
 import org.apache.camel.Exchange;
 import org.apache.camel.Message;
 import org.apache.camel.builder.RouteBuilder;
-import org.fusesource.camel.component.sap.converter.StructureConverter;
 import org.fusesource.camel.component.sap.model.rfc.Structure;
 import org.fusesource.camel.component.sap.util.Util;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.api.mockito.mockpolicies.Slf4jMockPolicy;
@@ -21,8 +19,8 @@ import org.powermock.core.classloader.annotations.MockPolicy;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.sap.conn.idoc.jco.JCoIDoc;
 import com.sap.conn.jco.JCoDestinationManager;
+import com.sap.conn.idoc.jco.JCoIDoc;
 import com.sap.conn.jco.ext.Environment;
 
 @RunWith(PowerMockRunner.class)
@@ -48,7 +46,7 @@ public class StructureConverterRecoveryTest extends SapRfcTestSupport {
 		when(JCoIDoc.getServer(SERVER_NAME)).thenReturn(mockServer);
 	}
 
-	@Test
+	@Test(expected = CamelExecutionException.class)
 	public void testToStructureFromStringWithBadInput() throws Exception {
 
 		//
@@ -65,7 +63,6 @@ public class StructureConverterRecoveryTest extends SapRfcTestSupport {
 		//
 		
 		template.sendBody("direct:request", badRequest);
-		template.sendBody("direct:request", goodRequest);
 
 		//
 		// Then
@@ -78,10 +75,36 @@ public class StructureConverterRecoveryTest extends SapRfcTestSupport {
 		Structure request1 = message1.getBody(Structure.class);
 		assertNull("Invalid request string inadvertantly converted", request1);
 		
+	}
+
+	
+	@Test
+	public void testToStructureFromStringWithGoodInput() throws Exception {
+
+		//
+		// Given
+		//
+		
+		File file = new File("data/testRfcRegistry.ecore");
+		Util.loadRegistry(file);
+		String badRequest = REQUEST_STRING.replace("CHAR_PARAM=\"ABCDEFGHIJ\"", "CHAR_PARAM=\"&ABCDEFGHIJ\"");
+		String goodRequest = REQUEST_STRING;
+		
+		//
+		// When
+		//
+		
+		template.sendBody("direct:request", goodRequest);
+
+		//
+		// Then
+		//
+		List<Exchange> exchanges = getMockEndpoint("mock:result").getExchanges();
+		
 		// Second request string sent is valid and should return a non-null request 
-		Exchange exchange2 = exchanges.get(1);
-		Message message2 = exchange2.getIn();
-		Structure request2 = message2.getBody(Structure.class);
+		Exchange exchange = exchanges.get(0);
+		Message message = exchange.getIn();
+		Structure request2 = message.getBody(Structure.class);
 		assertNotNull("Subsequent valid request string not converted", request2);
 		
 
