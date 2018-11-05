@@ -41,7 +41,7 @@ public enum StructureConverter {
 	public static Structure toStructure(String string) throws CamelException {
 		try {
 			EObject eObject = Util.unmarshal(string);
-			
+
 			if (StructureImpl.class.isInstance(eObject)) {
 				return (StructureImpl) eObject;
 			} else {
@@ -56,7 +56,7 @@ public enum StructureConverter {
 	public static Structure toStructure(InputStream in) throws CamelException {
 		try {
 			EObject eObject = Util.fromInputStream(in);
-			
+
 			if (StructureImpl.class.isInstance(eObject)) {
 				return (StructureImpl) eObject;
 			} else {
@@ -71,7 +71,7 @@ public enum StructureConverter {
 	public static Structure toStructure(byte[] byteArray) throws CamelException {
 		try {
 			EObject eObject = Util.unmarshal(new String(byteArray));
-			
+
 			if (StructureImpl.class.isInstance(eObject)) {
 				return (StructureImpl) eObject;
 			} else {
