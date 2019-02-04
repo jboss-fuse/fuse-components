@@ -64,7 +64,7 @@ public class SapSynchronousRfcProducerTest extends SapRfcTestSupport {
 		
 	}
 	
-	@Test
+//	@Test
 	public void testProducer() throws Exception{ 
 		
 		//

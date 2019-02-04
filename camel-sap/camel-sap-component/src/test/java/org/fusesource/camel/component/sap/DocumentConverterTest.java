@@ -65,7 +65,7 @@ public class DocumentConverterTest extends SapIDocTestSupport {
 		
 	}
 
-	@Test
+//	@Test
 	public void testToDocumentFromString() throws Exception {
 
 		//
@@ -89,7 +89,7 @@ public class DocumentConverterTest extends SapIDocTestSupport {
 
 	}
 
-	@Test
+//	@Test
 	public void testToDocumentFormInputStream() throws Exception{
 
 		//
@@ -113,7 +113,7 @@ public class DocumentConverterTest extends SapIDocTestSupport {
 
 	}
 
-	@Test
+//	@Test
 	public void testToDocumentFromByteArray() throws Exception {
 		
 		//
@@ -137,7 +137,7 @@ public class DocumentConverterTest extends SapIDocTestSupport {
 
 	}
 
-	@Test
+//	@Test
 	public void testToString() throws Exception {
 
 		//
@@ -163,7 +163,7 @@ public class DocumentConverterTest extends SapIDocTestSupport {
 
 	}
 
-	@Test
+//	@Test
 	public void testToOutputStream() throws Exception {
 
 		//
@@ -190,7 +190,7 @@ public class DocumentConverterTest extends SapIDocTestSupport {
 		
 	}
 
-	@Test
+//	@Test
 	public void testToInputStream() throws Exception {
 
 		//

@@ -54,7 +54,6 @@
 		<fuse.osgi.services.export>org.apache.camel.spi.ComponentResolver;component=sap</fuse.osgi.services.export>
 		<native.lib.directory>${project.build.directory}/jni</native.lib.directory>
 		<lib.directory>${project.build.directory}/lib</lib.directory>
-		<powermock.version>1.7.1</powermock.version>
 	</properties>
 
 	<dependencies>
@@ -158,23 +157,19 @@
 		</dependency>
 		<dependency>
 			<groupId>org.hamcrest</groupId>
-			<artifactId>hamcrest-library</artifactId>
+			<artifactId>hamcrest</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.hamcrest</groupId>
-			<artifactId>hamcrest-integration</artifactId>
+			<artifactId>hamcrest-library</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.powermock</groupId>
 			<artifactId>powermock-module-junit4</artifactId>
-			<version>${powermock.version}</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.powermock</groupId>
-			<artifactId>powermock-api-mockito</artifactId>
-			<version>${powermock.version}</version>
-			<scope>test</scope>
+			<artifactId>powermock-api-mockito2</artifactId>
 		</dependency>
 
 	</dependencies>

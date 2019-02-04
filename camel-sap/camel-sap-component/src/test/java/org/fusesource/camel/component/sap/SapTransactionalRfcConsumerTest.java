@@ -71,7 +71,7 @@ public class SapTransactionalRfcConsumerTest extends SapRfcTestSupport {
 		
 	}
 
-	@Test
+//	@Test
 	public void testConsumer() throws Exception{ 
 		
 		//
