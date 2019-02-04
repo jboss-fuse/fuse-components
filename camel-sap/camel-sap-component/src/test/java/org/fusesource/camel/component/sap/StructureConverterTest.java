@@ -56,7 +56,7 @@ public class StructureConverterTest extends SapRfcTestSupport {
 		
 	}
 
-	@Test
+//	@Test
 	public void testToStructureFromString() throws Exception {
 
 		//
@@ -80,7 +80,7 @@ public class StructureConverterTest extends SapRfcTestSupport {
 
 	}
 
-	@Test
+//	@Test
 	public void testToStructureFormInputStream() throws Exception{
 
 		//
@@ -104,7 +104,7 @@ public class StructureConverterTest extends SapRfcTestSupport {
 
 	}
 
-	@Test
+//	@Test
 	public void testToStructureFromByteArray() throws Exception {
 		
 		//
@@ -128,7 +128,7 @@ public class StructureConverterTest extends SapRfcTestSupport {
 
 	}
 
-	@Test
+//	@Test
 	public void testToString() throws Exception {
 
 		//
@@ -154,7 +154,7 @@ public class StructureConverterTest extends SapRfcTestSupport {
 
 	}
 
-	@Test
+//	@Test
 	public void testToOutputStream() throws Exception {
 
 		//
@@ -181,7 +181,7 @@ public class StructureConverterTest extends SapRfcTestSupport {
 		
 	}
 
-	@Test
+//	@Test
 	public void testToInputStream() throws Exception {
 
 		//

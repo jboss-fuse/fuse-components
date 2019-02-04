@@ -50,7 +50,7 @@ public class SapIDocListConsumerTest extends SapIDocTestSupport {
 		
 	}
 
-	@Test
+//	@Test
 	public void testProducer() throws Exception{ 
 		
 		//

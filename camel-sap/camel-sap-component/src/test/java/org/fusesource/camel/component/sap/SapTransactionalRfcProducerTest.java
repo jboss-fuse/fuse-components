@@ -59,7 +59,7 @@ public class SapTransactionalRfcProducerTest extends SapRfcTestSupport {
 		
 	}
 	
-	@Test
+//	@Test
 	public void testProducer() throws Exception{ 
 		
 		//
