@@ -49,6 +49,57 @@
       org.apache.commons.pool*;resolution:=optional,
       org.apache.commons.net*;resolution:=optional,
       org.json*;resolution:=optional,
+      !org.iq80*,
+      !org.apache.commons.daemon,
+      !org.apache.maven*,
+      !com.google.thirdparty.publicsuffix,
+      sun.misc*;resolution:=optional,
+      sun.nio*;resolution:=optional,
+      javax.jmdns*;resolution:=optional,
+      javax.resource*;resolution:=optional,
+      javax.servlet*;resolution:=optional,
+      com.thoughtworks.xstream*;resolution:=optional,
+      org.apache.activeio*;resolution:=optional,
+      org.apache.activemq.camel*;resolution:=optional,
+      org.apache.camel*;version:="${camel-version-range}";resolution:=optional,
+      org.apache.derby.jdbc*;resolution:=optional,
+      org.apache.geronimo.transaction.manager*;resolution:=optional,
+      org.apache.hadoop*;resolution:=optional,
+      org.apache.http*;resolution:=optional,
+      org.apache.xpath*;resolution:=optional,
+      org.bouncycastle*;resolution:=optional,
+      com.fasterxml.jackson*;resolution:=optional,
+      org.codehaus.jettison*;resolution:=optional,
+      org.jasypt*;resolution:=optional,
+      org.eclipse.jetty*;resolution:=optional;version="[9.0,10)",
+      org.apache.zookeeper*;resolution:=optional,
+      org.fusesource.leveldbjni*;resolution:=optional,
+      org.fusesource.hawtjni*;resolution:=optional,
+      org.springframework.jms*;version="[3,5]";resolution:=optional,
+      org.springframework.osgi*;version="[1.2,1.3]";resolution:=optional,
+      org.springframework.transaction*;version="[3,5]";resolution:=optional,
+      org.xmlpull*;resolution:=optional,
+      scala*;resolution:=optional,
+      org.springframework*;version="[3,5]";resolution:=optional,
+      org.springframework.osgi*;version="[1,4]";resolution:=optional,
+      org.apache.xbean.spring*;resolution:=optional;version="[3.13,5)",
+      org.apache.xbean*;version="[3.13,5)",
+      javax.annotation*,
+      javax.jms*;version="[1.1,3)",
+      javax.management*,
+      javax.transaction*,
+      javax.naming*;resolution:=optional,
+      org.apache.commons.pool*;resolution:=optional,
+      org.apache.commons.net*;resolution:=optional,
+      com.sun*;resolution:=optional,
+      org.jvnet.jaxb2_commons*;resolution:=optional,
+      org.xerial.snappy*;resolution:=optional,
+      groovy*;resolution:=optional,
+      org.codehaus.groovy*;resolution:=optional,
+      org.apache.tools.ant*;resolution:=optional,
+      org.apache.log4j*;resolution:=optional,
+      org.json*;resolution:=optional,
+      org.slf4j.bridge;resolution:=optional,
         *
     </camel.osgi.import>
     <camel.osgi.export>
@@ -56,6 +107,12 @@
     </camel.osgi.export>
     <camel.osgi.private.pkg>
       org.fusesource.hawtbuf*,
+      org.fusesource.hawtdispatch*,
+      org.fusesource.mqtt*,
+      org.apache.qpid*,
+      com.google.common*,
+      org.linkedin*,
+      org.iq80*
       !org.apache.activemq.store,
     </camel.osgi.private.pkg>
     <camel.osgi.dynamic>*</camel.osgi.dynamic>
@@ -67,6 +124,12 @@
     <dependency>
       <groupId>org.apache.activemq</groupId>
       <artifactId>activemq-client</artifactId>
+      <version>${activemq-version}</version>
+    </dependency>
+
+     <dependency>
+      <groupId>org.apache.activemq</groupId>
+      <artifactId>activemq-osgi</artifactId>
       <version>${activemq-version}</version>
     </dependency>
 
@@ -152,7 +215,10 @@
         <extensions>true</extensions>
         <configuration>
           <instructions>
-            <Embed-Dependency>*;scope=compile|runtime;groupId=org.apache.activemq|org.fusesource.hawtbuf;inline=META-INF/services/*</Embed-Dependency>
+            <Embed-Dependency>
+              *;scope=compile|runtime;groupId=org.apache.activemq|org.fusesource.hawtbuf|org.apache.qpid;inline=META-INF/services/*,
+              groupId=org.fusesource.leveldbjni;inline=META-INF/native/linux*|META-INF/native/osx*
+            </Embed-Dependency>
             <Embed-Transitive>true</Embed-Transitive>
             <_exportcontents>org.apache.activemq.*;-noimport:=true</_exportcontents>
           </instructions>
