@@ -14,3 +14,9 @@ overlays
 *.fmd
 .cache
 dependency-reduced-pom.xml
+*.dll
+*.so
+*.jnilib
+*.jar
+camel-sap/org.fusesource.camel.component.sap.test/data/*.xml
+
