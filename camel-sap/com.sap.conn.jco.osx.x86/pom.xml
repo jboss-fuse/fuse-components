@@ -135,14 +135,15 @@
 	</build>
 	<repositories>
 		<repository>
-			<id>fusesource-third-party-internal</id>
-			<url>https://repository.jboss.org/nexus/content/repositories/fs-maven2-all</url>
-			<layout>default</layout>
+			<id>brewroot</id>
+			<name>Brew Repository</name>
+			<url>http://download.eng.bos.redhat.com/brewroot/repos/jb-fuse-6.2-build/latest/maven</url>
 			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
+		                <enabled>false</enabled>
+        		</snapshots>
 			<releases>
-				<enabled>true</enabled>
+		                <enabled>true</enabled>
+		                <updatePolicy>never</updatePolicy>
 			</releases>
 		</repository>
 	</repositories>
