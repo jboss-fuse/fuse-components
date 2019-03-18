@@ -417,25 +417,16 @@
 		</plugins>
 	</build>
 	<modules>
-		<!-- these 2 SAP bundles are only used at build time as per ENTESB-5801 -->
+                <!-- these 2 SAP bundles are only used at build time as per ENTESB-5801 -->
 	        <module>com.sap.conn.idoc</module>
-	        <module>com.sap.conn.jco</module>
-		
-		<module>org.fusesource.camel.component.sap.model</module>
-		<module>org.fusesource.camel.component.sap.model.edit</module>
-		<module>org.fusesource.camel.component.sap</module>
-		<module>org.fusesource.camel.component.sap.test</module>
-		<module>camel-sap-component</module>
+        	<module>com.sap.conn.jco</module>
 
-                <module>com.sap.conn.jco.linux.x86</module>
-                <module>com.sap.conn.jco.linux.x86_64</module>
-                <module>com.sap.conn.jco.osx.x86</module>
-                <module>com.sap.conn.jco.osx.x86_64</module>
-                <module>com.sap.conn.jco.win32.x86</module>
-                <module>com.sap.conn.jco.win32.x86_64</module>
-                                                
-                <module>camel-sap-repository</module> 
-	</modules>
+                <module>org.fusesource.camel.component.sap.model</module>
+                <module>org.fusesource.camel.component.sap.model.edit</module>
+                <module>org.fusesource.camel.component.sap</module>
+                <module>org.fusesource.camel.component.sap.test</module>
+                <module>camel-sap-component</module>
+        </modules>
 	<repositories>
 		<repository>
 			<id>eclipse-neon</id>
