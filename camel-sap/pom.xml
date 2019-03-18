@@ -24,6 +24,7 @@
 	<packaging>pom</packaging>
 
 	<name>JBoss Fuse :: Components :: SAP JCO</name>
+	<description>Provides SAP Camel Component</description>
 	<url>http://www.jboss.org/products/fuse/overview/</url>
 
 	<properties>
@@ -448,17 +449,17 @@
 			</releases>
 		</repository>
 		<repository>
-            <id>brewroot</id>
-            <name>Brew Repository</name>
-            <url>http://download.eng.bos.redhat.com/brewroot/repos/jb-fuse-6.2-build/latest/maven</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-        </repository>
+			<id>brewroot</id>
+			<name>Brew Repository</name>
+			<url>http://download.eng.bos.redhat.com/brewroot/repos/jb-fuse-6.2-build/latest/maven</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+		</repository>
 		<repository>
 			<id>fusesource-third-party-internal</id>
 			<url>https://repository.jboss.org/nexus/content/repositories/fs-releases/</url>
@@ -475,17 +476,17 @@
 			<url>http://download.eng.bos.redhat.com/brewroot/repos/jb-fsw-6.2-build/latest/maven</url>
 			<layout>default</layout>
 		</repository>
-    <repository>
-      <id>jboss.public.repo</id>
-      <name>JBoss Public Repository</name>
-      <url>http://repository.jboss.org/nexus/content/repositories/public</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-    </repository>
+		<repository>
+			<id>jboss.public.repo</id>
+			<name>JBoss Public Repository</name>
+			<url>http://repository.jboss.org/nexus/content/repositories/public</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
@@ -494,25 +495,6 @@
 			<layout>default</layout>
 		</pluginRepository>
 	</pluginRepositories>
-	<description>Provides SAP Camel Component</description>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<profiles>
 		<profile>
 			<id>integration-tests</id>
