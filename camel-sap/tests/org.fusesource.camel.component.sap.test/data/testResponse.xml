@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ASCII"?>
+<BAPI_FLCONN_GETDETAIL:Response xmlns:BAPI_FLCONN_GETDETAIL="http://sap.fusesource.org/rfc/NPL/BAPI_FLCONN_GETDETAIL">
+  <RETURN>
+    <row TYPE="S" ID="ABCDEFGHIJ0123456789" MESSAGE="Four score and seven years ago our fathers brought forth on this continent a new nation ..." LOG_NO="ABCDEFGHIJ0123456789" LOG_MSG_NO="012345" PARAMETER="FLIGHT_HOP_LIST" FIELD="HOP" SYSTEM="NPL"/>
+  </RETURN>
+</BAPI_FLCONN_GETDETAIL:Response>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description>
+      To install these features, point Eclipse at this site.
+   </description>
+
+   <!-- features -->
+   <feature id="org.fusesource.camel.component.sap.feature"><category name="AllFeatures"/></feature>
+
+   <!-- feature sources -->
+   <feature id="org.fusesource.camel.component.sap.feature.source"><category name="AllSources"/></feature>
+
+   <!-- tests -->
+   <bundle id="org.fusesource.camel.component.sap.test"><category name="AllTests"/></bundle>
+
+   <!-- tests sources -->
+   <bundle id="org.fusesource.camel.component.sap.test.source"><category name="AllTests"/></bundle>
+
+   <category-def name="AllFeatures" label="Red Hat Fuse SAP Data Layer Nightly Build Update Site - Features">
+      <description>
+         Red Hat Fuse SAP Data Layer Nightly Build Update Site: contains all features in this build.
+      </description>
+   </category-def>
+   <category-def name="AllSources" label="Red Hat Fuse SAP Data Layer Nightly Build Update Site - Sources">
+      <description>
+         Red Hat Fuse SAP Data Layer Nightly Build Update Site: contains all source features in this build.
+      </description>
+   </category-def>
+   <category-def name="AllTests" label="Red Hat Fuse SAP Data Layer Nightly Build Update Site - Tests">
+      <description>
+         Red Hat Fuse SAP Data Layer Nightly Build Update Site: contains all tests in this build.
+      </description>
+   </category-def>
+
+</site>

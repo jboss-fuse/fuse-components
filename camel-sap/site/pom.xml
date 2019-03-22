@@ -1,0 +1,73 @@
+<!--
+ Copyright 2013 Red Hat, Inc.
+
+ Red Hat licenses this file to you under the Apache License, version
+ 2.0 (the "License"); you may not use this file except in compliance
+ with the License.  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  implied.  See the License for the specific language governing
+ permissions and limitations under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.fusesource.components</groupId>
+		<artifactId>camel-sap-parent</artifactId>
+		<version>6.3.0.redhat-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>org.fusesource.camel.component.sap.updatesite</artifactId>
+	<version>6.3.0-SNAPSHOT</version>
+	<packaging>eclipse-repository</packaging>
+
+	<name>JBoss Fuse :: SAP JCO :: SAP Data Layer :: Update Site</name>
+	<description>Provides Update Site for the SAP Data Layer</description>
+
+	<properties>
+		<skipDeployToJBossOrg>false</skipDeployToJBossOrg>
+		<update.site.name>JBoss Fuse SAP Data Layer</update.site.name>
+		<update.site.description>CI Build</update.site.description>
+		<siteTemplateFolder>siteTemplateFolder</siteTemplateFolder>
+		<target.eclipse.version>4.8 (Photon)</target.eclipse.version>
+	</properties>
+
+	<build>
+		<plugins>
+			<!-- Add support for bundles without any category -->
+			<plugin>
+				<groupId>org.jboss.tools.tycho-plugins</groupId>
+				<artifactId>repository-utils</artifactId>
+				<version>${tycho-version}</version>
+				<executions>
+					<execution>
+						<id>generate-facade</id>
+						<phase>package</phase>
+						<goals>
+							<goal>generate-repository-facade</goal>
+						</goals>
+						<configuration>
+							<referenceStrategy>compositeReferences</referenceStrategy>
+							<siteTemplateFolder>${siteTemplateFolder}</siteTemplateFolder>
+							<removeDefaultCategory>true</removeDefaultCategory>
+							<symbols>
+								<update.site.name>${update.site.name}</update.site.name>
+								<update.site.description>${update.site.description}</update.site.description>
+								<update.site.version>${camel.sap.plugin.version}</update.site.version>
+								<target.eclipse.version>${target.eclipse.version}</target.eclipse.version>
+							</symbols>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
