@@ -16,6 +16,7 @@
    <!-- tests sources -->
    <bundle id="org.fusesource.camel.component.sap.test.source"><category name="AllTests"/></bundle>
 
+   <!-- Categories -->
    <category-def name="AllFeatures" label="Red Hat Fuse SAP Data Layer Nightly Build Update Site - Features">
       <description>
          Red Hat Fuse SAP Data Layer Nightly Build Update Site: contains all features in this build.
