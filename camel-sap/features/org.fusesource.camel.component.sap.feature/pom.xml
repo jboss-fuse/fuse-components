@@ -30,4 +30,15 @@
     <name>JBoss Fuse :: Components :: SAP :: Features :: SAP Data Layer</name>
     <description>Provides Feature for the SAP Data Layer</description>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>ianal-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
