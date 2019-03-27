@@ -195,12 +195,12 @@
             <artifactId>com.sap.conn.idoc</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.fusesource</groupId>
+            <groupId>org.fusesource.components.camel-sap</groupId>
             <artifactId>org.fusesource.camel.component.sap</artifactId>
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>org.fusesource</groupId>
+            <groupId>org.fusesource.components.camel-sap</groupId>
             <artifactId>org.fusesource.camel.component.sap.model</artifactId>
             <optional>true</optional>
         </dependency>

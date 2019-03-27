@@ -15,30 +15,71 @@
  -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.fusesource.components.camel-sap</groupId>
-        <artifactId>features</artifactId>
-        <version>6.3.0.redhat-SNAPSHOT</version>
-    </parent>
+	<parent>
+		<groupId>org.fusesource.components.camel-sap</groupId>
+		<artifactId>features</artifactId>
+		<version>6.3.0.redhat-SNAPSHOT</version>
+	</parent>
 
-    <artifactId>org.fusesource.camel.component.sap.feature</artifactId>
-    <version>6.3.0-SNAPSHOT</version>
-    <packaging>eclipse-feature</packaging>
+	<artifactId>org.fusesource.camel.component.sap.feature</artifactId>
+	<version>6.3.0-SNAPSHOT</version>
+	<packaging>eclipse-feature</packaging>
 
-    <name>JBoss Fuse :: Components :: SAP :: Features :: SAP Data Layer</name>
-    <description>Provides Feature for the SAP Data Layer</description>
+	<name>JBoss Fuse :: Components :: SAP :: Features :: SAP Data Layer</name>
+	<description>Provides Feature for the SAP Data Layer</description>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>ianal-maven-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>ianal-maven-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho.extras</groupId>
+				<artifactId>tycho-source-feature-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<executions>
+					<execution>
+						<id>source-feature</id>
+						<phase>package</phase>
+						<goals>
+							<goal>source-feature</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<excludes>
+						<!-- ID of the non-source bundle(s) to exclude from the generated source feature -->
+						<plugin id="com.sap.conn.jco"/>
+						<plugin id="com.sap.conn.jco.linux.x86"/>
+						<plugin id="com.sap.conn.jco.linux.x86_64"/>
+						<plugin id="com.sap.conn.jco.osx.x86"/>
+						<plugin id="com.sap.conn.jco.osx.x86_64"/>
+						<plugin id="com.sap.conn.jco.win32.x86"/>
+						<plugin id="com.sap.conn.jco.win32.x86_64"/>
+						<plugin id="com.sap.conn.idoc"/>
+					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-p2-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<executions>
+					<execution>
+						<id>attached-p2-metadata</id>
+						<phase>package</phase>
+						<goals>
+							<goal>p2-metadata</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>

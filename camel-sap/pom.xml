@@ -531,34 +531,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- needed for building the source features -->
-			<plugin>
-				<groupId>org.eclipse.tycho.extras</groupId>
-				<artifactId>tycho-source-feature-plugin</artifactId>
-				<version>${tycho-version}</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<id>source-feature</id>
-						<goals>
-							<goal>source-feature</goal>
-						</goals>
-						<configuration>
-							<excludes>
-								<!-- ID of the non-source bundle(s) to exclude from the generated source feature -->
-								<plugin id="com.sap.conn.jco"/>
-								<plugin id="com.sap.conn.jco.linux.x86"/>
-								<plugin id="com.sap.conn.jco.linux.x86_64"/>
-								<plugin id="com.sap.conn.jco.osx.x86"/>
-								<plugin id="com.sap.conn.jco.osx.x86_64"/>
-								<plugin id="com.sap.conn.jco.win32.x86"/>
-								<plugin id="com.sap.conn.jco.win32.x86_64"/>
-								<plugin id="com.sap.conn.idoc"/>
-							</excludes>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>target-platform-configuration</artifactId>
@@ -622,19 +594,19 @@
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
-				<groupId>org.fusesource</groupId>
+				<groupId>org.fusesource.components.camel-sap</groupId>
 				<artifactId>org.fusesource.camel.component.sap</artifactId>
 				<version>${camel.sap.plugin.version}</version>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
-				<groupId>org.fusesource</groupId>
+				<groupId>org.fusesource.components.camel-sap</groupId>
 				<artifactId>org.fusesource.camel.component.sap.model</artifactId>
 				<version>${camel.sap.plugin.version}</version>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
-				<groupId>org.fusesource</groupId>
+				<groupId>org.fusesource.components.camel-sap</groupId>
 				<artifactId>org.fusesource.camel.component.sap.model.edit</artifactId>
 				<version>${camel.sap.plugin.version}</version>
 				<scope>compile</scope>
@@ -749,6 +721,7 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
 	<profiles>
 		<profile>
 			<id>win-i386</id>
