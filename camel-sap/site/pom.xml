@@ -28,7 +28,7 @@
 	<version>6.3.0-SNAPSHOT</version>
 	<packaging>eclipse-repository</packaging>
 
-	<name>JBoss Fuse :: SAP JCO :: SAP Data Layer :: Update Site</name>
+	<name>JBoss Fuse :: Components :: SAP :: Update Site</name>
 	<description>Provides Update Site for the SAP Data Layer</description>
 
 	<properties>
@@ -41,7 +41,21 @@
 
 	<build>
 		<plugins>
-			<!-- Add support for bundles without any category -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>ianal-maven-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-p2-repository-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<includeAllDependencies>true</includeAllDependencies>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.jboss.tools.tycho-plugins</groupId>
 				<artifactId>repository-utils</artifactId>
@@ -69,5 +83,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
