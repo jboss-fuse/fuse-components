@@ -1379,10 +1379,16 @@ public class IDocUtil extends Util {
 					return;
 				case EcorePackage.EBIG_INTEGER:
 					String bigIntString = idocSegment.getString(fieldName).trim();
+					if (bigIntString.endsWith("-")) {
+						bigIntString = "-" + bigIntString.substring(0, bigIntString.length() - 1);
+					}
 					segment.put(fieldName, new BigInteger(bigIntString));
 					return;
 				case EcorePackage.EBIG_DECIMAL:
 					String bigDecString = idocSegment.getString(fieldName).trim();
+					if (bigDecString.endsWith("-")) {
+						bigDecString = "-" + bigDecString.substring(0, bigDecString.length() - 1);
+					}
 					segment.put(fieldName, new BigDecimal(bigDecString));
 					return;
 				case EcorePackage.EDATE:
