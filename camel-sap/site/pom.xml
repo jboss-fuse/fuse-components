@@ -42,6 +42,22 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>aggregate</goal>
+						</goals>
+						<configuration>
+							<attach>false</attach>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>ianal-maven-plugin</artifactId>
 				<configuration>
