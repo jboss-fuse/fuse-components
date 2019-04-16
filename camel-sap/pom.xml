@@ -49,6 +49,10 @@
 		<url>https://github.com/jboss-fuse/fuse-components</url>
 	</scm>
 
+	<prerequisites>
+		<maven>3.6</maven>
+	</prerequisites>
+
 	<properties>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
