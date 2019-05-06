@@ -22,7 +22,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<camel-version>2.21.0.fuse-000007</camel-version>
+		<camel-version>2.21.0.fuse-740009</camel-version>
 		<sapjco3-version>3.0.11</sapjco3-version>
 		<sapidoc3-version>3.0.10</sapidoc3-version>
 		<lib.directory>${project.build.directory}/lib</lib.directory>
@@ -162,6 +162,27 @@
                 <enabled>true</enabled>
                 <updatePolicy>never</updatePolicy>
             </releases>
+        </repository>
+        <repository>
+            <id>jboss-ea</id>
+            <name>Fuse Early Access Repository</name>
+            <url>https://repository.jboss.org/nexus/content/groups/ea</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>redhat-ga-repository</id>
+            <url>https://maven.repository.redhat.com/ga</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </repository>
 	</repositories>
 </project>
