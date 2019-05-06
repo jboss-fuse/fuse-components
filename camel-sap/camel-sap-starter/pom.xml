@@ -163,5 +163,26 @@
                 <updatePolicy>never</updatePolicy>
             </releases>
         </repository>
+        <repository>
+            <id>jboss-ea</id>
+            <name>Fuse Early Access Repository</name>
+            <url>https://repository.jboss.org/nexus/content/groups/ea</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>redhat-ga-repository</id>
+            <url>https://maven.repository.redhat.com/ga</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
 	</repositories>
 </project>
