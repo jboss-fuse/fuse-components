@@ -14,3 +14,5 @@ overlays
 *.fmd
 .cache
 dependency-reduced-pom.xml
+**/*.jar
+**/*.test/data/test*.xml
