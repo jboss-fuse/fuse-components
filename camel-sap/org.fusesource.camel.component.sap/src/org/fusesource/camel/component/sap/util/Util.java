@@ -116,6 +116,28 @@ public class Util {
 	}
 
 	/**
+	 * Marshals the given {@link EObject} into a string XML. {@link org.eclipse.emf.ecore.EAttribute} names starting with a
+	 * digit or '_' will be prefixed with an '_' in an attempt to be compliant with the XML specification.
+	 *
+	 * @param eObject
+	 *            - the {@link EObject} to be marshaled.
+	 * @return The marshaled content of {@link EObject}.
+	 * @throws IOException
+	 */
+	public static String marshalXml(EObject eObject) throws IOException {
+		ensureBasePackages();
+		XMLResource resource = createXMLCompliantXMLResource();
+		eObject = EcoreUtil.copy(eObject);
+		resource.getContents().add(eObject);
+		StringWriter out = new StringWriter();
+
+		Map<String, Object> options = serializeOptions();
+
+		resource.save(out, options);
+		return out.toString();
+	}
+
+	/**
 	 * Unmarshals the given string content into an {@link EObject} instance.
 	 * 
 	 * @param string
@@ -638,27 +660,27 @@ public class Util {
 		URI uri = URI.createFileURI("/"); // ensure relative reference URIs
 		return createXMLResource(uri);
 	}
-	
+
 	public static XMLResource createXMLResource(URI uri) {
 		XMLResource xmlResource = new XMLResourceImpl(uri) {
 
 			@Override
 			protected XMLSave createXMLSave() {
 				return new XMLSaveImpl(createXMLHelper()) {
-					
+
 					@Override
 					protected void saveElementID(EObject o) {
 						addNameSpaceDeclarations(o,doc);
 						super.saveElementID(o);
 					}
-					
+
 				};
 			}
-			
+
 			@Override
 			protected XMLLoad createXMLLoad() {
 				return new XMLLoadImpl(createXMLHelper()) {
-					
+
 					@Override
 					public XMLDefaultHandler createDefaultHandler() {
 						return new SAXXMLHandler(resource, helper, options) {
@@ -671,7 +693,7 @@ public class Util {
 								}
 								return super.getFeature(object, prefix, name, isElement);
 							}
-							
+
 							@Override
 							protected void setValueFromId(EObject object, EReference eReference, String ids) {
 								if ("parent".equals(eReference.getName())) {
@@ -690,10 +712,10 @@ public class Util {
 
 						};
 					}
-					
+
 				};
 			}
-			
+
 		};
 		return xmlResource;
 	}
@@ -714,13 +736,13 @@ public class Util {
 			@Override
 			protected XMLSave createXMLSave() {
 				return new XMISaveImpl(createXMLHelper()) {
-					
+
 					@Override
 					protected void saveElementID(EObject o) {
 						addNameSpaceDeclarations(o,doc);
 						super.saveElementID(o);
 					}
-					
+
 				};
 			}
 			
@@ -809,5 +831,61 @@ public class Util {
 			name = name.replaceFirst("/", "").replaceFirst("/", "_");
 		}
 		return name;
+	}
+
+	private static XMLResource createXMLCompliantXMLResource() {
+		URI uri = URI.createFileURI("/"); // ensure relative reference URIs
+		return createXMLCompliantXMLResource(uri);
+	}
+
+	private static XMLResource createXMLCompliantXMLResource(URI uri) {
+		XMLResource xmlResource = new XMLResourceImpl(uri) {
+
+			@Override
+			protected XMLSave createXMLSave() {
+				return new SapXmlSave(createXMLHelper());
+			}
+
+			@Override
+			protected XMLLoad createXMLLoad() {
+				return new XMLLoadImpl(createXMLHelper()) {
+
+					@Override
+					public XMLDefaultHandler createDefaultHandler() {
+						return new SAXXMLHandler(resource, helper, options) {
+
+							@Override
+							protected EStructuralFeature getFeature(EObject object, String prefix, String name, boolean isElement) {
+								if (prefix != null && prefix.length() > 0) {
+									name = "/" + prefix + "/" + name;
+									prefix = null;
+								}
+								return super.getFeature(object, prefix, name, isElement);
+							}
+
+							@Override
+							protected void setValueFromId(EObject object, EReference eReference, String ids) {
+								if ("parent".equals(eReference.getName())) {
+									SingleReference ref = new SingleReference
+											(object,
+													eReference,
+													ids,
+													-1,
+													getLineNumber(),
+													getColumnNumber());
+									forwardSingleReferences.add(ref);
+									return;
+								}
+								super.setValueFromId(object, eReference, ids);
+							}
+
+						};
+					}
+
+				};
+			}
+
+		};
+		return xmlResource;
 	}
 }
