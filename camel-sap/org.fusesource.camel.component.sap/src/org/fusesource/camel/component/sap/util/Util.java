@@ -34,8 +34,10 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLDefaultHandler;
 import org.eclipse.emf.ecore.xmi.XMLLoad;
@@ -116,7 +118,7 @@ public class Util {
 	}
 
 	/**
-	 * Marshals the given {@link EObject} into a string XML. {@link org.eclipse.emf.ecore.EAttribute} names starting with a
+	 * Marshals the given {@link EObject} into a XML string. {@link org.eclipse.emf.ecore.EAttribute} names starting with a
 	 * digit or '_' will be prefixed with an '_' in an attempt to be compliant with the XML specification.
 	 *
 	 * @param eObject
@@ -149,6 +151,26 @@ public class Util {
 	public static EObject unmarshal(String string) throws IOException {
 		ensureBasePackages();
 		XMLResource resource = createXMLResource();
+		StringReader in = new StringReader(string);
+
+		Map<String, Object> options = unserializeOptions();
+
+		resource.load(new InputSource(in), options);
+		return resource.getContents().get(0);
+	}
+
+	/**
+	 * Unmarshals the given string content into an {@link EObject} instance. Counterpart to {@link this#marshalXml(EObject)}. Removes every leading '_' in attribute names.
+	 *
+	 * @param string
+	 *            - the string content to unmarshal.
+	 * @return The {@link EObject} instance unmarshaled from the string
+	 *         content.
+	 * @throws IOException
+	 */
+	public static EObject unmarshalXml(String string) throws IOException {
+		ensureBasePackages();
+		XMLResource resource = createXMLCompliantXMLResource();
 		StringReader in = new StringReader(string);
 
 		Map<String, Object> options = unserializeOptions();
@@ -879,6 +901,38 @@ public class Util {
 								super.setValueFromId(object, eReference, ids);
 							}
 
+							/**
+							 * Process the XML attributes for the newly created object. Will remove leading '_' in attribute names.
+							 */
+							@Override
+							protected void handleObjectAttribs(EObject obj)	{
+								if (attribs != null) {
+									InternalEObject internalEObject = (InternalEObject)obj;
+									for (int i = 0, size = attribs.getLength(); i < size; ++i) {
+										String qName = attribs.getQName(i);
+										String name = shouldStripFirstChar(qName) ? qName.substring(1) : qName;
+										if (name.equals(idAttribute)) {
+											xmlResource.setID(internalEObject, attribs.getValue(i));
+										}
+										else if (name.equals(hrefAttribute) && (!recordUnknownFeature || types.peek() != UNKNOWN_FEATURE_TYPE || obj.eClass() != anyType)) {
+											handleProxy(internalEObject, attribs.getValue(i));
+										}
+										else if (isNamespaceAware) {
+											String namespace = attribs.getURI(i);
+											if (!ExtendedMetaData.XSI_URI.equals(namespace)) {
+												setAttribValue(obj, name, attribs.getValue(i));
+											}
+										}
+										else if (!name.startsWith(XMLResource.XML_NS) && !notFeatures.contains(name)) {
+											setAttribValue(obj, name, attribs.getValue(i));
+										}
+									}
+								}
+							}
+
+							private boolean shouldStripFirstChar(String name) {
+								return name != null && name.length() > 1 && name.charAt(0) == '_';
+							}
 						};
 					}
 
