@@ -102,7 +102,7 @@
         <repository>
             <id>jboss.public.repo</id>
             <name>JBoss Public Repository</name>
-            <url>http://repository.jboss.org/nexus/content/repositories/public</url>
+            <url>https://repository.jboss.org/nexus/content/repositories/public</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
@@ -124,7 +124,7 @@
     <pluginRepositories>
         <pluginRepository>
             <id>jboss-ea</id>
-            <url>http://repository.jboss.org/nexus/content/groups/ea</url>
+            <url>https://repository.jboss.org/nexus/content/groups/ea</url>
             <layout>default</layout>
         </pluginRepository>
     </pluginRepositories>
