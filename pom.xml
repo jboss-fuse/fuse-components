@@ -89,42 +89,22 @@
     </modules>
     <repositories>
         <repository>
-            <id>jboss-ea</id>
-            <name>Fuse Early Access Repository</name>
-            <url>https://repository.jboss.org/nexus/content/groups/ea</url>
+            <id>fuse-proxy</id>
+            <name>Fuse Proxy</name>
+            <url>http://10.0.144.111:8081/repository/maven-public/</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
             <releases>
                 <enabled>true</enabled>
             </releases>
-        </repository>
-        <repository>
-            <id>jboss.public.repo</id>
-            <name>JBoss Public Repository</name>
-            <url>https://repository.jboss.org/nexus/content/repositories/public</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </repository>
-        <repository>
-            <id>redhat-ga-repository</id>
-            <url>https://maven.repository.redhat.com/ga</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
         </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
-            <id>jboss-ea</id>
-            <url>https://repository.jboss.org/nexus/content/groups/ea</url>
+            <id>fuse-proxy</id>
+            <name>fuse-proxy</name>
+            <url>http://10.0.144.111:8081/repository/maven-public/</url>
             <layout>default</layout>
         </pluginRepository>
     </pluginRepositories>

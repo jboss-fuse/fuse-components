@@ -672,49 +672,22 @@
 	</modules>
 	<repositories>
 		<repository>
-			<id>eclipse-neon</id>
-			<url>https://download.eclipse.org/releases/neon/</url>
-			<layout>p2</layout>
+			<id>fuse-proxy</id>
+                        <name>fuse-proxy</name>
+			<url>http://10.0.144.111:8081/repository/maven-public/</url>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
-		</repository>
-		<repository>
-            <id>brewroot</id>
-            <name>Brew Repository</name>
-            <url>https://download.eng.bos.redhat.com/brewroot/repos/jb-fuse-6.2-build/latest/maven</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-        </repository>
-		<repository>
-			<id>fusesource-third-party-internal</id>
-			<url>https://repository.jboss.org/nexus/content/repositories/fs-releases/</url>
-			<layout>default</layout>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-		</repository>
-		<repository>
-			<id>RH2</id>
-			<url>https://download.eng.bos.redhat.com/brewroot/repos/jb-fsw-6.2-build/latest/maven</url>
-			<layout>default</layout>
 		</repository>
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
-			<id>RH2</id>
-			<url>https://download.eng.bos.redhat.com/brewroot/repos/jb-fsw-6.2-build/latest/maven</url>
+			<id>fuse-proxy</id>
+                        <name>fuse-proxy</name>
+			<url>http://10.0.144.111:8081/repository/maven-public/</url>
 			<layout>default</layout>
 		</pluginRepository>
 	</pluginRepositories>

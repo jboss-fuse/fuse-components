@@ -116,10 +116,10 @@
 		</pluginManagement>
 	</build>
 	<repositories>
-		<repository>
-            <id>brewroot</id>
-            <name>Brew Repository</name>
-            <url>https://download.eng.bos.redhat.com/brewroot/repos/jb-fuse-6.2-build/latest/maven</url>
+	<repository>
+            <id>fuse-proxy</id>
+            <name>fuse-proxy</name>
+            <url>http://10.0.144.111:8081/repository/maven-public/</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
