@@ -685,7 +685,7 @@
 		<repository>
             <id>brewroot</id>
             <name>Brew Repository</name>
-            <url>https://download.eng.bos.redhat.com/brewroot/repos/jb-fuse-6.2-build/latest/maven</url>
+            <url>http://download.eng.bos.redhat.com/brewroot/repos/jb-fuse-6.2-build/latest/maven</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
@@ -707,14 +707,14 @@
 		</repository>
 		<repository>
 			<id>RH2</id>
-			<url>https://download.eng.bos.redhat.com/brewroot/repos/jb-fsw-6.2-build/latest/maven</url>
+			<url>http://download.eng.bos.redhat.com/brewroot/repos/jb-fsw-6.2-build/latest/maven</url>
 			<layout>default</layout>
 		</repository>
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
 			<id>RH2</id>
-			<url>https://download.eng.bos.redhat.com/brewroot/repos/jb-fsw-6.2-build/latest/maven</url>
+			<url>http://download.eng.bos.redhat.com/brewroot/repos/jb-fsw-6.2-build/latest/maven</url>
 			<layout>default</layout>
 		</pluginRepository>
 	</pluginRepositories>
