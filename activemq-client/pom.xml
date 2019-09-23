@@ -111,12 +111,24 @@
       <groupId>org.apache.activemq</groupId>
       <artifactId>activemq-client</artifactId>
       <version>${activemq-version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-annotations</artifactId>
+          </exclusion>
+        </exclusions>
     </dependency>
 
      <dependency>
       <groupId>org.apache.activemq</groupId>
       <artifactId>activemq-osgi</artifactId>
       <version>${activemq-version}</version>
+        <exclusions>
+          <exclusion>
+           <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-annotations</artifactId>
+          </exclusion>
+        </exclusions>
     </dependency>
 
     <dependency>
