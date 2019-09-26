@@ -224,6 +224,7 @@
           </systemProperties>
           <systemPropertyVariables>
             <derby.stream.error.file>target/derby.log</derby.stream.error.file>
+            <javax.xml.accessExternalSchema>all</javax.xml.accessExternalSchema>
           </systemPropertyVariables>
         </configuration>
       </plugin>
