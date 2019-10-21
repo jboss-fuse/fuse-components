@@ -30,7 +30,7 @@
 	<properties>
 		<tycho-version>0.24.0</tycho-version>
 		<!-- JBoss Tools Integration Stack version -->
-	    	<jbtis.version>4.4.3.Final</jbtis.version>
+	    	<jbtis.version>4.4.3.Final-redhat-00002</jbtis.version>
 		
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<maven.compiler.source>1.7</maven.compiler.source>
@@ -179,7 +179,12 @@
 			<dependency>
 				<groupId>com.sun.xml.bind</groupId>
 				<artifactId>jaxb-core</artifactId>
-				<version>2.2.11</version>
+				<version>2.2.11.redhat-2</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.xml.bind</groupId>
+				<artifactId>jaxb-impl</artifactId>
+				<version>2.2.11.redhat-2</version>
 			</dependency>
 
 			<dependency>
@@ -413,7 +418,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
+            </plugin>
 		</plugins>
 	</build>
 	<modules>
@@ -483,6 +488,11 @@
 		<pluginRepository>
 			<id>RH2</id>
 			<url>http://download.eng.bos.redhat.com/brewroot/repos/jb-fsw-6.2-build/latest/maven</url>
+			<layout>default</layout>
+		</pluginRepository>
+		<pluginRepository>
+			<id>brewroot-plugin</id>
+            <url>http://download.eng.bos.redhat.com/brewroot/repos/jb-fuse-6.2-build/latest/maven</url>
 			<layout>default</layout>
 		</pluginRepository>
 	</pluginRepositories>
@@ -704,5 +714,25 @@
                                 <module>camel-sap-repository</module> 
                         </modules>
                 </profile>
+                <profile>
+                	<activation>
+			<property>
+				<name>!productisation</name>
+			</property>
+			</activation>
+			<repositories>
+				<repository>
+					<id>eclipse-neon</id>
+					<url>http://download.eclipse.org/releases/neon/</url>
+					<layout>p2</layout>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+				</repository>
+			</repositories>
+		</profile>
 	</profiles>
 </project>

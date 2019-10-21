@@ -399,6 +399,42 @@
 						</lifecycleMappingMetadata>
 					</configuration>
 				</plugin>
+                		<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>2.10</version>
+					<executions>
+						<execution>
+							<id>manual-purge-local-repository</id>
+							<phase>deploy</phase>
+							<goals>
+								<goal>purge-local-repository</goal>
+							</goals>
+							<configuration>
+								<manualIncludes>
+									<manualInclude>com.sap.conn.idoc:com.sap.conn.idoc</manualInclude>
+									<manualInclude>com.sap.conn.jco:com.sap.conn.jco</manualInclude>
+								</manualIncludes>
+								<reResolve>false</reResolve>
+								<actTransitively>false</actTransitively>
+								<verbose>true</verbose>
+								<resolutionFuzziness>groupId</resolutionFuzziness>
+							</configuration>
+						</execution>
+					</executions>
+					<dependencies>
+						<dependency>
+							<groupId>com.sun.xml.bind</groupId>
+							<artifactId>jaxb-core</artifactId>
+							<version>2.2.11.redhat-2</version>
+						</dependency>
+						<dependency>
+							<groupId>com.sun.xml.bind</groupId>
+							<artifactId>jaxb-impl</artifactId>
+							<version>2.2.11.redhat-2</version>
+						</dependency>
+					</dependencies>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
@@ -418,17 +454,17 @@
 			</releases>
 		</repository>
 		<repository>
-            <id>brewroot</id>
-            <name>Brew Repository</name>
-            <url>http://download.eng.bos.redhat.com/brewroot/repos/jb-fuse-6.2-build/latest/maven</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-        </repository>		
+			<id>brewroot</id>
+			<name>Brew Repository</name>
+			<url>http://download.eng.bos.redhat.com/brewroot/repos/jb-fuse-6.2-build/latest/maven</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+		</repository>		
 	</repositories>
 
 </project>
