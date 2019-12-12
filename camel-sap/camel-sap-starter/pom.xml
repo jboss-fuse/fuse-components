@@ -26,8 +26,23 @@
 		<sapjco3-version>3.0.11</sapjco3-version>
 		<sapidoc3-version>3.0.10</sapidoc3-version>
 		<lib.directory>${project.build.directory}/lib</lib.directory>
+                <logback-version>1.2.3</logback-version>
 	</properties>
 
+        <dependencyManagement>
+                <dependencies>
+					<dependency>
+						<groupId>ch.qos.logback</groupId>
+						<artifactId>logback-classic</artifactId>
+						<version>${logback-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>ch.qos.logback</groupId>
+						<artifactId>logback-core</artifactId>
+						<version>${logback-version}</version>
+					</dependency>
+                </dependencies>
+        </dependencyManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
