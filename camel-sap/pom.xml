@@ -15,7 +15,7 @@
 	<parent>
 		<groupId>org.fusesource</groupId>
 		<artifactId>camel-fusesource-parent</artifactId>
-		<version>7.6.0-SNAPSHOT</version>
+		<version>7.6.0.fuse-sb2-760026</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
@@ -33,10 +33,10 @@
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven-surefire-plugin-version>2.19</maven-surefire-plugin-version>
-		<camel-version>2.20.0.fuse-000101</camel-version>
-		<karaf-version>4.2.0.fuse-000127</karaf-version>
-		<camel.sap.plugin.version>7.6.0-SNAPSHOT</camel.sap.plugin.version>
-		<karaf-version>4.2.0.fuse-000093</karaf-version>
+		<camel-version>2.23.2.fuse-760027</camel-version>
+		<karaf-version>4.2.6.fuse-760029</karaf-version>
+		<camel.sap.plugin.version>7.6.0.fuse-sb2-760026</camel.sap.plugin.version>
+		<karaf-version>4.2.6.fuse-760029</karaf-version>
 		<mockito.version>2.23.4</mockito.version>
 		<powermock.version>2.0.0</powermock.version>
 		<hamcrest.version>2.1</hamcrest.version>
