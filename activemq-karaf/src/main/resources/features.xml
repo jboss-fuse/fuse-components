@@ -32,7 +32,7 @@
         <bundle dependency="true">mvn:org.apache.geronimo.specs/geronimo-j2ee-management_1.1_spec/${geronimo-j2ee-management_1.1_spec.version}</bundle>
         <bundle dependency="false">mvn:commons-pool/commons-pool/${commons-pool.version}</bundle>
         <bundle dependency="false">mvn:commons-net/commons-net/${commons-net.version}</bundle>
-        <bundle dependency="true">mvn:org.ow2.asm/asm/7.0</bundle>
+        <bundle dependency="true">mvn:org.ow2.asm/asm/${asm.version}</bundle>
         <bundle>mvn:org.fusesource/activemq-client/${project.version}</bundle>
     </feature>
 
