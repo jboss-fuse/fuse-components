@@ -7,7 +7,7 @@
   </parent>
   <groupId>com.sap.conn.idoc</groupId>
   <artifactId>com.sap.conn.idoc</artifactId>
-  <version>3.0.10.redhat_2</version>
+  <version>3.1.0.redhat_1</version>
   <packaging>eclipse-plugin</packaging>
   <name>SAP IDoc Class Library v3 Plugin</name>
   <description>Builds Plugin exporting the IDoc Class Library v3</description>
@@ -51,7 +51,7 @@
 								<artifactItem>
 									<groupId>com.sap.conn.idoc</groupId>
 									<artifactId>sapidoc3</artifactId>
-									<version>3.0.10</version>
+									<version>3.1.0</version>
 									<type>jar</type>
 									<overWrite>true</overWrite>
 								</artifactItem>
