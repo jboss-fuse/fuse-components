@@ -7,7 +7,7 @@
   </parent>
   <groupId>com.sap.conn.jco</groupId>
   <artifactId>com.sap.conn.jco.win32.x86</artifactId>
-  <version>3.0.11.redhat-00002</version>
+  <version>3.1.2.redhat-00001</version>
   <packaging>eclipse-plugin</packaging>
 	<name>SAP Java Connector v3 - Native Library for Windows (32-bit x86) Plugin</name>
 	<url>http://www.fusesource.org</url>
