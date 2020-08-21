@@ -86,6 +86,7 @@
       scala*;resolution:=optional,
       sun.misc*;resolution:=optional,
       sun.nio*;resolution:=optional,
+      sun.rmi*;resolution:=optional,
       *
     </camel.osgi.import>
     <camel.osgi.export>
