@@ -67,7 +67,7 @@
 								<artifactItem>
 									<groupId>com.sap.conn.jco</groupId>
 									<artifactId>sapjco3</artifactId>
-									<version>3.0.11</version>
+									<version>3.1.2</version>
 									<classifier>win-i686</classifier>
 									<type>dll</type>
 									<overWrite>true</overWrite>

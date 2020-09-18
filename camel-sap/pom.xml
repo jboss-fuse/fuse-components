@@ -643,7 +643,7 @@
 			</activation>
 			<properties>
 				<envClassifier>macosx-i686</envClassifier>
-				<envType>jnilib</envType>
+				<envType>dylib</envType>
 				<native.lib.filename>libsapjco3</native.lib.filename>
 			</properties>
 		</profile>
@@ -657,7 +657,7 @@
 			</activation>
 			<properties>
 				<envClassifier>macosx-i686</envClassifier>
-				<envType>jnilib</envType>
+				<envType>dylib</envType>
 				<native.lib.filename>libsapjco3</native.lib.filename>
 			</properties>
 		</profile>
@@ -671,7 +671,7 @@
 			</activation>
 			<properties>
 				<envClassifier>macosx-x86_64</envClassifier>
-				<envType>jnilib</envType>
+				<envType>dylib</envType>
 				<native.lib.filename>libsapjco3</native.lib.filename>
 			</properties>
 		</profile>
@@ -685,7 +685,7 @@
 			</activation>
 			<properties>
 				<envClassifier>macosx-x86_64</envClassifier>
-				<envType>jnilib</envType>
+				<envType>dylib</envType>
 				<native.lib.filename>libsapjco3</native.lib.filename>
 			</properties>
 		</profile>
@@ -693,9 +693,13 @@
                         <id>repository</id>
                         <modules>
     							<!-- these 6 SAP bundles are only used at build time as per ENTESB-5801 -->
+				<!-- NOT SUPPORT in 3.1.2
                                 <module>com.sap.conn.jco.linux.x86</module>
+				-->
                                 <module>com.sap.conn.jco.linux.x86_64</module>
+				<!-- NOT SUPPORT in 3.1.2
                                 <module>com.sap.conn.jco.osx.x86</module>
+				-->
                                 <module>com.sap.conn.jco.osx.x86_64</module>
                                 <module>com.sap.conn.jco.win32.x86</module>
                                 <module>com.sap.conn.jco.win32.x86_64</module>
