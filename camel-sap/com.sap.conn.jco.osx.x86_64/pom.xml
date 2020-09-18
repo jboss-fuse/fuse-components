@@ -18,7 +18,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sap.conn.jco</groupId>
 	<artifactId>com.sap.conn.jco.osx.x86_64</artifactId>
-	<version>3.0.11.redhat-00002</version>
+	<version>3.1.2.redhat-00001</version>
 	<packaging>eclipse-plugin</packaging>
 	<parent>
 		<groupId>org.fusesource</groupId>
@@ -85,11 +85,11 @@
 								<artifactItem>
 									<groupId>com.sap.conn.jco</groupId>
 									<artifactId>sapjco3</artifactId>
-									<version>3.0.11</version>
+									<version>3.1.2</version>
 									<classifier>macosx-x86_64</classifier>
-									<type>jnilib</type>
+									<type>dylib</type>
 									<overWrite>true</overWrite>
-									<destFileName>libsapjco3.jnilib</destFileName>
+									<destFileName>libsapjco3.dylib</destFileName>
 								</artifactItem>
 							</artifactItems>
 						</configuration>

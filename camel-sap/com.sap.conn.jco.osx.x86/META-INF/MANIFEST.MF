@@ -2,10 +2,10 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SAP Java Connector v3 - Native Libraries for OS X (32-bit Intel)
 Bundle-SymbolicName: com.sap.conn.jco.osx.x86
-Bundle-Version: 3.0.11.redhat-00002
+Bundle-Version: 3.1.2.redhat-00001
 Bundle-Vendor: Red Hat, Inc.
-Fragment-Host: com.sap.conn.jco;bundle-version="3.0.11.redhat-00002"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Bundle-NativeCode: libsapjco3.jnilib
+Fragment-Host: com.sap.conn.jco;bundle-version="3.1.2.redhat-00001"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-NativeCode: libsapjco3.dylib
 Bundle-ClassPath: .
 Eclipse-PlatformFilter: (& (osgi.os=macosx) (osgi.arch=x86))

@@ -31,7 +31,7 @@ permissions and limitations under the License.
    </license>
 
    <requires>
-      <import plugin="com.sap.conn.jco" version="3.0.11.redhat-00002" match="greaterOrEqual"/>
+      <import plugin="com.sap.conn.jco" version="3.1.2.redhat-00001" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.slf4j.api"/>
@@ -64,6 +64,7 @@ permissions and limitations under the License.
          fragment="true"
          unpack="false"/>
 
+   <!-- NOT SUPPORT in 3.1.2
    <plugin
          id="com.sap.conn.jco.osx.x86"
          os="macosx"
@@ -74,7 +75,9 @@ permissions and limitations under the License.
          version="0.0.0"
          fragment="true"
          unpack="false"/>
+   -->
 
+   <!-- NOT SUPPORT in 3.1.2
    <plugin
          id="com.sap.conn.jco.linux.x86"
          os="linux"
@@ -85,6 +88,7 @@ permissions and limitations under the License.
          version="0.0.0"
          fragment="true"
          unpack="false"/>
+   -->
 
    <plugin
          id="com.sap.conn.jco.linux.x86_64"
