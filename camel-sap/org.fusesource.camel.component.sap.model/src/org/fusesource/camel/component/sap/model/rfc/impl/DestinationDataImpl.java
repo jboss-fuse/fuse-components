@@ -81,7 +81,6 @@ import com.sap.conn.jco.ext.DestinationDataProvider;
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl#getUserName <em>User Name</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl#getUser <em>User</em>}</li>
- *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl#getUserId <em>User Id</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl#getUseSapgui <em>Use Sapgui</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl#getX509cert <em>X50 9cert</em>}</li>
  * </ul>
@@ -545,16 +544,6 @@ public class DestinationDataImpl extends EObjectImpl implements DestinationData 
 	 * @ordered
 	 */
 	protected static final String USER_EDEFAULT = "";
-
-	/**
-	 * The default value of the '{@link #getUserId() <em>User Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUserId()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String USER_ID_EDEFAULT = "";
 
 	/**
 	 * The default value of the '{@link #getUseSapgui() <em>Use Sapgui</em>}' attribute.
@@ -1147,19 +1136,6 @@ public class DestinationDataImpl extends EObjectImpl implements DestinationData 
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	@SuppressWarnings("deprecation")
-	public String getUserId() {
-		return getEntries().get(DestinationDataProvider.JCO_USER_ID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * {@inheritDoc}
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	public String getUseSapgui() {
 		return getEntries().get(DestinationDataProvider.JCO_USE_SAPGUI);
 	}
@@ -1712,19 +1688,6 @@ public class DestinationDataImpl extends EObjectImpl implements DestinationData 
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	@SuppressWarnings("deprecation")
-	public void setUserId(String userId) {
-		getEntries().put(DestinationDataProvider.JCO_USER_ID, userId);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * {@inheritDoc}
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	public void setUseSapgui(String useSapgui) {
 		getEntries().put(DestinationDataProvider.JCO_USE_SAPGUI, useSapgui);
 	}
@@ -1854,8 +1817,6 @@ public class DestinationDataImpl extends EObjectImpl implements DestinationData 
 				return getUserName();
 			case RfcPackage.DESTINATION_DATA__USER:
 				return getUser();
-			case RfcPackage.DESTINATION_DATA__USER_ID:
-				return getUserId();
 			case RfcPackage.DESTINATION_DATA__USE_SAPGUI:
 				return getUseSapgui();
 			case RfcPackage.DESTINATION_DATA__X509CERT:
@@ -2006,9 +1967,6 @@ public class DestinationDataImpl extends EObjectImpl implements DestinationData 
 				return;
 			case RfcPackage.DESTINATION_DATA__USER:
 				setUser((String)newValue);
-				return;
-			case RfcPackage.DESTINATION_DATA__USER_ID:
-				setUserId((String)newValue);
 				return;
 			case RfcPackage.DESTINATION_DATA__USE_SAPGUI:
 				setUseSapgui((String)newValue);
@@ -2163,9 +2121,6 @@ public class DestinationDataImpl extends EObjectImpl implements DestinationData 
 			case RfcPackage.DESTINATION_DATA__USER:
 				setUser(USER_EDEFAULT);
 				return;
-			case RfcPackage.DESTINATION_DATA__USER_ID:
-				setUserId(USER_ID_EDEFAULT);
-				return;
 			case RfcPackage.DESTINATION_DATA__USE_SAPGUI:
 				setUseSapgui(USE_SAPGUI_EDEFAULT);
 				return;
@@ -2274,8 +2229,6 @@ public class DestinationDataImpl extends EObjectImpl implements DestinationData 
 				return USER_NAME_EDEFAULT == null ? getUserName() != null : !USER_NAME_EDEFAULT.equals(getUserName());
 			case RfcPackage.DESTINATION_DATA__USER:
 				return USER_EDEFAULT == null ? getUser() != null : !USER_EDEFAULT.equals(getUser());
-			case RfcPackage.DESTINATION_DATA__USER_ID:
-				return USER_ID_EDEFAULT == null ? getUserId() != null : !USER_ID_EDEFAULT.equals(getUserId());
 			case RfcPackage.DESTINATION_DATA__USE_SAPGUI:
 				return USE_SAPGUI_EDEFAULT == null ? getUseSapgui() != null : !USE_SAPGUI_EDEFAULT.equals(getUseSapgui());
 			case RfcPackage.DESTINATION_DATA__X509CERT:

@@ -1289,33 +1289,6 @@ public interface DestinationData extends EObject {
 	void setUser(String value);
 
 	/**
-	 * Returns the value of the '<em><b>User Id</b></em>' attribute.
-	 * The default value is <code>""</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>User Id</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>User Id</em>' attribute.
-	 * @see #setUserId(String)
-	 * @see org.fusesource.camel.component.sap.model.rfc.RfcPackage#getDestinationData_UserId()
-	 * @model default="" transient="true" volatile="true" derived="true"
-	 * @generated
-	 */
-	String getUserId();
-
-	/**
-	 * Sets the value of the '{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getUserId <em>User Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>User Id</em>' attribute.
-	 * @see #getUserId()
-	 * @generated
-	 */
-	void setUserId(String value);
-
-	/**
 	 * Returns the value of the '<em><b>Use Sapgui</b></em>' attribute.
 	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2015 Red Hat, Inc. Red Hat licenses this file to you under 
-	the Apache License, version 2.0 (the "License"); you may not use this file 
-	except in compliance with the License. You may obtain a copy of the License 
-	at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable 
-	law or agreed to in writing, software distributed under the License is distributed 
-	on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
-	express or implied. See the License for the specific language governing permissions 
+<!-- Copyright 2015 Red Hat, Inc. Red Hat licenses this file to you under
+	the Apache License, version 2.0 (the "License"); you may not use this file
+	except in compliance with the License. You may obtain a copy of the License
+	at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable
+	law or agreed to in writing, software distributed under the License is distributed
+	on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+	express or implied. See the License for the specific language governing permissions
 	and limitations under the License. -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -143,12 +143,12 @@
 		<dependency>
 			<groupId>com.sap.conn.jco</groupId>
 			<artifactId>com.sap.conn.jco</artifactId>
-			<version>3.0.11.redhat_2</version>
+			<version>3.1.2.redhat_1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sap.conn.idoc</groupId>
 			<artifactId>com.sap.conn.idoc</artifactId>
-			<version>3.0.10.redhat_2</version>
+			<version>3.1.0.redhat_1</version>
 		</dependency>
 
 		<dependency>
@@ -334,7 +334,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
-					<reuseForks>false</reuseForks><!-- Added to resolve issues with multiple 
+					<reuseForks>false</reuseForks><!-- Added to resolve issues with multiple
 						loading of JCo native library -->
 					<argLine>-Djava.library.path="${native.lib.directory}"</argLine>
 				</configuration>
@@ -346,7 +346,7 @@
 		</plugins>
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
+				<!--This plugin's configuration is used to store Eclipse m2e settings
 					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -399,7 +399,7 @@
 						</lifecycleMappingMetadata>
 					</configuration>
 				</plugin>
-                		<plugin>
+				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-dependency-plugin</artifactId>
 					<version>2.10</version>
@@ -464,7 +464,7 @@
 				<enabled>true</enabled>
 				<updatePolicy>never</updatePolicy>
 			</releases>
-		</repository>		
+		</repository>
 	</repositories>
 
 </project>

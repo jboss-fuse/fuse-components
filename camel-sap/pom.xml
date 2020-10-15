@@ -15,7 +15,7 @@
 	<parent>
 		<groupId>org.apache.camel</groupId>
 		<artifactId>camel-parent</artifactId>
-		<version>2.17.0.redhat-630133</version>
+		<version>2.17.0.redhat-630475</version>
 	</parent>
 
 	<groupId>org.fusesource</groupId>
@@ -35,7 +35,7 @@
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven-surefire-plugin-version>2.19</maven-surefire-plugin-version>
-		<camel-version>2.17.0.redhat-630133</camel-version>
+		<camel-version>2.17.0.redhat-630475</camel-version>
 		<camel.sap.plugin.version>6.3.0-SNAPSHOT</camel.sap.plugin.version>
 
 		
@@ -161,17 +161,17 @@
 			<dependency>
 				<groupId>com.sap.conn.idoc</groupId>
 				<artifactId>sapidoc3</artifactId>
-				<version>3.0.10</version>
+				<version>3.1.0</version>
 			</dependency>
 			<dependency>
 				<groupId>com.sap.conn.jco</groupId>
 				<artifactId>sapjco3</artifactId>
-				<version>3.0.11</version>
+				<version>3.1.2</version>
 			</dependency>
 			<dependency>
 				<groupId>com.sap.conn.jco</groupId>
 				<artifactId>sapjco3</artifactId>
-				<version>3.0.11</version>
+				<version>3.1.2</version>
 				<type>${envType}</type>
 				<classifier>${envClassifier}</classifier>
 				<scope>test</scope>
@@ -218,12 +218,12 @@
                 <dependency>
                         <groupId>com.sap.conn.jco</groupId>
                         <artifactId>com.sap.conn.jco</artifactId>
-                        <version>3.0.11.redhat_2</version>
+                        <version>3.1.2.redhat_1</version>
                 </dependency>
                 <dependency>
                         <groupId>com.sap.conn.idoc</groupId>
                         <artifactId>com.sap.conn.idoc</artifactId>
-                        <version>3.0.10.redhat_2</version>
+                        <version>3.1.0.redhat_1</version>
                 </dependency>
         </dependencies>
 	<build>
@@ -643,7 +643,7 @@
 			</activation>
 			<properties>
 				<envClassifier>macosx-i686</envClassifier>
-				<envType>jnilib</envType>
+				<envType>dylib</envType>
 				<native.lib.filename>libsapjco3</native.lib.filename>
 			</properties>
 		</profile>
@@ -657,7 +657,7 @@
 			</activation>
 			<properties>
 				<envClassifier>macosx-i686</envClassifier>
-				<envType>jnilib</envType>
+				<envType>dylib</envType>
 				<native.lib.filename>libsapjco3</native.lib.filename>
 			</properties>
 		</profile>
@@ -671,7 +671,7 @@
 			</activation>
 			<properties>
 				<envClassifier>macosx-x86_64</envClassifier>
-				<envType>jnilib</envType>
+				<envType>dylib</envType>
 				<native.lib.filename>libsapjco3</native.lib.filename>
 			</properties>
 		</profile>
@@ -685,7 +685,7 @@
 			</activation>
 			<properties>
 				<envClassifier>macosx-x86_64</envClassifier>
-				<envType>jnilib</envType>
+				<envType>dylib</envType>
 				<native.lib.filename>libsapjco3</native.lib.filename>
 			</properties>
 		</profile>
@@ -693,9 +693,13 @@
                         <id>repository</id>
                         <modules>
     							<!-- these 6 SAP bundles are only used at build time as per ENTESB-5801 -->
+				<!-- NOT SUPPORT in 3.1.2
                                 <module>com.sap.conn.jco.linux.x86</module>
+				-->
                                 <module>com.sap.conn.jco.linux.x86_64</module>
+				<!-- NOT SUPPORT in 3.1.2
                                 <module>com.sap.conn.jco.osx.x86</module>
+				-->
                                 <module>com.sap.conn.jco.osx.x86_64</module>
                                 <module>com.sap.conn.jco.win32.x86</module>
                                 <module>com.sap.conn.jco.win32.x86_64</module>
