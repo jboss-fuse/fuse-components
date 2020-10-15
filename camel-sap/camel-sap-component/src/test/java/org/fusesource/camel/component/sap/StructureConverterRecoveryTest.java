@@ -44,7 +44,6 @@ public class StructureConverterRecoveryTest extends SapRfcTestSupport {
 
 		PowerMockito.mockStatic(JCoDestinationManager.class, JCoServerFactory.class);
 		when(JCoDestinationManager.getDestination(DESTINATION_NAME)).thenReturn(mockDestination);
-		when(JCoServerFactory.get()).thenReturn(mockServerFactory);
 		when(JCoServerFactory.getServer(SERVER_NAME)).thenReturn(mockServer);
 	}
 
