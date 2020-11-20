@@ -20,7 +20,7 @@
   </parent>
 
   <artifactId>camel-activemq</artifactId>
-  <name>JBoss Fuse :: Components :: ActiveMQ:: Camel Component (deprecated)</name>
+  <name>ActiveMQ:: Camel Component</name>
   <description>ActiveMQ component for Camel</description>
   <packaging>jar</packaging>
 
