@@ -39,9 +39,17 @@
         <!-- ENTESB-12869: versions from com.fasterxml.jackson/jackson-bom/2.8.11.20200310-redhat-00001 -->
         <jackson2-version>2.8.11</jackson2-version>
         <jackson2-databind-version>2.8.11.6-redhat-00001</jackson2-databind-version>
+        <javax.servlet-api-version>3.1.0</javax.servlet-api-version>
         <asm.version>8.0.1</asm.version>
     </properties>
 
+    <modules>
+        <module>activemq-client</module>
+        <module>camel-activemq</module>
+        <module>activemq-karaf</module>
+        <module>camel-sap</module>
+    </modules>
+    
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -90,12 +98,8 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    <modules>
-        <module>activemq-client</module>
-        <module>camel-activemq</module>
-        <module>activemq-karaf</module>
-        <module>camel-sap</module>
-    </modules>
+    
+    <!-- Repositories -->
     <repositories>
         <repository>
             <id>jboss.public.repo</id>
@@ -119,4 +123,32 @@
             </snapshots>
         </repository>
     </repositories>
+
+
+    <!-- Profiles -->
+    <profiles>
+        <profile>
+            <!-- Enable this profile when you have dependencies in staging repos -->
+            <id>fuse-mirror</id>
+            <activation>
+                <property>
+                    <name>env.FUSE_MIRROR</name>
+                </property>
+            </activation>
+            <repositories>
+                <repository>
+                    <id>fuse-mirror</id>
+                    <url>http://10.0.144.111:8081/repository/maven-public/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>never</updatePolicy>
+                        <checksumPolicy>ignore</checksumPolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
 </project>

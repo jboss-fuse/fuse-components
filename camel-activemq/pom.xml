@@ -76,6 +76,20 @@
       <version>${activemq-version}</version>
     </dependency>
 
+    <!-- Provided -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>${javax.servlet-api-version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.activemq</groupId>
+      <artifactId>activemq-http</artifactId>
+      <version>${activemq-version}</version>
+      <scope>provided</scope>
+    </dependency>
+    
     <!-- to use AMQ with Camel efficient we would need to use pooling -->
     <dependency>
       <groupId>org.apache.activemq</groupId>
