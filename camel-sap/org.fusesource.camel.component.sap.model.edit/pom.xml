@@ -1,55 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
- Copyright 2013 Red Hat, Inc.
 
- Red Hat licenses this file to you under the Apache License, version
- 2.0 (the "License"); you may not use this file except in compliance
- with the License.  You may obtain a copy of the License at
- 
-     http://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-  implied.  See the License for the specific language governing
- permissions and limitations under the License.
- -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    Copyright 2005-2020 Red Hat, Inc.
 
-  <artifactId>org.fusesource.camel.component.sap.model.edit</artifactId>
-  <packaging>eclipse-plugin</packaging>
-  
-  <parent>
-  	<groupId>org.fusesource</groupId>
-  	<artifactId>camel-sap-parent</artifactId>
-  	<version>6.3.0.redhat-SNAPSHOT</version>
-  </parent>
-  
-  <build>
-    <sourceDirectory>src</sourceDirectory>
-    <plugins>
-	    <plugin>
-	    	<groupId>org.eclipse.tycho</groupId>
-	    	<artifactId>tycho-maven-plugin</artifactId>
-	    	<extensions>true</extensions>
-	    </plugin>
-		<plugin>
-			<groupId>org.eclipse.tycho</groupId>
-			<artifactId>tycho-source-plugin</artifactId>
-		</plugin>
-		<plugin>
-			<groupId>org.eclipse.tycho</groupId>
-			<artifactId>target-platform-configuration</artifactId>
-		</plugin>
-    </plugins>
-  </build>
-  <url>http://www.jboss.org/products/fuse/overview/</url>
-  <name>JBoss Fuse :: SAP JCO :: SAP Data Layer :: Edit Plugin</name>
-  <version>6.3.0-SNAPSHOT</version>
-  <description>Provides EMF Item Providers for Fuse Tooling to manipulate SAP Data Layer models</description>
-  <organization>
-  	<name>Red Hat, Inc.</name>
-  	<url>http://www.redhat.com</url>
-  </organization>
+    Red Hat licenses this file to you under the Apache License, version
+    2.0 (the "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+    implied.  See the License for the specific language governing
+    permissions and limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.fusesource</groupId>
+        <artifactId>camel-sap-parent</artifactId>
+        <version>6.3.0.redhat-478</version>
+    </parent>
+
+    <artifactId>org.fusesource.camel.component.sap.model.edit</artifactId>
+    <version>6.3.0.redhat-478</version>
+    <packaging>bundle</packaging>
+
+    <name>JBoss Fuse :: SAP JCO :: SAP Data Layer :: Edit Plugin</name>
+    <description>Provides EMF Item Providers for Fuse Tooling to manipulate SAP Data Layer models</description>
+    <url>http://www.jboss.org/products/fuse/overview/</url>
+
+    <organization>
+        <name>Red Hat, Inc.</name>
+        <url>http://www.redhat.com</url>
+    </organization>
+
+    <build>
+        <sourceDirectory>src</sourceDirectory>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>3.5.1</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>org.fusesource.camel.component.sap.model.edit;singleton:=true</Bundle-SymbolicName>
+                        <Bundle-Activator>org.fusesource.camel.component.sap.model.SAPEditPlugin$Implementation</Bundle-Activator>
+                        <Bundle-ActivationPolicy>lazy</Bundle-ActivationPolicy>
+                        <!-- After switching to SAP libraries 3.1, we really need JDK 1.8 -->
+                        <Bundle-RequiredExecutionEnvironment>JavaSE-1.8</Bundle-RequiredExecutionEnvironment>
+                        <Require-Bundle>
+                            org.eclipse.core.runtime,
+                            org.fusesource.camel.component.sap.model;visibility:=reexport,
+                            org.eclipse.emf.edit;visibility:=reexport
+                        </Require-Bundle>
+                        <Import-Package>!*</Import-Package>
+                        <Export-Package>
+                            org.fusesource.camel.component.sap.model,
+                            org.fusesource.camel.component.sap.model.idoc.provider,
+                            org.fusesource.camel.component.sap.model.rfc.provider
+                        </Export-Package>
+                        <Bundle-ClassPath>.</Bundle-ClassPath>
+                        <Bundle-Localization>OSGI-INF/l10n/bundle</Bundle-Localization>
+                        <Private-Package>org.fusesource.camel.component.sap.model</Private-Package>
+                        <_nodefaultversion>true</_nodefaultversion>
+                        <_noee>true</_noee>
+                        <_nouses>true</_nouses>
+                        <_removeheaders>Karaf-Info,Tool,Include-Resource,Private-Package</_removeheaders>
+                        <Include-Resource>
+                            {maven-resources},
+                            plugin.xml=plugin.xml,
+                            OSGI-INF/l10n/bundle.properties=OSGI-INF/l10n/bundle.properties,
+                            icons/full/ctool16/CreateDestinationData_entries_DestinationDataEntry.gif=icons/full/ctool16/CreateDestinationData_entries_DestinationDataEntry.gif,
+                            icons/full/ctool16/CreateDestinationDataStore_destinationData_DestinationData.gif=icons/full/ctool16/CreateDestinationDataStore_destinationData_DestinationData.gif,
+                            icons/full/ctool16/CreateDestinationDataStore_entries_DestinationDataStoreEntry.gif=icons/full/ctool16/CreateDestinationDataStore_entries_DestinationDataStoreEntry.gif,
+                            icons/full/ctool16/CreateDestination_rfcs_RFC.gif=icons/full/ctool16/CreateDestination_rfcs_RFC.gif,
+                            icons/full/ctool16/CreateDocumentList_document_Document.gif=icons/full/ctool16/CreateDocumentList_document_Document.gif,
+                            icons/full/ctool16/CreateDocumentList_documents_Document.gif=icons/full/ctool16/CreateDocumentList_documents_Document.gif,
+                            icons/full/ctool16/CreateDocument_rootSegment_Segment.gif=icons/full/ctool16/CreateDocument_rootSegment_Segment.gif,
+                            icons/full/ctool16/CreateFieldMetaData_fieldMetaData_FieldMetaData.gif=icons/full/ctool16/CreateFieldMetaData_fieldMetaData_FieldMetaData.gif,
+                            icons/full/ctool16/CreateFunction_request_Structure.gif=icons/full/ctool16/CreateFunction_request_Structure.gif,
+                            icons/full/ctool16/CreateFunction_response_Structure.gif=icons/full/ctool16/CreateFunction_response_Structure.gif,
+                            icons/full/ctool16/CreateGroup_functions_Function.gif=icons/full/ctool16/CreateGroup_functions_Function.gif,
+                            icons/full/ctool16/CreateListFieldMetaData_fieldMetaData_FieldMetaData.gif=icons/full/ctool16/CreateListFieldMetaData_fieldMetaData_FieldMetaData.gif,
+                            icons/full/ctool16/CreateRecordMetaData_fieldMetaData_FieldMetaData.gif=icons/full/ctool16/CreateRecordMetaData_fieldMetaData_FieldMetaData.gif,
+                            icons/full/ctool16/CreateRepositoryData_entries_RepositoryDataEntry.gif=icons/full/ctool16/CreateRepositoryData_entries_RepositoryDataEntry.gif,
+                            icons/full/ctool16/CreateRepositoryData_entries_RespositoryDataEntry.gif=icons/full/ctool16/CreateRepositoryData_entries_RespositoryDataEntry.gif,
+                            icons/full/ctool16/CreateRepositoryDataStore_entries_RepositoryDataStoreEntry.gif=icons/full/ctool16/CreateRepositoryDataStore_entries_RepositoryDataStoreEntry.gif,
+                            icons/full/ctool16/CreateRepositoryDataStore_entries_RespositoryDataStoreEntry.gif=icons/full/ctool16/CreateRepositoryDataStore_entries_RespositoryDataStoreEntry.gif,
+                            icons/full/ctool16/CreateRepository_groups_Group.gif=icons/full/ctool16/CreateRepository_groups_Group.gif,
+                            icons/full/ctool16/CreateRFC_request_Request.gif=icons/full/ctool16/CreateRFC_request_Request.gif,
+                            icons/full/ctool16/CreateRFC_request_Response.gif=icons/full/ctool16/CreateRFC_request_Response.gif,
+                            icons/full/ctool16/CreateRFC_request_Structure.gif=icons/full/ctool16/CreateRFC_request_Structure.gif,
+                            icons/full/ctool16/CreateRFC_response_Request.gif=icons/full/ctool16/CreateRFC_response_Request.gif,
+                            icons/full/ctool16/CreateRFC_response_Response.gif=icons/full/ctool16/CreateRFC_response_Response.gif,
+                            icons/full/ctool16/CreateRFC_response_Structure.gif=icons/full/ctool16/CreateRFC_response_Structure.gif,
+                            icons/full/ctool16/CreateSapConnectionConfiguration_destinationData_DestinationData.gif=icons/full/ctool16/CreateSapConnectionConfiguration_destinationData_DestinationData.gif,
+                            icons/full/ctool16/CreateSapConnectionConfiguration_destinationDataStore_DestinationDataStore.gif=icons/full/ctool16/CreateSapConnectionConfiguration_destinationDataStore_DestinationDataStore.gif,
+                            icons/full/ctool16/CreateSapConnectionConfiguration_serverData_ServerData.gif=icons/full/ctool16/CreateSapConnectionConfiguration_serverData_ServerData.gif,
+                            icons/full/ctool16/CreateSapConnectionConfiguration_serverDataStore_ServerDataStore.gif=icons/full/ctool16/CreateSapConnectionConfiguration_serverDataStore_ServerDataStore.gif,
+                            icons/full/ctool16/CreateSegment_parent_Segment.gif=icons/full/ctool16/CreateSegment_parent_Segment.gif,
+                            icons/full/ctool16/CreateServerData_entries_ServerDataEntry.gif=icons/full/ctool16/CreateServerData_entries_ServerDataEntry.gif,
+                            icons/full/ctool16/CreateServerDataStore_entries_ServerDataStoreEntry.gif=icons/full/ctool16/CreateServerDataStore_entries_ServerDataStoreEntry.gif,
+                            icons/full/ctool16/CreateServerDataStore_serverData_ServerData.gif=icons/full/ctool16/CreateServerDataStore_serverData_ServerData.gif,
+                            icons/full/ctool16/CreateTable_row_Structure.gif=icons/full/ctool16/CreateTable_row_Structure.gif,
+                            icons/full/ctool16/CreateTIDStore_entries_TIDStoreEntry.gif=icons/full/ctool16/CreateTIDStore_entries_TIDStoreEntry.gif,
+                            icons/full/obj16/AbapException.gif=icons/full/obj16/AbapException.gif,
+                            icons/full/obj16/DestinationDataEntry.gif=icons/full/obj16/DestinationDataEntry.gif,
+                            icons/full/obj16/DestinationData.gif=icons/full/obj16/DestinationData.gif,
+                            icons/full/obj16/DestinationDataStoreEntry.gif=icons/full/obj16/DestinationDataStoreEntry.gif,
+                            icons/full/obj16/DestinationDataStore.gif=icons/full/obj16/DestinationDataStore.gif,
+                            icons/full/obj16/Destination.gif=icons/full/obj16/Destination.gif,
+                            icons/full/obj16/Document.gif=icons/full/obj16/Document.gif,
+                            icons/full/obj16/DocumentList.gif=icons/full/obj16/DocumentList.gif,
+                            icons/full/obj16/FieldMetaData.gif=icons/full/obj16/FieldMetaData.gif,
+                            icons/full/obj16/Function.gif=icons/full/obj16/Function.gif,
+                            icons/full/obj16/FunctionTemplate.gif=icons/full/obj16/FunctionTemplate.gif,
+                            icons/full/obj16/Group.gif=icons/full/obj16/Group.gif,
+                            icons/full/obj16/ListFieldMetaData.gif=icons/full/obj16/ListFieldMetaData.gif,
+                            icons/full/obj16/RecordMetaData.gif=icons/full/obj16/RecordMetaData.gif,
+                            icons/full/obj16/RepositoryDataEntry.gif=icons/full/obj16/RepositoryDataEntry.gif,
+                            icons/full/obj16/RepositoryData.gif=icons/full/obj16/RepositoryData.gif,
+                            icons/full/obj16/RepositoryDataStoreEntry.gif=icons/full/obj16/RepositoryDataStoreEntry.gif,
+                            icons/full/obj16/RepositoryDataStore.gif=icons/full/obj16/RepositoryDataStore.gif,
+                            icons/full/obj16/Repository.gif=icons/full/obj16/Repository.gif,
+                            icons/full/obj16/Request.gif=icons/full/obj16/Request.gif,
+                            icons/full/obj16/Response.gif=icons/full/obj16/Response.gif,
+                            icons/full/obj16/RespositoryDataEntry.gif=icons/full/obj16/RespositoryDataEntry.gif,
+                            icons/full/obj16/RespositoryDataStoreEntry.gif=icons/full/obj16/RespositoryDataStoreEntry.gif,
+                            icons/full/obj16/RFC.gif=icons/full/obj16/RFC.gif,
+                            icons/full/obj16/SapConnectionConfiguration.gif=icons/full/obj16/SapConnectionConfiguration.gif,
+                            icons/full/obj16/SegmentChildren.gif=icons/full/obj16/SegmentChildren.gif,
+                            icons/full/obj16/Segment.gif=icons/full/obj16/Segment.gif,
+                            icons/full/obj16/SegmentList.gif=icons/full/obj16/SegmentList.gif,
+                            icons/full/obj16/ServerDataEntry.gif=icons/full/obj16/ServerDataEntry.gif,
+                            icons/full/obj16/ServerData.gif=icons/full/obj16/ServerData.gif,
+                            icons/full/obj16/ServerDataStoreEntry.gif=icons/full/obj16/ServerDataStoreEntry.gif,
+                            icons/full/obj16/ServerDataStore.gif=icons/full/obj16/ServerDataStore.gif,
+                            icons/full/obj16/Server.gif=icons/full/obj16/Server.gif,
+                            icons/full/obj16/Structure.gif=icons/full/obj16/Structure.gif,
+                            icons/full/obj16/Table.gif=icons/full/obj16/Table.gif,
+                            icons/full/obj16/TIDStoreEntry.gif=icons/full/obj16/TIDStoreEntry.gif,
+                            icons/full/obj16/TIDStore.gif=icons/full/obj16/TIDStore.gif
+                        </Include-Resource>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.fusesource</groupId>
+            <artifactId>org.fusesource.camel.component.sap.model</artifactId>
+        </dependency>
+
+    </dependencies>
+
 </project>
