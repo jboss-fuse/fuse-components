@@ -151,7 +151,7 @@ public class SegmentChildrenImpl extends EObjectImpl implements SegmentChildren 
 			EClass segmentClass = ((EReference)feature).getEReferenceType();
 			if (IdocPackage.eINSTANCE.getSegment().isSuperTypeOf(segmentClass)) {
 				SegmentListImpl<S> segmentList = new SegmentListImpl<S>();
-				segmentList.setDelegate((EList<S>) getSegments().list(feature));
+				segmentList.setDelegate(getSegments().<S>list(feature));
 				segmentList.setSegmentClass(segmentClass);
 				segmentList.setSegmentParent(getParent());
 				return segmentList;
