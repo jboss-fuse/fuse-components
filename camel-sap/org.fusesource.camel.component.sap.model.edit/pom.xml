@@ -23,11 +23,11 @@
     <parent>
         <groupId>org.fusesource</groupId>
         <artifactId>camel-sap-parent</artifactId>
-        <version>6.3.0.redhat-SNAPSHOT</version>
+        <version>6.3.0.redhat-481</version>
     </parent>
 
     <artifactId>org.fusesource.camel.component.sap.model.edit</artifactId>
-    <version>6.3.0.redhat-SNAPSHOT</version>
+    <version>6.3.0.redhat-481</version>
     <packaging>bundle</packaging>
 
     <name>JBoss Fuse :: SAP JCO :: SAP Data Layer :: Edit Plugin</name>
