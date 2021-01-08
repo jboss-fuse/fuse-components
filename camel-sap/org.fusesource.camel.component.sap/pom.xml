@@ -23,11 +23,11 @@
     <parent>
         <groupId>org.fusesource</groupId>
         <artifactId>camel-sap-parent</artifactId>
-        <version>6.3.0.redhat-SNAPSHOT</version>
+        <version>6.3.0.redhat-486</version>
     </parent>
 
     <artifactId>org.fusesource.camel.component.sap</artifactId>
-    <version>6.3.0.redhat-SNAPSHOT</version>
+    <version>6.3.0.redhat-486</version>
     <packaging>bundle</packaging>
 
     <name>JBoss Fuse :: SAP JCO :: SAP Data Layer :: Runtime Plugin</name>
