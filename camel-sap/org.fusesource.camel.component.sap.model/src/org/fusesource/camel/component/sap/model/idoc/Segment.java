@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.idoc.Segment#getParent <em>Parent</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.idoc.Segment#getDocument <em>Document</em>}</li>
@@ -45,7 +46,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.fusesource.camel.component.sap.model.idoc.Segment#isQualified <em>Qualified</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.idoc.Segment#getRecordLength <em>Record Length</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.fusesource.camel.component.sap.model.idoc.IdocPackage#getSegment()
  * @model

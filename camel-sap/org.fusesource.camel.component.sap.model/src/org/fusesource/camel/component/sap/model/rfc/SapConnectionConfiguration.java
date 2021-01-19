@@ -25,11 +25,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.SapConnectionConfiguration#getDestinationDataStore <em>Destination Data Store</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.SapConnectionConfiguration#getServerDataStore <em>Server Data Store</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.fusesource.camel.component.sap.model.rfc.RfcPackage#getSapConnectionConfiguration()
  * @model

@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.FunctionTemplate#getImports <em>Imports</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.FunctionTemplate#getExports <em>Exports</em>}</li>
@@ -40,7 +41,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.FunctionTemplate#getTableParameterList <em>Table Parameter List</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.FunctionTemplate#getExceptionList <em>Exception List</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.fusesource.camel.component.sap.model.rfc.RfcPackage#getFunctionTemplate()
  * @model

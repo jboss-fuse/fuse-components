@@ -685,13 +685,22 @@ public interface RfcPackage extends EPackage {
 	int DESTINATION_DATA__MYSAPSSO2 = 19;
 
 	/**
+	 * The feature id for the '<em><b>Network</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESTINATION_DATA__NETWORK = 20;
+
+	/**
 	 * The feature id for the '<em><b>Passwd</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__PASSWD = 20;
+	int DESTINATION_DATA__PASSWD = 21;
 
 	/**
 	 * The feature id for the '<em><b>Password</b></em>' attribute.
@@ -700,7 +709,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__PASSWORD = 21;
+	int DESTINATION_DATA__PASSWORD = 22;
 
 	/**
 	 * The feature id for the '<em><b>Pcs</b></em>' attribute.
@@ -709,7 +718,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__PCS = 22;
+	int DESTINATION_DATA__PCS = 23;
 
 	/**
 	 * The feature id for the '<em><b>Peak Limit</b></em>' attribute.
@@ -718,7 +727,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__PEAK_LIMIT = 23;
+	int DESTINATION_DATA__PEAK_LIMIT = 24;
 
 	/**
 	 * The feature id for the '<em><b>Ping On Create</b></em>' attribute.
@@ -727,7 +736,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__PING_ON_CREATE = 24;
+	int DESTINATION_DATA__PING_ON_CREATE = 25;
 
 	/**
 	 * The feature id for the '<em><b>Pool Capacity</b></em>' attribute.
@@ -736,7 +745,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__POOL_CAPACITY = 25;
+	int DESTINATION_DATA__POOL_CAPACITY = 26;
 
 	/**
 	 * The feature id for the '<em><b>R3name</b></em>' attribute.
@@ -745,7 +754,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__R3NAME = 26;
+	int DESTINATION_DATA__R3NAME = 27;
 
 	/**
 	 * The feature id for the '<em><b>Repository Dest</b></em>' attribute.
@@ -754,7 +763,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__REPOSITORY_DEST = 27;
+	int DESTINATION_DATA__REPOSITORY_DEST = 28;
 
 	/**
 	 * The feature id for the '<em><b>Repository Passwd</b></em>' attribute.
@@ -763,7 +772,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__REPOSITORY_PASSWD = 28;
+	int DESTINATION_DATA__REPOSITORY_PASSWD = 29;
 
 	/**
 	 * The feature id for the '<em><b>Repository Roundtrip Optimization</b></em>' attribute.
@@ -772,7 +781,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__REPOSITORY_ROUNDTRIP_OPTIMIZATION = 29;
+	int DESTINATION_DATA__REPOSITORY_ROUNDTRIP_OPTIMIZATION = 30;
 
 	/**
 	 * The feature id for the '<em><b>Repository Snc</b></em>' attribute.
@@ -781,7 +790,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__REPOSITORY_SNC = 30;
+	int DESTINATION_DATA__REPOSITORY_SNC = 31;
 
 	/**
 	 * The feature id for the '<em><b>Repository User</b></em>' attribute.
@@ -790,7 +799,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__REPOSITORY_USER = 31;
+	int DESTINATION_DATA__REPOSITORY_USER = 32;
 
 	/**
 	 * The feature id for the '<em><b>Saprouter</b></em>' attribute.
@@ -799,7 +808,16 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__SAPROUTER = 32;
+	int DESTINATION_DATA__SAPROUTER = 33;
+
+	/**
+	 * The feature id for the '<em><b>Serialization Format</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DESTINATION_DATA__SERIALIZATION_FORMAT = 34;
 
 	/**
 	 * The feature id for the '<em><b>Snc Library</b></em>' attribute.
@@ -808,7 +826,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__SNC_LIBRARY = 33;
+	int DESTINATION_DATA__SNC_LIBRARY = 35;
 
 	/**
 	 * The feature id for the '<em><b>Snc Mode</b></em>' attribute.
@@ -817,7 +835,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__SNC_MODE = 34;
+	int DESTINATION_DATA__SNC_MODE = 36;
 
 	/**
 	 * The feature id for the '<em><b>Snc Myname</b></em>' attribute.
@@ -826,7 +844,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__SNC_MYNAME = 35;
+	int DESTINATION_DATA__SNC_MYNAME = 37;
 
 	/**
 	 * The feature id for the '<em><b>Snc Partnername</b></em>' attribute.
@@ -835,7 +853,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__SNC_PARTNERNAME = 36;
+	int DESTINATION_DATA__SNC_PARTNERNAME = 38;
 
 	/**
 	 * The feature id for the '<em><b>Snc Qop</b></em>' attribute.
@@ -844,7 +862,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__SNC_QOP = 37;
+	int DESTINATION_DATA__SNC_QOP = 39;
 
 	/**
 	 * The feature id for the '<em><b>Sysnr</b></em>' attribute.
@@ -853,7 +871,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__SYSNR = 38;
+	int DESTINATION_DATA__SYSNR = 40;
 
 	/**
 	 * The feature id for the '<em><b>Tphost</b></em>' attribute.
@@ -862,7 +880,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__TPHOST = 39;
+	int DESTINATION_DATA__TPHOST = 41;
 
 	/**
 	 * The feature id for the '<em><b>Tpname</b></em>' attribute.
@@ -871,7 +889,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__TPNAME = 40;
+	int DESTINATION_DATA__TPNAME = 42;
 
 	/**
 	 * The feature id for the '<em><b>Trace</b></em>' attribute.
@@ -880,7 +898,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__TRACE = 41;
+	int DESTINATION_DATA__TRACE = 43;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -889,7 +907,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__TYPE = 42;
+	int DESTINATION_DATA__TYPE = 44;
 
 	/**
 	 * The feature id for the '<em><b>User Name</b></em>' attribute.
@@ -898,7 +916,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__USER_NAME = 43;
+	int DESTINATION_DATA__USER_NAME = 45;
 
 	/**
 	 * The feature id for the '<em><b>User</b></em>' attribute.
@@ -907,16 +925,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__USER = 44;
-
-	/**
-	 * The feature id for the '<em><b>User Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DESTINATION_DATA__USER_ID = 45;
+	int DESTINATION_DATA__USER = 46;
 
 	/**
 	 * The feature id for the '<em><b>Use Sapgui</b></em>' attribute.
@@ -925,7 +934,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__USE_SAPGUI = 46;
+	int DESTINATION_DATA__USE_SAPGUI = 47;
 
 	/**
 	 * The feature id for the '<em><b>X50 9cert</b></em>' attribute.
@@ -934,7 +943,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA__X509CERT = 47;
+	int DESTINATION_DATA__X509CERT = 48;
 
 	/**
 	 * The number of structural features of the '<em>Destination Data</em>' class.
@@ -943,7 +952,7 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DESTINATION_DATA_FEATURE_COUNT = 48;
+	int DESTINATION_DATA_FEATURE_COUNT = 49;
 
 	/**
 	 * The meta object id for the '{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataStoreEntryImpl <em>Destination Data Store Entry</em>}' class.
@@ -2568,6 +2577,17 @@ public interface RfcPackage extends EPackage {
 	EAttribute getDestinationData_Mysapsso2();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getNetwork <em>Network</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Network</em>'.
+	 * @see org.fusesource.camel.component.sap.model.rfc.DestinationData#getNetwork()
+	 * @see #getDestinationData()
+	 * @generated
+	 */
+	EAttribute getDestinationData_Network();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getPasswd <em>Passwd</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2711,6 +2731,17 @@ public interface RfcPackage extends EPackage {
 	EAttribute getDestinationData_Saprouter();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getSerializationFormat <em>Serialization Format</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Serialization Format</em>'.
+	 * @see org.fusesource.camel.component.sap.model.rfc.DestinationData#getSerializationFormat()
+	 * @see #getDestinationData()
+	 * @generated
+	 */
+	EAttribute getDestinationData_SerializationFormat();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getSncLibrary <em>Snc Library</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2841,17 +2872,6 @@ public interface RfcPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getDestinationData_User();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getUserId <em>User Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>User Id</em>'.
-	 * @see org.fusesource.camel.component.sap.model.rfc.DestinationData#getUserId()
-	 * @see #getDestinationData()
-	 * @generated
-	 */
-	EAttribute getDestinationData_UserId();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getUseSapgui <em>Use Sapgui</em>}'.
@@ -4400,6 +4420,14 @@ public interface RfcPackage extends EPackage {
 		EAttribute DESTINATION_DATA__MYSAPSSO2 = eINSTANCE.getDestinationData_Mysapsso2();
 
 		/**
+		 * The meta object literal for the '<em><b>Network</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DESTINATION_DATA__NETWORK = eINSTANCE.getDestinationData_Network();
+
+		/**
 		 * The meta object literal for the '<em><b>Passwd</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4504,6 +4532,14 @@ public interface RfcPackage extends EPackage {
 		EAttribute DESTINATION_DATA__SAPROUTER = eINSTANCE.getDestinationData_Saprouter();
 
 		/**
+		 * The meta object literal for the '<em><b>Serialization Format</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DESTINATION_DATA__SERIALIZATION_FORMAT = eINSTANCE.getDestinationData_SerializationFormat();
+
+		/**
 		 * The meta object literal for the '<em><b>Snc Library</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -4598,14 +4634,6 @@ public interface RfcPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DESTINATION_DATA__USER = eINSTANCE.getDestinationData_User();
-
-		/**
-		 * The meta object literal for the '<em><b>User Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DESTINATION_DATA__USER_ID = eINSTANCE.getDestinationData_UserId();
 
 		/**
 		 * The meta object literal for the '<em><b>Use Sapgui</b></em>' attribute feature.

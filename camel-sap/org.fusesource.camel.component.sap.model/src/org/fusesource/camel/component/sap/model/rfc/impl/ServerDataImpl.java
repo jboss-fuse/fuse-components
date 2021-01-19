@@ -34,6 +34,7 @@ import com.sap.conn.jco.ext.ServerDataProvider;
  * <em><b>Server Data</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.ServerDataImpl#getEntries <em>Entries</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.ServerDataImpl#getGwhost <em>Gwhost</em>}</li>
@@ -52,7 +53,6 @@ import com.sap.conn.jco.ext.ServerDataProvider;
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.ServerDataImpl#getSncMyname <em>Snc Myname</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.ServerDataImpl#getSncLib <em>Snc Lib</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

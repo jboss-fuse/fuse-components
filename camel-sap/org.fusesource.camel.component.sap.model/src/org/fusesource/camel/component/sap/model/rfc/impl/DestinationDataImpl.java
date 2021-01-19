@@ -35,6 +35,7 @@ import com.sap.conn.jco.ext.DestinationDataProvider;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl#getEntries <em>Entries</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl#getAliasUser <em>Alias User</em>}</li>
@@ -56,6 +57,7 @@ import com.sap.conn.jco.ext.DestinationDataProvider;
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl#getMshost <em>Mshost</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl#getMsserv <em>Msserv</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl#getMysapsso2 <em>Mysapsso2</em>}</li>
+ *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl#getNetwork <em>Network</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl#getPasswd <em>Passwd</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl#getPassword <em>Password</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl#getPcs <em>Pcs</em>}</li>
@@ -69,6 +71,7 @@ import com.sap.conn.jco.ext.DestinationDataProvider;
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl#getRepositorySnc <em>Repository Snc</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl#getRepositoryUser <em>Repository User</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl#getSaprouter <em>Saprouter</em>}</li>
+ *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl#getSerializationFormat <em>Serialization Format</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl#getSncLibrary <em>Snc Library</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl#getSncMode <em>Snc Mode</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl#getSncMyname <em>Snc Myname</em>}</li>
@@ -84,7 +87,6 @@ import com.sap.conn.jco.ext.DestinationDataProvider;
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl#getUseSapgui <em>Use Sapgui</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl#getX509cert <em>X50 9cert</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -296,6 +298,16 @@ public class DestinationDataImpl extends EObjectImpl implements DestinationData 
 	protected static final String MYSAPSSO2_EDEFAULT = "";
 
 	/**
+	 * The default value of the '{@link #getNetwork() <em>Network</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNetwork()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NETWORK_EDEFAULT = "LAN";
+
+	/**
 	 * The default value of the '{@link #getPasswd() <em>Passwd</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -424,6 +436,16 @@ public class DestinationDataImpl extends EObjectImpl implements DestinationData 
 	 * @ordered
 	 */
 	protected static final String SAPROUTER_EDEFAULT = "";
+
+	/**
+	 * The default value of the '{@link #getSerializationFormat() <em>Serialization Format</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSerializationFormat()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SERIALIZATION_FORMAT_EDEFAULT = "rowBased";
 
 	/**
 	 * The default value of the '{@link #getSncLibrary() <em>Snc Library</em>}' attribute.
@@ -828,6 +850,15 @@ public class DestinationDataImpl extends EObjectImpl implements DestinationData 
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String getNetwork() {
+	    return getEntries().get(DestinationDataProvider.JCO_NETWORK);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * {@inheritDoc}
 	 * </p>
@@ -982,6 +1013,16 @@ public class DestinationDataImpl extends EObjectImpl implements DestinationData 
 	 */
 	public String getSaprouter() {
 		return getEntries().get(DestinationDataProvider.JCO_SAPROUTER);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * {@inheritDoc}
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String getSerializationFormat() {
+		return getEntries().get(DestinationDataProvider.JCO_SERIALIZATION_FORMAT);
 	}
 
 	/**
@@ -1382,6 +1423,15 @@ public class DestinationDataImpl extends EObjectImpl implements DestinationData 
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setNetwork(String network) {
+		getEntries().put(DestinationDataProvider.JCO_NETWORK, network);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * {@inheritDoc}
 	 * </p>
@@ -1534,6 +1584,16 @@ public class DestinationDataImpl extends EObjectImpl implements DestinationData 
 	 */
 	public void setSaprouter(String saprouter) {
 		getEntries().put(DestinationDataProvider.JCO_SAPROUTER, saprouter);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * {@inheritDoc}
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setSerializationFormat(String serializationFormat) {
+		getEntries().put(DestinationDataProvider.JCO_SERIALIZATION_FORMAT, serializationFormat);
 	}
 
 	/**
@@ -1767,6 +1827,8 @@ public class DestinationDataImpl extends EObjectImpl implements DestinationData 
 				return getMsserv();
 			case RfcPackage.DESTINATION_DATA__MYSAPSSO2:
 				return getMysapsso2();
+			case RfcPackage.DESTINATION_DATA__NETWORK:
+				return getNetwork();
 			case RfcPackage.DESTINATION_DATA__PASSWD:
 				return getPasswd();
 			case RfcPackage.DESTINATION_DATA__PASSWORD:
@@ -1793,6 +1855,8 @@ public class DestinationDataImpl extends EObjectImpl implements DestinationData 
 				return getRepositoryUser();
 			case RfcPackage.DESTINATION_DATA__SAPROUTER:
 				return getSaprouter();
+			case RfcPackage.DESTINATION_DATA__SERIALIZATION_FORMAT:
+				return getSerializationFormat();
 			case RfcPackage.DESTINATION_DATA__SNC_LIBRARY:
 				return getSncLibrary();
 			case RfcPackage.DESTINATION_DATA__SNC_MODE:
@@ -1893,6 +1957,9 @@ public class DestinationDataImpl extends EObjectImpl implements DestinationData 
 			case RfcPackage.DESTINATION_DATA__MYSAPSSO2:
 				setMysapsso2((String)newValue);
 				return;
+			case RfcPackage.DESTINATION_DATA__NETWORK:
+				setNetwork((String)newValue);
+				return;
 			case RfcPackage.DESTINATION_DATA__PASSWD:
 				setPasswd((String)newValue);
 				return;
@@ -1931,6 +1998,9 @@ public class DestinationDataImpl extends EObjectImpl implements DestinationData 
 				return;
 			case RfcPackage.DESTINATION_DATA__SAPROUTER:
 				setSaprouter((String)newValue);
+				return;
+			case RfcPackage.DESTINATION_DATA__SERIALIZATION_FORMAT:
+				setSerializationFormat((String)newValue);
 				return;
 			case RfcPackage.DESTINATION_DATA__SNC_LIBRARY:
 				setSncLibrary((String)newValue);
@@ -2046,6 +2116,9 @@ public class DestinationDataImpl extends EObjectImpl implements DestinationData 
 			case RfcPackage.DESTINATION_DATA__MYSAPSSO2:
 				setMysapsso2(MYSAPSSO2_EDEFAULT);
 				return;
+			case RfcPackage.DESTINATION_DATA__NETWORK:
+				setNetwork(NETWORK_EDEFAULT);
+				return;
 			case RfcPackage.DESTINATION_DATA__PASSWD:
 				setPasswd(PASSWD_EDEFAULT);
 				return;
@@ -2084,6 +2157,9 @@ public class DestinationDataImpl extends EObjectImpl implements DestinationData 
 				return;
 			case RfcPackage.DESTINATION_DATA__SAPROUTER:
 				setSaprouter(SAPROUTER_EDEFAULT);
+				return;
+			case RfcPackage.DESTINATION_DATA__SERIALIZATION_FORMAT:
+				setSerializationFormat(SERIALIZATION_FORMAT_EDEFAULT);
 				return;
 			case RfcPackage.DESTINATION_DATA__SNC_LIBRARY:
 				setSncLibrary(SNC_LIBRARY_EDEFAULT);
@@ -2179,6 +2255,8 @@ public class DestinationDataImpl extends EObjectImpl implements DestinationData 
 				return MSSERV_EDEFAULT == null ? getMsserv() != null : !MSSERV_EDEFAULT.equals(getMsserv());
 			case RfcPackage.DESTINATION_DATA__MYSAPSSO2:
 				return MYSAPSSO2_EDEFAULT == null ? getMysapsso2() != null : !MYSAPSSO2_EDEFAULT.equals(getMysapsso2());
+			case RfcPackage.DESTINATION_DATA__NETWORK:
+				return NETWORK_EDEFAULT == null ? getNetwork() != null : !NETWORK_EDEFAULT.equals(getNetwork());
 			case RfcPackage.DESTINATION_DATA__PASSWD:
 				return PASSWD_EDEFAULT == null ? getPasswd() != null : !PASSWD_EDEFAULT.equals(getPasswd());
 			case RfcPackage.DESTINATION_DATA__PASSWORD:
@@ -2205,6 +2283,8 @@ public class DestinationDataImpl extends EObjectImpl implements DestinationData 
 				return REPOSITORY_USER_EDEFAULT == null ? getRepositoryUser() != null : !REPOSITORY_USER_EDEFAULT.equals(getRepositoryUser());
 			case RfcPackage.DESTINATION_DATA__SAPROUTER:
 				return SAPROUTER_EDEFAULT == null ? getSaprouter() != null : !SAPROUTER_EDEFAULT.equals(getSaprouter());
+			case RfcPackage.DESTINATION_DATA__SERIALIZATION_FORMAT:
+				return SERIALIZATION_FORMAT_EDEFAULT == null ? getSerializationFormat() != null : !SERIALIZATION_FORMAT_EDEFAULT.equals(getSerializationFormat());
 			case RfcPackage.DESTINATION_DATA__SNC_LIBRARY:
 				return SNC_LIBRARY_EDEFAULT == null ? getSncLibrary() != null : !SNC_LIBRARY_EDEFAULT.equals(getSncLibrary());
 			case RfcPackage.DESTINATION_DATA__SNC_MODE:

@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.Table#getName <em>Name</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.Table#getLineType <em>Line Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.fusesource.camel.component.sap.model.rfc.RfcPackage#getTable()
  * @model

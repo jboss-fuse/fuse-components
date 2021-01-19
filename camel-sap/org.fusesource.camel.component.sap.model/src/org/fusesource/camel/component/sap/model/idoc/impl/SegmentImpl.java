@@ -48,6 +48,7 @@ import org.fusesource.camel.component.sap.model.idoc.SegmentList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.idoc.impl.SegmentImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.idoc.impl.SegmentImpl#getDocument <em>Document</em>}</li>
@@ -66,7 +67,6 @@ import org.fusesource.camel.component.sap.model.idoc.SegmentList;
  *   <li>{@link org.fusesource.camel.component.sap.model.idoc.impl.SegmentImpl#isQualified <em>Qualified</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.idoc.impl.SegmentImpl#getRecordLength <em>Record Length</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

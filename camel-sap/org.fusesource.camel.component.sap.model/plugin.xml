@@ -24,16 +24,14 @@
       <!-- @generated sap -->
       <package
             uri="http://sap.fusesource.org/idoc"
-            class="org.fusesource.camel.component.sap.model.idoc.IdocPackage"
-            genModel="model/sap.genmodel"/>
+            class="org.fusesource.camel.component.sap.model.idoc.IdocPackage"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated sap -->
       <package
             uri="http://sap.fusesource.org/rfc"
-            class="org.fusesource.camel.component.sap.model.rfc.RfcPackage"
-            genModel="model/sap.genmodel"/>
+            class="org.fusesource.camel.component.sap.model.rfc.RfcPackage"/>
    </extension>
 
 </plugin>
