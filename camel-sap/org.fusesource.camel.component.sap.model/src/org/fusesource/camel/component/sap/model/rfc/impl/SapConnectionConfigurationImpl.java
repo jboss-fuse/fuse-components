@@ -34,11 +34,11 @@ import org.fusesource.camel.component.sap.model.rfc.ServerDataStore;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.SapConnectionConfigurationImpl#getDestinationDataStore <em>Destination Data Store</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.SapConnectionConfigurationImpl#getServerDataStore <em>Server Data Store</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

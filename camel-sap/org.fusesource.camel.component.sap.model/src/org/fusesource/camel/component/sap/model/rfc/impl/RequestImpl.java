@@ -25,8 +25,6 @@ import org.fusesource.camel.component.sap.model.rfc.RfcPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Request</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

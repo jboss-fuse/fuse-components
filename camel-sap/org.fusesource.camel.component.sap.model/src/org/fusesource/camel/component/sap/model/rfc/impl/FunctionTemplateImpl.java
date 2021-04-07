@@ -34,6 +34,7 @@ import org.fusesource.camel.component.sap.model.rfc.RfcPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.FunctionTemplateImpl#getImports <em>Imports</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.FunctionTemplateImpl#getExports <em>Exports</em>}</li>
@@ -46,7 +47,6 @@ import org.fusesource.camel.component.sap.model.rfc.RfcPackage;
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.FunctionTemplateImpl#getTableParameterList <em>Table Parameter List</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.FunctionTemplateImpl#getExceptionList <em>Exception List</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

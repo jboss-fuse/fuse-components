@@ -118,7 +118,6 @@ public class DestinationDataItemProvider
 			addTypePropertyDescriptor(object);
 			addUserNamePropertyDescriptor(object);
 			addUserPropertyDescriptor(object);
-			addUserIdPropertyDescriptor(object);
 			addUseSapguiPropertyDescriptor(object);
 			addX509certPropertyDescriptor(object);
 		}
@@ -1093,27 +1092,6 @@ public class DestinationDataItemProvider
 				 null));
 	}
 
-	/**
-	 * This adds a property descriptor for the User Id feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addUserIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_DestinationData_userId_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DestinationData_userId_feature", "_UI_DestinationData_type"),
-				 RfcPackage.Literals.DESTINATION_DATA__USER_ID,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
 
 	/**
 	 * This adds a property descriptor for the Use Sapgui feature.
@@ -1270,7 +1248,6 @@ public class DestinationDataItemProvider
 			case RfcPackage.DESTINATION_DATA__TYPE:
 			case RfcPackage.DESTINATION_DATA__USER_NAME:
 			case RfcPackage.DESTINATION_DATA__USER:
-			case RfcPackage.DESTINATION_DATA__USER_ID:
 			case RfcPackage.DESTINATION_DATA__USE_SAPGUI:
 			case RfcPackage.DESTINATION_DATA__X509CERT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

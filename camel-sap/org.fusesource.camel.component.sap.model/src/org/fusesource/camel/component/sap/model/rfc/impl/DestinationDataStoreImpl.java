@@ -37,11 +37,11 @@ import org.fusesource.camel.component.sap.model.rfc.RfcPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataStoreImpl#getEntries <em>Entries</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataStoreImpl#getDestinationData <em>Destination Data</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

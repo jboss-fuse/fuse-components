@@ -35,11 +35,11 @@ import org.fusesource.camel.component.sap.model.rfc.RfcPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.RepositoryDataImpl#getEntries <em>Entries</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.RepositoryDataImpl#getFunctionTemplates <em>Function Templates</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

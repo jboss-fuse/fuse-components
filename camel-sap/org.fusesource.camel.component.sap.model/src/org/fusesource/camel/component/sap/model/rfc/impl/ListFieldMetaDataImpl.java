@@ -42,6 +42,7 @@ import org.fusesource.camel.component.sap.model.rfc.RfcPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.ListFieldMetaDataImpl#getFieldMetaData <em>Field Meta Data</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.ListFieldMetaDataImpl#getName <em>Name</em>}</li>
@@ -58,7 +59,6 @@ import org.fusesource.camel.component.sap.model.rfc.RfcPackage;
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.ListFieldMetaDataImpl#isOptional <em>Optional</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.ListFieldMetaDataImpl#getRecordMetaData <em>Record Meta Data</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

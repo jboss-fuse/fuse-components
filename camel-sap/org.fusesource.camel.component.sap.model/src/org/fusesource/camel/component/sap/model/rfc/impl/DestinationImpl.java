@@ -42,12 +42,12 @@ import org.fusesource.camel.component.sap.model.rfc.RfcPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationImpl#getRepositoryName <em>Repository Name</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.DestinationImpl#getRfcs <em>Rfcs</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -32,8 +32,6 @@ import org.fusesource.camel.component.sap.model.idoc.SegmentList;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Segment List</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

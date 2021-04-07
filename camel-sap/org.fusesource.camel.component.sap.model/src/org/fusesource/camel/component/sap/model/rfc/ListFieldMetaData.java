@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.ListFieldMetaData#getFieldMetaData <em>Field Meta Data</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.ListFieldMetaData#getName <em>Name</em>}</li>
@@ -42,7 +43,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.ListFieldMetaData#isOptional <em>Optional</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.ListFieldMetaData#getRecordMetaData <em>Record Meta Data</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.fusesource.camel.component.sap.model.rfc.RfcPackage#getListFieldMetaData()
  * @model

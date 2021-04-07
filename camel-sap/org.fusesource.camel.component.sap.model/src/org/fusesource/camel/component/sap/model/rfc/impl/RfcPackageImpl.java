@@ -805,7 +805,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_Passwd() {
+	public EAttribute getDestinationData_Network() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(20);
 	}
 
@@ -814,7 +814,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_Password() {
+	public EAttribute getDestinationData_Passwd() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(21);
 	}
 
@@ -823,7 +823,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_Pcs() {
+	public EAttribute getDestinationData_Password() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(22);
 	}
 
@@ -832,7 +832,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_PeakLimit() {
+	public EAttribute getDestinationData_Pcs() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(23);
 	}
 
@@ -841,7 +841,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_PingOnCreate() {
+	public EAttribute getDestinationData_PeakLimit() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(24);
 	}
 
@@ -850,7 +850,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_PoolCapacity() {
+	public EAttribute getDestinationData_PingOnCreate() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(25);
 	}
 
@@ -859,7 +859,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_R3name() {
+	public EAttribute getDestinationData_PoolCapacity() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(26);
 	}
 
@@ -868,7 +868,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_RepositoryDest() {
+	public EAttribute getDestinationData_R3name() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(27);
 	}
 
@@ -877,7 +877,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_RepositoryPasswd() {
+	public EAttribute getDestinationData_RepositoryDest() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(28);
 	}
 
@@ -886,7 +886,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_RepositoryRoundtripOptimization() {
+	public EAttribute getDestinationData_RepositoryPasswd() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(29);
 	}
 
@@ -895,7 +895,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_RepositorySnc() {
+	public EAttribute getDestinationData_RepositoryRoundtripOptimization() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(30);
 	}
 
@@ -904,7 +904,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_RepositoryUser() {
+	public EAttribute getDestinationData_RepositorySnc() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(31);
 	}
 
@@ -913,7 +913,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_Saprouter() {
+	public EAttribute getDestinationData_RepositoryUser() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(32);
 	}
 
@@ -922,7 +922,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_SncLibrary() {
+	public EAttribute getDestinationData_Saprouter() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(33);
 	}
 
@@ -931,7 +931,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_SncMode() {
+	public EAttribute getDestinationData_SerializationFormat() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(34);
 	}
 
@@ -940,7 +940,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_SncMyname() {
+	public EAttribute getDestinationData_SncLibrary() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(35);
 	}
 
@@ -949,7 +949,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_SncPartnername() {
+	public EAttribute getDestinationData_SncMode() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(36);
 	}
 
@@ -958,7 +958,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_SncQop() {
+	public EAttribute getDestinationData_SncMyname() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(37);
 	}
 
@@ -967,7 +967,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_Sysnr() {
+	public EAttribute getDestinationData_SncPartnername() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(38);
 	}
 
@@ -976,7 +976,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_Tphost() {
+	public EAttribute getDestinationData_SncQop() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(39);
 	}
 
@@ -985,7 +985,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_Tpname() {
+	public EAttribute getDestinationData_Sysnr() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(40);
 	}
 
@@ -994,7 +994,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_Trace() {
+	public EAttribute getDestinationData_Tphost() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(41);
 	}
 
@@ -1003,7 +1003,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_Type() {
+	public EAttribute getDestinationData_Tpname() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(42);
 	}
 
@@ -1012,7 +1012,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_UserName() {
+	public EAttribute getDestinationData_Trace() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(43);
 	}
 
@@ -1021,7 +1021,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_User() {
+	public EAttribute getDestinationData_Type() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(44);
 	}
 
@@ -1030,7 +1030,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_UserId() {
+	public EAttribute getDestinationData_UserName() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(45);
 	}
 
@@ -1039,7 +1039,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_UseSapgui() {
+	public EAttribute getDestinationData_User() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(46);
 	}
 
@@ -1048,8 +1048,17 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDestinationData_X509cert() {
+	public EAttribute getDestinationData_UseSapgui() {
 		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(47);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDestinationData_X509cert() {
+		return (EAttribute)destinationDataEClass.getEStructuralFeatures().get(48);
 	}
 
 	/**
@@ -2037,6 +2046,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 		createEAttribute(destinationDataEClass, DESTINATION_DATA__MSHOST);
 		createEAttribute(destinationDataEClass, DESTINATION_DATA__MSSERV);
 		createEAttribute(destinationDataEClass, DESTINATION_DATA__MYSAPSSO2);
+		createEAttribute(destinationDataEClass, DESTINATION_DATA__NETWORK);
 		createEAttribute(destinationDataEClass, DESTINATION_DATA__PASSWD);
 		createEAttribute(destinationDataEClass, DESTINATION_DATA__PASSWORD);
 		createEAttribute(destinationDataEClass, DESTINATION_DATA__PCS);
@@ -2050,6 +2060,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 		createEAttribute(destinationDataEClass, DESTINATION_DATA__REPOSITORY_SNC);
 		createEAttribute(destinationDataEClass, DESTINATION_DATA__REPOSITORY_USER);
 		createEAttribute(destinationDataEClass, DESTINATION_DATA__SAPROUTER);
+		createEAttribute(destinationDataEClass, DESTINATION_DATA__SERIALIZATION_FORMAT);
 		createEAttribute(destinationDataEClass, DESTINATION_DATA__SNC_LIBRARY);
 		createEAttribute(destinationDataEClass, DESTINATION_DATA__SNC_MODE);
 		createEAttribute(destinationDataEClass, DESTINATION_DATA__SNC_MYNAME);
@@ -2062,7 +2073,6 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 		createEAttribute(destinationDataEClass, DESTINATION_DATA__TYPE);
 		createEAttribute(destinationDataEClass, DESTINATION_DATA__USER_NAME);
 		createEAttribute(destinationDataEClass, DESTINATION_DATA__USER);
-		createEAttribute(destinationDataEClass, DESTINATION_DATA__USER_ID);
 		createEAttribute(destinationDataEClass, DESTINATION_DATA__USE_SAPGUI);
 		createEAttribute(destinationDataEClass, DESTINATION_DATA__X509CERT);
 
@@ -2309,6 +2319,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 		initEAttribute(getDestinationData_Mshost(), ecorePackage.getEString(), "mshost", "", 0, 1, DestinationData.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDestinationData_Msserv(), ecorePackage.getEString(), "msserv", "", 0, 1, DestinationData.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDestinationData_Mysapsso2(), ecorePackage.getEString(), "mysapsso2", "", 0, 1, DestinationData.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDestinationData_Network(), ecorePackage.getEString(), "network", "LAN", 0, 1, DestinationData.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDestinationData_Passwd(), ecorePackage.getEString(), "passwd", "", 0, 1, DestinationData.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDestinationData_Password(), ecorePackage.getEString(), "password", null, 0, 1, DestinationData.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDestinationData_Pcs(), ecorePackage.getEString(), "pcs", "", 0, 1, DestinationData.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
@@ -2322,6 +2333,7 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 		initEAttribute(getDestinationData_RepositorySnc(), ecorePackage.getEString(), "repositorySnc", "", 0, 1, DestinationData.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDestinationData_RepositoryUser(), ecorePackage.getEString(), "repositoryUser", "", 0, 1, DestinationData.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDestinationData_Saprouter(), ecorePackage.getEString(), "saprouter", "", 0, 1, DestinationData.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDestinationData_SerializationFormat(), ecorePackage.getEString(), "serializationFormat", "rowBased", 0, 1, DestinationData.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDestinationData_SncLibrary(), ecorePackage.getEString(), "sncLibrary", "", 0, 1, DestinationData.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDestinationData_SncMode(), ecorePackage.getEString(), "sncMode", "", 0, 1, DestinationData.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDestinationData_SncMyname(), ecorePackage.getEString(), "sncMyname", "", 0, 1, DestinationData.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
@@ -2334,7 +2346,6 @@ public class RfcPackageImpl extends EPackageImpl implements RfcPackage {
 		initEAttribute(getDestinationData_Type(), ecorePackage.getEString(), "type", "", 0, 1, DestinationData.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDestinationData_UserName(), ecorePackage.getEString(), "userName", "", 0, 1, DestinationData.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDestinationData_User(), ecorePackage.getEString(), "user", "", 0, 1, DestinationData.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDestinationData_UserId(), ecorePackage.getEString(), "userId", "", 0, 1, DestinationData.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDestinationData_UseSapgui(), ecorePackage.getEString(), "useSapgui", "", 0, 1, DestinationData.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDestinationData_X509cert(), ecorePackage.getEString(), "x509cert", "", 0, 1, DestinationData.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 

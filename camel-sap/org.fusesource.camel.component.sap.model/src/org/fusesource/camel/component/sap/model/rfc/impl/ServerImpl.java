@@ -32,10 +32,10 @@ import org.fusesource.camel.component.sap.model.rfc.Server;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.ServerImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.idoc.SegmentChildren#getSegments <em>Segments</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.idoc.SegmentChildren#getParent <em>Parent</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.fusesource.camel.component.sap.model.idoc.IdocPackage#getSegmentChildren()
  * @model

@@ -45,6 +45,7 @@ import static org.fusesource.camel.component.sap.model.idoc.IdocPackage.eNS_URI;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.idoc.impl.DocumentListImpl#getIdocType <em>Idoc Type</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.idoc.impl.DocumentListImpl#getIdocTypeExtension <em>Idoc Type Extension</em>}</li>
@@ -52,7 +53,6 @@ import static org.fusesource.camel.component.sap.model.idoc.IdocPackage.eNS_URI;
  *   <li>{@link org.fusesource.camel.component.sap.model.idoc.impl.DocumentListImpl#getApplicationRelease <em>Application Release</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.idoc.impl.DocumentListImpl#getDocument <em>Document</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

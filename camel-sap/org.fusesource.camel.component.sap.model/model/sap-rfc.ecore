@@ -144,6 +144,8 @@
         volatile="true" transient="true" defaultValueLiteral="" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mysapsso2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         volatile="true" transient="true" defaultValueLiteral="" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="network" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        volatile="true" transient="true" defaultValueLiteral="LAN" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="passwd" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         volatile="true" transient="true" defaultValueLiteral="" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="password" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -171,6 +173,8 @@
         volatile="true" transient="true" defaultValueLiteral="" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="saprouter" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         volatile="true" transient="true" defaultValueLiteral="" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="serializationFormat" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        volatile="true" transient="true" defaultValueLiteral="rowBased" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sncLibrary" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         volatile="true" transient="true" defaultValueLiteral="" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sncMode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -194,8 +198,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="userName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         volatile="true" transient="true" defaultValueLiteral="" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="user" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        volatile="true" transient="true" defaultValueLiteral="" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="userId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         volatile="true" transient="true" defaultValueLiteral="" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="useSapgui" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         volatile="true" transient="true" defaultValueLiteral="" derived="true"/>

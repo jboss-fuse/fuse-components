@@ -207,6 +207,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sap-rfc.ecore#//DestinationData/mshost"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sap-rfc.ecore#//DestinationData/msserv"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sap-rfc.ecore#//DestinationData/mysapsso2"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sap-rfc.ecore#//DestinationData/network"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sap-rfc.ecore#//DestinationData/passwd"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sap-rfc.ecore#//DestinationData/password"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sap-rfc.ecore#//DestinationData/pcs"/>
@@ -220,6 +221,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sap-rfc.ecore#//DestinationData/repositorySnc"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sap-rfc.ecore#//DestinationData/repositoryUser"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sap-rfc.ecore#//DestinationData/saprouter"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sap-rfc.ecore#//DestinationData/serializationFormat"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sap-rfc.ecore#//DestinationData/sncLibrary"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sap-rfc.ecore#//DestinationData/sncMode"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sap-rfc.ecore#//DestinationData/sncMyname"/>
@@ -232,7 +234,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sap-rfc.ecore#//DestinationData/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sap-rfc.ecore#//DestinationData/userName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sap-rfc.ecore#//DestinationData/user"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sap-rfc.ecore#//DestinationData/userId"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sap-rfc.ecore#//DestinationData/useSapgui"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sap-rfc.ecore#//DestinationData/x509cert"/>
     </genClasses>

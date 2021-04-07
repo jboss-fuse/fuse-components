@@ -25,11 +25,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.AbapException#getKey <em>Key</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.AbapException#getMessage <em>Message</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.fusesource.camel.component.sap.model.rfc.RfcPackage#getAbapException()
  * @model

@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.idoc.Document#getArchiveKey <em>Archive Key</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.idoc.Document#getClient <em>Client</em>}</li>
@@ -64,7 +65,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.fusesource.camel.component.sap.model.idoc.Document#getTestFlag <em>Test Flag</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.idoc.Document#getRootSegment <em>Root Segment</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.fusesource.camel.component.sap.model.idoc.IdocPackage#getDocument()
  * @model

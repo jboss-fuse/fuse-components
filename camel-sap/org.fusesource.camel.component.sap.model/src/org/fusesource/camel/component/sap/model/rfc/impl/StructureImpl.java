@@ -36,6 +36,7 @@ import org.fusesource.camel.component.sap.model.rfc.Structure;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.StructureImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.StructureImpl#getFieldCount <em>Field Count</em>}</li>
@@ -43,7 +44,6 @@ import org.fusesource.camel.component.sap.model.rfc.Structure;
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.StructureImpl#getUnicodeRecordLength <em>Unicode Record Length</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.StructureImpl#isNestedType1Structure <em>Nested Type1 Structure</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

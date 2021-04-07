@@ -38,6 +38,7 @@ import org.fusesource.camel.component.sap.model.rfc.Structure;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.RFCImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.RFCImpl#getGroup <em>Group</em>}</li>
@@ -46,7 +47,6 @@ import org.fusesource.camel.component.sap.model.rfc.Structure;
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.RFCImpl#getResponse <em>Response</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.RFCImpl#getDestination <em>Destination</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

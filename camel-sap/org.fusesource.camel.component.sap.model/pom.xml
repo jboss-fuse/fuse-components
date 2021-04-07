@@ -20,6 +20,10 @@
   <artifactId>org.fusesource.camel.component.sap.model</artifactId>
   <packaging>eclipse-plugin</packaging>
   
+  <properties>
+      <skip.genmodel>true</skip.genmodel>
+  </properties>
+
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
@@ -36,8 +40,46 @@
 			<groupId>org.eclipse.tycho</groupId>
 			<artifactId>target-platform-configuration</artifactId>
 		</plugin>
+		<plugin>
+                        <groupId>org.eclipse.tycho.extras</groupId>
+                        <artifactId>tycho-eclipserun-plugin</artifactId>
+		        <version>${tycho-version}</version>
+                        <configuration>
+                            <skip>${skip.genmodel}</skip>
+			    <appArgLine>-debug -data /tmp/workspace -application org.eclipse.emf.codegen.ecore.Generator -projects ${basedir} -model ${basedir}/model/sap.genmodel ${basedir}</appArgLine>
+                            <dependencies>
+                                <dependency>
+                                    <artifactId>org.eclipse.emf.codegen.ecore</artifactId>
+                                    <type>eclipse-plugin</type>
+                                </dependency>
+                            </dependencies>
+                            <repositories>
+                                <repository>
+                                    <id>neon</id>
+                                    <layout>p2</layout>
+                                    <url>http://download.eclipse.org/releases/neon</url>
+                               </repository>
+                            </repositories>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>eclipse-run</goal>
+                                </goals>
+                                <phase>generate-sources</phase>
+                            </execution>
+                        </executions>
+                 </plugin>
     </plugins>
   </build>
+  <profiles>
+      <profile>
+          <id>genmodel</id>
+          <properties>
+              <skip.genmodel>false</skip.genmodel>
+          </properties>
+      </profile>
+  </profiles>
   <parent>
   	<groupId>org.fusesource</groupId>
   	<artifactId>camel-sap-parent</artifactId>

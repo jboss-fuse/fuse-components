@@ -34,10 +34,10 @@ import org.fusesource.camel.component.sap.model.rfc.RfcPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.RepositoryDataStoreImpl#getEntries <em>Entries</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

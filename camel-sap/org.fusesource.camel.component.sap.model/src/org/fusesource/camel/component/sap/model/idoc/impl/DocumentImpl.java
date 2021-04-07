@@ -33,6 +33,7 @@ import org.fusesource.camel.component.sap.model.idoc.Segment;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.idoc.impl.DocumentImpl#getArchiveKey <em>Archive Key</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.idoc.impl.DocumentImpl#getClient <em>Client</em>}</li>
@@ -71,7 +72,6 @@ import org.fusesource.camel.component.sap.model.idoc.Segment;
  *   <li>{@link org.fusesource.camel.component.sap.model.idoc.impl.DocumentImpl#getTestFlag <em>Test Flag</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.idoc.impl.DocumentImpl#getRootSegment <em>Root Segment</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

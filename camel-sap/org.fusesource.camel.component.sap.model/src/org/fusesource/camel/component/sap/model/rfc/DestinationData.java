@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getEntries <em>Entries</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getAliasUser <em>Alias User</em>}</li>
@@ -48,6 +49,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getMshost <em>Mshost</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getMsserv <em>Msserv</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getMysapsso2 <em>Mysapsso2</em>}</li>
+ *   <li>{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getNetwork <em>Network</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getPasswd <em>Passwd</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getPassword <em>Password</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getPcs <em>Pcs</em>}</li>
@@ -61,6 +63,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getRepositorySnc <em>Repository Snc</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getRepositoryUser <em>Repository User</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getSaprouter <em>Saprouter</em>}</li>
+ *   <li>{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getSerializationFormat <em>Serialization Format</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getSncLibrary <em>Snc Library</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getSncMode <em>Snc Mode</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getSncMyname <em>Snc Myname</em>}</li>
@@ -73,11 +76,9 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getType <em>Type</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getUserName <em>User Name</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getUser <em>User</em>}</li>
- *   <li>{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getUserId <em>User Id</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getUseSapgui <em>Use Sapgui</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getX509cert <em>X50 9cert</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.fusesource.camel.component.sap.model.rfc.RfcPackage#getDestinationData()
  * @model
@@ -615,6 +616,33 @@ public interface DestinationData extends EObject {
 	void setMysapsso2(String value);
 
 	/**
+	 * Returns the value of the '<em><b>Network</b></em>' attribute.
+	 * The default value is <code>"LAN"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Network</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Network</em>' attribute.
+	 * @see #setNetwork(String)
+	 * @see org.fusesource.camel.component.sap.model.rfc.RfcPackage#getDestinationData_Network()
+	 * @model default="LAN" transient="true" volatile="true" derived="true"
+	 * @generated
+	 */
+	String getNetwork();
+
+	/**
+	 * Sets the value of the '{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getNetwork <em>Network</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Network</em>' attribute.
+	 * @see #getNetwork()
+	 * @generated
+	 */
+	void setNetwork(String value);
+
+	/**
 	 * Returns the value of the '<em><b>Passwd</b></em>' attribute.
 	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
@@ -963,6 +991,33 @@ public interface DestinationData extends EObject {
 	 * @generated
 	 */
 	void setSaprouter(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Serialization Format</b></em>' attribute.
+	 * The default value is <code>"rowBased"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Serialization Format</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Serialization Format</em>' attribute.
+	 * @see #setSerializationFormat(String)
+	 * @see org.fusesource.camel.component.sap.model.rfc.RfcPackage#getDestinationData_SerializationFormat()
+	 * @model default="rowBased" transient="true" volatile="true" derived="true"
+	 * @generated
+	 */
+	String getSerializationFormat();
+
+	/**
+	 * Sets the value of the '{@link org.fusesource.camel.component.sap.model.rfc.DestinationData#getSerializationFormat <em>Serialization Format</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Serialization Format</em>' attribute.
+	 * @see #getSerializationFormat()
+	 * @generated
+	 */
+	void setSerializationFormat(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Snc Library</b></em>' attribute.

@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.ServerData#getEntries <em>Entries</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.ServerData#getGwhost <em>Gwhost</em>}</li>
@@ -44,7 +45,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.ServerData#getSncMyname <em>Snc Myname</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.ServerData#getSncLib <em>Snc Lib</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.fusesource.camel.component.sap.model.rfc.RfcPackage#getServerData()
  * @model

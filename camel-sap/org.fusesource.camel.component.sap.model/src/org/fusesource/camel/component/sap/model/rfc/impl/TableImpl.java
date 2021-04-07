@@ -36,11 +36,11 @@ import org.fusesource.camel.component.sap.model.rfc.Table;
  * <em><b>Table</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.TableImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.rfc.impl.TableImpl#getLineType <em>Line Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

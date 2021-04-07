@@ -41,11 +41,11 @@ import org.fusesource.camel.component.sap.model.idoc.SegmentList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.fusesource.camel.component.sap.model.idoc.impl.SegmentChildrenImpl#getSegments <em>Segments</em>}</li>
  *   <li>{@link org.fusesource.camel.component.sap.model.idoc.impl.SegmentChildrenImpl#getParent <em>Parent</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
