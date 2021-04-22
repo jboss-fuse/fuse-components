@@ -15,12 +15,12 @@
     <parent>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-parent</artifactId>
-        <version>2.23.2.fuse-790003</version>
+        <version>2.23.2.fuse-790038</version>
        </parent>
 
     <groupId>org.fusesource</groupId>
     <artifactId>camel-fusesource-parent</artifactId>
-    <version>7.9.0-SNAPSHOT</version>
+    <version>7.9.0.fuse-sb2-790036</version>
     <packaging>pom</packaging>
 
     <name>JBoss Fuse :: Components </name>
@@ -33,9 +33,9 @@
         <geronimo-jms_1.1_spec.version>1.1.1.redhat-2</geronimo-jms_1.1_spec.version>
         <commons-pool.version>1.6.0.redhat-9</commons-pool.version>
         <commons-net.version>3.6</commons-net.version>
-        <camel-version>2.23.2.fuse-790003</camel-version>
+        <camel-version>2.23.2.fuse-790038</camel-version>
         <activemq-version>5.11.0.redhat-630495</activemq-version>
-        <karaf-version>4.2.9.fuse-790001</karaf-version>
+        <karaf-version>4.2.11.fuse-790007</karaf-version>
         <!-- ENTESB-12869: versions from com.fasterxml.jackson/jackson-bom/2.8.11.20200310-redhat-00001 -->
         <jackson2-version>2.8.11</jackson2-version>
         <jackson2-databind-version>2.8.11.6-redhat-00001</jackson2-databind-version>
