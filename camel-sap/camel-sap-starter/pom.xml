@@ -5,7 +5,7 @@
 
 	<groupId>org.fusesource</groupId>
 	<artifactId>camel-sap-starter</artifactId>
-	<version>7.9.0-SNAPSHOT</version>
+	<version>7.9.0.fuse-sb2-790037</version>
 	<packaging>jar</packaging>
 
 	<name>JBoss Fuse :: Components :: SAP JCO :: Spring-Boot Starter</name>
@@ -22,7 +22,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<camel-version>2.21.0.fuse-740038</camel-version>
+		<camel-version>2.23.2.fuse-790039</camel-version>
 		<sapjco3-version>3.1.2</sapjco3-version>
 		<sapidoc3-version>3.1.0</sapidoc3-version>
 		<lib.directory>${project.build.directory}/lib</lib.directory>
