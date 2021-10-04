@@ -7,8 +7,7 @@
 	on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
 	express or implied. See the License for the specific language governing permissions 
 	and limitations under the License. -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 
@@ -62,8 +61,8 @@
             org.osgi.service.component.*;version="[1.1,2.0)",
             scala*;version="[2.11,2.12)"
         </fuse.osgi.import.defaults>
-        <fuse.osgi.import.before.defaults/>
-        <fuse.osgi.import.additional/>
+        <fuse.osgi.import.before.defaults />
+        <fuse.osgi.import.additional />
         <fuse.osgi.import.pkg>
             io.fabric8.*;${fuse.osgi.import.fabric.version},
             ${fuse.osgi.import.before.defaults},
@@ -71,13 +70,13 @@
             ${fuse.osgi.import.additional},
             *
         </fuse.osgi.import.pkg>
-        <fuse.osgi.activator/>
+        <fuse.osgi.activator />
         <fuse.osgi.failok>false</fuse.osgi.failok>
-        <fuse.osgi.private.pkg></fuse.osgi.private.pkg>
+        <fuse.osgi.private.pkg />
         <fuse.osgi.export>io.fabric8.*;version=${fuse.osgi.version};-noimport:=true</fuse.osgi.export>
         <fuse.osgi.split.pkg>-split-package:=first</fuse.osgi.split.pkg>
         <fuse.osgi.import>${fuse.osgi.import.pkg}</fuse.osgi.import>
-        <fuse.osgi.dynamic/>
+        <fuse.osgi.dynamic />
         <fuse.osgi.symbolic.name>${project.groupId}.${project.artifactId}</fuse.osgi.symbolic.name>
         <fuse.osgi.exclude.dependencies>false</fuse.osgi.exclude.dependencies>
         <fuse.osgi.resource>{maven-resources}</fuse.osgi.resource>
@@ -189,7 +188,7 @@
 			<dependency>
 				<groupId>com.sun.xml.bind</groupId>
 				<artifactId>jaxb-core</artifactId>
-				<version>2.2.11</version>
+				<version>2.2.11.redhat-4</version>
 			</dependency>
 
 			<dependency>
@@ -225,7 +224,7 @@
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
-				<version>4.12</version>
+				<version>4.12.0.redhat-003</version>
 				<scope>test</scope>
 			</dependency>
 
@@ -716,11 +715,7 @@
 		</repository>
 	</repositories>
 	<pluginRepositories>
-		<pluginRepository>
-			<id>RH2</id>
-			<url>http://download.eng.bos.redhat.com/brewroot/repos/jb-fsw-6.2-build/latest/maven</url>
-			<layout>default</layout>
-		</pluginRepository>
+		
 	</pluginRepositories>
 	<description>Provides SAP Camel Component</description>
 </project>

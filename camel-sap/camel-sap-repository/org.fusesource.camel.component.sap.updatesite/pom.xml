@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>org.fusesource.camel.component.sap.updatesite</artifactId>
 	<name>JBoss Fuse :: SAP JCO :: SAP Data Layer :: Update Site</name>
@@ -150,7 +149,7 @@
 						<remoteServerId>fuse-qe.rhev-ci-vms.eng.rdu2.redhat.com</remoteServerId>
 						<remoteServerUrl>scp://jenkins@fuse-qe.rhev-ci-vms.eng.rdu2.redhat.com/mnt/data/jenkins/p2/fuse.sap.updatesite</remoteServerUrl>
 						<moveOldDirectory>true</moveOldDirectory>
-						<mvOptions></mvOptions>
+						<mvOptions />
 					</configuration>
 					<executions>
 						<execution>
@@ -188,7 +187,7 @@
 						<remoteServerId>fuse-qe.rhev-ci-vms.eng.rdu2.redhat.com</remoteServerId>
 						<remoteServerUrl>scp://jenkins@fuse-qe.rhev-ci-vms.eng.rdu2.redhat.com/mnt/data/jenkins/p2/fuse.sap.updatesite</remoteServerUrl>
 						<moveOldDirectory>false</moveOldDirectory>
-						<mvOptions></mvOptions>
+						<mvOptions />
 					</configuration>
 					<executions>
 						<execution>
