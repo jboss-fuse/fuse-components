@@ -142,12 +142,12 @@
 		<dependency>
 			<groupId>com.sap.conn.jco</groupId>
 			<artifactId>com.sap.conn.jco</artifactId>
-			<version>3.1.2.redhat-00001</version>
+			<version>3.1.4.redhat-00001</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sap.conn.idoc</groupId>
 			<artifactId>com.sap.conn.idoc</artifactId>
-			<version>3.1.0.redhat-00001</version>
+			<version>3.1.1.redhat-00001</version>
 		</dependency>
 
 		<dependency>

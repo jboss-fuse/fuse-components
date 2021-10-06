@@ -2,9 +2,9 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SAP Java Connector v3 - Native Libraries for Linux (32-bit x86)
 Bundle-SymbolicName: com.sap.conn.jco.linux.x86
-Bundle-Version: 3.1.2.redhat-00001
+Bundle-Version: 3.1.4.redhat-00001
 Bundle-Vendor: Red Hat, Inc.
-Fragment-Host: com.sap.conn.jco;bundle-version="3.1.2.redhat-00001"
+Fragment-Host: com.sap.conn.jco;bundle-version="3.1.4.redhat-00001"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-NativeCode: libsapjco3.so
 Bundle-ClassPath: .
