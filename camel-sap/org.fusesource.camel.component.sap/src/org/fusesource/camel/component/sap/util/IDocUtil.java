@@ -1413,58 +1413,61 @@ public class IDocUtil extends Util {
 		EStructuralFeature feature = segment.eClass().getEStructuralFeature(fieldName);
 		try {
 			if (feature != null) {
-				switch(feature.getEType().getClassifierID()) {
-				case EcorePackage.ESTRING:
-					idocSegment.setValue(fieldName, (String) segment.get(fieldName));
-					return;
+				Object segmentFieldValue = segment.get(fieldName);
+				if (segmentFieldValue != null) {
+					switch(feature.getEType().getClassifierID()) {
+					case EcorePackage.ESTRING:
+						idocSegment.setValue(fieldName, (String) segmentFieldValue);
+						return;
 
-				case EcorePackage.EBIG_INTEGER:
-				{
-					int fieldLength = idocSegment.getRecordMetaData().getLength(fieldName);
-					String bigIntString = ((BigInteger) segment.get(fieldName)).toString();
-					if (bigIntString.length() > fieldLength) {
-						// Truncate string to low order digits of BigInteger value.
-						bigIntString = bigIntString.substring(bigIntString.length() - fieldLength, bigIntString.length());
-					}
-					idocSegment.setValue(fieldName, bigIntString);
-					return;
-				}
-				
-				case EcorePackage.EBIG_DECIMAL:
-				{
-					int fieldLength = idocSegment.getRecordMetaData().getLength(fieldName);
-					String bigDecString = ((BigDecimal) segment.get(fieldName)).toString();
-					if (bigDecString.length() > fieldLength) {
-						// Truncate string to low order digits of BigDecimal value.
-						bigDecString = bigDecString.substring(bigDecString.length() - fieldLength, bigDecString.length());
-					}
-					idocSegment.setValue(fieldName, bigDecString);
-					return;
-				}
-				
-				case EcorePackage.EDATE:
-					IDocDatatype fieldDataType =idocSegment.getRecordMetaData().getDatatype(fieldName);
-					switch (fieldDataType) {
-					case DATE:
-						String date = DATE_FORMATTER.format((Date)segment.get(fieldName));
-						idocSegment.setValue(fieldName, date);
+					case EcorePackage.EBIG_INTEGER:
+					{
+						int fieldLength = idocSegment.getRecordMetaData().getLength(fieldName);
+						String bigIntString = ((BigInteger) segmentFieldValue).toString();
+						if (bigIntString.length() > fieldLength) {
+							// Truncate string to low order digits of BigInteger value.
+							bigIntString = bigIntString.substring(bigIntString.length() - fieldLength, bigIntString.length());
+						}
+						idocSegment.setValue(fieldName, bigIntString);
 						return;
-					case TIME:
-						String time = TIME_FORMATTER.format((Date)segment.get(fieldName));
-						idocSegment.setValue(fieldName, time);
+					}
+
+					case EcorePackage.EBIG_DECIMAL:
+					{
+						int fieldLength = idocSegment.getRecordMetaData().getLength(fieldName);
+						String bigDecString = ((BigDecimal) segmentFieldValue).toString();
+						if (bigDecString.length() > fieldLength) {
+							// Truncate string to low order digits of BigDecimal value.
+							bigDecString = bigDecString.substring(bigDecString.length() - fieldLength, bigDecString.length());
+						}
+						idocSegment.setValue(fieldName, bigDecString);
 						return;
+					}
+
+					case EcorePackage.EDATE:
+						IDocDatatype fieldDataType =idocSegment.getRecordMetaData().getDatatype(fieldName);
+						switch (fieldDataType) {
+						case DATE:
+							String date = DATE_FORMATTER.format((Date)segmentFieldValue);
+							idocSegment.setValue(fieldName, date);
+							return;
+						case TIME:
+							String time = TIME_FORMATTER.format((Date)segmentFieldValue);
+							idocSegment.setValue(fieldName, time);
+							return;
+						default:
+							return;
+						}
+
+					case EcorePackage.EBYTE_ARRAY:
+						byte[] bytes = (byte[]) segmentFieldValue;
+						idocSegment.setValue(fieldName, bytesToHex(bytes));
+						return;
+
 					default:
 						return;
+
 					}
-
-				case EcorePackage.EBYTE_ARRAY:
-					byte[] bytes = (byte[]) segment.get(fieldName);
-					idocSegment.setValue(fieldName, bytesToHex(bytes));
-					return;
-
-				default:
-					return;
-				
 				}
 			}
 		} catch (Exception e) {
