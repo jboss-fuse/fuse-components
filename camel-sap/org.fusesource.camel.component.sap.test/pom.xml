@@ -23,11 +23,11 @@
     <parent>
         <groupId>org.fusesource</groupId>
         <artifactId>camel-sap-parent</artifactId>
-        <version>6.3.0.redhat-SNAPSHOT</version>
+        <version>6.3.0.redhat-516</version>
     </parent>
 
     <artifactId>org.fusesource.camel.component.sap.test</artifactId>
-    <version>6.3.0.redhat-SNAPSHOT</version>
+    <version>6.3.0.redhat-516</version>
 
     <name>JBoss Fuse :: SAP JCO :: SAP Data Layer :: Test Plugin</name>
     <description>Provides Tests for the SAP Data Layer</description>
