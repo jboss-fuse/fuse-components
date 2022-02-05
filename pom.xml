@@ -33,7 +33,7 @@
         <commons-pool.version>1.6.0.redhat-9</commons-pool.version>
         <commons-net.version>3.6</commons-net.version>
         <camel-version>2.23.2.fuse-7_10_0-00002</camel-version>
-        <activemq-version>5.11.0.redhat-630495</activemq-version>
+        <activemq-version>5.11.0.redhat-630516</activemq-version>
         <karaf-version>4.2.11.fuse-7_10_0-00003</karaf-version>
         <jackson2-version>2.12.1</jackson2-version>
         <jackson2-databind-version>2.12.1</jackson2-databind-version>
