@@ -35,8 +35,8 @@
         <camel-version>2.23.2.fuse-7_10_0-00020-redhat-00001</camel-version>
         <activemq-version>5.11.0.redhat-630516</activemq-version>
         <karaf-version>4.2.12.fuse-7_10_0-00008-redhat-00001</karaf-version>
-        <jackson2-version>2.12.6</jackson2-version>
-        <jackson2-databind-version>2.12.6.1</jackson2-databind-version>
+        <jackson2-version>2.12.6.redhat-00001</jackson2-version>
+        <jackson2-databind-version>2.12.6.1-redhat-00004</jackson2-databind-version>
         <javax.servlet-api-version>3.1.0.redhat-1</javax.servlet-api-version>
         <asm.version>9.2</asm.version>
     </properties>
