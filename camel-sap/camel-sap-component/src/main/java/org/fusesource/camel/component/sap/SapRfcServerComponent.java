@@ -17,7 +17,12 @@
 package org.fusesource.camel.component.sap;
 
 import org.apache.camel.Endpoint;
-import org.apache.camel.impl.UriEndpointComponent;
+import org.apache.camel.support.DefaultComponent;
+import org.fusesource.camel.component.sap.model.rfc.RepositoryData;
+import org.fusesource.camel.component.sap.util.ComponentRepositoryDataProvider;
+import org.fusesource.camel.component.sap.util.RfcUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.sap.conn.jco.server.JCoServer;
 
@@ -28,10 +33,10 @@ import com.sap.conn.jco.server.JCoServer;
  * @author William Collins <punkhornsw@gmail.com>
  * 
  */
-public abstract class SapRfcServerComponent extends UriEndpointComponent {
+public abstract class SapRfcServerComponent extends DefaultComponent {
 
 	public SapRfcServerComponent(Class<? extends Endpoint> endpointClass) {
-		super(endpointClass);
+		super();
 	}
 
 	protected FunctionHandlerFactory getServerHandlerFactory(String serverName) throws Exception {

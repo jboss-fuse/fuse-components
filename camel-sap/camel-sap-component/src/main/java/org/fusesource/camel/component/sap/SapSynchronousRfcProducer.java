@@ -18,7 +18,7 @@ package org.fusesource.camel.component.sap;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Message;
-import org.apache.camel.impl.DefaultProducer;
+import org.apache.camel.support.DefaultProducer;
 import org.fusesource.camel.component.sap.model.rfc.Structure;
 import org.fusesource.camel.component.sap.util.RfcUtil;
 import org.slf4j.Logger;

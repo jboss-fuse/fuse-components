@@ -34,7 +34,7 @@ public class SapQueuedRfcDestinationEndpoint extends SapRfcDestinationEndpoint {
 	
     private static final Logger LOG = LoggerFactory.getLogger(SapQueuedRfcDestinationEndpoint.class);
     
-	@UriPath(name = "queue", description = "Specifies the queue this endpoint sends an SAP request to") @Metadata(required = "true")
+	@UriPath(name = "queue", description = "Specifies the queue this endpoint sends an SAP request to") @Metadata(required = true)
     protected String queueName;
 
 	public SapQueuedRfcDestinationEndpoint() {
