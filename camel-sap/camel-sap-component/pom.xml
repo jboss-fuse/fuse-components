@@ -23,7 +23,7 @@
     <parent>
         <groupId>org.fusesource</groupId>
         <artifactId>camel-sap-parent</artifactId>
-        <version>6.3.0.redhat-SNAPSHOT</version>
+        <version>3.20.1.redhat-SNAPSHOT</version>
     </parent>
 
     <artifactId>camel-sap</artifactId>
@@ -260,7 +260,7 @@
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>apt</artifactId>
+            <artifactId>camel-support</artifactId>
             <scope>provided</scope>
         </dependency>
 
@@ -296,7 +296,7 @@
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-test</artifactId>
+            <artifactId>camel-test-junit5</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -310,7 +310,7 @@
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-test-spring</artifactId>
+            <artifactId>camel-test-spring-junit5</artifactId>
             <type>bundle</type>
             <scope>test</scope>
         </dependency>

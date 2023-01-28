@@ -18,7 +18,7 @@ package org.fusesource.camel.component.sap;
 
 import org.apache.camel.Endpoint;
 import org.apache.camel.Processor;
-import org.apache.camel.impl.DefaultConsumer;
+import org.apache.camel.support.DefaultConsumer;
 
 /**
  * SAP consumer. This consumer provides a session context if stateful.

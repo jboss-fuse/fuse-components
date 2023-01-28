@@ -23,11 +23,11 @@
     <parent>
         <groupId>org.fusesource</groupId>
         <artifactId>camel-sap-parent</artifactId>
-        <version>6.3.0.redhat-SNAPSHOT</version>
+        <version>3.20.1.redhat-SNAPSHOT</version>
     </parent>
 
     <artifactId>org.fusesource.camel.component.sap.test</artifactId>
-    <version>6.3.0.redhat-SNAPSHOT</version>
+    <version>3.20.1.redhat-SNAPSHOT</version>
 
     <name>JBoss Fuse :: SAP JCO :: SAP Data Layer :: Test Plugin</name>
     <description>Provides Tests for the SAP Data Layer</description>
@@ -48,6 +48,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                                <configuration>
+                                        <release combine.self="override"/>
+                                        <source>${maven.compiler.target}</source>
+                                        <target>${maven.compiler.source}</target>
+                                </configuration>
                 <executions>
                     <execution>
                         <id>compiletests</id>
@@ -58,6 +63,7 @@
                     </execution>
                 </executions>
             </plugin>
+<!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -69,7 +75,8 @@
                             <systemProperties>
                                 <osgi.nls.warnings>ignore</osgi.nls.warnings>
                             </systemProperties>
-                            <reuseForks>false</reuseForks><!-- Added to resolve issues with multiple loading of JCo native library -->
+                            <reuseForks>false</reuseForks>
+
                             <argLine>-Djava.library.path="${native.lib.directory}"</argLine>
                         </configuration>
                         <goals>
@@ -78,6 +85,7 @@
                     </execution>
                 </executions>
             </plugin>
+-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>

@@ -19,7 +19,7 @@ package org.fusesource.camel.component.sap;
 import org.apache.camel.Consumer;
 import org.apache.camel.Processor;
 import org.apache.camel.Producer;
-import org.apache.camel.impl.DefaultEndpoint;
+import org.apache.camel.support.DefaultEndpoint;
 import org.apache.camel.spi.Metadata;
 import org.apache.camel.spi.UriEndpoint;
 import org.apache.camel.spi.UriParam;
@@ -44,19 +44,19 @@ public class SapTransactionalIDocListServerEndpoint extends DefaultEndpoint {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SapTransactionalIDocListServerEndpoint.class);
 
-	@UriPath(name = "server", description = "Specifies the server this endpoint receives an IDoc from") @Metadata(required = "true")
+	@UriPath(name = "server", description = "Specifies the server this endpoint receives an IDoc from") @Metadata(required = true)
 	protected String serverName;
 	
-	@UriPath(name = "idocType", description = "Specifies the Basic IDoc Type of an IDoc consumed by this endpoint") @Metadata(required = "true")
+	@UriPath(name = "idocType", description = "Specifies the Basic IDoc Type of an IDoc consumed by this endpoint") @Metadata(required = true)
 	protected String idocType;
 	
-	@UriPath(name = "idocTypeExtension", description = "Specifies the IDoc Type Extension, if any, of an IDoc consumed by this endpoint") @Metadata(required = "false")
+	@UriPath(name = "idocTypeExtension", description = "Specifies the IDoc Type Extension, if any, of an IDoc consumed by this endpoint") @Metadata(required = false)
 	protected String idocTypeExtension;
 
-	@UriPath(name = "systemRelease", description = "Specifies the associated SAP Basis Release, if any, of an IDoc consumed by this endpoint") @Metadata(required = "false")
+	@UriPath(name = "systemRelease", description = "Specifies the associated SAP Basis Release, if any, of an IDoc consumed by this endpoint") @Metadata(required = false)
 	protected String systemRelease;
 	
-	@UriPath(name = "applicationRelease", description = "Specifes the associated Application Release, if any, of an IDoc consumed by this endpoint") @Metadata(required = "false")
+	@UriPath(name = "applicationRelease", description = "Specifes the associated Application Release, if any, of an IDoc consumed by this endpoint") @Metadata(required = false)
 	protected String applicationRelease;
 	
 	@UriParam(name = "propagateExceptions", description = "When true, specifies that this endpoint will propagate exceptions back to the caller in SAP instead of the exchange's exception handler", defaultValue = "false")

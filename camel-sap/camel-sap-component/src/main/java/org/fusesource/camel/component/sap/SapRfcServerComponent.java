@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.camel.Endpoint;
-import org.apache.camel.impl.UriEndpointComponent;
+import org.apache.camel.support.DefaultComponent;
 import org.fusesource.camel.component.sap.model.rfc.RepositoryData;
 import org.fusesource.camel.component.sap.util.ComponentRepositoryDataProvider;
 import org.fusesource.camel.component.sap.util.RfcUtil;
@@ -42,7 +42,7 @@ import com.sap.conn.jco.server.JCoServerState;
  * @author William Collins <punkhornsw@gmail.com>
  * 
  */
-public abstract class SapRfcServerComponent extends UriEndpointComponent {
+public abstract class SapRfcServerComponent extends DefaultComponent {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SapRfcServerComponent.class);
 	
@@ -60,7 +60,7 @@ public abstract class SapRfcServerComponent extends UriEndpointComponent {
 	protected ServerStateChangedListener serverStateChangedListener = new ServerStateChangedListener();
 
 	public SapRfcServerComponent(Class<? extends Endpoint> endpointClass) {
-		super(endpointClass);
+		super();
 	}
 
 	public String getTidStoresLocation() {
