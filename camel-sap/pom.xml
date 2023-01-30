@@ -36,9 +36,9 @@
     <url>http://www.jboss.org/products/fuse/overview/</url>
 
     <properties>
-        <maven.compiler.target>1.7</maven.compiler.target>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven-surefire-plugin-version>2.19</maven-surefire-plugin-version>
+        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven-surefire-plugin-version>2.22.2</maven-surefire-plugin-version>
         <camel-version>3.20.1.redhat-00006</camel-version>
         <camel-community-version>3.20.1</camel-community-version>
         <camel.sap.plugin.version>3.20.1.redhat-SNAPSHOT</camel.sap.plugin.version>
