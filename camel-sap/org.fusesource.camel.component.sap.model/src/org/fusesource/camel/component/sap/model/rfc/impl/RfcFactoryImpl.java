@@ -65,6 +65,7 @@ public class RfcFactoryImpl extends EFactoryImpl implements RfcFactory {
 			}
 		}
 		catch (Exception exception) {
+			exception.printStackTrace();
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new RfcFactoryImpl();

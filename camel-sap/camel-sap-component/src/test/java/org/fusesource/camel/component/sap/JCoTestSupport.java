@@ -1,6 +1,6 @@
 package org.fusesource.camel.component.sap;
 
-import org.apache.camel.test.spring.CamelSpringTestSupport;
+import org.apache.camel.test.spring.junit5.CamelSpringTestSupport;
 import org.fusesource.camel.component.sap.model.rfc.DestinationData;
 import org.fusesource.camel.component.sap.model.rfc.DestinationDataStore;
 import org.fusesource.camel.component.sap.model.rfc.ServerData;

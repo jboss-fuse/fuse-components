@@ -16,9 +16,14 @@
  */
 package org.fusesource.camel.component.sap;
 
-import org.apache.camel.EndpointConfiguration;
-import org.apache.camel.test.junit4.CamelTestSupport;
+import java.net.URI;
+import java.util.Map;
+
+import org.apache.camel.Endpoint;
+import org.apache.camel.test.junit5.CamelTestSupport;
+import org.apache.camel.util.URISupport;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class SapTransactionalRfcDestinationComponentConfigurationAndDocumentationTest extends CamelTestSupport {
 
@@ -30,10 +35,13 @@ public class SapTransactionalRfcDestinationComponentConfigurationAndDocumentatio
     @Test
     public void testComponentConfiguration() throws Exception {
         SapTransactionalRfcDestinationComponent comp = context.getComponent("sap-trfc-destination", SapTransactionalRfcDestinationComponent.class);
-        EndpointConfiguration conf = comp.createConfiguration("sap-trfc-destination:destinationName:rfcName?stateful=true&transacted=false");
+        Endpoint endpoint = comp.createEndpoint("sap-trfc-destination:destinationName:rfcName?stateful=true&transacted=false");
+        String fullEndpointUri = endpoint.getEndpointUri();
+        URI uri = new URI(fullEndpointUri);
+        Map<String, Object> parameters = URISupport.parseParameters(uri);
 
-        assertEquals("true", conf.getParameter("stateful"));
-        assertEquals("false", conf.getParameter("transacted"));
+        assertEquals("true", parameters.get("stateful"));
+        assertEquals("false", parameters.get("transacted"));
 
     }
 

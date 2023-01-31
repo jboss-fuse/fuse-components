@@ -5,6 +5,7 @@ import org.apache.camel.builder.RouteBuilder;
 import org.fusesource.camel.component.sap.model.idoc.DocumentList;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import static org.junit.Assert.*;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.api.mockito.mockpolicies.Slf4jMockPolicy;
 import org.powermock.core.classloader.annotations.MockPolicy;
