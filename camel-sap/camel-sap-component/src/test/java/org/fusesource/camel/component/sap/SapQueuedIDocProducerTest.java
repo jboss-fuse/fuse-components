@@ -5,6 +5,7 @@ import org.apache.camel.builder.RouteBuilder;
 import org.fusesource.camel.component.sap.model.idoc.Document;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import static org.junit.Assert.*;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.api.mockito.mockpolicies.Slf4jMockPolicy;
 import org.powermock.core.classloader.annotations.MockPolicy;
@@ -100,7 +101,7 @@ public class SapQueuedIDocProducerTest extends SapIDocTestSupport {
 		verify(mockIDocDocument, times(1)).setStatus(STATUS_VALUE);
 		verify(mockIDocDocument, times(1)).setTestFlag(TEST_FLAG_VALUE);
 		
-		verify(mockRootSegment, times(0)).setValue(anyString(), anyObject());
+		verify(mockRootSegment, times(0)).setValue(anyString(), (String) anyObject());
 		
 		verify(mockLevel1Segment, times(1)).setValue(CHAR_FIELD, (String) CHAR_FIELD_VALUE);
 		verify(mockLevel1Segment, times(1)).setValue(QUAN_FIELD, (String) QUAN_FIELD_VALUE.toString());

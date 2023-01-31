@@ -162,6 +162,8 @@ public class ComponentDestinationDataProvider implements
 
 	private ComponentDestinationDataProvider() {
 		try {
+			System.out.println("osgi.nls.warnings" + System.getProperty("osgi.nls.warnings"));
+			System.out.println("java.library.path=" + System.getProperty("java.library.path"));
 			Environment.registerDestinationDataProvider(this);
 		} catch (Exception e) {
 			e.printStackTrace();
