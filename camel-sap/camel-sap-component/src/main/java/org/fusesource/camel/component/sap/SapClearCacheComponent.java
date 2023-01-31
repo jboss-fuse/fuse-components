@@ -19,7 +19,7 @@ package org.fusesource.camel.component.sap;
 import java.util.Map;
 
 import org.apache.camel.Endpoint;
-import org.apache.camel.impl.UriEndpointComponent;
+import org.apache.camel.support.DefaultComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,12 +33,12 @@ import org.slf4j.LoggerFactory;
  * 
  */
 @SuppressWarnings("deprecation")
-public class SapClearCacheComponent extends UriEndpointComponent {
+public class SapClearCacheComponent extends DefaultComponent {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SapClearCacheComponent.class);
 	
 	public SapClearCacheComponent() {
-		super(SapClearCacheEndpoint.class);
+		super();
 	}
 
 	@Override

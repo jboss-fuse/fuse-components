@@ -8,7 +8,7 @@ import org.apache.camel.spring.boot.CamelAutoConfiguration;
 import org.apache.camel.spring.boot.ComponentConfigurationProperties;
 import org.apache.camel.spring.boot.util.ConditionalOnCamelContextAndAutoConfigurationBeans;
 import org.apache.camel.spring.boot.util.GroupCondition;
-import org.apache.camel.util.IntrospectionSupport;
+import org.apache.camel.support.IntrospectionSupport;
 import org.fusesource.camel.component.sap.model.rfc.DataType;
 import org.fusesource.camel.component.sap.model.rfc.impl.AbapExceptionImpl;
 import org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl;

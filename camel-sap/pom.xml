@@ -31,7 +31,7 @@
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven-surefire-plugin-version>2.22.2</maven-surefire-plugin-version>
 		<camel-version>3.20.1.redhat-00006</camel-version>
-        <camel-community-version>3.20.1</camel-community-version>
+                <camel-community-version>3.20.1</camel-community-version>
 		<camel.sap.plugin.version>3.20.1.redhat-SNAPSHOT</camel.sap.plugin.version>
 		<karaf-version>4.2.15.fuse-7_11_1-00017</karaf-version>
 		<mockito.version>2.23.4</mockito.version>
@@ -53,6 +53,11 @@
 				<groupId>org.apache.camel</groupId>
 				<artifactId>camel-spring</artifactId>
 				<version>${camel-community-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.camel</groupId>
+				<artifactId>spi-annotations</artifactId>
+				<version>${camel-version}</version>
 			</dependency>
             <dependency>
                 <groupId>org.apache.camel</groupId>
@@ -155,21 +160,16 @@
 
 			<!-- Other -->
 
-            <dependency>
-                <groupId>com.sun.xml.bind</groupId>
-                <artifactId>jaxb-core</artifactId>
-                <version>2.2.11.redhat-2</version>
-            </dependency>
-            <dependency>
-                <groupId>com.sun.xml.bind</groupId>
-                <artifactId>jaxb-impl</artifactId>
-                <version>2.2.11.redhat-2</version>
-            </dependency>
+			<dependency>
+				<groupId>com.sun.xml.bind</groupId>
+				<artifactId>jaxb-core</artifactId>
+				<version>2.3.0</version>
+			</dependency>
 			
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>1.9.5</version>
+                <version>${mockito.version}</version>
                 <scope>test</scope>
             </dependency>
 			<dependency>

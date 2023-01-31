@@ -17,7 +17,7 @@
 package org.fusesource.camel.component.sap;
 
 import org.apache.camel.Exchange;
-import org.apache.camel.impl.DefaultProducer;
+import org.apache.camel.support.DefaultProducer;
 import org.fusesource.camel.component.sap.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

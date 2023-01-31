@@ -45,7 +45,7 @@
                     <systemProperties>
                         <osgi.nls.warnings>ignore</osgi.nls.warnings>
                     </systemProperties>
-                    <reuseForks>false</reuseForks>                    
+                    <reuseForks>false</reuseForks>
                     <argLine>-Djava.library.path="${native.lib.directory}"</argLine>
                 </configuration>
             </plugin>
