@@ -27,30 +27,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<fuse.osgi.activator>org.fusesource.camel.component.sap.Activator</fuse.osgi.activator>
-		<fuse.osgi.import>
-			org.eclipse.*;resolution:=optional,
-			*
-		</fuse.osgi.import>
-		<fuse.osgi.export>
-			org.fusesource.camel.component.sap;version=${project.version},
-			org.fusesource.camel.component.sap.converter;version=${project.version},
-			org.fusesource.camel.component.sap.model.rfc;version=${project.version},
-			org.fusesource.camel.component.sap.model.rfc.impl;version=${project.version},
-			org.fusesource.camel.component.sap.model.idoc;version=${project.version},
-			org.fusesource.camel.component.sap.model.idoc.impl;version=${project.version},
-			org.fusesource.camel.component.sap.util;version=${project.version},
-			org.eclipse.emf.ecore,
-			org.eclipse.emf.ecore.util,
-			org.eclipse.emf.common.util
-		</fuse.osgi.export>
-		<fuse.osgi.private.pkg>
-			org.eclipse.emf.common.*,
-			org.eclipse.emf.ecore.*,
-			org.eclipse.emf.edit.*,
-			org.fusesource.camel.component.sap.*;-split-package:=merge-first
-		</fuse.osgi.private.pkg>
-		<fuse.osgi.services.export>org.apache.camel.spi.ComponentResolver;component=sap</fuse.osgi.services.export>
+
 		<native.lib.directory>${project.build.directory}/jni</native.lib.directory>
 		<lib.directory>${project.build.directory}/lib</lib.directory>
 	</properties>
@@ -75,6 +52,12 @@
 		<dependency>
 			<groupId>org.eclipse.emf</groupId>
 			<artifactId>org.eclipse.emf.ecore</artifactId>
+			<scope>compile</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>org.eclipse.emf.ecore.change</artifactId>
 			<scope>compile</scope>
 			<optional>true</optional>
 		</dependency>
@@ -179,11 +162,6 @@
 
 		<plugins>
 			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>tycho-maven-plugin</artifactId>
-				<extensions>true</extensions>
-			</plugin>
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
@@ -205,30 +183,40 @@
 				<configuration>
 					<excludeDependencies>${fuse.osgi.exclude.dependencies}</excludeDependencies>
 					<instructions>
-						<Bundle-Name>${fuse.osgi.bundle.name}</Bundle-Name>
-						<Bundle-SymbolicName>${fuse.osgi.symbolic.name}</Bundle-SymbolicName>
+						<Bundle-SymbolicName>org.fusesource.camel-sap</Bundle-SymbolicName>
+						<Bundle-Activator>org.fusesource.camel.component.sap.Activator</Bundle-Activator>
+						<Bundle-Name>${project.name}</Bundle-Name>
+						<Bundle-Vendor>Red Hat</Bundle-Vendor>
 						<Bundle-DocURL>http://fabric.fusesource.org/</Bundle-DocURL>
-						<Bundle-Activator>${fuse.osgi.activator}</Bundle-Activator>
-						<Export-Package>${fuse.osgi.export}</Export-Package>
-						<Import-Package>${fuse.osgi.import}</Import-Package>
-						<DynamicImport-Package>${fuse.osgi.dynamic}</DynamicImport-Package>
-						<Private-Package>${fuse.osgi.private.pkg}</Private-Package>
+						<Export-Package>
+							org.fusesource.camel.component.sap;version=${project.version};-split-package:=merge-first,
+							org.fusesource.camel.component.sap.converter;version=${project.version},
+							org.fusesource.camel.component.sap.model.rfc;version=${project.version},
+							org.fusesource.camel.component.sap.model.rfc.impl;version=${project.version},
+							org.fusesource.camel.component.sap.model.idoc;version=${project.version},
+							org.fusesource.camel.component.sap.model.idoc.impl;version=${project.version},
+							org.fusesource.camel.component.sap.util;version=${project.version},
+							org.eclipse.emf.ecore,
+							org.eclipse.emf.ecore.util,
+							org.eclipse.emf.common.util
+						</Export-Package>
+						<Import-Package>
+							org.eclipse.*;resolution:=optional,
+							org.eclipse.core.runtime;version=!;resolution:=optional,
+							org.osgi.framework;version=!,
+							org.fusesource.camel.component.sap.model.idoc;resolution:=optional,
+							org.fusesource.camel.component.sap.model.rfc;resolution:=optional,
+							*
+						</Import-Package>
+						<Private-Package>
+							org.eclipse.emf.common.*,
+							org.eclipse.emf.ecore.*,
+							org.eclipse.emf.edit.*,
+							org.fusesource.camel.component.sap.*;-split-package:=merge-first
+						</Private-Package>
 						<Implementation-Title>Fabric8</Implementation-Title>
 						<Implementation-Version>${project.version}</Implementation-Version>
-						<Include-Resource>${fuse.osgi.resource}</Include-Resource>
-						<_versionpolicy>${fuse.osgi.import.default.version}</_versionpolicy>
-						<_failok>${fuse.osgi.failok}</_failok>
-
-						<Export-Service>${fuse.osgi.services.export}</Export-Service>
-
-						<Embed-Dependency>${fuse.osgi.embed.dependency}</Embed-Dependency>
-						<Embed-Transitive>${fuse.osgi.embed.transitive}</Embed-Transitive>
-						<Require-Bundle>${fuse.osgi.require.bundle}</Require-Bundle>
-						<Require-Capability>${fuse.osgi.capabilities.require}</Require-Capability>
-						<Provide-Capability>${fuse.osgi.capabilities.provide}</Provide-Capability>
-
-						<Service-Component>${fuse.osgi.service.component}</Service-Component>
-
+						<Export-Service>org.apache.camel.spi.ComponentResolver;component=sap</Export-Service>
 					</instructions>
 				</configuration>
 				<executions>
@@ -336,58 +324,41 @@
 		</plugins>
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings
-					only. It has no influence on the Maven build itself. -->
 				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>
-											org.apache.maven.plugins
-										</groupId>
-										<artifactId>
-											maven-dependency-plugin
-										</artifactId>
-										<versionRange>
-											[2.1,)
-										</versionRange>
-										<goals>
-											<goal>copy</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore />
-									</action>
-								</pluginExecution>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>
-											org.apache.camel
-										</groupId>
-										<artifactId>
-											camel-package-maven-plugin
-										</artifactId>
-										<versionRange>
-											[2.15.1.redhat-621084,)
-										</versionRange>
-										<goals>
-											<goal>
-												generate-components-list
-											</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore />
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>2.10</version>
+					<executions>
+						<execution>
+							<id>manual-purge-local-repository</id>
+							<phase>deploy</phase>
+							<goals>
+								<goal>purge-local-repository</goal>
+							</goals>
+							<configuration>
+								<manualIncludes>
+									<manualInclude>com.sap.conn.idoc:com.sap.conn.idoc</manualInclude>
+									<manualInclude>com.sap.conn.jco:com.sap.conn.jco</manualInclude>
+								</manualIncludes>
+								<reResolve>false</reResolve>
+								<actTransitively>false</actTransitively>
+								<verbose>true</verbose>
+								<resolutionFuzziness>groupId</resolutionFuzziness>
+							</configuration>
+						</execution>
+					</executions>
+					<dependencies>
+						<dependency>
+							<groupId>com.sun.xml.bind</groupId>
+							<artifactId>jaxb-core</artifactId>
+							<version>2.3.0</version>
+						</dependency>
+						<dependency>
+							<groupId>com.sun.xml.bind</groupId>
+							<artifactId>jaxb-impl</artifactId>
+							<version>2.3.0</version>
+						</dependency>
+					</dependencies>
 				</plugin>
 			</plugins>
 		</pluginManagement>

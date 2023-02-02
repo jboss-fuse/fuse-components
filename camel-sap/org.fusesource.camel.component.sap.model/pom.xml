@@ -17,7 +17,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
   <artifactId>org.fusesource.camel.component.sap.model</artifactId>
-  <packaging>eclipse-plugin</packaging>
+  <packaging>bundle</packaging>
   
   <properties>
       <skip.genmodel>true</skip.genmodel>
@@ -26,49 +26,80 @@
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
+<!--		<plugin>-->
+<!--                        <groupId>org.eclipse.tycho.extras</groupId>-->
+<!--                        <artifactId>tycho-eclipserun-plugin</artifactId>-->
+<!--		        <version>${tycho-version}</version>-->
+<!--                        <configuration>-->
+<!--                            <skip>${skip.genmodel}</skip>-->
+<!--			    <appArgLine>-debug -data /tmp/workspace -application org.eclipse.emf.codegen.ecore.Generator -projects ${basedir} -model ${basedir}/model/sap.genmodel ${basedir}</appArgLine>-->
+<!--                            <dependencies>-->
+<!--                                <dependency>-->
+<!--                                    <artifactId>org.eclipse.emf.codegen.ecore</artifactId>-->
+<!--                                    <type>eclipse-plugin</type>-->
+<!--                                </dependency>-->
+<!--                            </dependencies>-->
+<!--                            <repositories>-->
+<!--                                <repository>-->
+<!--                                    <id>neon</id>-->
+<!--                                    <layout>p2</layout>-->
+<!--                                    <url>http://download.eclipse.org/releases/neon</url>-->
+<!--                               </repository>-->
+<!--                            </repositories>-->
+<!--                        </configuration>-->
+<!--                        <executions>-->
+<!--                            <execution>-->
+<!--                                <goals>-->
+<!--                                    <goal>eclipse-run</goal>-->
+<!--                                </goals>-->
+<!--                                <phase>generate-sources</phase>-->
+<!--                            </execution>-->
+<!--                        </executions>-->
+<!--                 </plugin>-->
 		<plugin>
-			<groupId>org.eclipse.tycho</groupId>
-			<artifactId>tycho-maven-plugin</artifactId>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>maven-bundle-plugin</artifactId>
+			<version>3.5.1</version>
 			<extensions>true</extensions>
+			<configuration>
+				<instructions>
+					<Bundle-SymbolicName>org.fusesource.camel.component.sap.model;singleton:=true</Bundle-SymbolicName>
+					<Bundle-ActivationPolicy>lazy</Bundle-ActivationPolicy>
+					<!-- After switching to SAP libraries 3.1, we really need JDK 1.8 -->
+					<Bundle-RequiredExecutionEnvironment>JavaSE-1.8</Bundle-RequiredExecutionEnvironment>
+					<Require-Bundle>
+						org.eclipse.core.runtime,
+						org.eclipse.emf.ecore;visibility:=reexport
+					</Require-Bundle>
+					<Import-Package>
+						com.sap.conn.jco.ext
+					</Import-Package>
+					<Export-Package>
+						org.fusesource.camel.component.sap.model.idoc,
+						org.fusesource.camel.component.sap.model.idoc.impl,
+						org.fusesource.camel.component.sap.model.idoc.util,
+						org.fusesource.camel.component.sap.model.rfc,
+						org.fusesource.camel.component.sap.model.rfc.impl,
+						org.fusesource.camel.component.sap.model.rfc.util
+					</Export-Package>
+					<Bundle-ClassPath>.</Bundle-ClassPath>
+					<Bundle-Localization>OSGI-INF/l10n/bundle</Bundle-Localization>
+					<Private-Package>org.fusesource.camel.component.sap.model.idoc</Private-Package>
+					<_nodefaultversion>true</_nodefaultversion>
+					<_noee>true</_noee>
+					<_nouses>true</_nouses>
+					<_removeheaders>Karaf-Info,Tool,Include-Resource,Private-Package</_removeheaders>
+					<Include-Resource>
+						{maven-resources},
+						plugin.xml=plugin.xml,
+						model/sap.genmodel=model/sap.genmodel,
+						model/sap-idoc.ecore=model/sap-idoc.ecore,
+						model/sap-rfc.ecore=model/sap-rfc.ecore,
+						OSGI-INF/l10n/bundle.properties=OSGI-INF/l10n/bundle.properties
+					</Include-Resource>
+				</instructions>
+			</configuration>
 		</plugin>
-		<plugin>
-			<groupId>org.eclipse.tycho</groupId>
-			<artifactId>tycho-source-plugin</artifactId>
-		</plugin>
-		<plugin>
-			<groupId>org.eclipse.tycho</groupId>
-			<artifactId>target-platform-configuration</artifactId>
-		</plugin>
-		<plugin>
-                        <groupId>org.eclipse.tycho.extras</groupId>
-                        <artifactId>tycho-eclipserun-plugin</artifactId>
-		        <version>${tycho-version}</version>
-                        <configuration>
-                            <skip>${skip.genmodel}</skip>
-			    <appArgLine>-debug -data /tmp/workspace -application org.eclipse.emf.codegen.ecore.Generator -projects ${basedir} -model ${basedir}/model/sap.genmodel ${basedir}</appArgLine>
-                            <dependencies>
-                                <dependency>
-                                    <artifactId>org.eclipse.emf.codegen.ecore</artifactId>
-                                    <type>eclipse-plugin</type>
-                                </dependency>
-                            </dependencies>
-                            <repositories>
-                                <repository>
-                                    <id>neon</id>
-                                    <layout>p2</layout>
-                                    <url>http://download.eclipse.org/releases/neon</url>
-                               </repository>
-                            </repositories>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>eclipse-run</goal>
-                                </goals>
-                                <phase>generate-sources</phase>
-                            </execution>
-                        </executions>
-                 </plugin>
     </plugins>
   </build>
   <profiles>
@@ -91,4 +122,157 @@
   	<name>Red Hat, Inc.</name>
   	<url>http://www.redhat.com</url>
   </organization>
+
+	<dependencies>
+
+		<!-- Eclipse -->
+
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>org.eclipse.emf.common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>org.eclipse.emf.ecore</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>org.eclipse.emf.ecore.xmi</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>org.eclipse.emf.edit</artifactId>
+		</dependency>
+
+		<!-- Tricky way to get rid of version ranges - please leave as-is -->
+
+		<dependency>
+			<groupId>org.eclipse.core</groupId>
+			<artifactId>runtime</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.eclipse.equinox</groupId>
+					<artifactId>app</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.eclipse.equinox</groupId>
+					<artifactId>common</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.eclipse.core</groupId>
+					<artifactId>contenttype</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.eclipse.core</groupId>
+					<artifactId>jobs</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.eclipse</groupId>
+					<artifactId>osgi</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.eclipse.equinox</groupId>
+					<artifactId>preferences</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.eclipse.equinox</groupId>
+					<artifactId>registry</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.eclipse.core.runtime.compatibility</groupId>
+					<artifactId>auth</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse</groupId>
+			<artifactId>osgi</artifactId>
+			<version>3.10.0-v20140606-1445</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.equinox</groupId>
+			<artifactId>common</artifactId>
+			<version>3.6.200-v20130402-1505</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.core</groupId>
+			<artifactId>jobs</artifactId>
+			<version>3.6.0-v20140424-0053</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.eclipse.equinox</groupId>
+					<artifactId>common</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.equinox</groupId>
+			<artifactId>registry</artifactId>
+			<version>3.5.400-v20140428-1507</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.eclipse.equinox</groupId>
+					<artifactId>common</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.equinox</groupId>
+			<artifactId>preferences</artifactId>
+			<version>3.5.200-v20140224-1527</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.eclipse.equinox</groupId>
+					<artifactId>common</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.core</groupId>
+			<artifactId>contenttype</artifactId>
+			<version>3.4.200-v20140207-1251</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.eclipse.equinox</groupId>
+					<artifactId>common</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.eclipse.equinox</groupId>
+					<artifactId>preferences</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.eclipse.equinox</groupId>
+					<artifactId>registry</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.equinox</groupId>
+			<artifactId>app</artifactId>
+			<version>1.3.200-v20130910-1609</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.eclipse.equinox</groupId>
+					<artifactId>common</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.eclipse.equinox</groupId>
+					<artifactId>registry</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- SAP libraries -->
+
+		<dependency>
+			<groupId>com.sap.conn.idoc</groupId>
+			<artifactId>sapidoc3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.sap.conn.jco</groupId>
+			<artifactId>sapjco3</artifactId>
+		</dependency>
+	</dependencies>
+
 </project>
