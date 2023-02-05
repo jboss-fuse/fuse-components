@@ -64,7 +64,7 @@ public class StructureWithNamespaceConverterTest {
     
     @After
     public void tearDown() throws Exception {
-        long time = watch.stop();
+        long time = watch.taken();
 
         LOG.info("********************************************************************************");
         LOG.info("Testing done: " + testName.getMethodName() + "(" + getClass().getName() + ")");

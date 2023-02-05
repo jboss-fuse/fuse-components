@@ -161,7 +161,11 @@ public class ComponentDestinationDataProvider implements
 	Set<DestinationDataStore> stores = new HashSet<DestinationDataStore>();
 
 	private ComponentDestinationDataProvider() {
-		Environment.registerDestinationDataProvider(this);
+		try {
+			Environment.registerDestinationDataProvider(this);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**

@@ -1,7 +1,7 @@
 package org.fusesource.camel.component.sap.integration;
 
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.test.spring.CamelSpringTestSupport;
+import org.apache.camel.test.spring.junit5.CamelSpringTestSupport;
 import org.fusesource.camel.component.sap.model.rfc.Request;
 import org.fusesource.camel.component.sap.util.Util;
 import org.junit.Test;

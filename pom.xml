@@ -19,7 +19,7 @@
 
     <groupId>org.fusesource</groupId>
     <artifactId>camel-fusesource-parent</artifactId>
-    <version>7.12.0-SNAPSHOT</version>
+    <version>3.20.1.redhat-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>JBoss Fuse :: Components </name>
@@ -42,9 +42,6 @@
     </properties>
 
     <modules>
-        <module>activemq-client</module>
-        <module>camel-activemq</module>
-        <module>activemq-karaf</module>
         <module>camel-sap</module>
     </modules>
     

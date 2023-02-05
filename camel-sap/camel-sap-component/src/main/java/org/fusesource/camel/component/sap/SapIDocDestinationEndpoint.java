@@ -19,7 +19,7 @@ package org.fusesource.camel.component.sap;
 import org.apache.camel.Component;
 import org.apache.camel.Consumer;
 import org.apache.camel.Processor;
-import org.apache.camel.impl.DefaultEndpoint;
+import org.apache.camel.support.DefaultEndpoint;
 import org.apache.camel.spi.Metadata;
 import org.apache.camel.spi.UriPath;
 import org.slf4j.Logger;
@@ -40,19 +40,19 @@ public abstract class SapIDocDestinationEndpoint extends DefaultEndpoint {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SapIDocDestinationEndpoint.class); 
 	
-	@UriPath(name = "idocType", description = "Specifies the Basic IDoc Type of an IDoc produced by this endpoint") @Metadata(required = "true")
+	@UriPath(name = "idocType", description = "Specifies the Basic IDoc Type of an IDoc produced by this endpoint") @Metadata(required = true)
 	protected String idocType;
 	
-	@UriPath(name = "idocTypeExtension", description = "Specifies the IDoc Type Extension, if any, of an IDoc produced by this endpoint") @Metadata(required = "false")
+	@UriPath(name = "idocTypeExtension", description = "Specifies the IDoc Type Extension, if any, of an IDoc produced by this endpoint") @Metadata(required = false)
 	protected String idocTypeExtension;
 	
-	@UriPath(name = "systemRelease", description = "Specifies the associated SAP Basis Release, if any, of an IDoc produced by this endpoint") @Metadata(required = "false")
+	@UriPath(name = "systemRelease", description = "Specifies the associated SAP Basis Release, if any, of an IDoc produced by this endpoint") @Metadata(required = false)
 	protected String systemRelease;
 	
-	@UriPath(name = "applicationRelease", description = "Specifes the associated Application Release, if any, of an IDoc produced by this endpoint") @Metadata(required = "false")
+	@UriPath(name = "applicationRelease", description = "Specifes the associated Application Release, if any, of an IDoc produced by this endpoint") @Metadata(required = false)
 	protected String applicationRelease;
 	
-	@UriPath(name = "destination", description = "Specifies the destination this endpoint sends an IDoc to") @Metadata(required = "true")
+	@UriPath(name = "destination", description = "Specifies the destination this endpoint sends an IDoc to") @Metadata(required = true)
     protected String destinationName;
 	
     protected JCoDestination destination;

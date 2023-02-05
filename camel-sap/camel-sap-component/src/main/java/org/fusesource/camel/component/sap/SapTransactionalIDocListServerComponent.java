@@ -19,7 +19,7 @@ package org.fusesource.camel.component.sap;
 import java.util.Map;
 
 import org.apache.camel.Endpoint;
-import org.apache.camel.impl.UriEndpointComponent;
+import org.apache.camel.support.DefaultComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,12 +31,12 @@ import com.sap.conn.idoc.jco.JCoIDocServer;
  * @author William Collins <punkhornsw@gmail.com>
  * 
  */
-public class SapTransactionalIDocListServerComponent extends UriEndpointComponent {
+public class SapTransactionalIDocListServerComponent extends DefaultComponent {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SapTransactionalIDocListServerComponent.class);
 	
 	public SapTransactionalIDocListServerComponent() {
-		super(SapTransactionalIDocListServerEndpoint.class);
+		super();
 	}
 
 	@Override

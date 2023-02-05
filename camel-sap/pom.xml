@@ -11,25 +11,28 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>org.fusesource</groupId>
-		<artifactId>camel-fusesource-parent</artifactId>
-		<version>7.12.0-SNAPSHOT</version>
-		<relativePath>../pom.xml</relativePath>
-	</parent>
+    <parent>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-parent</artifactId>
+        <version>3.20.1.redhat-00006</version>
+    </parent>
 
-	<artifactId>camel-sap-parent</artifactId>
-	<packaging>pom</packaging>
+    <groupId>org.fusesource</groupId>
+    <artifactId>camel-sap-parent</artifactId>
+    <version>3.20.1.redhat-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
 	<name>JBoss Fuse :: Components :: SAP JCO</name>
+	<description>Provides SAP Camel Component</description>
 	<url>http://www.jboss.org/products/fuse/overview/</url>
 
 	<properties>
-		<maven.compiler.target>1.7</maven.compiler.target>
-		<maven.compiler.source>1.7</maven.compiler.source>
-		<maven-surefire-plugin-version>2.19</maven-surefire-plugin-version>
-		<camel-version>2.23.2.fuse-7_11_1-00015</camel-version>
-		<camel.sap.plugin.version>7.12.0-SNAPSHOT</camel.sap.plugin.version>
+		<maven.compiler.target>11</maven.compiler.target>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven-surefire-plugin-version>2.22.2</maven-surefire-plugin-version>
+		<camel-version>3.20.1.redhat-00006</camel-version>
+                <camel-community-version>3.20.1</camel-community-version>
+		<camel.sap.plugin.version>3.20.1.redhat-SNAPSHOT</camel.sap.plugin.version>
 		<karaf-version>4.2.15.fuse-7_11_1-00017</karaf-version>
 		<mockito.version>2.23.4</mockito.version>
 		<powermock.version>2.0.0</powermock.version>
@@ -49,32 +52,32 @@
 			<dependency>
 				<groupId>org.apache.camel</groupId>
 				<artifactId>camel-spring</artifactId>
-				<version>${camel-version}</version>
+				<version>${camel-community-version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.camel</groupId>
 				<artifactId>spi-annotations</artifactId>
 				<version>${camel-version}</version>
 			</dependency>
-			<dependency>
-				<groupId>org.apache.camel</groupId>
-				<artifactId>apt</artifactId>
-				<version>${camel-version}</version>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.camel</groupId>
-				<artifactId>camel-test</artifactId>
-				<version>${camel-version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.camel</groupId>
-				<artifactId>camel-test-spring</artifactId>
-				<version>${camel-version}</version>
-				<type>bundle</type>
-				<scope>test</scope>
-			</dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-support</artifactId>
+                <version>${camel-version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-test-junit5</artifactId>
+                <version>${camel-version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-test-spring-junit5</artifactId>
+                <version>${camel-version}</version>
+                <type>bundle</type>
+                <scope>test</scope>
+            </dependency>
 
 			<dependency>
 				<groupId>org.fusesource</groupId>
@@ -162,13 +165,13 @@
 				<artifactId>jaxb-core</artifactId>
 				<version>2.3.0</version>
 			</dependency>
-
-			<dependency>
-				<groupId>org.mockito</groupId>
-				<artifactId>mockito-core</artifactId>
-				<version>${mockito.version}</version>
-				<scope>test</scope>
-			</dependency>
+			
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
 			<dependency>
 				<groupId>org.powermock</groupId>
 				<artifactId>powermock-module-junit4</artifactId>
@@ -584,7 +587,4 @@
 			<layout>default</layout>
 		</pluginRepository>
 	</pluginRepositories>
-
-	<description>Provides SAP Camel Component</description>
-
 </project>

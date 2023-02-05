@@ -12,35 +12,59 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<artifactId>camel-sap-parent</artifactId>
-		<groupId>org.fusesource</groupId>
-        <version>7.12.0-SNAPSHOT</version>
-	</parent>
+    <parent>
+        <groupId>org.fusesource</groupId>
+        <artifactId>camel-sap-parent</artifactId>
+        <version>3.20.1.redhat-SNAPSHOT</version>
+    </parent>
 
 	<artifactId>camel-sap</artifactId>
 	<packaging>bundle</packaging>
 
 	<name>JBoss Fuse :: Components :: SAP JCO :: Camel Component</name>
+	<description>Provides SAP Camel Component Layer</description>
 	<url>http://http://www.jboss.org/products/fuse/overview/</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<native.lib.directory>${project.build.directory}/jni</native.lib.directory>
-		<lib.directory>${project.build.directory}/lib</lib.directory>
-	</properties>
+        <native.lib.directory>${project.build.directory}/jni</native.lib.directory>
+        <lib.directory>${project.build.directory}/lib</lib.directory>
+    </properties>
 
-	<dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-support</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
 		<dependency>
-			<groupId>org.apache.camel</groupId>
-			<artifactId>camel-core</artifactId>
+			<groupId>com.sap.conn.jco</groupId>
+			<artifactId>sapjco3</artifactId>
+			<scope>system</scope>
+			<systemPath>${lib.directory}/sapjco3.jar</systemPath>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.camel</groupId>
-			<artifactId>apt</artifactId>
-			<scope>provided</scope>
+			<groupId>com.sap.conn.idoc</groupId>
+			<artifactId>sapidoc3</artifactId>
+			<scope>system</scope>
+			<systemPath>${lib.directory}/sapidoc3.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.sap.conn.jco</groupId>
+			<artifactId>com.sap.conn.jco</artifactId>
+			<version>3.1.4.redhat-00001</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sap.conn.idoc</groupId>
+			<artifactId>com.sap.conn.idoc</artifactId>
+			<version>3.1.1.redhat-00001</version>
 		</dependency>
 
 		<dependency>
@@ -73,61 +97,36 @@
 			<scope>compile</scope>
 			<optional>true</optional>
 		</dependency>
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-simple</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.camel</groupId>
-			<artifactId>camel-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.fusesource</groupId>
-			<artifactId>org.fusesource.camel.component.sap</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.fusesource</groupId>
-			<artifactId>org.fusesource.camel.component.sap.model</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.camel</groupId>
-			<artifactId>camel-test-spring</artifactId>
-			<type>bundle</type>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.sap.conn.jco</groupId>
-			<artifactId>sapjco3</artifactId>
-			<scope>system</scope>
-			<systemPath>${lib.directory}/sapjco3.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>com.sap.conn.idoc</groupId>
-			<artifactId>sapidoc3</artifactId>
-			<scope>system</scope>
-			<systemPath>${lib.directory}/sapidoc3.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>com.sap.conn.jco</groupId>
-			<artifactId>com.sap.conn.jco</artifactId>
-			<version>3.1.4.redhat-00001</version>
-		</dependency>
-		<dependency>
-			<groupId>com.sap.conn.idoc</groupId>
-			<artifactId>com.sap.conn.idoc</artifactId>
-			<version>3.1.1.redhat-00001</version>
-		</dependency>
-
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-test-junit5</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.fusesource</groupId>
+            <artifactId>org.fusesource.camel.component.sap</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.fusesource</groupId>
+            <artifactId>org.fusesource.camel.component.sap.model</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-test-spring-junit5</artifactId>
+            <type>bundle</type>
+            <scope>test</scope>
+        </dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
@@ -148,7 +147,6 @@
 			<groupId>org.powermock</groupId>
 			<artifactId>powermock-api-mockito2</artifactId>
 		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -363,8 +361,6 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-
-	<description>Provides SAP Camel Component Layer</description>
 
 	<repositories>
 		<repository>

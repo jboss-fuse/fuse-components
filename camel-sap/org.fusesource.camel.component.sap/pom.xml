@@ -13,87 +13,97 @@
   implied.  See the License for the specific language governing
  permissions and limitations under the License.
  -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<artifactId>org.fusesource.camel.component.sap</artifactId>
+    <parent>
+        <groupId>org.fusesource</groupId>
+        <artifactId>camel-sap-parent</artifactId>
+        <version>3.20.1.redhat-SNAPSHOT</version>
+    </parent>
 
-	<parent>
-		<groupId>org.fusesource</groupId>
-		<artifactId>camel-sap-parent</artifactId>
-		<version>7.12.0-SNAPSHOT</version>
-	</parent>
+    <artifactId>org.fusesource.camel.component.sap</artifactId>
+    <version>3.20.1.redhat-SNAPSHOT</version>
+    <packaging>bundle</packaging>
+    <name>JBoss Fuse :: SAP JCO :: SAP Data Layer :: Runtime Plugin</name>
+    <description>Provides Runtime for the SAP Data Layer</description>
+    <url>http://www.jboss.org/products/fuse/overview/</url>
 
-	<packaging>bundle</packaging>
-	<name>JBoss Fuse :: SAP JCO :: SAP Data Layer :: Runtime Plugin</name>
-	<description>Provides Runtime for the SAP Data Layer</description>
+    <organization>
+        <name>Red Hat, Inc.</name>
+        <url>http://www.redhat.com</url>
+    </organization>
 
-	<organization>
-		<name>Red Hat, Inc.</name>
-		<url>http://www.redhat.com</url>
-	</organization>
+    <build>
+        <sourceDirectory>src</sourceDirectory>
 
-	<build>
-		<sourceDirectory>src</sourceDirectory>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.felix</groupId>
-				<artifactId>maven-bundle-plugin</artifactId>
-				<version>3.5.1</version>
-				<extensions>true</extensions>
-				<configuration>
-					<instructions>
-						<Bundle-SymbolicName>org.fusesource.camel.component.sap</Bundle-SymbolicName>
-						<Bundle-Activator>org.fusesource.camel.component.sap.Activator</Bundle-Activator>
-						<Bundle-ActivationPolicy>lazy</Bundle-ActivationPolicy>
-						<!-- After switching to SAP libraries 3.1, we really need JDK 1.8 -->
-						<Bundle-RequiredExecutionEnvironment>JavaSE-1.8</Bundle-RequiredExecutionEnvironment>
-						<Require-Bundle>
-							org.eclipse.core.runtime,
-							org.eclipse.emf.ecore.xmi;visibility:=reexport,
-							org.fusesource.camel.component.sap.model.edit
-						</Require-Bundle>
-						<Import-Package>
-							com.sap.conn.idoc,
-							com.sap.conn.idoc.jco,
-							com.sap.conn.jco,
-							com.sap.conn.jco.ext,
-							com.sap.conn.jco.monitor,
-							com.sap.conn.jco.rt,
-							com.sap.conn.jco.server,
-							org.slf4j;version=!
-						</Import-Package>
-						<Export-Package>
-							org.fusesource.camel.component.sap,
-							org.fusesource.camel.component.sap.util
-						</Export-Package>
-						<Bundle-ClassPath>.</Bundle-ClassPath>
-						<Bundle-Localization>OSGI-INF/l10n/bundle</Bundle-Localization>
-						<Private-Package>org.fusesource.camel.component.sap</Private-Package>
-						<_nodefaultversion>true</_nodefaultversion>
-						<_noee>true</_noee>
-						<_nouses>true</_nouses>
-						<_removeheaders>Karaf-Info,Tool,Include-Resource,Private-Package</_removeheaders>
-						<Include-Resource>
-							{maven-resources},
-							OSGI-INF/l10n/bundle.properties=OSGI-INF/l10n/bundle.properties
-						</Include-Resource>
-					</instructions>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.0</version>
+                <configuration>
+                    <release combine.self="override"/>
+                    <source>${maven.compiler.target}</source>
+                    <target>${maven.compiler.source}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>3.5.1</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>org.fusesource.camel.component.sap</Bundle-SymbolicName>
+                        <Bundle-Activator>org.fusesource.camel.component.sap.Activator</Bundle-Activator>
+                        <Bundle-ActivationPolicy>lazy</Bundle-ActivationPolicy>
+                        <!-- After switching to SAP libraries 3.1, we really need JDK 1.8 -->
+                        <Bundle-RequiredExecutionEnvironment>JavaSE-1.8</Bundle-RequiredExecutionEnvironment>
+                        <Require-Bundle>
+                            org.eclipse.core.runtime, org.eclipse.emf.ecore.xmi;visibility:=reexport,
+                            org.fusesource.camel.component.sap.model.edit
+                        </Require-Bundle>
+                        <Import-Package>
+                            com.sap.conn.idoc,
+                            com.sap.conn.idoc.jco,
+                            com.sap.conn.jco,
+                            com.sap.conn.jco.ext,
+                            com.sap.conn.jco.monitor,
+                            com.sap.conn.jco.rt,
+                            com.sap.conn.jco.server, org.slf4j;version=!
+                        </Import-Package>
+                        <Export-Package>
+                            org.fusesource.camel.component.sap,
+                            org.fusesource.camel.component.sap.util
+                        </Export-Package>
+                        <Bundle-ClassPath>.</Bundle-ClassPath>
+                        <Bundle-Localization>OSGI-INF/l10n/bundle</Bundle-Localization>
+                        <Private-Package>org.fusesource.camel.component.sap</Private-Package>
+                        <_nodefaultversion>true</_nodefaultversion>
+                        <_noee>true</_noee>
+                        <_nouses>true</_nouses>
+                        <_removeheaders>Karaf-Info,Tool,Include-Resource,Private-Package</_removeheaders>
+                        <Include-Resource>
+                            {maven-resources}, OSGI-INF/l10n/bundle.properties=OSGI-INF/l10n/bundle.properties
+                        </Include-Resource>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.fusesource</groupId>
-			<artifactId>org.fusesource.camel.component.sap.model</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.7.36.redhat-00002</version>
-		</dependency>
-	</dependencies>
-	<url>http://www.jboss.org/products/fuse/overview/</url>
+    <dependencies>
+        <dependency>
+            <groupId>org.fusesource</groupId>
+            <artifactId>org.fusesource.camel.component.sap.model</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>

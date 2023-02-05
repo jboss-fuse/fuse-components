@@ -37,7 +37,7 @@ public class SapQueuedIDocDestinationEndpoint extends SapIDocDestinationEndpoint
 
 	private static final Logger LOG = LoggerFactory.getLogger(SapQueuedIDocDestinationEndpoint.class); 
 
-	@UriPath(name = "queue", description = "Specifies the queue this endpoint sends an IDoc to") @Metadata(required = "true")
+	@UriPath(name = "queue", description = "Specifies the queue this endpoint sends an IDoc to") @Metadata(required = true)
     protected String queueName;
 
     public SapQueuedIDocDestinationEndpoint() {
