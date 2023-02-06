@@ -14,139 +14,19 @@
     <parent>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-parent</artifactId>
-        <version>2.23.2.fuse-7_11_1-00015</version>
+        <version>3.20.1.redhat-00006</version>
        </parent>
 
     <groupId>org.fusesource</groupId>
     <artifactId>camel-fusesource-parent</artifactId>
-    <version>3.20.1.redhat-SNAPSHOT</version>
+    <version>3.20.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>JBoss Fuse :: Components </name>
     <description>Provides Camel Components for JBoss Fuse</description>
     <url>http://www.jboss.org/products/fuse/overview/</url>
 
-    <properties>
-        <geronimo-annotation_1.0_spec.version>1.1.1.redhat-2</geronimo-annotation_1.0_spec.version>
-        <geronimo-j2ee-management_1.1_spec.version>1.0.1</geronimo-j2ee-management_1.1_spec.version>
-        <geronimo-jms_1.1_spec.version>1.1.1.redhat-2</geronimo-jms_1.1_spec.version>
-        <commons-pool.version>1.6.0.redhat-9</commons-pool.version>
-        <commons-net.version>3.6</commons-net.version>
-        <camel-version>2.23.2.fuse-7_11_1-00015</camel-version>
-        <activemq-version>5.11.0.redhat-630516</activemq-version>
-        <karaf-version>4.2.15.fuse-7_11_1-00017</karaf-version>
-        <jackson2-version>2.12.6.redhat-00001</jackson2-version>
-        <jackson2-databind-version>2.12.6.1-redhat-00004</jackson2-databind-version>
-        <javax.servlet-api-version>3.1.0.redhat-1</javax.servlet-api-version>
-        <asm.version>9.4</asm.version>
-    </properties>
-
     <modules>
         <module>camel-sap</module>
     </modules>
-    
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>${jackson2-databind-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>apt</artifactId>
-                <version>${camel-version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-test</artifactId>
-                <version>${camel-version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-test-spring</artifactId>
-                <version>${camel-version}</version>
-                <type>bundle</type>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-core</artifactId>
-                <version>${camel-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-jms</artifactId>
-                <version>${camel-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-spring</artifactId>
-                <version>${camel-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>spi-annotations</artifactId>
-                <version>${camel-version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-    
-    <!-- Repositories -->
-    <repositories>
-        <repository>
-            <id>jboss.public.repo</id>
-            <name>JBoss Public Repository</name>
-            <url>https://repository.jboss.org/nexus/content/repositories/public</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </repository>
-        <repository>
-            <id>redhat-ga-repository</id>
-            <url>https://maven.repository.redhat.com/ga</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-    <build>
-    <pluginManagement />
-  </build>
-
-
-    <!-- Profiles -->
-    <profiles>
-        <profile>
-            <!-- Enable this profile when you have dependencies in staging repos -->
-            <id>fuse-mirror</id>
-            <activation>
-                <property>
-                    <name>env.FUSE_MIRROR</name>
-                </property>
-            </activation>
-            <repositories>
-                <repository>
-                    <id>fuse-mirror</id>
-                    <url>http://10.0.144.111:8081/repository/maven-public/</url>
-                    <releases>
-                        <enabled>true</enabled>
-                        <updatePolicy>never</updatePolicy>
-                        <checksumPolicy>ignore</checksumPolicy>
-                    </releases>
-                    <snapshots>
-                        <enabled>false</enabled>
-                    </snapshots>
-                </repository>
-            </repositories>
-        </profile>
-    </profiles>
 </project>
