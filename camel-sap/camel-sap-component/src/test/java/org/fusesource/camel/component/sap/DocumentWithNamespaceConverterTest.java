@@ -3,7 +3,7 @@ package org.fusesource.camel.component.sap;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Method;
 
 import org.apache.camel.util.StopWatch;
 import org.apache.camel.util.TimeUtils;
@@ -22,19 +23,20 @@ import org.fusesource.camel.component.sap.model.idoc.impl.DocumentImpl;
 import org.fusesource.camel.component.sap.model.idoc.impl.SegmentImpl;
 import org.fusesource.camel.component.sap.util.IDocUtil;
 import org.fusesource.camel.component.sap.util.Util;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.rules.TestName;
+import org.junit.jupiter.api.extension.BeforeEachCallback;
+import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class DocumentWithNamespaceConverterTest {
+public class DocumentWithNamespaceConverterTest implements BeforeEachCallback {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(DocumentWithNamespaceConverterTest.class);
 
-	public static final String DOCUMENT_STRING = 
+	public static final String DOCUMENT_STRING =
 		"<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
 		"<idoc:Document xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:RHT_IDC---=\"http://sap.fusesource.org/idoc/JBF/RHT:IDC///\" xmlns:idoc=\"http://sap.fusesource.org/idoc\" creationDate=\"2017-07-11T13:59:38.494-0400\" creationTime=\"2017-07-11T13:59:38.494-0400\" iDocType=\"/RHT/IDC\" iDocTypeExtension=\"\">" +
 		"  <rootSegment xsi:type=\"RHT_IDC---:ROOT\" document=\"/\">" +
@@ -48,29 +50,31 @@ public class DocumentWithNamespaceConverterTest {
 		"  </rootSegment>" +
 		"</idoc:Document>";
 
-	@BeforeClass
+	private String methodName;
+
+	@BeforeAll
 	public static void setupClass() throws IOException {
 		File file = new File("data/testNamespaceRegistry.ecore");
 		Util.loadRegistry(file);
 	}
 
-    private TestName testName = new TestName();
     private final StopWatch watch = new StopWatch();
 
-    @Before
-    public void setUp() throws Exception {
-        LOG.info("********************************************************************************");
-        LOG.info("Testing: " + testName.getMethodName() + "(" + getClass().getName() + ")");
+	@Override
+	public void beforeEach(ExtensionContext context) throws Exception {
+		this.methodName = context.getTestMethod().map(Method::getName).orElse("");
+		LOG.info("********************************************************************************");
+        LOG.info("Testing: " + methodName + "(" + getClass().getName() + ")");
         LOG.info("********************************************************************************");
         watch.restart();
    }
     
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
         long time = watch.taken();
 
         LOG.info("********************************************************************************");
-        LOG.info("Testing done: " + testName.getMethodName() + "(" + getClass().getName() + ")");
+        LOG.info("Testing done: " + methodName + "(" + getClass().getName() + ")");
         LOG.info("Took: " + TimeUtils.printDuration(time) + " (" + time + " millis)");
         LOG.info("********************************************************************************");
     }    

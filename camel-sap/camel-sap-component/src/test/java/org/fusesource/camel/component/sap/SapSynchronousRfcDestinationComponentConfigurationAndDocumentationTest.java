@@ -22,7 +22,7 @@ import java.util.Map;
 import org.apache.camel.Endpoint;
 import org.apache.camel.test.junit5.CamelTestSupport;
 import org.apache.camel.util.URISupport;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import static org.junit.Assert.*;
 
 public class SapSynchronousRfcDestinationComponentConfigurationAndDocumentationTest extends CamelTestSupport {
@@ -35,8 +35,7 @@ public class SapSynchronousRfcDestinationComponentConfigurationAndDocumentationT
     @Test
     public void testComponentConfiguration() throws Exception {
         SapSynchronousRfcDestinationComponent comp = context.getComponent("sap-srfc-destination", SapSynchronousRfcDestinationComponent.class);
-
-        Endpoint endpoint = comp.createEndpoint("sap-srfc-destination:destinationName:rfcName?stateful=true&transacted=false");
+        SapSynchronousRfcDestinationEndpoint endpoint = new SapSynchronousRfcDestinationEndpoint("sap-srfc-destination:destinationName:rfcName?stateful=true&transacted=false", comp);
         String fullEndpointUri = endpoint.getEndpointUri();
         URI uri = new URI(fullEndpointUri);
         Map<String, Object> parameters = URISupport.parseParameters(uri);

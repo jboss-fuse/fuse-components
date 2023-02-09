@@ -23,7 +23,7 @@ import java.util.Map;
 import org.apache.camel.Endpoint;
 import org.apache.camel.test.junit5.CamelTestSupport;
 import org.apache.camel.util.URISupport;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.*;
 
@@ -37,7 +37,7 @@ public class SapSynchronousRfcServerComponentConfigurationAndDocumentationTest e
     @Test
     public void testComponentConfiguration() throws Exception {
         SapSynchronousRfcServerComponent comp = context.getComponent("sap-srfc-server", SapSynchronousRfcServerComponent.class);
-        Endpoint endpoint = comp.createEndpoint("sap-srfc-server:serverName:rfcName?stateful=true");
+        SapSynchronousRfcServerEndpoint endpoint = new SapSynchronousRfcServerEndpoint("sap-srfc-server:serverName:rfcName?stateful=true", comp);
         String fullEndpointUri = endpoint.getEndpointUri();
         URI uri = new URI(fullEndpointUri);
         Map<String, Object> parameters = URISupport.parseParameters(uri);

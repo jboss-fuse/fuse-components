@@ -14,7 +14,7 @@ import org.fusesource.camel.component.sap.model.idoc.Document;
 import org.fusesource.camel.component.sap.model.idoc.Segment;
 import org.fusesource.camel.component.sap.model.idoc.impl.DocumentImpl;
 import org.fusesource.camel.component.sap.util.Util;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 import org.powermock.api.mockito.PowerMockito;

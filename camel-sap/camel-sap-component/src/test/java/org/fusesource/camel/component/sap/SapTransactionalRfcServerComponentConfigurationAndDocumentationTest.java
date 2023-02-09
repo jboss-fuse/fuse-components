@@ -22,7 +22,7 @@ import java.util.Map;
 import org.apache.camel.Endpoint;
 import org.apache.camel.test.junit5.CamelTestSupport;
 import org.apache.camel.util.URISupport;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.*;
 
@@ -36,8 +36,7 @@ public class SapTransactionalRfcServerComponentConfigurationAndDocumentationTest
     @Test
     public void testComponentConfiguration() throws Exception {
         SapTransactionalRfcServerComponent comp = context.getComponent("sap-trfc-server", SapTransactionalRfcServerComponent.class);
-
-        Endpoint endpoint = comp.createEndpoint("sap-trfc-destination:destinationName:rfcName?stateful=true&transacted=false");
+        SapTransactionalRfcServerEndpoint endpoint = new SapTransactionalRfcServerEndpoint("sap-trfc-destination:destinationName:rfcName?stateful=true&transacted=false", comp);
         String fullEndpointUri = endpoint.getEndpointUri();
         URI uri = new URI(fullEndpointUri);
         Map<String, Object> parameters = URISupport.parseParameters(uri);

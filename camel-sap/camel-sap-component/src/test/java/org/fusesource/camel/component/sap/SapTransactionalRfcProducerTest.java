@@ -20,7 +20,7 @@ package org.fusesource.camel.component.sap;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.fusesource.camel.component.sap.model.rfc.Structure;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 import org.powermock.api.mockito.PowerMockito;

@@ -1,5 +1,6 @@
 package org.fusesource.camel.component.sap;
 
+import java.lang.reflect.Method;
 import org.apache.camel.test.spring.junit5.CamelSpringTestSupport;
 import org.fusesource.camel.component.sap.model.rfc.DestinationData;
 import org.fusesource.camel.component.sap.model.rfc.DestinationDataStore;
@@ -11,10 +12,10 @@ import org.fusesource.camel.component.sap.model.rfc.impl.ServerDataImpl;
 import org.fusesource.camel.component.sap.model.rfc.impl.ServerDataStoreImpl;
 import org.fusesource.camel.component.sap.util.ComponentDestinationDataProvider;
 import org.fusesource.camel.component.sap.util.ComponentServerDataProvider;
-import org.junit.Rule;
-import org.junit.rules.TestName;
+import org.junit.jupiter.api.extension.BeforeEachCallback;
+import org.junit.jupiter.api.extension.ExtensionContext;
 
-public abstract class JCoTestSupport extends CamelSpringTestSupport {
+public abstract class JCoTestSupport extends CamelSpringTestSupport  implements BeforeEachCallback {
 	
 	public static final String TEST_DEST = "TEST_DEST";
 	public static final String TEST_ASHOST = "TEST_ASHOST";
@@ -31,9 +32,8 @@ public abstract class JCoTestSupport extends CamelSpringTestSupport {
 	public static final String TEST_PROGRAM_ID = "TEST_PROGRAM_ID";
 	public static final String TEST_REPOSITORY = "TEST_REPOSITORY";
 	public static final String TEST_CONNECTION_COUNT = "2";
-	
-    @Rule
-    public final TestName testName = new TestName();	
+
+	private String methodName;
 
 	@Override
 	public void doPreSetup() throws Exception {
@@ -68,6 +68,11 @@ public abstract class JCoTestSupport extends CamelSpringTestSupport {
 		
 		ComponentServerDataProvider.INSTANCE.addServerDataStore(serverDataStore);
 	}
+
+	@Override
+	public void beforeEach(ExtensionContext context) throws Exception {
+		this.methodName = context.getTestMethod().map(Method::getName).orElse("");
+	}
 	
     /**
      * Gets the current test method name
@@ -75,7 +80,7 @@ public abstract class JCoTestSupport extends CamelSpringTestSupport {
      * @return the method name
      */
     public String getTestMethodName() {
-        return testName.getMethodName();
+        return this.methodName;
     }
 
 }

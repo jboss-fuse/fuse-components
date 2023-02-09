@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Method;
 import java.util.List;
 
 import org.apache.camel.util.StopWatch;
@@ -20,16 +21,16 @@ import org.fusesource.camel.component.sap.model.rfc.Table;
 import org.fusesource.camel.component.sap.model.rfc.impl.StructureImpl;
 import org.fusesource.camel.component.sap.util.RfcUtil;
 import org.fusesource.camel.component.sap.util.Util;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.rules.TestName;
+import org.junit.jupiter.api.extension.BeforeEachCallback;
+import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-public class StructureWithNamespaceConverterTest {
+public class StructureWithNamespaceConverterTest implements BeforeEachCallback {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(StructureWithNamespaceConverterTest.class);
 
@@ -45,29 +46,32 @@ public class StructureWithNamespaceConverterTest {
 			  "</TABLE1>" +
 			"</RHT_TEST_RFC:Request>";
 
-	@BeforeClass
+	private String methodName;
+
+	@BeforeAll
 	public static void setupClass() throws IOException {
 		File file = new File("data/testNamespaceRegistry.ecore");
 		Util.loadRegistry(file);
 	}
-	
-    private TestName testName = new TestName();
+
     private final StopWatch watch = new StopWatch();
 
-    @Before
-    public void setUp() throws Exception {
-        LOG.info("********************************************************************************");
-        LOG.info("Testing: " + testName.getMethodName() + "(" + getClass().getName() + ")");
-        LOG.info("********************************************************************************");
-        watch.restart();
-   }
-    
-    @After
+	@Override
+	public void beforeEach(ExtensionContext context) throws Exception {
+		this.methodName = context.getTestMethod().map(Method::getName).orElse("");
+
+		LOG.info("********************************************************************************");
+		LOG.info("Testing: " + this.methodName + "(" + getClass().getName() + ")");
+		LOG.info("********************************************************************************");
+		watch.restart();
+	}
+
+	@AfterEach
     public void tearDown() throws Exception {
         long time = watch.taken();
 
         LOG.info("********************************************************************************");
-        LOG.info("Testing done: " + testName.getMethodName() + "(" + getClass().getName() + ")");
+        LOG.info("Testing done: " + this.methodName + "(" + getClass().getName() + ")");
         LOG.info("Took: " + TimeUtils.printDuration(time) + " (" + time + " millis)");
         LOG.info("********************************************************************************");
     }    
