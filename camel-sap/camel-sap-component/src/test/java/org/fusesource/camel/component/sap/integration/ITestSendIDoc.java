@@ -22,7 +22,7 @@ import org.apache.camel.test.spring.junit5.CamelSpringTestSupport;
 import org.fusesource.camel.component.sap.SapTransactionalIDocDestinationEndpoint;
 import org.fusesource.camel.component.sap.model.idoc.Document;
 import org.fusesource.camel.component.sap.model.idoc.Segment;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**

@@ -22,7 +22,7 @@ import java.util.Map;
 import org.apache.camel.Endpoint;
 import org.apache.camel.test.junit5.CamelTestSupport;
 import org.apache.camel.util.URISupport;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.*;
 
@@ -36,8 +36,7 @@ public class SapTransactionalIDocListServerComponentConfigurationAndDocumentatio
     @Test
     public void testComponentConfiguration() throws Exception {
         SapTransactionalIDocListServerComponent comp = context.getComponent("sap-idoclist-server", SapTransactionalIDocListServerComponent.class);
-
-        Endpoint endpoint = comp.createEndpoint("sap-idoclist-server:serverName:rfcName?stateful=true&propagateExceptions=false");
+        SapTransactionalIDocListServerEndpoint endpoint = new SapTransactionalIDocListServerEndpoint("sap-idoclist-server:serverName:rfcName?stateful=true&propagateExceptions=false", comp);
         String fullEndpointUri = endpoint.getEndpointUri();
         URI uri = new URI(fullEndpointUri);
         Map<String, Object> parameters = URISupport.parseParameters(uri);

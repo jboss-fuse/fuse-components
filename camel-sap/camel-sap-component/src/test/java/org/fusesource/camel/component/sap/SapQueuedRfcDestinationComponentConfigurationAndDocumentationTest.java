@@ -22,7 +22,7 @@ import java.util.Map;
 import org.apache.camel.Endpoint;
 import org.apache.camel.util.URISupport;
 import org.apache.camel.test.junit5.CamelTestSupport;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import static org.junit.Assert.*;
 
 public class SapQueuedRfcDestinationComponentConfigurationAndDocumentationTest extends CamelTestSupport {
@@ -35,9 +35,8 @@ public class SapQueuedRfcDestinationComponentConfigurationAndDocumentationTest e
     @Test
     public void testComponentConfiguration() throws Exception {
         SapQueuedRfcDestinationComponent comp = context.getComponent("sap-qrfc-destination", SapQueuedRfcDestinationComponent.class);
+        SapQueuedRfcDestinationEndpoint endpoint = new SapQueuedRfcDestinationEndpoint("sap-qrfc-destination:destinationName:queueName:rfcName?stateful=true&transacted=false", comp);
 
-
-        Endpoint endpoint = comp.createEndpoint("sap-qrfc-destination:destinationName:queueName:rfcName?stateful=true&transacted=false");
         String fullEndpointUri = endpoint.getEndpointUri();
         URI uri = new URI(fullEndpointUri);
         Map<String, Object> parameters = URISupport.parseParameters(uri);

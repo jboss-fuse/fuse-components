@@ -5,7 +5,7 @@ import java.io.File;
 import org.fusesource.camel.component.sap.SapIDocTestSupport;
 import org.fusesource.camel.component.sap.model.idoc.DocumentList;
 import org.fusesource.camel.component.sap.util.IDocUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.mockpolicies.Slf4jMockPolicy;
 import org.powermock.core.classloader.annotations.MockPolicy;

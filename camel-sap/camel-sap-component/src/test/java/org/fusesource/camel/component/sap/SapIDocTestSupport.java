@@ -34,7 +34,7 @@ import org.fusesource.camel.component.sap.model.idoc.DocumentList;
 import org.fusesource.camel.component.sap.model.idoc.IdocPackage;
 import org.fusesource.camel.component.sap.model.idoc.Segment;
 import org.fusesource.camel.component.sap.util.IDocUtil;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.BeforeAll;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.StaticApplicationContext;
 
@@ -188,7 +188,7 @@ public abstract class SapIDocTestSupport extends JCoTestSupport {
 	protected IDocRecordMetaData mockLevel2RecordMetaData;
 	protected IDocRecordMetaData mockLevel3RecordMetaData;
 
-	@BeforeClass
+	@BeforeAll
 	public static void setupIDocTestSupportClass() {
 		DATE_VALUE = Calendar.getInstance();
 		DATE_VALUE.set(1861, Calendar.APRIL, 12);
