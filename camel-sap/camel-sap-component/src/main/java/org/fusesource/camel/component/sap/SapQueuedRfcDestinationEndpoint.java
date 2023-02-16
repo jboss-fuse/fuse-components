@@ -16,6 +16,7 @@
  */
 package org.fusesource.camel.component.sap;
 
+import org.apache.camel.Category;
 import org.apache.camel.Producer;
 import org.apache.camel.spi.Metadata;
 import org.apache.camel.spi.UriEndpoint;
@@ -29,7 +30,7 @@ import org.slf4j.LoggerFactory;
  * @author William Collins <punkhornsw@gmail.com>
  *
  */
-@UriEndpoint(scheme="sap-qrfc-destination", syntax = "sap-qrfc-destination:destination:queue:rfc", producerOnly = true, title="SAP Queued RFC Destination")
+@UriEndpoint(firstVersion = "3.20.1-redhat", scheme="sap-qrfc-destination", syntax = "sap-qrfc-destination:destination:queue:rfc", producerOnly = true, title="SAP Queued RFC Destination", category = { Category.SAP })
 public class SapQueuedRfcDestinationEndpoint extends SapRfcDestinationEndpoint {
 	
     private static final Logger LOG = LoggerFactory.getLogger(SapQueuedRfcDestinationEndpoint.class);

@@ -16,6 +16,7 @@
  */
 package org.fusesource.camel.component.sap;
 
+import org.apache.camel.Category;
 import org.apache.camel.Consumer;
 import org.apache.camel.Processor;
 import org.apache.camel.spi.UriEndpoint;
@@ -28,7 +29,7 @@ import org.slf4j.LoggerFactory;
  * @author William Collins <punkhornsw@gmail.com>
  *
  */
-@UriEndpoint(scheme="sap-srfc-server", consumerClass=SapSynchronousRfcConsumer.class, syntax = "sap-srfc-server:server:rfc", consumerOnly = true, title="SAP Synchronous RFC Server")
+@UriEndpoint(firstVersion = "3.20.1-redhat", scheme="sap-srfc-server", consumerClass=SapSynchronousRfcConsumer.class, syntax = "sap-srfc-server:server:rfc", consumerOnly = true, title="SAP Synchronous RFC Server", category = { Category.SAP })
 public class SapSynchronousRfcServerEndpoint extends SapRfcServerEndpoint {
 	
     private static final Logger LOG = LoggerFactory.getLogger(SapSynchronousRfcServerEndpoint.class);

@@ -16,6 +16,7 @@
  */
 package org.fusesource.camel.component.sap;
 
+import org.apache.camel.Category;
 import org.apache.camel.Producer;
 import org.apache.camel.spi.Metadata;
 import org.apache.camel.spi.UriEndpoint;
@@ -31,13 +32,14 @@ import org.slf4j.LoggerFactory;
  * @author William Collins <punkhornsw@gmail.com>
  *
  */
-@UriEndpoint(scheme="sap-qidoc-destination", syntax = "sap-qidoc-destination:destination:queue:idocType:idocTypeExtension:systemRelease:applicationRelease",
-		producerOnly = true, title="SAP Queued IDoc Destination")
+@UriEndpoint(firstVersion = "3.20.1-redhat", scheme="sap-qidoc-destination", syntax = "sap-qidoc-destination:destination:queue:idocType:idocTypeExtension:systemRelease:applicationRelease",
+		producerOnly = true, title="SAP Queued IDoc Destination", category = { Category.SAP })
 public class SapQueuedIDocDestinationEndpoint extends SapIDocDestinationEndpoint {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SapQueuedIDocDestinationEndpoint.class); 
 
-	@UriPath(name = "queue", description = "Specifies the queue this endpoint sends an IDoc to") @Metadata(required = true)
+	@UriPath(name = "queue", description = "Specifies the queue this endpoint sends an IDoc to")
+	@Metadata(required = true)
     protected String queueName;
 
     public SapQueuedIDocDestinationEndpoint() {
