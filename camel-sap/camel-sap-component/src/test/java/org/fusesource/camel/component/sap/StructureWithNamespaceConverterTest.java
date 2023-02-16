@@ -1,40 +1,28 @@
 package org.fusesource.camel.component.sap;
 
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.Assert.assertThat;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.reflect.Method;
 import java.util.List;
-
-import org.apache.camel.util.StopWatch;
-import org.apache.camel.util.TimeUtils;
+import org.apache.camel.test.junit5.CamelTestSupport;
 import org.fusesource.camel.component.sap.converter.StructureConverter;
 import org.fusesource.camel.component.sap.model.rfc.Structure;
 import org.fusesource.camel.component.sap.model.rfc.Table;
-import org.fusesource.camel.component.sap.model.rfc.impl.StructureImpl;
 import org.fusesource.camel.component.sap.util.RfcUtil;
 import org.fusesource.camel.component.sap.util.Util;
-import org.junit.jupiter.api.extension.BeforeEachCallback;
-import org.junit.jupiter.api.extension.ExtensionContext;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 
-public class StructureWithNamespaceConverterTest implements BeforeEachCallback {
+public class StructureWithNamespaceConverterTest extends CamelTestSupport {
 	
-	private static final Logger LOG = LoggerFactory.getLogger(StructureWithNamespaceConverterTest.class);
-
-	public static final String REQUEST_STRING = 
+	public static final String REQUEST_STRING =
 			"<?xml version=\"1.0\" encoding=\"ASCII\"?>" +
 			"<RHT_TEST_RFC:Request xmlns:RHT_TEST_RFC=\"http://sap.fusesource.org/rfc/JBF/RHT:TEST_RFC\" xmlns:RHT=\"http://sap.fusesource.org/rfc/JBF/RHT:TEST_RFC\" MESSAGE=\"Hello, World!\" RHT:PARAMETER1=\"X\">" +
 			  "<RHT:PARAMETER2 xmlns:RHT=\"http://sap.fusesource.org/rfc/JBF/RHT:TEST_RFC\" RHT:PARAMETER1=\"Y\" PARAMETER2=\"Z\" RHT:PARAMETER3=\"W\"/>" +
@@ -46,36 +34,12 @@ public class StructureWithNamespaceConverterTest implements BeforeEachCallback {
 			  "</TABLE1>" +
 			"</RHT_TEST_RFC:Request>";
 
-	private String methodName;
-
 	@BeforeAll
 	public static void setupClass() throws IOException {
 		File file = new File("data/testNamespaceRegistry.ecore");
 		Util.loadRegistry(file);
 	}
 
-    private final StopWatch watch = new StopWatch();
-
-	@Override
-	public void beforeEach(ExtensionContext context) throws Exception {
-		this.methodName = context.getTestMethod().map(Method::getName).orElse("");
-
-		LOG.info("********************************************************************************");
-		LOG.info("Testing: " + this.methodName + "(" + getClass().getName() + ")");
-		LOG.info("********************************************************************************");
-		watch.restart();
-	}
-
-	@AfterEach
-    public void tearDown() throws Exception {
-        long time = watch.taken();
-
-        LOG.info("********************************************************************************");
-        LOG.info("Testing done: " + this.methodName + "(" + getClass().getName() + ")");
-        LOG.info("Took: " + TimeUtils.printDuration(time) + " (" + time + " millis)");
-        LOG.info("********************************************************************************");
-    }    
-    
 	@Test
 	public void testToStructureFromString() throws Exception {
 
@@ -86,8 +50,8 @@ public class StructureWithNamespaceConverterTest implements BeforeEachCallback {
 		//
 		// When
 		//
-		
-		Structure request = StructureConverter.toStructure(REQUEST_STRING); 
+
+		Structure request = context.getTypeConverter().mandatoryConvertTo(Structure.class, REQUEST_STRING);
 
 		//
 		// Then
@@ -108,8 +72,8 @@ public class StructureWithNamespaceConverterTest implements BeforeEachCallback {
 		//
 		// When
 		//
-		
-		Structure request = StructureConverter.toStructure(bais);
+
+		Structure request = context.getTypeConverter().mandatoryConvertTo(Structure.class, bais);
 
 		//
 		// Then
@@ -130,7 +94,7 @@ public class StructureWithNamespaceConverterTest implements BeforeEachCallback {
 		// When
 		//
 		
-		Structure request = StructureConverter.toStructure(REQUEST_STRING.getBytes());
+		Structure request = context.getTypeConverter().mandatoryConvertTo(Structure.class, REQUEST_STRING.getBytes());
 
 		//
 		// Then
@@ -153,8 +117,8 @@ public class StructureWithNamespaceConverterTest implements BeforeEachCallback {
 		// When
 		//
 		
-		String requestString = StructureConverter.toString((StructureImpl)request);
-		
+		String requestString = context.getTypeConverter().mandatoryConvertTo(String.class, request);
+
 		//
 		// Then
 		//
@@ -177,8 +141,8 @@ public class StructureWithNamespaceConverterTest implements BeforeEachCallback {
 		// When
 		//
 
-		OutputStream os = StructureConverter.toOutputStream((StructureImpl)request);
-		
+		OutputStream os = context.getTypeConverter().mandatoryConvertTo(OutputStream.class, request);
+
 		//
 		// Then
 		//
@@ -202,8 +166,8 @@ public class StructureWithNamespaceConverterTest implements BeforeEachCallback {
 		// When
 		//
 		
-		InputStream is = StructureConverter.toInputStream((StructureImpl)request);
-		
+		InputStream is = context.getTypeConverter().mandatoryConvertTo(InputStream.class, request);
+
 		//
 		// Then
 		//
@@ -218,32 +182,32 @@ public class StructureWithNamespaceConverterTest implements BeforeEachCallback {
 		
 		assertThat("The request to verify is an unexpected null value", request, notNullValue());
 		
-		assertThat("request.get(MESSAGE) returned '" +  request.get("MESSAGE") + "' instead of expected value '" + "Hello, World!" + "'", (String) request.get("MESSAGE"), is("Hello, World!"));
-		assertThat("request.get(/RHT/PARAMETER1) returned '" +  request.get("/RHT/PARAMETER1") + "' instead of expected value '" + "X" + "'", (String) request.get("/RHT/PARAMETER1"), is("X"));
+		assertThat("request.get(MESSAGE) returned '" +  request.get("MESSAGE") + "' instead of expected value '" + "Hello, World!" + "'", request.get("MESSAGE"), is("Hello, World!"));
+		assertThat("request.get(/RHT/PARAMETER1) returned '" +  request.get("/RHT/PARAMETER1") + "' instead of expected value '" + "X" + "'", request.get("/RHT/PARAMETER1"), is("X"));
 		
 		Structure structure = request.get("/RHT/PARAMETER2", Structure.class);
 		assertThat("request.get(/RHT/PARAMETER2) returned unexpected null value", structure, notNullValue());
-		assertThat("structure.get(/RHT/PARAMETER1) returned '" +  structure.get("/RHT/PARAMETER1") + "' instead of expected value '" + "Y" + "'", (String) structure.get("/RHT/PARAMETER1"), is("Y"));
-		assertThat("structure.get(PARAMETER2) returned '" +  structure.get("PARAMETER2") + "' instead of expected value '" + "Z" + "'", (String) structure.get("PARAMETER2"), is("Z"));
-		assertThat("structure.get(/RHT/PARAMETER3) returned '" +  structure.get("/RHT/PARAMETER3") + "' instead of expected value '" + "W" + "'", (String) structure.get("/RHT/PARAMETER3"), is("W"));
+		assertThat("structure.get(/RHT/PARAMETER1) returned '" +  structure.get("/RHT/PARAMETER1") + "' instead of expected value '" + "Y" + "'", structure.get("/RHT/PARAMETER1"), is("Y"));
+		assertThat("structure.get(PARAMETER2) returned '" +  structure.get("PARAMETER2") + "' instead of expected value '" + "Z" + "'", structure.get("PARAMETER2"), is("Z"));
+		assertThat("structure.get(/RHT/PARAMETER3) returned '" +  structure.get("/RHT/PARAMETER3") + "' instead of expected value '" + "W" + "'", structure.get("/RHT/PARAMETER3"), is("W"));
 		
 		Table<? extends Structure> table = request.get("TABLE1", Table.class);
 		assertThat("request.get(TABLE1) returned unexpected null value", table, notNullValue());
 		List<? extends Structure> rows = table.getRows();
 		assertThat("rows.size() returned '" + rows.size() + "' instead of expected value of '1'", rows.size(), is(1));
 		Structure tableRow = rows.get(0);
-		assertThat("tableRow.get(/RHT/PARAMETER1) returned '" +  tableRow.get("/RHT/PARAMETER1") + "' instead of expected value '" + "Y" + "'", (String) tableRow.get("/RHT/PARAMETER1"), is("Y"));
-		assertThat("tableRow.get(PARAMETER2) returned '" +  tableRow.get("PARAMETER2") + "' instead of expected value '" + "Z" + "'", (String) tableRow.get("PARAMETER2"), is("Z"));
-		assertThat("tableRow.get(/RHT/PARAMETER3) returned '" +  tableRow.get("/RHT/PARAMETER3") + "' instead of expected value '" + "W" + "'", (String) tableRow.get("/RHT/PARAMETER3"), is("W"));
+		assertThat("tableRow.get(/RHT/PARAMETER1) returned '" +  tableRow.get("/RHT/PARAMETER1") + "' instead of expected value '" + "Y" + "'", tableRow.get("/RHT/PARAMETER1"), is("Y"));
+		assertThat("tableRow.get(PARAMETER2) returned '" +  tableRow.get("PARAMETER2") + "' instead of expected value '" + "Z" + "'", tableRow.get("PARAMETER2"), is("Z"));
+		assertThat("tableRow.get(/RHT/PARAMETER3) returned '" +  tableRow.get("/RHT/PARAMETER3") + "' instead of expected value '" + "W" + "'", tableRow.get("/RHT/PARAMETER3"), is("W"));
 
 		table = request.get("/RHT/TABLE2", Table.class);
 		assertThat("request.get(/RHT/TABLE2) returned unexpected null value", table, notNullValue());
 		rows = table.getRows();
 		assertThat("rows.size() returned '" + rows.size() + "' instead of expected value of '1'", rows.size(), is(1));
 		tableRow = rows.get(0);
-		assertThat("tableRow.get(/RHT/PARAMETER1) returned '" +  tableRow.get("/RHT/PARAMETER1") + "' instead of expected value '" + "Y" + "'", (String) tableRow.get("/RHT/PARAMETER1"), is("Y"));
-		assertThat("tableRow.get(PARAMETER2) returned '" +  tableRow.get("PARAMETER2") + "' instead of expected value '" + "Z" + "'", (String) tableRow.get("PARAMETER2"), is("Z"));
-		assertThat("tableRow.get(/RHT/PARAMETER3) returned '" +  tableRow.get("/RHT/PARAMETER3") + "' instead of expected value '" + "W" + "'", (String) tableRow.get("/RHT/PARAMETER3"), is("W"));
+		assertThat("tableRow.get(/RHT/PARAMETER1) returned '" +  tableRow.get("/RHT/PARAMETER1") + "' instead of expected value '" + "Y" + "'", tableRow.get("/RHT/PARAMETER1"), is("Y"));
+		assertThat("tableRow.get(PARAMETER2) returned '" +  tableRow.get("PARAMETER2") + "' instead of expected value '" + "Z" + "'", tableRow.get("PARAMETER2"), is("Z"));
+		assertThat("tableRow.get(/RHT/PARAMETER3) returned '" +  tableRow.get("/RHT/PARAMETER3") + "' instead of expected value '" + "W" + "'", tableRow.get("/RHT/PARAMETER3"), is("W"));
 
 	}
 	
