@@ -24,10 +24,12 @@ import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.NoSuchElementException;
+import java.util.TimeZone;
 
 import org.fusesource.camel.component.sap.model.idoc.Document;
 import org.fusesource.camel.component.sap.model.idoc.DocumentList;
@@ -83,8 +85,16 @@ public abstract class SapIDocTestSupport extends JCoTestSupport {
 	public static final BigDecimal QUAN_FIELD_VALUE = new BigDecimal(1234567890123456789L);
 	public static final String UNIT_FIELD_VALUE = "LBS";
 	public static final String NUMC_FIELD_VALUE = "1234567890";
-	public static final Date DATS_FIELD_VALUE = new GregorianCalendar(1863,06,03).getTime();
-	public static final Date TIMS_FIELD_VALUE = new GregorianCalendar(1970,0,1,12,15,30).getTime();
+	public static  Date DATS_FIELD_VALUE;
+	public static Date TIMS_FIELD_VALUE;
+	static {
+		GregorianCalendar dats= new GregorianCalendar(1863,06,03);
+		dats.setTimeZone(TimeZone.getTimeZone(ZoneId.of("EST", ZoneId.SHORT_IDS)));
+		DATS_FIELD_VALUE = dats.getTime();
+		GregorianCalendar tims= new GregorianCalendar(1970,0,1,12,15,30);
+		tims.setTimeZone(TimeZone.getTimeZone(ZoneId.of("EST", ZoneId.SHORT_IDS)));
+		TIMS_FIELD_VALUE = tims.getTime();
+	}
 	public static final BigDecimal CURR_FIELD_VALUE = new BigDecimal(1234567890123456789L);
 	public static final String CUKY_FIELD_VALUE = "USD";
 	public static final String LANG_FIELD_VALUE = "EN";
