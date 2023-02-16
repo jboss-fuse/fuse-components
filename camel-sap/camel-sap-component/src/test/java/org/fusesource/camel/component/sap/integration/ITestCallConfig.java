@@ -54,8 +54,8 @@ public class ITestCallConfig extends CamelSpringTestSupport {
         request.put("MAX_ROWS", 1);
         
         template.sendBody("direct:getFlcustList", request);
-        
-        //assertMockEndpointsSatisfied();
+
+		MockEndpoint.assertIsSatisfied(context);
         
         Structure response = mock.getExchanges().get(0).getIn().getBody(Structure.class);
         Resource res = new XMLResourceImpl();

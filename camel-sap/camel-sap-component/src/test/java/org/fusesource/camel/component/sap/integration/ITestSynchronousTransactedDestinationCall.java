@@ -62,8 +62,8 @@ public class ITestSynchronousTransactedDestinationCall extends CamelSpringTestSu
         customerData.put("LANGU", "E");
         
         template.sendBody("direct:createFlcustList", request);
-        
-        //assertMockEndpointsSatisfied();
+
+        MockEndpoint.assertIsSatisfied(context);
         
         Structure response = mock.getExchanges().get(0).getIn().getBody(Structure.class);
         Resource res = new XMLResourceImpl();

@@ -19,7 +19,6 @@ package org.fusesource.camel.component.sap;
 import java.net.URI;
 import java.util.Map;
 
-import org.apache.camel.Endpoint;
 import org.apache.camel.test.junit5.CamelTestSupport;
 import org.apache.camel.util.URISupport;
 import org.junit.jupiter.api.Test;
