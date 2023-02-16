@@ -19,31 +19,26 @@ package org.fusesource.camel.component.sap;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.component.mock.MockEndpoint;
 import org.fusesource.camel.component.sap.model.rfc.Structure;
 import org.fusesource.camel.component.sap.model.rfc.Table;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import static org.junit.Assert.*;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.api.mockito.mockpolicies.Slf4jMockPolicy;
-import org.powermock.core.classloader.annotations.MockPolicy;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 
 import com.sap.conn.jco.JCoDestinationManager;
-import com.sap.conn.jco.ext.Environment;
 
 /**
  * SAP Producer test cases.
@@ -51,21 +46,16 @@ import com.sap.conn.jco.ext.Environment;
  * @author William Collins <punkhornsw@gmail.com>
  *
  */
-@RunWith(PowerMockRunner.class)
-@MockPolicy({Slf4jMockPolicy.class})
-@PrepareForTest({ JCoDestinationManager.class, Environment.class })
 public class SapSynchronousRfcProducerTest extends SapRfcTestSupport {
 	
 	@Override
 	public void doPreSetup() throws Exception {
 		super.doPreSetup();
-		
-		PowerMockito.mockStatic(JCoDestinationManager.class);
-		when(JCoDestinationManager.getDestination(DESTINATION_NAME)).thenReturn(mockDestination);
-		
+		MockedStatic<JCoDestinationManager> helper = Mockito.mockStatic(JCoDestinationManager.class);
+		helper.when(() -> JCoDestinationManager.getDestination(DESTINATION_NAME)).thenReturn(mockDestination);
 	}
 	
-//	@Test
+	@Test
 	public void testProducer() throws Exception{ 
 		
 		//
@@ -85,8 +75,7 @@ public class SapSynchronousRfcProducerTest extends SapRfcTestSupport {
 		//
 		// Then
 		//
-		
-		//assertMockEndpointsSatisfied();
+		MockEndpoint.assertIsSatisfied(context);
 		
 		// check access to jco fields
 
@@ -98,15 +87,15 @@ public class SapSynchronousRfcProducerTest extends SapRfcTestSupport {
 		verify(mockParameterListIntField, times(1)).getValue();
 		verify(mockParameterListFloatField, times(1)).setValue((Object)FLOAT_PARAM_IN_VAL);
 		verify(mockParameterListFloatField, times(1)).getValue();
-		verify(mockParameterListBCDField, times(1)).setValue((Object)BCD_PARAM_IN_VAL);
+		verify(mockParameterListBCDField, times(1)).setValue(BCD_PARAM_IN_VAL);
 		verify(mockParameterListBCDField, times(1)).getValue();
 		verify(mockParameterListBinaryField, times(1)).setValue((Object)BINARY_PARAM_IN_VAL);
 		verify(mockParameterListBinaryField, times(1)).getValue();
 		verify(mockParameterListBinaryArrayField, times(1)).setValue((Object)BINARY_ARRAY_PARAM_IN_VAL);
 		verify(mockParameterListBinaryArrayField, times(1)).getValue();
-		verify(mockParameterListDateField, times(1)).setValue((Object)DATE_PARAM_IN_VAL);
+		verify(mockParameterListDateField, times(1)).setValue(DATE_PARAM_IN_VAL);
 		verify(mockParameterListDateField, times(1)).getValue();
-		verify(mockParameterListTimeField, times(1)).setValue((Object)TIME_PARAM_IN_VAL);
+		verify(mockParameterListTimeField, times(1)).setValue(TIME_PARAM_IN_VAL);
 		verify(mockParameterListTimeField, times(1)).getValue();
 		verify(mockParameterListStringField, times(1)).setValue((Object)STRING_PARAM_IN_VAL);
 		verify(mockParameterListStringField, times(1)).getValue();
@@ -119,15 +108,15 @@ public class SapSynchronousRfcProducerTest extends SapRfcTestSupport {
 		verify(mockIntField, times(2)).getValue();
 		verify(mockFloatField, times(2)).setValue((Object)FLOAT_PARAM_IN_VAL);
 		verify(mockFloatField, times(2)).getValue();
-		verify(mockBCDField, times(2)).setValue((Object)BCD_PARAM_IN_VAL);
+		verify(mockBCDField, times(2)).setValue(BCD_PARAM_IN_VAL);
 		verify(mockBCDField, times(2)).getValue();
 		verify(mockBinaryField, times(2)).setValue((Object)BINARY_PARAM_IN_VAL);
 		verify(mockBinaryField, times(2)).getValue();
 		verify(mockBinaryArrayField, times(2)).setValue((Object)BINARY_ARRAY_PARAM_IN_VAL);
 		verify(mockBinaryArrayField, times(2)).getValue();
-		verify(mockDateField, times(2)).setValue((Object)DATE_PARAM_IN_VAL);
+		verify(mockDateField, times(2)).setValue(DATE_PARAM_IN_VAL);
 		verify(mockDateField, times(2)).getValue();
-		verify(mockTimeField, times(2)).setValue((Object)TIME_PARAM_IN_VAL);
+		verify(mockTimeField, times(2)).setValue(TIME_PARAM_IN_VAL);
 		verify(mockTimeField, times(2)).getValue();
 		verify(mockStringField, times(2)).setValue((Object)STRING_PARAM_IN_VAL);
 		verify(mockStringField, times(2)).getValue();
@@ -146,29 +135,29 @@ public class SapSynchronousRfcProducerTest extends SapRfcTestSupport {
 		Structure response = exchange.getIn().getBody(Structure.class);
 		assertThat("The response returned by route is an unexpected null value", response, notNullValue());
 		
-		assertThat("response.get(PARAM_LIST_CHAR_PARAM) returned '" +  response.get(PARAM_LIST_CHAR_PARAM) + "' instead of expected value '" + CHAR_PARAM_OUT_VAL + "'", (String) response.get(PARAM_LIST_CHAR_PARAM), is(CHAR_PARAM_OUT_VAL));
-		assertThat("response.get(PARAM_LIST_NUM_PARAM) returned '" +  response.get(PARAM_LIST_NUM_PARAM) + "' instead of expected value '" + NUM_PARAM_OUT_VAL + "'", (String) response.get(PARAM_LIST_NUM_PARAM), is(NUM_PARAM_OUT_VAL));
-		assertThat("response.get(PARAM_LIST_INT_PARAM) returned '" +  response.get(PARAM_LIST_INT_PARAM) + "' instead of expected value '" + INT_PARAM_OUT_VAL + "'", (Integer) response.get(PARAM_LIST_INT_PARAM), is(INT_PARAM_OUT_VAL));
-		assertThat("response.get(PARAM_LIST_FLOAT_PARAM) returned '" +  response.get(PARAM_LIST_FLOAT_PARAM) + "' instead of expected value '" + FLOAT_PARAM_OUT_VAL + "'", (Double) response.get(PARAM_LIST_FLOAT_PARAM), is(FLOAT_PARAM_OUT_VAL));
-		assertThat("response.get(PARAM_LIST_BCD_PARAM) returned '" +  response.get(PARAM_LIST_BCD_PARAM) + "' instead of expected value '" + BCD_PARAM_OUT_VAL + "'", (BigDecimal) response.get(PARAM_LIST_BCD_PARAM), is(BCD_PARAM_OUT_VAL));
-		assertThat("response.get(PARAM_LIST_BINARY_PARAM) returned '" +  response.get(PARAM_LIST_BINARY_PARAM) + "' instead of expected value '" + BINARY_PARAM_OUT_VAL + "'", (byte[]) response.get(PARAM_LIST_BINARY_PARAM), is(BINARY_PARAM_OUT_VAL));
-		assertThat("response.get(PARAM_LIST_BINARY_ARRAY_PARAM) returned '" +  response.get(PARAM_LIST_BINARY_ARRAY_PARAM) + "' instead of expected value '" + BINARY_ARRAY_PARAM_OUT_VAL + "'", (byte[]) response.get(PARAM_LIST_BINARY_ARRAY_PARAM), is(BINARY_ARRAY_PARAM_OUT_VAL));
-		assertThat("response.get(PARAM_LIST_DATE_PARAM) returned '" +  response.get(PARAM_LIST_DATE_PARAM) + "' instead of expected value '" + DATE_PARAM_OUT_VAL + "'", (Date) response.get(PARAM_LIST_DATE_PARAM), is(DATE_PARAM_OUT_VAL));
-		assertThat("response.get(PARAM_LIST_TIME_PARAM) returned '" +  response.get(PARAM_LIST_TIME_PARAM) + "' instead of expected value '" + TIME_PARAM_OUT_VAL + "'", (Date) response.get(PARAM_LIST_TIME_PARAM), is(TIME_PARAM_OUT_VAL));
-		assertThat("response.get(PARAM_LIST_STRING_PARAM) returned '" +  response.get(PARAM_LIST_STRING_PARAM) + "' instead of expected value '" + STRING_PARAM_OUT_VAL + "'", (String) response.get(PARAM_LIST_STRING_PARAM), is(STRING_PARAM_OUT_VAL));
+		assertThat("response.get(PARAM_LIST_CHAR_PARAM) returned '" +  response.get(PARAM_LIST_CHAR_PARAM) + "' instead of expected value '" + CHAR_PARAM_OUT_VAL + "'", response.get(PARAM_LIST_CHAR_PARAM), is(CHAR_PARAM_OUT_VAL));
+		assertThat("response.get(PARAM_LIST_NUM_PARAM) returned '" +  response.get(PARAM_LIST_NUM_PARAM) + "' instead of expected value '" + NUM_PARAM_OUT_VAL + "'", response.get(PARAM_LIST_NUM_PARAM), is(NUM_PARAM_OUT_VAL));
+		assertThat("response.get(PARAM_LIST_INT_PARAM) returned '" +  response.get(PARAM_LIST_INT_PARAM) + "' instead of expected value '" + INT_PARAM_OUT_VAL + "'", response.get(PARAM_LIST_INT_PARAM), is(INT_PARAM_OUT_VAL));
+		assertThat("response.get(PARAM_LIST_FLOAT_PARAM) returned '" +  response.get(PARAM_LIST_FLOAT_PARAM) + "' instead of expected value '" + FLOAT_PARAM_OUT_VAL + "'", response.get(PARAM_LIST_FLOAT_PARAM), is(FLOAT_PARAM_OUT_VAL));
+		assertThat("response.get(PARAM_LIST_BCD_PARAM) returned '" +  response.get(PARAM_LIST_BCD_PARAM) + "' instead of expected value '" + BCD_PARAM_OUT_VAL + "'", response.get(PARAM_LIST_BCD_PARAM), is(BCD_PARAM_OUT_VAL));
+		assertThat("response.get(PARAM_LIST_BINARY_PARAM) returned '" +  response.get(PARAM_LIST_BINARY_PARAM) + "' instead of expected value '" + BINARY_PARAM_OUT_VAL + "'", response.get(PARAM_LIST_BINARY_PARAM), is(BINARY_PARAM_OUT_VAL));
+		assertThat("response.get(PARAM_LIST_BINARY_ARRAY_PARAM) returned '" +  response.get(PARAM_LIST_BINARY_ARRAY_PARAM) + "' instead of expected value '" + BINARY_ARRAY_PARAM_OUT_VAL + "'", response.get(PARAM_LIST_BINARY_ARRAY_PARAM), is(BINARY_ARRAY_PARAM_OUT_VAL));
+		assertThat("response.get(PARAM_LIST_DATE_PARAM) returned '" +  response.get(PARAM_LIST_DATE_PARAM) + "' instead of expected value '" + DATE_PARAM_OUT_VAL + "'", response.get(PARAM_LIST_DATE_PARAM), is(DATE_PARAM_OUT_VAL));
+		assertThat("response.get(PARAM_LIST_TIME_PARAM) returned '" +  response.get(PARAM_LIST_TIME_PARAM) + "' instead of expected value '" + TIME_PARAM_OUT_VAL + "'", response.get(PARAM_LIST_TIME_PARAM), is(TIME_PARAM_OUT_VAL));
+		assertThat("response.get(PARAM_LIST_STRING_PARAM) returned '" +  response.get(PARAM_LIST_STRING_PARAM) + "' instead of expected value '" + STRING_PARAM_OUT_VAL + "'", response.get(PARAM_LIST_STRING_PARAM), is(STRING_PARAM_OUT_VAL));
 		
 		Structure structure = response.get(PARAM_LIST_STRUCTURE_PARAM, Structure.class);
 		assertThat("structure.get(PARAM_LIST_STRUCTURE_PARAM) returned unexpected null value", structure, notNullValue());
-		assertThat("structure.get(CHAR_PARAM) returned '" +  structure.get(CHAR_PARAM) + "' instead of expected value '" + CHAR_PARAM_OUT_VAL + "'", (String) structure.get(CHAR_PARAM), is(CHAR_PARAM_OUT_VAL));
-		assertThat("structure.get(NUM_PARAM) returned '" +  structure.get(NUM_PARAM) + "' instead of expected value '" + NUM_PARAM_OUT_VAL + "'", (String) structure.get(NUM_PARAM), is(NUM_PARAM_OUT_VAL));
-		assertThat("structure.get(INT_PARAM) returned '" +  structure.get(INT_PARAM) + "' instead of expected value '" + INT_PARAM_OUT_VAL + "'", (Integer) structure.get(INT_PARAM), is(INT_PARAM_OUT_VAL));
-		assertThat("structure.get(FLOAT_PARAM) returned '" +  structure.get(FLOAT_PARAM) + "' instead of expected value '" + FLOAT_PARAM_OUT_VAL + "'", (Double) structure.get(FLOAT_PARAM), is(FLOAT_PARAM_OUT_VAL));
-		assertThat("structure.get(BCD_PARAM) returned '" +  structure.get(BCD_PARAM) + "' instead of expected value '" + BCD_PARAM_OUT_VAL + "'", (BigDecimal) structure.get(BCD_PARAM), is(BCD_PARAM_OUT_VAL));
-		assertThat("structure.get(BINARY_PARAM) returned '" +  structure.get(BINARY_PARAM) + "' instead of expected value '" + BINARY_PARAM_OUT_VAL + "'", (byte[]) structure.get(BINARY_PARAM), is(BINARY_PARAM_OUT_VAL));
-		assertThat("structure.get(BINARY_ARRAY_PARAM) returned '" +  structure.get(BINARY_ARRAY_PARAM) + "' instead of expected value '" + BINARY_ARRAY_PARAM_OUT_VAL + "'", (byte[]) structure.get(BINARY_ARRAY_PARAM), is(BINARY_ARRAY_PARAM_OUT_VAL));
-		assertThat("structure.get(DATE_PARAM) returned '" +  structure.get(DATE_PARAM) + "' instead of expected value '" + DATE_PARAM_OUT_VAL + "'", (Date) structure.get(DATE_PARAM), is(DATE_PARAM_OUT_VAL));
-		assertThat("structure.get(TIME_PARAM) returned '" +  structure.get(TIME_PARAM) + "' instead of expected value '" + TIME_PARAM_OUT_VAL + "'", (Date) structure.get(TIME_PARAM), is(TIME_PARAM_OUT_VAL));
-		assertThat("structure.get(STRING_PARAM) returned '" +  structure.get(STRING_PARAM) + "' instead of expected value '" + STRING_PARAM_OUT_VAL + "'", (String) structure.get(STRING_PARAM), is(STRING_PARAM_OUT_VAL));
+		assertThat("structure.get(CHAR_PARAM) returned '" +  structure.get(CHAR_PARAM) + "' instead of expected value '" + CHAR_PARAM_OUT_VAL + "'", structure.get(CHAR_PARAM), is(CHAR_PARAM_OUT_VAL));
+		assertThat("structure.get(NUM_PARAM) returned '" +  structure.get(NUM_PARAM) + "' instead of expected value '" + NUM_PARAM_OUT_VAL + "'", structure.get(NUM_PARAM), is(NUM_PARAM_OUT_VAL));
+		assertThat("structure.get(INT_PARAM) returned '" +  structure.get(INT_PARAM) + "' instead of expected value '" + INT_PARAM_OUT_VAL + "'", structure.get(INT_PARAM), is(INT_PARAM_OUT_VAL));
+		assertThat("structure.get(FLOAT_PARAM) returned '" +  structure.get(FLOAT_PARAM) + "' instead of expected value '" + FLOAT_PARAM_OUT_VAL + "'", structure.get(FLOAT_PARAM), is(FLOAT_PARAM_OUT_VAL));
+		assertThat("structure.get(BCD_PARAM) returned '" +  structure.get(BCD_PARAM) + "' instead of expected value '" + BCD_PARAM_OUT_VAL + "'", structure.get(BCD_PARAM), is(BCD_PARAM_OUT_VAL));
+		assertThat("structure.get(BINARY_PARAM) returned '" +  structure.get(BINARY_PARAM) + "' instead of expected value '" + BINARY_PARAM_OUT_VAL + "'", structure.get(BINARY_PARAM), is(BINARY_PARAM_OUT_VAL));
+		assertThat("structure.get(BINARY_ARRAY_PARAM) returned '" +  structure.get(BINARY_ARRAY_PARAM) + "' instead of expected value '" + BINARY_ARRAY_PARAM_OUT_VAL + "'", structure.get(BINARY_ARRAY_PARAM), is(BINARY_ARRAY_PARAM_OUT_VAL));
+		assertThat("structure.get(DATE_PARAM) returned '" +  structure.get(DATE_PARAM) + "' instead of expected value '" + DATE_PARAM_OUT_VAL + "'", structure.get(DATE_PARAM), is(DATE_PARAM_OUT_VAL));
+		assertThat("structure.get(TIME_PARAM) returned '" +  structure.get(TIME_PARAM) + "' instead of expected value '" + TIME_PARAM_OUT_VAL + "'", structure.get(TIME_PARAM), is(TIME_PARAM_OUT_VAL));
+		assertThat("structure.get(STRING_PARAM) returned '" +  structure.get(STRING_PARAM) + "' instead of expected value '" + STRING_PARAM_OUT_VAL + "'", structure.get(STRING_PARAM), is(STRING_PARAM_OUT_VAL));
 		
 		@SuppressWarnings("unchecked")
 		Table<? extends Structure> table = response.get(PARAM_LIST_TABLE_PARAM, Table.class);
@@ -176,23 +165,23 @@ public class SapSynchronousRfcProducerTest extends SapRfcTestSupport {
 		List<? extends Structure> rows = table.getRows();
 		assertThat("rows.size() returned '" + rows.size() + "' instead of expected value of '1'", rows.size(), is(1));
 		Structure tableRow = rows.get(0);
-		assertThat("tableRow.get(CHAR_PARAM) returned '" +  tableRow.get(CHAR_PARAM) + "' instead of expected value '" + CHAR_PARAM_OUT_VAL + "'", (String) tableRow.get(CHAR_PARAM), is(CHAR_PARAM_OUT_VAL));
-		assertThat("tableRow.get(NUM_PARAM) returned '" +  tableRow.get(NUM_PARAM) + "' instead of expected value '" + NUM_PARAM_OUT_VAL + "'", (String) tableRow.get(NUM_PARAM), is(NUM_PARAM_OUT_VAL));
-		assertThat("tableRow.get(INT_PARAM) returned '" +  tableRow.get(INT_PARAM) + "' instead of expected value '" + INT_PARAM_OUT_VAL + "'", (Integer) tableRow.get(INT_PARAM), is(INT_PARAM_OUT_VAL));
-		assertThat("tableRow.get(FLOAT_PARAM) returned '" +  tableRow.get(FLOAT_PARAM) + "' instead of expected value '" + FLOAT_PARAM_OUT_VAL + "'", (Double) tableRow.get(FLOAT_PARAM), is(FLOAT_PARAM_OUT_VAL));
-		assertThat("tableRow.get(BCD_PARAM) returned '" +  tableRow.get(BCD_PARAM) + "' instead of expected value '" + BCD_PARAM_OUT_VAL + "'", (BigDecimal) tableRow.get(BCD_PARAM), is(BCD_PARAM_OUT_VAL));
-		assertThat("tableRow.get(BINARY_PARAM) returned '" +  tableRow.get(BINARY_PARAM) + "' instead of expected value '" + BINARY_PARAM_OUT_VAL + "'", (byte[]) tableRow.get(BINARY_PARAM), is(BINARY_PARAM_OUT_VAL));
-		assertThat("tableRow.get(BINARY_ARRAY_PARAM) returned '" +  tableRow.get(BINARY_ARRAY_PARAM) + "' instead of expected value '" + BINARY_ARRAY_PARAM_OUT_VAL + "'", (byte[]) tableRow.get(BINARY_ARRAY_PARAM), is(BINARY_ARRAY_PARAM_OUT_VAL));
-		assertThat("tableRow.get(DATE_PARAM) returned '" +  tableRow.get(DATE_PARAM) + "' instead of expected value '" + DATE_PARAM_OUT_VAL + "'", (Date) tableRow.get(DATE_PARAM), is(DATE_PARAM_OUT_VAL));
-		assertThat("tableRow.get(TIME_PARAM) returned '" +  tableRow.get(TIME_PARAM) + "' instead of expected value '" + TIME_PARAM_OUT_VAL + "'", (Date) tableRow.get(TIME_PARAM), is(TIME_PARAM_OUT_VAL));
-		assertThat("tableRow.get(STRING_PARAM) returned '" +  tableRow.get(STRING_PARAM) + "' instead of expected value '" + STRING_PARAM_OUT_VAL + "'", (String) tableRow.get(STRING_PARAM), is(STRING_PARAM_OUT_VAL));
+		assertThat("tableRow.get(CHAR_PARAM) returned '" +  tableRow.get(CHAR_PARAM) + "' instead of expected value '" + CHAR_PARAM_OUT_VAL + "'", tableRow.get(CHAR_PARAM), is(CHAR_PARAM_OUT_VAL));
+		assertThat("tableRow.get(NUM_PARAM) returned '" +  tableRow.get(NUM_PARAM) + "' instead of expected value '" + NUM_PARAM_OUT_VAL + "'", tableRow.get(NUM_PARAM), is(NUM_PARAM_OUT_VAL));
+		assertThat("tableRow.get(INT_PARAM) returned '" +  tableRow.get(INT_PARAM) + "' instead of expected value '" + INT_PARAM_OUT_VAL + "'", tableRow.get(INT_PARAM), is(INT_PARAM_OUT_VAL));
+		assertThat("tableRow.get(FLOAT_PARAM) returned '" +  tableRow.get(FLOAT_PARAM) + "' instead of expected value '" + FLOAT_PARAM_OUT_VAL + "'", tableRow.get(FLOAT_PARAM), is(FLOAT_PARAM_OUT_VAL));
+		assertThat("tableRow.get(BCD_PARAM) returned '" +  tableRow.get(BCD_PARAM) + "' instead of expected value '" + BCD_PARAM_OUT_VAL + "'", tableRow.get(BCD_PARAM), is(BCD_PARAM_OUT_VAL));
+		assertThat("tableRow.get(BINARY_PARAM) returned '" +  tableRow.get(BINARY_PARAM) + "' instead of expected value '" + BINARY_PARAM_OUT_VAL + "'", tableRow.get(BINARY_PARAM), is(BINARY_PARAM_OUT_VAL));
+		assertThat("tableRow.get(BINARY_ARRAY_PARAM) returned '" +  tableRow.get(BINARY_ARRAY_PARAM) + "' instead of expected value '" + BINARY_ARRAY_PARAM_OUT_VAL + "'", tableRow.get(BINARY_ARRAY_PARAM), is(BINARY_ARRAY_PARAM_OUT_VAL));
+		assertThat("tableRow.get(DATE_PARAM) returned '" +  tableRow.get(DATE_PARAM) + "' instead of expected value '" + DATE_PARAM_OUT_VAL + "'", tableRow.get(DATE_PARAM), is(DATE_PARAM_OUT_VAL));
+		assertThat("tableRow.get(TIME_PARAM) returned '" +  tableRow.get(TIME_PARAM) + "' instead of expected value '" + TIME_PARAM_OUT_VAL + "'", tableRow.get(TIME_PARAM), is(TIME_PARAM_OUT_VAL));
+		assertThat("tableRow.get(STRING_PARAM) returned '" +  tableRow.get(STRING_PARAM) + "' instead of expected value '" + STRING_PARAM_OUT_VAL + "'", tableRow.get(STRING_PARAM), is(STRING_PARAM_OUT_VAL));
 
 		// Check exchange properties
 		@SuppressWarnings("unchecked")
 		Map<String,Properties> destinationMap = exchange.getProperty(SapConstants.SAP_DESTINATION_PROPERTIES_MAP_EXCHANGE_PROPERTY, Map.class);
-		assertNotNull("Exchange property '" + SapConstants.SAP_DESTINATION_PROPERTIES_MAP_EXCHANGE_PROPERTY + "' missing", destinationMap);
+		assertNotNull(destinationMap, "Exchange property '" + SapConstants.SAP_DESTINATION_PROPERTIES_MAP_EXCHANGE_PROPERTY + "' missing");
 		Properties destinationProperties = destinationMap.get(TEST_DEST);
-		assertNotNull("Destination properties for destination '" + TEST_DEST + "' missing", destinationProperties);
+		assertNotNull(destinationProperties, "Destination properties for destination '" + TEST_DEST + "' missing");
 
 		// Check response headers
 		assertThat("Message header '" + SapConstants.SAP_SCHEME_NAME_MESSAGE_HEADER + "' returned unexpected value", exchange.getIn().getHeader(SapConstants.SAP_SCHEME_NAME_MESSAGE_HEADER, String.class), is(SapConstants.SAP_SYNCHRONOUS_RFC_DESTINATION));

@@ -17,28 +17,21 @@
 package org.fusesource.camel.component.sap;
 
 
+import java.util.Map;
+import java.util.Properties;
+import com.sap.conn.jco.JCoDestinationManager;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.fusesource.camel.component.sap.model.rfc.Structure;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import static org.junit.Assert.*;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.api.mockito.mockpolicies.Slf4jMockPolicy;
-import org.powermock.core.classloader.annotations.MockPolicy;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
 
-import com.sap.conn.jco.JCoDestinationManager;
-import com.sap.conn.jco.ext.Environment;
-
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
-import java.util.Map;
-import java.util.Properties;
 
 /**
  * SAP Producer test cases.
@@ -46,21 +39,16 @@ import java.util.Properties;
  * @author William Collins <punkhornsw@gmail.com>
  *
  */
-@RunWith(PowerMockRunner.class)
-@MockPolicy({Slf4jMockPolicy.class})
-@PrepareForTest({ JCoDestinationManager.class, Environment.class })
 public class SapTransactionalRfcProducerTest extends SapRfcTestSupport {
 	
 	@Override
 	public void doPreSetup() throws Exception {
 		super.doPreSetup();
-		
-		PowerMockito.mockStatic(JCoDestinationManager.class);
-		when(JCoDestinationManager.getDestination(DESTINATION_NAME)).thenReturn(mockDestination);
-		
+		MockedStatic<JCoDestinationManager> dest = Mockito.mockStatic(JCoDestinationManager.class);
+		dest.when(() -> JCoDestinationManager.getDestination(DESTINATION_NAME)).thenReturn(mockDestination);
 	}
 	
-//	@Test
+	@Test
 	public void testProducer() throws Exception{ 
 		
 		//
@@ -117,9 +105,9 @@ public class SapTransactionalRfcProducerTest extends SapRfcTestSupport {
 		// Check exchange properties
 		@SuppressWarnings("unchecked")
 		Map<String,Properties> destinationMap = exchange.getProperty(SapConstants.SAP_DESTINATION_PROPERTIES_MAP_EXCHANGE_PROPERTY, Map.class);
-		assertNotNull("Exchange property '" + SapConstants.SAP_DESTINATION_PROPERTIES_MAP_EXCHANGE_PROPERTY + "' missing", destinationMap);
+		assertNotNull(destinationMap, "Exchange property '" + SapConstants.SAP_DESTINATION_PROPERTIES_MAP_EXCHANGE_PROPERTY + "' missing");
 		Properties destinationProperties = destinationMap.get(TEST_DEST);
-		assertNotNull("Destination properties for destination '" + TEST_DEST + "' missing", destinationProperties);
+		assertNotNull(destinationProperties, "Destination properties for destination '" + TEST_DEST + "' missing");
 
 		// Check response headers
 		assertThat("Message header '" + SapConstants.SAP_SCHEME_NAME_MESSAGE_HEADER + "' returned unexpected value", exchange.getIn().getHeader(SapConstants.SAP_SCHEME_NAME_MESSAGE_HEADER, String.class), is(SapConstants.SAP_TRANSACTIONAL_RFC_DESTINATION));

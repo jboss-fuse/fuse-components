@@ -35,7 +35,7 @@
 		<camel-community-version>3.20.1</camel-community-version>
 		<camel.sap.plugin.version>3.20.1-SNAPSHOT</camel.sap.plugin.version>
 		<karaf-version>4.2.15.fuse-7_11_1-00017</karaf-version>
-		<mockito.version>2.23.4</mockito.version>
+		<mockito.version>3.12.4</mockito.version>
 		<powermock.version>2.0.2</powermock.version>
 		<hamcrest.version>2.1</hamcrest.version>
 	</properties>
