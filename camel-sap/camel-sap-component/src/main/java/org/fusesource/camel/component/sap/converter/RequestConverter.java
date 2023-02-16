@@ -33,7 +33,7 @@ import org.fusesource.camel.component.sap.util.Util;
  * @author William Collins <punkhornsw@gmail.com>
  *
  */
-@Converter
+@Converter(generateBulkLoader = true)
 public enum RequestConverter {
 	INSTANCE;
 	

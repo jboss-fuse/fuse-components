@@ -26,8 +26,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.fusesource.camel.component.sap.model.idoc.Document;
 import org.fusesource.camel.component.sap.model.idoc.impl.DocumentImpl;
 import org.fusesource.camel.component.sap.util.Util;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * A Type Converter for SAP document objects.
@@ -35,7 +33,7 @@ import org.slf4j.LoggerFactory;
  * @author William Collins <punkhornsw@gmail.com>
  *
  */
-@Converter
+@Converter(generateBulkLoader = true)
 public enum DocumentConverter {
 	INSTANCE;
 	
