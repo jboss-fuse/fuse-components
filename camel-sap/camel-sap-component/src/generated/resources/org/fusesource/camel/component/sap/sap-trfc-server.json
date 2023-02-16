@@ -1,0 +1,37 @@
+{
+  "component": {
+    "kind": "component",
+    "name": "sap-trfc-server",
+    "title": "SAP Transactional RFC Server",
+    "description": "An SAP endpoint providing inbound tRFC (Transactional Remote Function Call) communication from SAP.",
+    "deprecated": false,
+    "firstVersion": "3.20.1-redhat",
+    "label": "sap",
+    "javaType": "org.fusesource.camel.component.sap.SapTransactionalRfcServerComponent",
+    "supportLevel": "Preview",
+    "groupId": "org.fusesource",
+    "artifactId": "camel-sap",
+    "version": "3.20.1-SNAPSHOT",
+    "scheme": "sap-trfc-server",
+    "extendsScheme": "",
+    "syntax": "sap-trfc-server:server:rfc",
+    "async": false,
+    "api": false,
+    "consumerOnly": true,
+    "producerOnly": false,
+    "lenientProperties": false
+  },
+  "componentProperties": {
+    "bridgeErrorHandler": { "kind": "property", "displayName": "Bridge Error Handler", "group": "consumer", "label": "consumer", "required": false, "type": "boolean", "javaType": "boolean", "deprecated": false, "autowired": false, "secret": false, "defaultValue": false, "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions occurred while the consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored." },
+    "autowiredEnabled": { "kind": "property", "displayName": "Autowired Enabled", "group": "advanced", "label": "advanced", "required": false, "type": "boolean", "javaType": "boolean", "deprecated": false, "autowired": false, "secret": false, "defaultValue": true, "description": "Whether autowiring is enabled. This is used for automatic autowiring options (the option must be marked as autowired) by looking up in the registry to find if there is a single instance of matching type, which then gets configured on the component. This can be used for automatic configuring JDBC data sources, JMS connection factories, AWS Clients, etc." }
+  },
+  "properties": {
+    "rfc": { "kind": "path", "displayName": "Rfc", "group": "consumer", "label": "", "required": true, "type": "string", "javaType": "java.lang.String", "deprecated": false, "deprecationNote": "", "autowired": false, "secret": false, "description": "Specifies the Remote Function Module this endpoint handles an SAP request for" },
+    "server": { "kind": "path", "displayName": "Server", "group": "consumer", "label": "", "required": true, "type": "string", "javaType": "java.lang.String", "deprecated": false, "deprecationNote": "", "autowired": false, "secret": false, "description": "Specifies the server this endpoint receives an SAP request from" },
+    "propagateExceptions": { "kind": "parameter", "displayName": "Propagate Exceptions", "group": "consumer", "label": "", "required": false, "type": "boolean", "javaType": "boolean", "deprecated": false, "autowired": false, "secret": false, "defaultValue": false, "description": "When true, specifies that this endpoint will propagate exceptions back to SAP instead of the exchange's exception handler" },
+    "stateful": { "kind": "parameter", "displayName": "Stateful", "group": "consumer", "label": "", "required": false, "type": "boolean", "javaType": "boolean", "deprecated": false, "autowired": false, "secret": false, "defaultValue": false, "description": "When true, specifies that this endpoint will initiate an SAP stateful session" },
+    "bridgeErrorHandler": { "kind": "parameter", "displayName": "Bridge Error Handler", "group": "consumer (advanced)", "label": "consumer,advanced", "required": false, "type": "boolean", "javaType": "boolean", "deprecated": false, "autowired": false, "secret": false, "defaultValue": false, "description": "Allows for bridging the consumer to the Camel routing Error Handler, which mean any exceptions occurred while the consumer is trying to pickup incoming messages, or the likes, will now be processed as a message and handled by the routing Error Handler. By default the consumer will use the org.apache.camel.spi.ExceptionHandler to deal with exceptions, that will be logged at WARN or ERROR level and ignored." },
+    "exceptionHandler": { "kind": "parameter", "displayName": "Exception Handler", "group": "consumer (advanced)", "label": "consumer,advanced", "required": false, "type": "object", "javaType": "org.apache.camel.spi.ExceptionHandler", "optionalPrefix": "consumer.", "deprecated": false, "autowired": false, "secret": false, "description": "To let the consumer use a custom ExceptionHandler. Notice if the option bridgeErrorHandler is enabled then this option is not in use. By default the consumer will deal with exceptions, that will be logged at WARN or ERROR level and ignored." },
+    "exchangePattern": { "kind": "parameter", "displayName": "Exchange Pattern", "group": "consumer (advanced)", "label": "consumer,advanced", "required": false, "type": "object", "javaType": "org.apache.camel.ExchangePattern", "enum": [ "InOnly", "InOut", "InOptionalOut" ], "deprecated": false, "autowired": false, "secret": false, "description": "Sets the exchange pattern when the consumer creates an exchange." }
+  }
+}

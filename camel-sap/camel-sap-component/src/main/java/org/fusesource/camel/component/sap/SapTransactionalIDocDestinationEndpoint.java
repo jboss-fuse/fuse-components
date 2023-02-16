@@ -16,6 +16,7 @@
  */
 package org.fusesource.camel.component.sap;
 
+import org.apache.camel.Category;
 import org.apache.camel.Producer;
 import org.apache.camel.spi.UriEndpoint;
 import org.fusesource.camel.component.sap.model.idoc.Document;
@@ -29,7 +30,7 @@ import org.slf4j.LoggerFactory;
  * @author William Collins <punkhornsw@gmail.com>
  *
  */
-@UriEndpoint(scheme="sap-idoc-destination", syntax = "sap-idoc-destination:destination:idocType:idocTypeExtension:systemRelease:applicationRelease", producerOnly = true, title="SAP IDoc Destination")
+@UriEndpoint(firstVersion = "3.20.1-redhat", scheme="sap-idoc-destination", syntax = "sap-idoc-destination:destination:idocType:idocTypeExtension:systemRelease:applicationRelease", producerOnly = true, title="SAP IDoc Destination", category = { Category.SAP })
 public class SapTransactionalIDocDestinationEndpoint extends SapIDocDestinationEndpoint {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SapTransactionalIDocDestinationEndpoint.class); 

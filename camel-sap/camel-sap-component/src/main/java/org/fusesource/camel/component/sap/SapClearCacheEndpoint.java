@@ -16,9 +16,12 @@
  */
 package org.fusesource.camel.component.sap;
 
+import org.apache.camel.Category;
 import org.apache.camel.Consumer;
 import org.apache.camel.Processor;
 import org.apache.camel.Producer;
+import org.apache.camel.spi.Metadata;
+import org.apache.camel.spi.UriPath;
 import org.apache.camel.support.DefaultEndpoint;
 import org.apache.camel.spi.UriEndpoint;
 import org.slf4j.Logger;
@@ -33,10 +36,14 @@ import org.slf4j.LoggerFactory;
  * @author William Collins <punkhornsw@gmail.com>
  *
  */
-@UriEndpoint(scheme="sap-clear-cache", syntax = "sap-clear-cache", producerOnly = true, title="SAP Clear Cache")
+@UriEndpoint(firstVersion = "3.20.1-redhat", scheme="sap-clear-cache", syntax = "sap-clear-cache", producerOnly = true, title="SAP Clear Cache", category = { Category.SAP })
 public class SapClearCacheEndpoint extends DefaultEndpoint {
 	
     private static final Logger LOG = LoggerFactory.getLogger(SapClearCacheEndpoint.class);
+
+	@UriPath
+	@Metadata
+	String name;
 
 	public SapClearCacheEndpoint() {
 	}
@@ -62,4 +69,17 @@ public class SapClearCacheEndpoint extends DefaultEndpoint {
 		return true;
 	}
 
+	/**
+	 * Logical Endpoint name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * Logical Endpoint name
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
 }

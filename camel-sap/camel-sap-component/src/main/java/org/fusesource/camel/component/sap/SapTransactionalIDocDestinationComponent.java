@@ -19,6 +19,7 @@ package org.fusesource.camel.component.sap;
 import java.util.Map;
 
 import org.apache.camel.Endpoint;
+import org.apache.camel.spi.annotations.Component;
 import org.apache.camel.support.DefaultComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +30,7 @@ import org.slf4j.LoggerFactory;
  * @author William Collins <punkhornsw@gmail.com>
  * 
  */
+@Component("sap-idoc-destination")
 public class SapTransactionalIDocDestinationComponent extends DefaultComponent {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SapTransactionalIDocDestinationComponent.class);

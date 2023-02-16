@@ -177,6 +177,15 @@
 					<source>${maven.compiler.target}</source>
 					<target>${maven.compiler.source}</target>
 				</configuration>
+				<executions>
+					<execution>
+						<id>recompile</id>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+						<phase>process-classes</phase>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -263,6 +272,37 @@
 							</artifacts>
 						</configuration>
 					</execution>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+							<goal>add-resource</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src/generated/java</source>
+							</sources>
+							<resources>
+								<resource>
+									<directory>src/generated/resources</directory>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.camel</groupId>
+				<artifactId>camel-component-maven-plugin</artifactId>
+				<version>${camel-community-version}</version>
+				<executions>
+					<execution>
+						<id>generate</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<phase>process-classes</phase>
+					</execution>
 				</executions>
 			</plugin>
 			<plugin>
@@ -325,10 +365,6 @@
 						loading of JCo native library -->
 					<argLine>-Djava.library.path="${native.lib.directory}"</argLine>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.camel</groupId>
-				<artifactId>camel-package-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 		<pluginManagement>
