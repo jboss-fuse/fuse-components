@@ -1,21 +1,22 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>org.fusesource</groupId>
-    <artifactId>fusesource-pom</artifactId>
-    <version>1.9.0.redhat-5</version>
-    <relativePath />
-  </parent>
-  <groupId>com.sap.conn.idoc</groupId>
-  <artifactId>com.sap.conn.idoc</artifactId>
-  <version>3.1.1.redhat-00001</version>
-  <packaging>jar</packaging>
-  <name>SAP IDoc Class Library v3 Plugin</name>
-  <description>Builds Plugin exporting the IDoc Class Library v3</description>
-  <properties>
-        <skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
-        <maven.deploy.skip>true</maven.deploy.skip>
-  </properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.fusesource</groupId>
+		<artifactId>camel-sap-parent</artifactId>
+		<version>3.20.1-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+	<groupId>com.sap.conn.idoc</groupId>
+	<artifactId>com.sap.conn.idoc</artifactId>
+	<version>3.1.1.redhat-00001</version>
+	<packaging>jar</packaging>
+	<name>SAP IDoc Class Library v3 Plugin</name>
+	<description>Builds Plugin exporting the IDoc Class Library v3</description>
+	<properties>
+		<skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
+		<maven.deploy.skip>true</maven.deploy.skip>
+	</properties>
 
 	<repositories>
 		<repository>
