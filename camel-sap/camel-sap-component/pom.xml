@@ -8,15 +8,16 @@
 	express or implied. See the License for the specific language governing permissions
 	and limitations under the License. -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.fusesource</groupId>
-        <artifactId>camel-sap-parent</artifactId>
-        <version>3.20.1-SNAPSHOT</version>
-    </parent>
+	<parent>
+		<groupId>org.fusesource</groupId>
+		<artifactId>camel-sap-parent</artifactId>
+		<version>3.20.1-SNAPSHOT</version>
+	</parent>
 
 	<artifactId>camel-sap</artifactId>
 	<packaging>bundle</packaging>
@@ -29,44 +30,30 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <native.lib.directory>${project.build.directory}/jni</native.lib.directory>
-        <lib.directory>${project.build.directory}/lib</lib.directory>
-    </properties>
+		<native.lib.directory>${project.build.directory}/jni</native.lib.directory>
+		<lib.directory>${project.build.directory}/lib</lib.directory>
+	</properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-support</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-support</artifactId>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>com.sap.conn.jco</groupId>
 			<artifactId>sapjco3</artifactId>
-			<scope>system</scope>
-			<systemPath>${lib.directory}/sapjco3.jar</systemPath>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.sap.conn.idoc</groupId>
 			<artifactId>sapidoc3</artifactId>
-			<scope>system</scope>
-			<systemPath>${lib.directory}/sapidoc3.jar</systemPath>
+			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.sap.conn.jco</groupId>
-			<artifactId>com.sap.conn.jco</artifactId>
-			<version>3.1.4.redhat-00001</version>
-		</dependency>
-		<dependency>
-			<groupId>com.sap.conn.idoc</groupId>
-			<artifactId>com.sap.conn.idoc</artifactId>
-			<version>3.1.1.redhat-00001</version>
-		</dependency>
-
 		<dependency>
 			<groupId>org.eclipse.emf</groupId>
 			<artifactId>org.eclipse.emf.common</artifactId>
@@ -102,31 +89,31 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-test-junit5</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.fusesource</groupId>
-            <artifactId>org.fusesource.camel.component.sap</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.fusesource</groupId>
-            <artifactId>org.fusesource.camel.component.sap.model</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-test-spring-junit5</artifactId>
-            <type>bundle</type>
-            <scope>test</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-test-junit5</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.fusesource</groupId>
+			<artifactId>org.fusesource.camel.component.sap</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.fusesource</groupId>
+			<artifactId>org.fusesource.camel.component.sap.model</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-test-spring-junit5</artifactId>
+			<type>bundle</type>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
@@ -206,31 +193,15 @@
 						<Bundle-Name>${project.name}</Bundle-Name>
 						<Bundle-Vendor>Red Hat</Bundle-Vendor>
 						<Bundle-DocURL>http://fabric.fusesource.org/</Bundle-DocURL>
-						<Export-Package>
-							org.fusesource.camel.component.sap;version=${project.version};-split-package:=merge-first,
-							org.fusesource.camel.component.sap.converter;version=${project.version},
-							org.fusesource.camel.component.sap.model.rfc;version=${project.version},
-							org.fusesource.camel.component.sap.model.rfc.impl;version=${project.version},
-							org.fusesource.camel.component.sap.model.idoc;version=${project.version},
-							org.fusesource.camel.component.sap.model.idoc.impl;version=${project.version},
-							org.fusesource.camel.component.sap.util;version=${project.version},
+						<Export-Package> org.fusesource.camel.component.sap;version=${project.version};-split-package:=merge-first, org.fusesource.camel.component.sap.converter;version=${project.version}, org.fusesource.camel.component.sap.model.rfc;version=${project.version}, org.fusesource.camel.component.sap.model.rfc.impl;version=${project.version}, org.fusesource.camel.component.sap.model.idoc;version=${project.version}, org.fusesource.camel.component.sap.model.idoc.impl;version=${project.version}, org.fusesource.camel.component.sap.util;version=${project.version},
 							org.eclipse.emf.ecore,
 							org.eclipse.emf.ecore.util,
 							org.eclipse.emf.common.util
 						</Export-Package>
-						<Import-Package>
-							org.eclipse.*;resolution:=optional,
-							org.eclipse.core.runtime;version=!;resolution:=optional,
-							org.osgi.framework;version=!,
-							org.fusesource.camel.component.sap.model.idoc;resolution:=optional,
-							org.fusesource.camel.component.sap.model.rfc;resolution:=optional,
+						<Import-Package> org.eclipse.*;resolution:=optional, org.eclipse.core.runtime;version=!;resolution:=optional, org.osgi.framework;version=!, org.fusesource.camel.component.sap.model.idoc;resolution:=optional, org.fusesource.camel.component.sap.model.rfc;resolution:=optional,
 							*
 						</Import-Package>
-						<Private-Package>
-							org.eclipse.emf.common.*,
-							org.eclipse.emf.ecore.*,
-							org.eclipse.emf.edit.*,
-							org.fusesource.camel.component.sap.*;-split-package:=merge-first
+						<Private-Package> org.eclipse.emf.common.*, org.eclipse.emf.ecore.*, org.eclipse.emf.edit.*, org.fusesource.camel.component.sap.*;-split-package:=merge-first
 						</Private-Package>
 						<Implementation-Title>Fabric8</Implementation-Title>
 						<Implementation-Version>${project.version}</Implementation-Version>
@@ -361,7 +332,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
-					<reuseForks>false</reuseForks><!-- Added to resolve issues with multiple
+					<reuseForks>false</reuseForks>					<!-- Added to resolve issues with multiple
 						loading of JCo native library -->
 					<argLine>-Djava.library.path="${native.lib.directory}"</argLine>
 				</configuration>
@@ -422,17 +393,17 @@
 			</releases>
 		</repository>
 		<repository>
-            <id>brewroot</id>
-            <name>Brew Repository</name>
-            <url>http://download.eng.bos.redhat.com/brewroot/repos/jb-fuse-6.2-build/latest/maven</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-        </repository>
+			<id>brewroot</id>
+			<name>Brew Repository</name>
+			<url>http://download.eng.bos.redhat.com/brewroot/repos/jb-fuse-6.2-build/latest/maven</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+		</repository>
 	</repositories>
 
 </project>
