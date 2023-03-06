@@ -201,8 +201,8 @@
 							org.eclipse.emf.common.util
 						</Export-Package>
 						<Import-Package>
-							org.eclipse.*;resolution:=optional,
 							org.eclipse.core.runtime;version=!;resolution:=optional,
+							org.eclipse.*;resolution:=optional,
 							org.osgi.framework;version=!,
 							org.fusesource.camel.component.sap.model.idoc;resolution:=optional,
 							org.fusesource.camel.component.sap.model.rfc;resolution:=optional,
