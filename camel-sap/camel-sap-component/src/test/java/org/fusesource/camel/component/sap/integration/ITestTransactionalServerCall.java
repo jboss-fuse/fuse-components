@@ -4,6 +4,7 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.test.spring.junit5.CamelSpringTestSupport;
 import org.fusesource.camel.component.sap.model.rfc.Request;
 import org.fusesource.camel.component.sap.util.Util;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -13,6 +14,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @author William Collins <punkhornsw@gmail.com>
  *
  */
+@Disabled("These tests are meant to be run manually (see infinite while loop in test method)")
 public class ITestTransactionalServerCall extends CamelSpringTestSupport {
 
 	@Test
