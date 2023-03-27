@@ -33,42 +33,28 @@
 				<entry key="nplServer" value-ref="nplServerData"/>
 			</map>
 		</property>
-	</bean>
-
-	<bean id="sap-srfc-server"
-		class="org.fusesource.camel.component.sap.SapSynchronousRfcServerComponent">
 		<property name="repositoryDataStore">
 			<map>
 				<entry key="nplServer" value-ref="nplRepositoryData"></entry>
 			</map>
 		</property>
-	</bean>
-
-	<bean id="sap-trfc-server"
-		class="org.fusesource.camel.component.sap.SapTransactionalRfcServerComponent">
-		<property name="repositoryDataStore">
-			<map>
-				<entry key="nplServer" value-ref="nplRepositoryData"></entry>
-			</map>
-		</property>
-		<property name="tidStoresLocation" value="/Users/wcollins/tmp"/>
 	</bean>
 
 	<bean id="nplDestinationData"
 		class="org.fusesource.camel.component.sap.model.rfc.impl.DestinationDataImpl">
-		<property name="ashost" value="nplhost" />
-		<property name="sysnr" value="42" />
-		<property name="client" value="001" />
-		<property name="user" value="developer" />
-		<property name="passwd" value="ch4ngeme" />
+		<property name="ashost" value="${jco.client.ashost}" />
+		<property name="sysnr" value="${jco.client.sysnr}" />
+		<property name="client" value="${jco.client.client}" />
+		<property name="user" value="${jco.client.user}" />
+		<property name="passwd" value="${jco.client.passwd}" />
 		<property name="lang" value="en" />
 	</bean>
 
 	<bean id="nplServerData"
 		class="org.fusesource.camel.component.sap.model.rfc.impl.ServerDataImpl">
-		<property name="gwhost" value="nplhost" />
-		<property name="gwserv" value="3342" />
-		<property name="progid" value="JCO_SERVER" />
+		<property name="gwhost" value="${jco.client.gwhost}" />
+		<property name="gwserv" value="${jco.client.gwserv}" />
+		<property name="progid" value="IDOCSERVER01" />
 		<property name="repositoryDestination" value="nplDest" />
 		<property name="connectionCount" value="2" />
 	</bean>

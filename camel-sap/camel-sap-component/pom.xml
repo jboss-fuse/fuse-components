@@ -406,4 +406,59 @@
 		</repository>
 	</repositories>
 
+	<profiles>
+		<profile>
+			<id>it</id>
+			<properties>
+				<!-- SAP Instance Configuration Configuration Parameters -->
+				<!-- *** Please enter the connection property values for your SAP Instance *** -->
+				<jco.client.ashost>10.0.15.218</jco.client.ashost>
+				<jco.client.sysnr>01</jco.client.sysnr>
+				<jco.client.client>000</jco.client.client>
+				<jco.client.gwhost>10.0.15.218</jco.client.gwhost>
+				<jco.client.gwserv>3301</jco.client.gwserv>
+				<jco.client.user>DEVELOPER</jco.client.user>
+				<jco.client.passwd>R3dh4tsap</jco.client.passwd>
+			</properties>
+			<build>
+				<testResources>
+					<testResource>
+						<directory>src/test/resources</directory>
+						<filtering>true</filtering>
+					</testResource>
+				</testResources>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-failsafe-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>integration-test</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>integration-test</goal>
+									<goal>verify</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<argLine>-Djava.library.path="${native.lib.directory}"</argLine>
+							<reuseForks>true</reuseForks>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<reuseForks>false</reuseForks><!-- Added to resolve issues with multiple
+							loading of JCo native library -->
+							<argLine>-Djava.library.path="${native.lib.directory}"</argLine>
+							<skipTests>${skip.surefire.tests}</skipTests>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 </project>
