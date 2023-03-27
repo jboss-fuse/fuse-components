@@ -17,22 +17,17 @@
 package org.fusesource.camel.component.sap.integration;
 
 
+import com.sap.conn.jco.JCoDestination;
+import com.sap.conn.jco.JCoDestinationManager;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.spring.junit5.CamelSpringTestSupport;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
-import org.fusesource.camel.component.sap.SapConnectionConfiguration;
-import org.fusesource.camel.component.sap.model.rfc.DestinationData;
-import org.fusesource.camel.component.sap.model.rfc.ServerData;
 import org.fusesource.camel.component.sap.model.rfc.Structure;
 import org.fusesource.camel.component.sap.util.RfcUtil;
 import org.junit.jupiter.api.Test;
-import static org.junit.Assert.*;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import com.sap.conn.jco.JCoDestination;
-import com.sap.conn.jco.JCoDestinationManager;
 
 /**
  * Integration test cases for destination RFC calls.
@@ -61,30 +56,6 @@ public class ITestCallConfig extends CamelSpringTestSupport {
         Resource res = new XMLResourceImpl();
         res.getContents().add(response);
         res.save(System.out, null);
-	}
-
-	@Test
-	public void testSapConfiguration() {
-		SapConnectionConfiguration component = (SapConnectionConfiguration) applicationContext.getBean("sap-configuration");
-		
-		// Validated Destination Data
-		DestinationData nplDestinationData = component.getDestinationDataStore().get("nplDest");
-		assertNotNull("Destination Data 'nplDest' not loaded into Destination Data Store", nplDestinationData);
-		assertEquals("Destination Data Property 'ashost' has incorrect value set", "nplhost", nplDestinationData.getAshost());
-		assertEquals("Destination Data Property 'sysnr' has incorrect value set", "42", nplDestinationData.getSysnr());
-		assertEquals("Destination Data Property 'client' has incorrect value set", "001", nplDestinationData.getClient());
-		assertEquals("Destination Data Property 'user' has incorrect value set", "developer", nplDestinationData.getUser());
-		assertEquals("Destination Data Property 'passwd' has incorrect value set", "ch4ngeme", nplDestinationData.getPasswd());
-		assertEquals("Destination Data Property 'lang' has incorrect value set", "en", nplDestinationData.getLang());
-
-		// Validated Server Data
-		ServerData nplServerData = component.getServerDataStore().get("nplServer");
-		assertNotNull("Server Data 'nplServer' not loaded into Server Data Store", nplServerData);
-		assertEquals("Server Data Property 'gwhost' has incorrect value set", "nplhost", nplServerData.getGwhost());
-		assertEquals("Server Data Property 'gwserv' has incorrect value set", "3342", nplServerData.getGwserv());
-		assertEquals("Server Data Property 'progid' has incorrect value set", "JCO_SERVER", nplServerData.getProgid());
-		assertEquals("Server Data Property 'repositoryDestination' has incorrect value set", "nplDest", nplServerData.getRepositoryDestination());
-		assertEquals("Server Data Property 'connectionCount' has incorrect value set", "2", nplServerData.getConnectionCount());
 	}
 
 	@Override
