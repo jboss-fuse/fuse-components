@@ -20,6 +20,7 @@ package org.fusesource.camel.component.sap;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -37,7 +38,6 @@ import org.fusesource.camel.component.sap.model.rfc.Request;
 import org.fusesource.camel.component.sap.model.rfc.Structure;
 import org.fusesource.camel.component.sap.model.rfc.Table;
 import org.junit.jupiter.api.Test;
-import static org.junit.Assert.*;
 
 import org.mockito.Mockito;
 import org.mockito.MockedStatic;
@@ -188,9 +188,9 @@ public class SapSynchronousRfcConsumerTest extends SapRfcTestSupport {
 		// Check exchange properties
 		@SuppressWarnings("unchecked")
 		Map<String,Properties> serverMap = exchange.getProperty(SapConstants.SAP_SERVER_PROPERTIES_MAP_EXCHANGE_PROPERTY, Map.class);
-		assertNotNull("Exchange property '" + SapConstants.SAP_SERVER_PROPERTIES_MAP_EXCHANGE_PROPERTY + "' missing", serverMap);
+		assertNotNull(serverMap, "Exchange property '" + SapConstants.SAP_SERVER_PROPERTIES_MAP_EXCHANGE_PROPERTY + "' missing");
 		Properties serverProperties = serverMap.get(TEST_SERVER);
-		assertNotNull("Server properties for server '" + TEST_SERVER + "' missing", serverProperties);
+		assertNotNull(serverProperties, "Server properties for server '" + TEST_SERVER + "' missing");
 		
 		// Check response headers
 		assertThat("Message header '" + SapConstants.SAP_SCHEME_NAME_MESSAGE_HEADER + "' returned unexpected value", exchange.getIn().getHeader(SapConstants.SAP_SCHEME_NAME_MESSAGE_HEADER, String.class), is(SapConstants.SAP_SYNCHRONOUS_RFC_SERVER));
