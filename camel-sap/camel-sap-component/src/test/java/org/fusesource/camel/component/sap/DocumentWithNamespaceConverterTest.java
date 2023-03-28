@@ -20,7 +20,6 @@ import org.fusesource.camel.component.sap.model.idoc.Document;
 import org.fusesource.camel.component.sap.model.idoc.Segment;
 import org.fusesource.camel.component.sap.model.idoc.SegmentList;
 import org.fusesource.camel.component.sap.model.idoc.impl.DocumentImpl;
-import org.fusesource.camel.component.sap.model.idoc.impl.SegmentImpl;
 import org.fusesource.camel.component.sap.util.IDocUtil;
 import org.fusesource.camel.component.sap.util.Util;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
