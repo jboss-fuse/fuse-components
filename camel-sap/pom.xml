@@ -15,12 +15,12 @@
 	<parent>
 		<groupId>org.apache.camel</groupId>
 		<artifactId>camel-parent</artifactId>
-		<version>3.20.1.redhat-00010</version>
+		<version>4.0.0.M3-redhat-00001</version>
 	</parent>
 
 	<groupId>org.fusesource</groupId>
 	<artifactId>camel-sap-parent</artifactId>
-	<version>3.20.1-SNAPSHOT</version>
+	<version>4.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>JBoss Fuse :: Components :: SAP JCO</name>
@@ -31,9 +31,10 @@
 		<maven.compiler.target>11</maven.compiler.target>
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven-surefire-plugin-version>2.22.2</maven-surefire-plugin-version>
-		<camel-version>3.20.1.redhat-00010</camel-version>
-		<camel-community-version>3.20.1</camel-community-version>
-		<camel.sap.plugin.version>3.20.1-SNAPSHOT</camel.sap.plugin.version>
+		<maven-bundle-plugin-version>5.1.8</maven-bundle-plugin-version>
+		<camel-version>4.0.0.M3-redhat-00001</camel-version>
+		<camel-community-version>4.0.0-M3</camel-community-version>
+		<camel.sap.plugin.version>4.0.0-SNAPSHOT</camel.sap.plugin.version>
 		<karaf-version>4.2.15.fuse-7_11_1-00017</karaf-version>
 		<mockito.version>3.12.4</mockito.version>
 		<powermock.version>2.0.2</powermock.version>

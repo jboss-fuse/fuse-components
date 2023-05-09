@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
  * @author William Collins <punkhornsw@gmail.com>
  *
  */
-@UriEndpoint(firstVersion = "3.20.1-redhat", scheme="sap-trfc-server", consumerClass=SapTransactionalRfcConsumer.class, syntax = "sap-trfc-server:server:rfc", consumerOnly = true, title="SAP Transactional RFC Server", category = { Category.SAP })
+@UriEndpoint(firstVersion = "3.20.1-redhat", scheme="sap-trfc-server", syntax = "sap-trfc-server:server:rfc", consumerOnly = true, title="SAP Transactional RFC Server", category = { Category.SAP })
 public class SapTransactionalRfcServerEndpoint extends SapRfcServerEndpoint {
 	
     private static final Logger LOG = LoggerFactory.getLogger(SapTransactionalRfcServerEndpoint.class);

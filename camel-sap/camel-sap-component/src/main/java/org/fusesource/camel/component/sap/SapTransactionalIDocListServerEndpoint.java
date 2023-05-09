@@ -40,7 +40,7 @@ import com.sap.conn.idoc.jco.JCoIDocServer;
  * @author William Collins <punkhornsw@gmail.com>
  * 
  */
-@UriEndpoint(firstVersion = "3.20.1-redhat", scheme = "sap-idoclist-server", consumerClass = SapTransactionalIDocListConsumer.class, syntax = "sap-idoclist-server:server:idocType:idocTypeExtension:systemRelease:applicationRelease", consumerOnly = true, title="SAP IDoc List Server", category = { Category.SAP })
+@UriEndpoint(firstVersion = "3.20.1-redhat", scheme = "sap-idoclist-server", syntax = "sap-idoclist-server:server:idocType:idocTypeExtension:systemRelease:applicationRelease", consumerOnly = true, title="SAP IDoc List Server", category = { Category.SAP })
 public class SapTransactionalIDocListServerEndpoint extends DefaultEndpoint {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SapTransactionalIDocListServerEndpoint.class);

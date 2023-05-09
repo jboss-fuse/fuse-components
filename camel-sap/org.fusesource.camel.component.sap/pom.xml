@@ -20,11 +20,11 @@
     <parent>
         <groupId>org.fusesource</groupId>
         <artifactId>camel-sap-parent</artifactId>
-        <version>3.20.1-SNAPSHOT</version>
+        <version>4.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>org.fusesource.camel.component.sap</artifactId>
-    <version>3.20.1-SNAPSHOT</version>
+    <version>4.0.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <name>JBoss Fuse :: SAP JCO :: SAP Data Layer :: Runtime Plugin</name>
     <description>Provides Runtime for the SAP Data Layer</description>
