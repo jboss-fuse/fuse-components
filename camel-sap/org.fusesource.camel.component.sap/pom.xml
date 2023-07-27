@@ -92,7 +92,7 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.7.36.redhat-00002</version>
+			<version>1.7.36.redhat-00003</version>
 		</dependency>
 	</dependencies>
 	<url>http://www.jboss.org/products/fuse/overview/</url>
