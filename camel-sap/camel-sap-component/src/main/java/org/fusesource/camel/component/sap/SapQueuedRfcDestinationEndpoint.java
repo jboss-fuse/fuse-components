@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
  * @author William Collins <punkhornsw@gmail.com>
  *
  */
-@UriEndpoint(firstVersion = "3.20.1-redhat", scheme="sap-qrfc-destination", syntax = "sap-qrfc-destination:destination:queue:rfc", producerOnly = true, title="SAP Queued RFC Destination", category = { Category.SAP })
+@UriEndpoint(firstVersion = "3.20.1-redhat", scheme="sap-qrfc-destination", syntax = "sap-qrfc-destination:destination:queue:rfc", producerOnly = true, title="SAP Queued RFC Destination", category = { Category.SAAS })
 public class SapQueuedRfcDestinationEndpoint extends SapRfcDestinationEndpoint {
 	
     private static final Logger LOG = LoggerFactory.getLogger(SapQueuedRfcDestinationEndpoint.class);

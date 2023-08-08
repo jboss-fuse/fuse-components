@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
  *
  */
 @UriEndpoint(firstVersion = "3.20.1-redhat", scheme="sap-qidoclist-destination", syntax = "sap-qidoclist-destination:destination:queue:idocType:idocTypeExtension:systemRelease:applicationRelease",
-		producerOnly = true, title="SAP Queued IDoc List Destination", category = { Category.SAP })
+		producerOnly = true, title="SAP Queued IDoc List Destination", category = { Category.SAAS })
 public class SapQueuedIDocListDestinationEndpoint extends SapIDocDestinationEndpoint {
 
 	private static final Logger LOG = LoggerFactory.getLogger(SapQueuedIDocListDestinationEndpoint.class); 
