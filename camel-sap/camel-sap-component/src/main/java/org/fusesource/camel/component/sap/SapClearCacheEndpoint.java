@@ -36,7 +36,7 @@ import org.slf4j.LoggerFactory;
  * @author William Collins <punkhornsw@gmail.com>
  *
  */
-@UriEndpoint(firstVersion = "3.20.1-redhat", scheme="sap-clear-cache", syntax = "sap-clear-cache", producerOnly = true, title="SAP Clear Cache", category = { Category.SAP })
+@UriEndpoint(firstVersion = "3.20.1-redhat", scheme="sap-clear-cache", syntax = "sap-clear-cache", producerOnly = true, title="SAP Clear Cache", category = { Category.SAAS })
 public class SapClearCacheEndpoint extends DefaultEndpoint {
 	
     private static final Logger LOG = LoggerFactory.getLogger(SapClearCacheEndpoint.class);
