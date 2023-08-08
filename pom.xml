@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-parent</artifactId>
-        <version>4.0.0.M3-redhat-00001</version>
+        <version>4.0.0.RC2-redhat-00004</version>
        </parent>
 
     <groupId>org.fusesource</groupId>
