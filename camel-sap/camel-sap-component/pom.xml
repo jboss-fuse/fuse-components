@@ -196,6 +196,7 @@
 						<Implementation-Title>Fabric8</Implementation-Title>
 						<Implementation-Version>${project.version}</Implementation-Version>
 						<Export-Service>org.apache.camel.spi.ComponentResolver;component=sap</Export-Service>
+						<Include-Resource>{maven-resources},META-INF/jandex.idx=target/classes/META-INF/jandex.idx</Include-Resource>
 					</instructions>
 				</configuration>
 				<executions>
@@ -254,8 +255,8 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.camel</groupId>
-				<artifactId>camel-component-maven-plugin</artifactId>
-				<version>${camel-community-version}</version>
+				<artifactId>camel-package-maven-plugin</artifactId>
+				<version>${camel-version}</version>
 				<executions>
 					<execution>
 						<id>generate</id>
@@ -264,7 +265,22 @@
 						</goals>
 						<phase>process-classes</phase>
 					</execution>
+					<execution>
+						<id>generate-postcompile</id>
+						<goals>
+							<goal>generate-postcompile</goal>
+						</goals>
+						<phase>prepare-package</phase>
+					</execution>
 				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.camel</groupId>
+						<artifactId>camel-core-model</artifactId>
+						<version>${camel-version}</version>
+						<scope>compile</scope>
+					</dependency>
+				</dependencies>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
