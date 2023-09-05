@@ -36,11 +36,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.camel</groupId>
-			<artifactId>camel-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.camel</groupId>
-			<artifactId>camel-support</artifactId>
+			<artifactId>camel-core-model</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -110,7 +106,6 @@
 		<dependency>
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-test-spring-junit5</artifactId>
-			<type>bundle</type>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -174,22 +169,6 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
 				<executions>
-					<execution>
-						<id>attach-artifacts</id>
-						<phase>package</phase>
-						<goals>
-							<goal>attach-artifact</goal>
-						</goals>
-						<configuration>
-							<artifacts>
-								<artifact>
-									<file>target/classes/features.xml</file>
-									<type>xml</type>
-									<classifier>features</classifier>
-								</artifact>
-							</artifacts>
-						</configuration>
-					</execution>
 					<execution>
 						<phase>generate-sources</phase>
 						<goals>
@@ -293,6 +272,12 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>default-test</id>
+						<phase>test</phase>
+					</execution>
+				</executions>
 				<configuration>
 					<reuseForks>false</reuseForks>					<!-- Added to resolve issues with multiple
 						loading of JCo native library -->
