@@ -20,6 +20,7 @@
 	</parent>
 
 	<artifactId>camel-sap</artifactId>
+	<packaging>bundle</packaging>
 
 	<name>JBoss Fuse :: Components :: SAP JCO :: Camel Component</name>
 	<description>Provides SAP Camel Component Layer</description>
@@ -164,6 +165,49 @@
 				<configuration>
 					<encoding>UTF-8</encoding>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<excludeDependencies>${fuse.osgi.exclude.dependencies}</excludeDependencies>
+					<instructions>
+						<Bundle-SymbolicName>org.fusesource.camel-sap</Bundle-SymbolicName>
+						<Bundle-Activator>org.fusesource.camel.component.sap.Activator</Bundle-Activator>
+						<Bundle-Name>${project.name}</Bundle-Name>
+						<Bundle-Vendor>Red Hat</Bundle-Vendor>
+						<Bundle-DocURL>http://fabric.fusesource.org/</Bundle-DocURL>
+						<Export-Package> org.fusesource.camel.component.sap;version=${project.version};-split-package:=merge-first, org.fusesource.camel.component.sap.converter;version=${project.version}, org.fusesource.camel.component.sap.model.rfc;version=${project.version}, org.fusesource.camel.component.sap.model.rfc.impl;version=${project.version}, org.fusesource.camel.component.sap.model.idoc;version=${project.version}, org.fusesource.camel.component.sap.model.idoc.impl;version=${project.version}, org.fusesource.camel.component.sap.util;version=${project.version},
+							org.eclipse.emf.ecore,
+							org.eclipse.emf.ecore.util,
+							org.eclipse.emf.common.util
+						</Export-Package>
+						<Import-Package> org.eclipse.*;resolution:=optional, org.eclipse.core.runtime;version=!;resolution:=optional, org.osgi.framework;version=!, org.fusesource.camel.component.sap.model.idoc;resolution:=optional, org.fusesource.camel.component.sap.model.rfc;resolution:=optional,
+							*
+						</Import-Package>
+						<Private-Package> org.eclipse.emf.common.*, org.eclipse.emf.ecore.*, org.eclipse.emf.edit.*, org.fusesource.camel.component.sap.*;-split-package:=merge-first
+						</Private-Package>
+						<Implementation-Title>Fabric8</Implementation-Title>
+						<Implementation-Version>${project.version}</Implementation-Version>
+						<Export-Service>org.apache.camel.spi.ComponentResolver;component=sap</Export-Service>
+						<Include-Resource>{maven-resources},META-INF/jandex.idx=target/classes/META-INF/jandex.idx</Include-Resource>
+					</instructions>
+				</configuration>
+				<executions>
+					<execution>
+						<id>cleanVersions</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>cleanVersions</goal>
+						</goals>
+						<configuration>
+							<versions>
+								<karaf.osgi.version>${karaf-version}</karaf.osgi.version>
+							</versions>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
