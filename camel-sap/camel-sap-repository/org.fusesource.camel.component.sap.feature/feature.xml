@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="6.3.0.redhat-516-01" encoding="UTF-8"?>
 <feature
       id="org.fusesource.camel.component.sap.feature"
       label="JBoss Fuse SAP Data Layer"
-      version="6.3.0.qualifier"
+      version="6.3.0.redhat-516-01"
       provider-name="JBoss by Red Hat">
 
    <description>
@@ -31,7 +31,7 @@ permissions and limitations under the License.
    </license>
 
    <requires>
-      <import plugin="com.sap.conn.jco" version="3.1.2.redhat_1" match="greaterOrEqual"/>
+      <import plugin="com.sap.conn.jco" version="6.3.0.redhat-516-01" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.slf4j.api"/>
@@ -43,14 +43,14 @@ permissions and limitations under the License.
          id="com.sap.conn.idoc"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="6.3.0.redhat-516-01"
          unpack="false"/>
 
    <plugin
          id="com.sap.conn.jco"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="6.3.0.redhat-516-01"
          unpack="false"/>
 
    <plugin
@@ -60,7 +60,7 @@ permissions and limitations under the License.
          arch="x86_64"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="6.3.0.redhat-516-01"
          fragment="true"
          unpack="false"/>
 
@@ -72,7 +72,7 @@ permissions and limitations under the License.
          arch="x86"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="6.3.0.redhat-516-01"
          fragment="true"
          unpack="false"/>
    -->
@@ -85,7 +85,7 @@ permissions and limitations under the License.
          arch="x86"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="6.3.0.redhat-516-01"
          fragment="true"
          unpack="false"/>
    -->
@@ -97,7 +97,7 @@ permissions and limitations under the License.
          arch="x86_64"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="6.3.0.redhat-516-01"
          fragment="true"
          unpack="false"/>
 
@@ -108,7 +108,7 @@ permissions and limitations under the License.
          arch="x86"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="6.3.0.redhat-516-01"
          fragment="true"
          unpack="false"/>
 
@@ -119,7 +119,7 @@ permissions and limitations under the License.
          arch="x86_64"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="6.3.0.redhat-516-01"
          fragment="true"
          unpack="false"/>
 
@@ -127,21 +127,21 @@ permissions and limitations under the License.
          id="org.fusesource.camel.component.sap"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="6.3.0.redhat-516-01"
          unpack="false"/>
 
    <plugin
          id="org.fusesource.camel.component.sap.model"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="6.3.0.redhat-516-01"
          unpack="false"/>
 
    <plugin
          id="org.fusesource.camel.component.sap.model.edit"
          download-size="0"
          install-size="0"
-         version="0.0.0"
+         version="6.3.0.redhat-516-01"
          unpack="false"/>
 
 </feature>
