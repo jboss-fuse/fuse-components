@@ -11,7 +11,7 @@
     "supportLevel": "Stable",
     "groupId": "org.fusesource",
     "artifactId": "camel-sap",
-    "version": "4.0.0-SNAPSHOT",
+    "version": "4.4.0-SNAPSHOT",
     "scheme": "sap-clear-cache",
     "extendsScheme": "",
     "syntax": "sap-clear-cache:null",
