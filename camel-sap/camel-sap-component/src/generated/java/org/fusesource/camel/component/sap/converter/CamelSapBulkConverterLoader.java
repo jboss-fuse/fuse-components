@@ -9,6 +9,7 @@ import org.apache.camel.Ordered;
 import org.apache.camel.TypeConversionException;
 import org.apache.camel.TypeConverterLoaderException;
 import org.apache.camel.TypeConverter;
+import org.apache.camel.spi.TypeConvertible;
 import org.apache.camel.spi.BulkTypeConverters;
 import org.apache.camel.spi.TypeConverterLoader;
 import org.apache.camel.spi.TypeConverterRegistry;
@@ -43,6 +44,7 @@ public final class CamelSapBulkConverterLoader implements TypeConverterLoader, B
     @Override
     public void load(TypeConverterRegistry registry) throws TypeConverterLoaderException {
         registry.addBulkTypeConverters(this);
+        doRegistration(registry);
     }
 
     @Override
@@ -162,6 +164,41 @@ public final class CamelSapBulkConverterLoader implements TypeConverterLoader, B
             }
         }
         return null;
+    }
+
+    private void doRegistration(TypeConverterRegistry registry) {
+        registry.addConverter(new TypeConvertible<>(org.fusesource.camel.component.sap.model.idoc.impl.DocumentImpl.class, java.io.InputStream.class), this);
+        registry.addConverter(new TypeConvertible<>(org.fusesource.camel.component.sap.model.idoc.impl.DocumentListImpl.class, java.io.InputStream.class), this);
+        registry.addConverter(new TypeConvertible<>(org.fusesource.camel.component.sap.model.rfc.impl.RequestImpl.class, java.io.InputStream.class), this);
+        registry.addConverter(new TypeConvertible<>(org.fusesource.camel.component.sap.model.rfc.impl.ResponseImpl.class, java.io.InputStream.class), this);
+        registry.addConverter(new TypeConvertible<>(org.fusesource.camel.component.sap.model.rfc.impl.StructureImpl.class, java.io.InputStream.class), this);
+        registry.addConverter(new TypeConvertible<>(org.fusesource.camel.component.sap.model.idoc.impl.DocumentImpl.class, java.io.OutputStream.class), this);
+        registry.addConverter(new TypeConvertible<>(org.fusesource.camel.component.sap.model.idoc.impl.DocumentListImpl.class, java.io.OutputStream.class), this);
+        registry.addConverter(new TypeConvertible<>(org.fusesource.camel.component.sap.model.rfc.impl.RequestImpl.class, java.io.OutputStream.class), this);
+        registry.addConverter(new TypeConvertible<>(org.fusesource.camel.component.sap.model.rfc.impl.ResponseImpl.class, java.io.OutputStream.class), this);
+        registry.addConverter(new TypeConvertible<>(org.fusesource.camel.component.sap.model.rfc.impl.StructureImpl.class, java.io.OutputStream.class), this);
+        registry.addConverter(new TypeConvertible<>(org.fusesource.camel.component.sap.model.idoc.impl.DocumentImpl.class, java.lang.String.class), this);
+        registry.addConverter(new TypeConvertible<>(org.fusesource.camel.component.sap.model.idoc.impl.DocumentListImpl.class, java.lang.String.class), this);
+        registry.addConverter(new TypeConvertible<>(org.fusesource.camel.component.sap.model.rfc.impl.RequestImpl.class, java.lang.String.class), this);
+        registry.addConverter(new TypeConvertible<>(org.fusesource.camel.component.sap.model.rfc.impl.ResponseImpl.class, java.lang.String.class), this);
+        registry.addConverter(new TypeConvertible<>(org.fusesource.camel.component.sap.model.rfc.impl.StructureImpl.class, java.lang.String.class), this);
+        registry.addConverter(new TypeConvertible<>(byte[].class, org.fusesource.camel.component.sap.model.idoc.Document.class), this);
+        registry.addConverter(new TypeConvertible<>(java.io.InputStream.class, org.fusesource.camel.component.sap.model.idoc.Document.class), this);
+        registry.addConverter(new TypeConvertible<>(java.lang.String.class, org.fusesource.camel.component.sap.model.idoc.Document.class), this);
+        registry.addConverter(new TypeConvertible<>(byte[].class, org.fusesource.camel.component.sap.model.idoc.DocumentList.class), this);
+        registry.addConverter(new TypeConvertible<>(java.io.InputStream.class, org.fusesource.camel.component.sap.model.idoc.DocumentList.class), this);
+        registry.addConverter(new TypeConvertible<>(java.lang.String.class, org.fusesource.camel.component.sap.model.idoc.DocumentList.class), this);
+        registry.addConverter(new TypeConvertible<>(byte[].class, org.fusesource.camel.component.sap.model.rfc.Request.class), this);
+        registry.addConverter(new TypeConvertible<>(java.io.InputStream.class, org.fusesource.camel.component.sap.model.rfc.Request.class), this);
+        registry.addConverter(new TypeConvertible<>(java.lang.String.class, org.fusesource.camel.component.sap.model.rfc.Request.class), this);
+        registry.addConverter(new TypeConvertible<>(byte[].class, org.fusesource.camel.component.sap.model.rfc.Response.class), this);
+        registry.addConverter(new TypeConvertible<>(java.io.InputStream.class, org.fusesource.camel.component.sap.model.rfc.Response.class), this);
+        registry.addConverter(new TypeConvertible<>(java.lang.String.class, org.fusesource.camel.component.sap.model.rfc.Response.class), this);
+        registry.addConverter(new TypeConvertible<>(byte[].class, org.fusesource.camel.component.sap.model.rfc.Structure.class), this);
+        registry.addConverter(new TypeConvertible<>(java.io.InputStream.class, org.fusesource.camel.component.sap.model.rfc.Structure.class), this);
+        registry.addConverter(new TypeConvertible<>(java.lang.String.class, org.fusesource.camel.component.sap.model.rfc.Structure.class), this);
+        
+        
     }
 
     public TypeConverter lookup(Class<?> to, Class<?> from) {
