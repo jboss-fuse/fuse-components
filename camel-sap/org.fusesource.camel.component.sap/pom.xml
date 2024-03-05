@@ -104,6 +104,18 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
+
+       <!-- SAP libraries -->
+        <dependency>
+            <groupId>com.sap.conn.idoc</groupId>
+            <artifactId>sapidoc3</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.sap.conn.jco</groupId>
+            <artifactId>sapjco3</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
 </project>
