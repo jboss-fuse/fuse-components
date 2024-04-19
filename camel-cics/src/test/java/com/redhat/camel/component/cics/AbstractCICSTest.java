@@ -3,25 +3,19 @@ package com.redhat.camel.component.cics;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
-import org.apache.camel.test.junit5.CamelTestSupport;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testcontainers.containers.GenericContainer;
-import org.testcontainers.containers.Network;
-import org.testcontainers.containers.wait.strategy.Wait;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.utility.MountableFile;
 
-import java.time.Duration;
 import java.util.HashMap;
+import java.util.HexFormat;
 import java.util.Map;
 
 import static com.redhat.camel.component.cics.CICSConstants.CICS_COMM_AREA_SIZE_HEADER;
 import static com.redhat.camel.component.cics.CICSConstants.CICS_DEFAULT_ENCODING;
 import static com.redhat.camel.component.cics.CICSConstants.CICS_PROGRAM_NAME_HEADER;
-import static com.redhat.camel.component.cics.CICSConstants.CICS_RC_HEADER;
+import static com.redhat.camel.component.cics.CICSConstants.CICS_RETURN_CODE_HEADER;
 import static org.apache.camel.ExchangePattern.InOut;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -42,7 +36,7 @@ public abstract class AbstractCICSTest extends AbstractCICSContainerizedTest {
         Object returned = template.sendBodyAndHeaders("direct:test", InOut, null, headers);
         mock.setExpectedMessageCount(1);
         Exchange ex = mock.getExchanges().get(0);
-        Assertions.assertEquals(0, ex.getIn().getHeader(CICS_RC_HEADER));
+        Assertions.assertEquals(0, ex.getIn().getHeader(CICS_RETURN_CODE_HEADER));
     }
 
     @Test
@@ -57,7 +51,7 @@ public abstract class AbstractCICSTest extends AbstractCICSContainerizedTest {
         mock.setExpectedMessageCount(1);
         Exchange ex = mock.getExchanges().get(0);
         LOG.info("response: {}", new String((byte[]) ex.getIn().getBody(),CICS_DEFAULT_ENCODING));
-        Assertions.assertEquals(0, ex.getIn().getHeader(CICS_RC_HEADER));
+        Assertions.assertEquals(0, ex.getIn().getHeader(CICS_RETURN_CODE_HEADER));
     }
 
     @Override

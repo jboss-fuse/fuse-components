@@ -1,0 +1,153 @@
+= CICS Component
+:doctitle: CICS
+:shortname: cics
+:artifactid: camel-cics
+:description: CICS Endpoint
+:since: 4.4-redhat
+:supportlevel: Preview
+:tabs-sync-option:
+:component-header: Only producer is supported
+//Manually maintained attributes
+:camel-spring-boot-name: cics
+
+
+*Since Camel {since}*
+
+*{component-header}*
+
+This component allows you to interact with https://www.ibm.com/products/cics-transaction-server[CICS^®^]
+general-purpose transaction processing subsystem.
+
+Maven users will need to add the following dependency to their `pom.xml`
+for this component:
+
+[source,xml]
+------------------------------------------------------------
+<dependency>
+    <groupId>org.fusesource</groupId>
+    <artifactId>camel-cics</artifactId>
+    <version>x.x.x</version>
+    <!-- use the same version as your Camel core version -->
+</dependency>
+------------------------------------------------------------
+
+[NOTE]
+====
+Only synchronous mode call are supported
+====
+
+== URI format
+
+--------------------------------------------
+cics://[interfaceType]/[dataExchangeType][?options]
+--------------------------------------------
+
+Where `interfaceType` is the CICS set of external API that this component will invoke.
+At the moment, only ECI (External Call Interface) is supported.
+This component can communicate with CICS server using two kind `dataExchangeType`
+
+* `commarea` is a block of storage, limited to 32763 bytes, allocated by the program.
+* `channel` is the new mechanism for exchanging data, analogous to a parameter list.
+
+By default, if `dataExchangeType` is not specified, this component use `commarea`:
+
+--------------------------------------------
+cics://eci?host=xxx&port=xxx...
+--------------------------------------------
+[NOTE]
+====
+You must create a COMMAREA that is large enough to contain all the information
+to be sent to the server and large enough to contain all the information that
+can be returned from the server.
+====
+
+To use `cheannel` and container you must specify it explicitly in the URI
+
+--------------------------------------------
+cics://eci/channel?host=xxx&port=xxx...
+--------------------------------------------
+
+
+include::component-configure-options.adoc[]
+include::component-endpoint-options.adoc[]
+
+include::component-endpoint-headers.adoc[]
+
+
+== Samples
+
+
+=== Use commarea
+
+In the following sample we configure a route that run a program on a CICS server
+using COMMAREA:
+
+[source,java]
+--------------------------------
+//.....
+import static com.redhat.camel.component.cics.CICSConstants.CICS_PROGRAM_NAME_HEADER;
+import static com.redhat.camel.component.cics.CICSConstants.CICS_COMM_AREA_SIZE_HEADER;
+//....
+
+from("direct:run").
+   setHeader(CICS_PROGRAM_NAME_HEADER, "ECIREADY").
+   setHeader(CICS_COMM_AREA_SIZE_HEADER, 18).
+   setBody(constant("My input data")).
+   to("cics:eci/commarea?host=192.168.0.23&port=2006&protocol=tcp&userId=foo&password=bar");
+--------------------------------
+
+
+=== Use Channel with a single input container
+
+In the sample below we use a channel with a single container to run a CICS program.
+The channel name and the container name are taken from headers, and the container value
+from the body:
+
+[source,java]
+------------------------------
+//.....
+import static com.redhat.camel.component.cics.CICSConstants.CICS_PROGRAM_NAME_HEADER;
+import static com.redhat.camel.component.cics.CICSConstants.CICS_CHANNEL_NAME_HEADER;
+import static com.redhat.camel.component.cics.CICSConstants.CICS_CONTAINER_NAME_HEADER;
+
+//...
+from("direct:run").
+  setHeader(CICS_PROGRAM_NAME_HEADER, "EC03").
+  setHeader(CICS_CHANNEL_NAME_HEADER, "SAMPLECHANNEL").
+  setHeader(CICS_CONTAINER_NAME_HEADER, "INPUTDATA").
+  setBody(constant("My input data")).
+  to("cics:eci/channel?host=192.168.0.23&port=2006&protocol=tcp&userId=foo&password=bar");
+------------------------------
+
+The container(s) returned is stored in an `java.util.Map<String,Object>`, the key is the container name and the
+value is the output data of the container.
+
+=== Use Channel with multiple input container
+
+If you need to run a CICS program that takes multiple container as input, you can create
+a `java.util.Map<String,Object>` where the keys are the containers name and the values are the input data.
+In this case the `CICS_CONTAINER_NAME` header is ignored.
+
+[source,java]
+------------------------------
+//.....
+import static com.redhat.camel.component.cics.CICSConstants.CICS_PROGRAM_NAME_HEADER;
+import static com.redhat.camel.component.cics.CICSConstants.CICS_CHANNEL_NAME_HEADER;
+
+//...
+from("direct:run").
+  setHeader(CICS_PROGRAM_NAME_HEADER, "EC03").
+  setHeader(CICS_CHANNEL_NAME_HEADER, "SAMPLECHANNEL").
+  process(exchange->{
+    byte[] thirdContainerData = HexFormat.of().parseHex("e04fd020ea3a6910a2d808002b30309d");
+    Map<String,Object> containers = Map.of(
+           "firstContainerName", "firstContainerData",
+           "secondContainerName", "secondContainerData",
+           "thirdContainerName", thirdContainerData
+    );
+    exchange.getMessage().setBody(containers);
+  }).
+  to("cics:eci/channel?host=192.168.0.23&port=2006&protocol=tcp&userId=foo&password=bar");
+------------------------------
+
+include::starter.adoc[]

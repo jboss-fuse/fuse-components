@@ -35,6 +35,7 @@ import java.util.Properties;
 import static com.redhat.camel.component.cics.CICSConstants.CICS_DEFAULT_ECI_TIMEOUT;
 import static com.redhat.camel.component.cics.CICSConstants.CICS_DEFAULT_ENCODING;
 import static com.redhat.camel.component.cics.CICSConstants.CICS_DEFAULT_INTERFACE_TYPE;
+import static com.redhat.camel.component.cics.CICSConstants.CICS_DEFAULT_SERVER_HOST;
 import static com.redhat.camel.component.cics.CICSConstants.CICS_DEFAULT_SERVER_PORT;
 import static com.redhat.camel.component.cics.CICSConstants.CICS_DEFAULT_SOCKET_TIMEOUT;
 import static com.redhat.camel.component.cics.CICSConstants.CICS_ECI_INTERFACE_TYPE;
@@ -51,13 +52,13 @@ public class CICSConfiguration implements Cloneable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CICSConfiguration.class);
 
-    @UriPath(description = "The interface type, can be eci, esi or epi. at the moment only eci is supported.")
+    @UriPath(description = "The interface type, can be eci, esi or epi. at the moment only eci is supported.", defaultValue = CICS_DEFAULT_INTERFACE_TYPE + "")
     @Metadata(required = true)
     private String interfaceType = CICS_DEFAULT_INTERFACE_TYPE;
 
-    @UriParam(description = "The address of the CICS Transaction Gateway that this instance connects to")
+    @UriParam(description = "The address of the CICS Transaction Gateway that this instance connects to", defaultValue = CICS_DEFAULT_SERVER_HOST)
     @Metadata(required = true)
-    private String host;
+    private String host = CICS_DEFAULT_SERVER_HOST;
 
     @UriParam(description = "The port of the CICS Transaction Gateway that this instance connects to.", defaultValue = CICS_DEFAULT_SERVER_PORT + "")
     @Metadata(required = true)

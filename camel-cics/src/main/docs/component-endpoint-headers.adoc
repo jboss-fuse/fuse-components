@@ -1,0 +1,49 @@
+//component headers: START
+
+:tablespec: width="100%",cols="2,5a,^1,2",options="header"
+:cellformats: 'util.boldLink(path[2], "endpoint_header", value.group) + "\n\nConstant: " + camel.constantLink("{artifactid}",value.constantName) \
+|util.description(value) \
+|util.valueAsString(value.defaultValue) \
+|util.javaSimpleName(value.javaType)'
+
+
+== Message Headers
+
+The {doctitle} component supports 15 message header(s), which is/are listed below:
+
+[{tablespec}]
+|===
+| Name | Description | Default | Type
+a| CICS_RETURN_CODE +
+Constant: com.redhat.camel.component.cics.CICSConstants#CICS_RETURN_CODE_HEADER  | Return code from this flow operation     |              | int
+a| CICS_RETURN_CODE_STRING +
+Constant: com.redhat.camel.component.cics.CICSConstants#CICS_RETURN_CODE_STRING_HEADER | The CICS return code as a String. The String is the name of the appropriate Java constant, for example, if this header is ECI_NO_ERROR, then the String returned will be ECI_NO_ERROR. If this header is unknown then the String returned will be ECI_UNKNOWN_CICS_RC. NOTE: for CICS return codes that may have more than one meaning the String returned is a concatenation of the return codes. The only concatenated String is: ECI_ERR_REQUEST_TIMEOUT_OR_ERR_NO_REPLY. |              | java.ang.String
+a| CICS_EXTEND_MODE +
+Constant: com.redhat.camel.component.cics.CICSConstants#CICS_EXTEND_MODE_HEADER | Extend mode of request. The default value is ECI_NO_EXTEND |              | int
+a| CICS_LUW_TOKEN +
+Constant: com.redhat.camel.component.cics.CICSConstants#CICS_LUW_TOKEN_HEADER | Extended Logical Unit of Work token. The default value is ECI_LUW_NEW   |              | int
+a| CICS_PROGRAM_NAME  +
+Constant: com.redhat.camel.component.cics.CICSConstants#CICS_PROGRAM_NAME_HEADER | Program to invoke on CICS server. |              | java.lang.String
+a| CICS_TRANSACTION_ID   +
+Constant: com.redhat.camel.component.cics.CICSConstants#CICS_TRANSACTION_ID_HEADER | Transaction ID to run CICS program under. |              | java.lang.String
+a| CICS_COMM_AREA_SIZE    +
+Constant:  com.redhat.camel.component.cics.CICSConstants#CICS_COMM_AREA_SIZE_HEADER| Length of COMMAREA. The default value is 0. |              | int
+a| CICS_CHANNEL_NAME   +
+Constant: com.redhat.camel.component.cics.CICSConstants#CICS_CHANNEL_NAME_HEADER | The name of the channel to create com.redhat.camel.component.cics.CICSConstants#CICS_CHANNEL_NAME_HEADER|              | java.lang.String
+a| CICS_CONTAINER_NAME  +
+Constant:  com.redhat.camel.component.cics.CICSConstants#CICS_CONTAINER_NAME_HEADER | The name of the container to create.|              | java.lang.String
+a| CICS_CHANNEL_CCSID   +
+Constant:  com.redhat.camel.component.cics.CICSConstants#CICS_CHANNEL_CCSID_HEADER | The CCSID the channel should set as its default. |              | int
+a| CICS_SERVER +
+Constant:  com.redhat.camel.component.cics.CICSConstants#CICS_SERVER_HEADER | CICS server to direct request to. This header over. This header overrides the value configured in the endpoint. |    | java.lang.String
+a| CICS_USER_ID +
+Constant:  com.redhat.camel.component.cics.CICSConstants#CICS_USER_ID_HEADER | User ID for CICS server. This header overrides the value configured in the endpoint. |               | java.lang.String
+a| CICS_PASSWORD    +
+Constant: com.redhat.camel.component.cics.CICSConstants#CICS_PASSWORD_HEADER | Password or password phrase for CICS server. This header overrides the value configured in the endpoint. |              | java.lang.String
+| CICS_ABEND_CODE  +
+Constant:  com.redhat.camel.component.cics.CICSConstants#CICS_ABEND_CODE_HEADER | CICS transaction abend code. |             | java.lang.String
+| CICS_ECI_REQUEST_TIMEOUT  +
+Constant:   com.redhat.camel.component.cics.CICSConstants#CICS_ECI_REQUEST_TIMEOUT_HEADER | The value, in seconds, of the ECI timeout for the current ECIRequest. A value of zero indicates that this ECIRequest will not be timed out by CICS Transaction Gateway  | 0            | short
+|===
+
+// component headers: END

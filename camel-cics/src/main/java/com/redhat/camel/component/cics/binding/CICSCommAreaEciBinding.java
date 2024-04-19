@@ -13,9 +13,11 @@ import java.util.Optional;
 
 import static com.redhat.camel.component.cics.CICSConstants.CICS_ABEND_CODE_HEADER;
 import static com.redhat.camel.component.cics.CICSConstants.CICS_COMM_AREA_SIZE_HEADER;
+import static com.redhat.camel.component.cics.CICSConstants.CICS_ECI_REQUEST_TIMEOUT_HEADER;
 import static com.redhat.camel.component.cics.CICSConstants.CICS_EXTEND_MODE_HEADER;
 import static com.redhat.camel.component.cics.CICSConstants.CICS_LUW_TOKEN_HEADER;
 import static com.redhat.camel.component.cics.CICSConstants.CICS_PROGRAM_NAME_HEADER;
+import static com.redhat.camel.component.cics.CICSConstants.CICS_REQUEST_BODY_TYPE_BYTE;
 import static com.redhat.camel.component.cics.CICSConstants.CICS_REQUEST_BODY_TYPE_HEADER;
 import static com.redhat.camel.component.cics.CICSConstants.CICS_REQUEST_BODY_TYPE_STRING;
 import static com.redhat.camel.component.cics.CICSConstants.CICS_RETURN_CODE_STRING_HEADER;
@@ -36,9 +38,10 @@ public class CICSCommAreaEciBinding implements CICSEciBinding {
     public ECIRequest toECIRequest(Exchange exchange, CICSConfiguration configuration) throws UnsupportedEncodingException {
         Message inMessage = exchange.getMessage();
         // Program Headers: programName, transactionID and commAreaSize
-        int commAreaSize = Optional.ofNullable(inMessage.getHeader(CICS_COMM_AREA_SIZE_HEADER, Integer.class)).orElse(-1);
+        int commAreaSize = Optional.ofNullable(inMessage.getHeader(CICS_COMM_AREA_SIZE_HEADER, Integer.class)).orElse(0);
         String programName = inMessage.getHeader(CICS_PROGRAM_NAME_HEADER, String.class);
         String transactionId = inMessage.getHeader(CICS_TRANSACTION_ID_HEADER, String.class);
+        Short eciRequestTimeout = inMessage.getHeader(CICS_ECI_REQUEST_TIMEOUT_HEADER, Short.class);
         String server = Optional.ofNullable(inMessage.getHeader(CICS_SERVER_HEADER, String.class)).orElse(configuration.getServer());
         int luw = Optional.ofNullable(inMessage.getHeader(CICS_LUW_TOKEN_HEADER, Integer.class)).orElse(ECIRequest.ECI_LUW_NEW);
         int extended = Optional.ofNullable(inMessage.getHeader(CICS_EXTEND_MODE_HEADER, Integer.class)).orElse(ECIRequest.ECI_NO_EXTEND);
@@ -53,6 +56,7 @@ public class CICSCommAreaEciBinding implements CICSEciBinding {
             exchange.getMessage().setHeader(CICS_REQUEST_BODY_TYPE_HEADER, CICS_REQUEST_BODY_TYPE_STRING);
             byteCommArea = stringToBytesCommArea((String) commArea, commAreaSize, configuration);
         } else if (commArea instanceof byte[]) {
+            exchange.getMessage().setHeader(CICS_REQUEST_BODY_TYPE_HEADER, CICS_REQUEST_BODY_TYPE_BYTE);
             byteCommArea = (byte[]) commArea;
         } else {
             if (commAreaSize > 0) {
@@ -63,7 +67,7 @@ public class CICSCommAreaEciBinding implements CICSEciBinding {
             LOGGER.warn("Run Transaction with data format not available. Defining Default CommArea with size: {}", byteCommArea.length);
         }
 
-        return new ECIRequest(
+        ECIRequest request = new ECIRequest(
                 ECIRequest.ECI_SYNC,
                 server, // CICS Server
                 configuration.getUserId(), // UserId, null for none
@@ -71,9 +75,15 @@ public class CICSCommAreaEciBinding implements CICSEciBinding {
                 programName, // Program name
                 transactionId, //transactionId
                 byteCommArea, // COMMAREA
-                commAreaSize,
+                commAreaSize, // COMMAREA SIZE
                 luw,
                 extended);
+
+        if(eciRequestTimeout != null) {
+            request.setECITimeout(eciRequestTimeout);
+        }
+
+        return request;
     }
 
 
@@ -102,7 +112,7 @@ public class CICSCommAreaEciBinding implements CICSEciBinding {
             } else if (request.getCicsRc() == ECIRequest.ECI_ERR_TRANSACTION_ABEND) {
                 LOGGER.debug("Program Flow Exception. An error was returned from the server. Refer to the abend code for further details. '{}'", request.Abend_Code);
             } else {
-                LOGGER.info("Unknown Flow Exception. Return code number: {}. Return code String: {}", iRc, request.getCicsRcString());
+                LOGGER.debug("Unknown Flow Exception. Return code number: {}. Return code String: {}", iRc, request.getCicsRcString());
             }
         }
 
@@ -127,7 +137,7 @@ public class CICSCommAreaEciBinding implements CICSEciBinding {
         } else {
             byteCommArea = new byte[commAreaSize];
         }
-        LOGGER.info("Input CommArea String Data:\n-** INPUT COMMAREA **-\n{}\n-** END INPUT COMMAREA **-", inputCommArea);
+        LOGGER.trace("Input CommArea String Data:\n-** INPUT COMMAREA **-\n{}\n-** END INPUT COMMAREA **-", inputCommArea);
         return byteCommArea;
     }
 }

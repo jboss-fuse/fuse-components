@@ -43,7 +43,7 @@ public class CICSProducer extends DefaultProducer {
     public CICSProducer(CICSEndpoint endpoint, CICSConfiguration configuration) {
         super(endpoint);
         this.configuration = configuration;
-        LOGGER.info("New CICS Producer");
+        LOGGER.debug("New CICS Producer");
     }
 
     /**

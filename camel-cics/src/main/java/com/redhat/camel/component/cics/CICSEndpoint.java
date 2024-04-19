@@ -41,8 +41,8 @@ import org.slf4j.LoggerFactory;
  * @author Jose Roman Martin Gil (rmarting@redhat.com)
  * @author Luigi De Masi (ldemasi@redhat.com)
  */
-@UriEndpoint(firstVersion = "4.4-redhat", scheme = "cics", title = "CICS", syntax = "cics://interfaceType[?options]",
-        producerOnly = true, category = {Category.SAAS})
+@UriEndpoint(firstVersion = "4.4-redhat", scheme = "cics", title = "CICS", syntax = "cics://interfaceType/[dataExchangeType][?options]",
+        producerOnly = true, headersClass = CICSConstants.class, category = {Category.SAAS})
 public class CICSEndpoint extends DefaultEndpoint {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CICSEndpoint.class);

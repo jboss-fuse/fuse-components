@@ -138,7 +138,7 @@ public class CICSPooledGatewayFactory implements CICSGatewayFactory {
                     public void passivateObject(PooledObject<CICSGateway> pooledGateway) throws Exception {
                         //TODO: waiting for an answer from IBM guys about if it's possible and
                         // how to passivate (reset state, if there is any) a JavaGateway object
-                        LOG.trace("passivate Gateway");
+                        LOG.trace("passivate Gateway {}", pooledGateway.getObject().getId() );
                     }
                     @Override
                     public boolean validateObject(PooledObject<CICSGateway> pooledGateway) {

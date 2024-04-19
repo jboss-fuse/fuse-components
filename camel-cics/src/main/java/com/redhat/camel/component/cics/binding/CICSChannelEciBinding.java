@@ -22,6 +22,7 @@ import static com.ibm.ctg.client.ECIRequest.ECI_SYNC;
 import static com.redhat.camel.component.cics.CICSConstants.CICS_CHANNEL_CCSID_HEADER;
 import static com.redhat.camel.component.cics.CICSConstants.CICS_CHANNEL_NAME_HEADER;
 import static com.redhat.camel.component.cics.CICSConstants.CICS_CONTAINER_NAME_HEADER;
+import static com.redhat.camel.component.cics.CICSConstants.CICS_ECI_REQUEST_TIMEOUT_HEADER;
 import static com.redhat.camel.component.cics.CICSConstants.CICS_EXTEND_MODE_HEADER;
 import static com.redhat.camel.component.cics.CICSConstants.CICS_LUW_TOKEN_HEADER;
 import static com.redhat.camel.component.cics.CICSConstants.CICS_PASSWORD_HEADER;
@@ -70,13 +71,12 @@ public class CICSChannelEciBinding implements CICSEciBinding {
         String transactionId = inMessage.getHeader(CICS_TRANSACTION_ID_HEADER, String.class);
         String channelName = inMessage.getHeader(CICS_CHANNEL_NAME_HEADER, String.class);
         String channelCcsid = inMessage.getHeader(CICS_CHANNEL_CCSID_HEADER, String.class);
+        Short eciRequestTimeout = inMessage.getHeader(CICS_ECI_REQUEST_TIMEOUT_HEADER, Short.class);
         String server = Optional.ofNullable(inMessage.getHeader(CICS_SERVER_HEADER, String.class)).orElse(configuration.getServer());
         String username = Optional.ofNullable(inMessage.getHeader(CICS_USER_ID_HEADER, String.class)).orElse(configuration.getUserId());
         String password = Optional.ofNullable(inMessage.getHeader(CICS_PASSWORD_HEADER, String.class)).orElse(configuration.getPassword());
         int luw = Optional.ofNullable(inMessage.getHeader(CICS_LUW_TOKEN_HEADER, Integer.class)).orElse(ECI_LUW_NEW);
         int extended = Optional.ofNullable(inMessage.getHeader(CICS_EXTEND_MODE_HEADER, Integer.class)).orElse(ECI_NO_EXTEND);
-
-
 
         // Input Data from Exchange
         Channel requestChannel = new Channel(channelName);
@@ -87,7 +87,7 @@ public class CICSChannelEciBinding implements CICSEciBinding {
 
         createContainers(exchange, requestChannel);
 
-        return new ECIRequest(
+        ECIRequest request =  new ECIRequest(
                 ECI_SYNC,                    //ECI call type
                 server,                      //CICS server
                 username,                    //CICS username
@@ -98,6 +98,17 @@ public class CICSChannelEciBinding implements CICSEciBinding {
                 extended,                    //ECI extend mode
                 luw                          //ECI LUW token
         );
+
+        if(eciRequestTimeout != null) {
+            request.setECITimeout(eciRequestTimeout);
+        }
+
+        if(transactionId != null){
+            request.Transid = transactionId;
+        }
+
+        return request;
+
     }
 
 

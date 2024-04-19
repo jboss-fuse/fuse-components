@@ -13,8 +13,6 @@ public interface CICSEciBinding {
     default void setResponseHeaders(Message message, ECIRequest request){
         message.setHeader(CICSConstants.CICS_RETURN_CODE_HEADER, request.getCicsRc());
         message.setHeader(CICSConstants.CICS_RETURN_CODE_STRING_HEADER, request.getCicsRcString());
-        message.setHeader(CICSConstants.CICS_RC_HEADER, request.getRc());
-        message.setHeader(CICSConstants.CICS_RC_STRING_HEADER, request.getRcString());
         message.setHeader(CICSConstants.CICS_LUW_TOKEN_HEADER, request.Luw_Token);
         message.setHeader(CICSConstants.CICS_EXTEND_MODE_HEADER, request.Extend_Mode);
     }

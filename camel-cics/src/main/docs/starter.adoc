@@ -1,0 +1,42 @@
+
+:starter-artifactid: {artifactid}-starter
+
+
+== Spring Boot Auto-Configuration
+
+When using {shortname} with Spring Boot make sure to use the following Maven dependency to have support for auto configuration:
+
+[source,xml,subs="+attributes"]
+----
+<dependency>
+  <groupId>org.apache.camel.springboot</groupId>
+  <artifactId>{starter-artifactid}</artifactId>
+  <version>x.x.x</version>
+  <!-- use the same version as your Camel core version -->
+</dependency>
+----
+
+
+The component supports 17 options, which are listed below.
+
+[width="100%",cols="2,5,^1,2",options="header"]
+|===
+| Name | Description | Default | Type
+| camel.component.cics.binding      | The Binding instance to transform a Camel Exchange to EciRequest and vice versa.  | | com.redhat.camel.component.cics.CICSEciBinding
+| camel.component.cics.configuration | Configuration. || com.redhat.camel.component.cics.CICSConfiguration
+| camel.component.cics.ctg-debug                 | Enable debug mode on the underlying IBM CGT client. || java.lang.Boolean
+| camel.component.cics.eci-timeout               | The ECI timeout value associated with this ECIRequest object. An ECI timeout value of zero indicates that this ECIRequest will not be timed out by CICS Transaction Gateway. An ECI timeout value greater than zero indicates that the ECIRequest may be timed out by CICS Transaction Gateway. ECI timeout can expire before a response is received from CICS. This means that the client does not receive the confirmation from CICS that a unit of work has been backed out or committed. | | java.lang.Short
+| camel.component.cics.enabled  | Whether to enable auto configuration of the cics component. This is enabled by default. | | java.lang.Boolean
+| camel.component.cics.encoding                  | The transfer encoding of the message. |  Cp1145   |  java.lang.String
+| camel.component.cics.gateway-factory           | The connection factory to be use. The option is a com.redhat.camel.component.cics.pool.CICSGatewayFactory type.| |com.redhat.camel.component.cics.pool.CICSGatewayFactory
+| camel.component.cics.host                      | The address of the CICS Transaction Gateway that this instance connects to | | java.lang.String
+| camel.component.cics.lazy-start-producer       | Whether the producer should be started lazy (on the first message). By starting lazy you can use this to allow CamelContext and routes to startup in situations where a producer may otherwise fail during starting and cause the route to fail being started. By deferring this startup to be lazy then the startup failure can be handled during routing messages via Camel's routing error handlers. Beware that when the first message is processed then creating and starting the producer may take a little time and prolong the total processing time of the processing. || java.lang.Boolean
+| camel.component.cics.password                  | Password to use for authentication  || java.lang.String
+| camel.component.cics.port                      | The port of the CICS Transaction Gateway that this instance connects to.     | 2006 | java.lang.Integer
+| camel.component.cics.protocol                  | the protocol that this component will use to connect to the CICS Transaction Gateway.  | tcp | java.lang.String
+| camel.component.cics.server                    | The address of the CICS server that this instance connects to   | | java.lang.String
+| camel.component.cics.socket-connection-timeout | The socket connection timeout   | | java.lang.Integer
+| camel.component.cics.ssl-keyring               | The full classname of the SSL key ring class or keystore file to be used for the client encrypted connection  | | java.lang.String
+| camel.component.cics.ssl-password              | The password for the encrypted key ring class or keystore |  | java.lang.String
+| camel.component.cics.user-id                   | User ID to use for authentication   | | java.lang.String
+|===

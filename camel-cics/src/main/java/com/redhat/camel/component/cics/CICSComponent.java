@@ -37,7 +37,7 @@ import java.util.Map;
 @Component("cics")
 public class CICSComponent extends DefaultComponent {
 
-    @Metadata(description = "Configuration")
+    @Metadata(label = "advanced", description = "To use a shared CICS configuration", autowired = true)
     private CICSConfiguration configuration;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CICSComponent.class);
@@ -48,7 +48,6 @@ public class CICSComponent extends DefaultComponent {
 
     public CICSComponent(CamelContext context) {
         super(context);
-
         this.configuration = new CICSConfiguration();
     }
 
