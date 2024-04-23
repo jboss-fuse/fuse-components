@@ -54,12 +54,7 @@ By default, if `dataExchangeType` is not specified, this component use `commarea
 --------------------------------------------
 cics://eci?host=xxx&port=xxx...
 --------------------------------------------
-[NOTE]
-====
-You must create a COMMAREA that is large enough to contain all the information
-to be sent to the server and large enough to contain all the information that
-can be returned from the server.
-====
+
 
 To use `channel` and container you must specify it explicitly in the URI
 
@@ -80,7 +75,15 @@ include::component-endpoint-headers.adoc[]
 === Use Commarea
 
 In the following sample we configure a route that run a program on a CICS server
-using COMMAREA:
+using COMMAREA. The COMMAREA size has to be defined in `CICS_COMM_AREA_SIZE`
+header, while the COMMAREA input data is defined in the Camel Exchange body.
+
+[NOTE]
+====
+You must create a COMMAREA that is large enough to contain all the information
+to be sent to the server and large enough to contain all the information that
+can be returned from the server.
+====
 
 [source,java]
 --------------------------------
@@ -96,6 +99,10 @@ from("direct:run").
    to("cics:eci/commarea?host=192.168.0.23&port=2006&protocol=tcp&userId=foo&password=bar");
 --------------------------------
 
+The Outcome of the CICS program invocation is mapped to Camel Exchange in this way:
+
+* The numeric value of return code is stored in the `CICS_RETURN_CODE` header
+* The COMMAREA output data is stored in the Caamel Exchange Body.
 
 === Use Channel with a single input container
 
@@ -149,5 +156,10 @@ from("direct:run").
   }).
   to("cics:eci/channel?host=192.168.0.23&port=2006&protocol=tcp&userId=foo&password=bar");
 ------------------------------
+
+
+
+
+
 
 include::starter.adoc[]
