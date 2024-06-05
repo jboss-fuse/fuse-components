@@ -8,7 +8,7 @@
   </parent>
   <groupId>com.sap.conn.idoc</groupId>
   <artifactId>com.sap.conn.idoc</artifactId>
-  <version>3.1.1.redhat-00001</version>
+  <version>7.13.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>SAP IDoc Class Library v3 Plugin</name>
   <description>Builds Plugin exporting the IDoc Class Library v3</description>
