@@ -21,12 +21,12 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<camel-version>2.23.2.fuse-7_13_0-00013</camel-version>
+		<camel-version>2.23.2.fuse-7_13_0-00013-redhat-00001</camel-version>
 		<sapjco3-version>3.1.4</sapjco3-version>
 		<sapidoc3-version>3.1.1</sapidoc3-version>
 		<lib.directory>${project.build.directory}/lib</lib.directory>
-		<logback-version>1.2.13</logback-version>
-		<slf4j-version>1.7.32.redhat-00001</slf4j-version>
+		<logback-version>1.2.13.redhat-00002</logback-version>
+		<slf4j-version>1.7.32.redhat-00004</slf4j-version>
 	</properties>
 
 	<dependencyManagement>
