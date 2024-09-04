@@ -4,7 +4,7 @@
 :artifactid: camel-cics
 :description: CICS Endpoint
 :since: 4.4-redhat
-:supportlevel: Preview
+:supportlevel: Stable
 :tabs-sync-option:
 :component-header: Only producer is supported
 //Manually maintained attributes
