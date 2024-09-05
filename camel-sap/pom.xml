@@ -35,7 +35,6 @@
 		<camel-version>4.4.0</camel-version>
 		<camel-community-version>4.4.0</camel-community-version>
 		<camel.sap.plugin.version>4.4.0-SNAPSHOT</camel.sap.plugin.version>
-		<karaf-version>4.2.15.fuse-7_11_1-00017</karaf-version>
 		<mockito.version>3.12.4</mockito.version>
 		<powermock.version>2.0.2</powermock.version>
 		<hamcrest.version>2.1</hamcrest.version>
@@ -451,20 +450,6 @@
 							<_failok>false</_failok>
 						</instructions>
 					</configuration>
-					<executions>
-						<execution>
-							<id>cleanVersions</id>
-							<phase>generate-sources</phase>
-							<goals>
-								<goal>cleanVersions</goal>
-							</goals>
-							<configuration>
-								<versions>
-									<karaf.osgi.version>${karaf-version}</karaf.osgi.version>
-								</versions>
-							</configuration>
-						</execution>
-					</executions>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>

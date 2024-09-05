@@ -194,20 +194,6 @@
 						<Include-Resource>{maven-resources},META-INF/jandex.idx=target/classes/META-INF/jandex.idx</Include-Resource>
 					</instructions>
 				</configuration>
-				<executions>
-					<execution>
-						<id>cleanVersions</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>cleanVersions</goal>
-						</goals>
-						<configuration>
-							<versions>
-								<karaf.osgi.version>${karaf-version}</karaf.osgi.version>
-							</versions>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
