@@ -32,9 +32,9 @@
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven-surefire-plugin-version>2.22.2</maven-surefire-plugin-version>
 		<maven-bundle-plugin-version>5.1.8</maven-bundle-plugin-version>
-		<camel-version>4.4.0</camel-version>
-		<camel-community-version>4.4.0</camel-community-version>
-		<camel.sap.plugin.version>4.4.0-SNAPSHOT</camel.sap.plugin.version>
+		<camel-version>4.8.0.redhat-00001</camel-version>
+		<camel-community-version>4.8.0</camel-community-version>
+		<camel.sap.plugin.version>4.8.0-SNAPSHOT</camel.sap.plugin.version>
 		<mockito.version>3.12.4</mockito.version>
 		<powermock.version>2.0.2</powermock.version>
 		<hamcrest.version>2.1</hamcrest.version>

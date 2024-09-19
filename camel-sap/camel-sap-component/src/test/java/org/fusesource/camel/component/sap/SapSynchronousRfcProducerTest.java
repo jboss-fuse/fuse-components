@@ -49,8 +49,8 @@ import com.sap.conn.jco.JCoDestinationManager;
 public class SapSynchronousRfcProducerTest extends SapRfcTestSupport {
 	
 	@Override
-	public void doPreSetup() throws Exception {
-		super.doPreSetup();
+	public void setupResources() throws Exception {
+		super.setupResources();
 		MockedStatic<JCoDestinationManager> helper = Mockito.mockStatic(JCoDestinationManager.class);
 		helper.when(() -> JCoDestinationManager.getDestination(DESTINATION_NAME)).thenReturn(mockDestination);
 	}

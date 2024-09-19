@@ -944,8 +944,8 @@ public abstract class SapIDocTestSupport extends JCoTestSupport {
 	}
 	
 	@Override
-	public void doPreSetup() throws Exception {
-		super.doPreSetup();
+	public void setupResources() throws Exception {
+		super.setupResources();
 		
 		createMocks();
 		

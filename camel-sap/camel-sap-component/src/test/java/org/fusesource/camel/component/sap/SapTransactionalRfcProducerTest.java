@@ -42,8 +42,8 @@ import static org.mockito.Mockito.verify;
 public class SapTransactionalRfcProducerTest extends SapRfcTestSupport {
 	
 	@Override
-	public void doPreSetup() throws Exception {
-		super.doPreSetup();
+	public void setupResources() throws Exception {
+		super.setupResources();
 		MockedStatic<JCoDestinationManager> dest = Mockito.mockStatic(JCoDestinationManager.class);
 		dest.when(() -> JCoDestinationManager.getDestination(DESTINATION_NAME)).thenReturn(mockDestination);
 	}

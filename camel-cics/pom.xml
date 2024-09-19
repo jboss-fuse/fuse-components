@@ -41,7 +41,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <slf4j-api-version>2.0.12.redhat-00001</slf4j-api-version>
         <cgtclient-version>9.2</cgtclient-version>
-        <camel-version>4.4.0.redhat-00009</camel-version>
+        <camel-version>4.8.0.redhat-00001</camel-version>
         <jdk.version>17</jdk.version>
         <maven.compiler.source>${jdk.version}</maven.compiler.source>
         <maven.compiler.target>${jdk.version}</maven.compiler.target>

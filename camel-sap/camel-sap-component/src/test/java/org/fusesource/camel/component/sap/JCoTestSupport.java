@@ -31,8 +31,8 @@ public abstract class JCoTestSupport extends CamelSpringTestSupport {
 	public static final String TEST_CONNECTION_COUNT = "2";
 
 	@Override
-	public void doPreSetup() throws Exception {
-		super.doPreSetup();
+	public void setupResources() throws Exception {
+		super.setupResources();
 
 		// Setup test destination data store entry
 		DestinationDataStore destinationDataStore = new DestinationDataStoreImpl();

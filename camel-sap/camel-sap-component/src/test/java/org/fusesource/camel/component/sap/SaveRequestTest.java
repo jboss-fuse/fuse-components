@@ -13,8 +13,8 @@ public class SaveRequestTest extends SapRfcTestSupport {
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public void doPreSetup() throws Exception {
-		super.doPreSetup();
+	public void setupResources() throws Exception {
+		super.setupResources();
 
 		MockedStatic<JCoDestinationManager> dest = Mockito.mockStatic(JCoDestinationManager.class);
 		dest.when(() -> JCoDestinationManager.getDestination(DESTINATION_NAME)).thenReturn(mockDestination);

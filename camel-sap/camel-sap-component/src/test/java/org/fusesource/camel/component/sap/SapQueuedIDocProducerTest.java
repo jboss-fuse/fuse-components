@@ -32,8 +32,8 @@ public class SapQueuedIDocProducerTest extends SapIDocTestSupport {
 	private MockedStatic<JCoDestinationManager> dest;
 
 	@Override
-	public void doPreSetup() throws Exception {
-		super.doPreSetup();
+	public void setupResources() throws Exception {
+		super.setupResources();
 
 		this.dest = Mockito.mockStatic(JCoDestinationManager.class);
 		this.dest.when(() -> JCoDestinationManager.getDestination(TEST_DEST)).thenReturn(mockDestination);

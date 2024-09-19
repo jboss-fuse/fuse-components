@@ -203,8 +203,8 @@ public abstract class SapRfcTestSupport extends JCoTestSupport {
 	protected JCoServerFunctionHandlerFactory mockFunctionHandlerFactory;
 	protected JCoTable mockTable;
 	
-	public void doPreSetup() throws Exception {	
-		super.doPreSetup();
+	public void setupResources() throws Exception {	
+		super.setupResources();
 		
 		/* Create mocks for repository and function template */
 		mockDestination = mock(JCoDestination.class);
