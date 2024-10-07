@@ -179,6 +179,10 @@ public class CICSGateway implements Closeable {
      * @throws IOException If an error occurs when opening the CICSGateway
      */
     public void open() throws IOException {
+        if (this.gateway != null && this.gateway.isOpen()){
+            LOG.debug("Connection [ID:{}] already opened",this.id);
+            return;
+        }
         try {
             LOG.debug("Opening connection [ID:{}]",this.id);
             this.gateway.open();
