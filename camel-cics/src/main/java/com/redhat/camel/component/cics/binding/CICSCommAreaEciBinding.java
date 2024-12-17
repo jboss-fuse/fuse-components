@@ -12,14 +12,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Optional;
 
 import static com.ibm.ctg.client.ECIReturnCodes.ECI_NO_ERROR;
-import static com.redhat.camel.component.cics.CICSConstants.CICS_COMM_AREA_SIZE_HEADER;
-import static com.redhat.camel.component.cics.CICSConstants.CICS_ECI_REQUEST_TIMEOUT_HEADER;
-import static com.redhat.camel.component.cics.CICSConstants.CICS_ENCODING_HEADER;
-import static com.redhat.camel.component.cics.CICSConstants.CICS_EXTEND_MODE_HEADER;
-import static com.redhat.camel.component.cics.CICSConstants.CICS_LUW_TOKEN_HEADER;
-import static com.redhat.camel.component.cics.CICSConstants.CICS_PROGRAM_NAME_HEADER;
-import static com.redhat.camel.component.cics.CICSConstants.CICS_SERVER_HEADER;
-import static com.redhat.camel.component.cics.CICSConstants.CICS_TRANSACTION_ID_HEADER;
+import static com.redhat.camel.component.cics.CICSConstants.*;
 import static com.redhat.camel.component.cics.support.CICSUtils.getBytes;
 
 public class CICSCommAreaEciBinding implements CICSEciBinding {
@@ -37,7 +30,7 @@ public class CICSCommAreaEciBinding implements CICSEciBinding {
         int luw = Optional.ofNullable(inMessage.getHeader(CICS_LUW_TOKEN_HEADER, Integer.class)).orElse(ECIRequest.ECI_LUW_NEW);
         int extended = Optional.ofNullable(inMessage.getHeader(CICS_EXTEND_MODE_HEADER, Integer.class)).orElse(ECIRequest.ECI_NO_EXTEND);
         String encoding = Optional.ofNullable(inMessage.getHeader(CICS_ENCODING_HEADER, String.class)).orElse(configuration.getEncoding());
-
+        int callType = Optional.ofNullable(inMessage.getHeader(CICS_CALL_TYPE_HEADER, Integer.class)).orElse(configuration.getCallType());
 
         // Input CommArea Data from Exchange
         Object commArea = inMessage.getBody();
@@ -58,7 +51,7 @@ public class CICSCommAreaEciBinding implements CICSEciBinding {
         }
 
         ECIRequest request = new ECIRequest(
-                ECIRequest.ECI_SYNC,
+                callType,
                 server, // CICS Server
                 configuration.getUserId(), // UserId, null for none
                 configuration.getPassword(), // Password, null for none

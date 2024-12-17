@@ -46,6 +46,8 @@ Constant:  com.redhat.camel.component.cics.CICSConstants#CICS_ABEND_CODE_HEADER 
 Constant:   com.redhat.camel.component.cics.CICSConstants#CICS_ECI_REQUEST_TIMEOUT_HEADER | The value, in seconds, of the ECI timeout for the current ECIRequest. A value of zero indicates that this ECIRequest will not be timed out by CICS Transaction Gateway  | 0            | short
 | CICS_ENCODING +
 Constant:   com.redhat.camel.component.cics.CICSConstants#CICS_ENCODING_HEADER | Encoding to convert COMMAREA data to before sending.  |             | String
+a| CICS_CALL_TYPE   +
+Constant: com.redhat.camel.component.cics.CICSConstants#CICS_CALL_TYPE_HEADER | The CICS ECI call type. | com.ibm.ctg.client.ECIRequest.ECI_SYNC             | int
 |===
 
 // component headers: END

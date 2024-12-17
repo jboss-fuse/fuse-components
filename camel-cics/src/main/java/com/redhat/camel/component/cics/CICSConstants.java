@@ -86,4 +86,6 @@ public interface CICSConstants {
     @Metadata(label = "producer", description = "Encoding to convert COMMAREA data to before sending the request.", javaType = "java.lang.String")
     String CICS_ENCODING_HEADER = "CICS_ENCODING";
 
+    @Metadata(label = "producer", description = "CICS ECI call type. The default value is ECI_SYNC.", javaType = "int")
+    String CICS_CALL_TYPE_HEADER = "CICS_CALL_TYPE";
 }

@@ -33,9 +33,8 @@ The {doctitle} component supports 17 options, which are listed below.
 | password                | Password to use for authentication                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |              | java.lang.String
 | userId                  | User ID to use for authentication                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |              | java.lang.String
 | initialFlow             | When a JavaGateway instance connects to a remote Gateway, an initial flow takes place | false | java.lang.Boolean
-
+| callType                | The CICS ECI call type | com.ibm.ctg.client.ECIRequest.ECI_SYNC | int
 |===
-
 
 
 // endpoint options: START
@@ -85,4 +84,5 @@ Enum value: +
 | password                | Password to use for authentication |              | java.lang.String
 | userId                  | User ID to use for authentication  |              | java.lang.String
 | initialFlow             | When a JavaGateway instance connects to a remote Gateway, an initial flow takes place | false | java.lang.Boolean
+| callType                | The CICS ECI call type | com.ibm.ctg.client.ECIRequest.ECI_SYNC | int
 |===

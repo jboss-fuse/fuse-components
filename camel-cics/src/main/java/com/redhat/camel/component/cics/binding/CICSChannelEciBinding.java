@@ -20,17 +20,7 @@ import static com.ibm.ctg.client.ECIRequest.ECI_LUW_NEW;
 import static com.ibm.ctg.client.ECIRequest.ECI_NO_EXTEND;
 import static com.ibm.ctg.client.ECIRequest.ECI_SYNC;
 import static com.ibm.ctg.client.ECIReturnCodes.ECI_NO_ERROR;
-import static com.redhat.camel.component.cics.CICSConstants.CICS_CHANNEL_CCSID_HEADER;
-import static com.redhat.camel.component.cics.CICSConstants.CICS_CHANNEL_NAME_HEADER;
-import static com.redhat.camel.component.cics.CICSConstants.CICS_CONTAINER_NAME_HEADER;
-import static com.redhat.camel.component.cics.CICSConstants.CICS_ECI_REQUEST_TIMEOUT_HEADER;
-import static com.redhat.camel.component.cics.CICSConstants.CICS_EXTEND_MODE_HEADER;
-import static com.redhat.camel.component.cics.CICSConstants.CICS_LUW_TOKEN_HEADER;
-import static com.redhat.camel.component.cics.CICSConstants.CICS_PASSWORD_HEADER;
-import static com.redhat.camel.component.cics.CICSConstants.CICS_PROGRAM_NAME_HEADER;
-import static com.redhat.camel.component.cics.CICSConstants.CICS_SERVER_HEADER;
-import static com.redhat.camel.component.cics.CICSConstants.CICS_TRANSACTION_ID_HEADER;
-import static com.redhat.camel.component.cics.CICSConstants.CICS_USER_ID_HEADER;
+import static com.redhat.camel.component.cics.CICSConstants.*;
 import static java.lang.Integer.parseInt;
 import static org.apache.camel.support.ObjectHelper.isNumber;
 
@@ -78,6 +68,8 @@ public class CICSChannelEciBinding implements CICSEciBinding {
         String password = Optional.ofNullable(inMessage.getHeader(CICS_PASSWORD_HEADER, String.class)).orElse(configuration.getPassword());
         int luw = Optional.ofNullable(inMessage.getHeader(CICS_LUW_TOKEN_HEADER, Integer.class)).orElse(ECI_LUW_NEW);
         int extended = Optional.ofNullable(inMessage.getHeader(CICS_EXTEND_MODE_HEADER, Integer.class)).orElse(ECI_NO_EXTEND);
+        int callType = Optional.ofNullable(inMessage.getHeader(CICS_CALL_TYPE_HEADER, Integer.class)).orElse(configuration.getCallType());
+
 
         // Input Data from Exchange
         Channel requestChannel = new Channel(channelName);
@@ -89,7 +81,7 @@ public class CICSChannelEciBinding implements CICSEciBinding {
         createContainers(exchange, requestChannel);
 
         ECIRequest request =  new ECIRequest(
-                ECI_SYNC,                    //ECI call type
+                callType,                    //ECI call type
                 server,                      //CICS server
                 username,                    //CICS username
                 password,                    //CICS password
@@ -131,12 +123,8 @@ public class CICSChannelEciBinding implements CICSEciBinding {
 
             for (Container cont : request.getChannel().getContainers()) {
                 switch (cont.getType()) {
-                    case CHAR -> {
-                        containers.put(cont.getName(), cont.getCHARData());
-                    }
-                    case BIT -> {
-                        containers.put(cont.getName(), cont.getBITData());
-                    }
+                    case CHAR -> containers.put(cont.getName(), cont.getCHARData());
+                    case BIT -> containers.put(cont.getName(), cont.getBITData());
                 }
             }
             message.setBody(containers);

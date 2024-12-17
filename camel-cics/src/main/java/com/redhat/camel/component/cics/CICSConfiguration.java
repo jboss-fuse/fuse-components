@@ -15,6 +15,7 @@
  */
 package com.redhat.camel.component.cics;
 
+import com.ibm.ctg.client.ECIRequest;
 import com.redhat.camel.component.cics.binding.CICSChannelEciBinding;
 import com.redhat.camel.component.cics.binding.CICSCommAreaEciBinding;
 import com.redhat.camel.component.cics.pool.CICSGatewayFactory;
@@ -117,6 +118,9 @@ public class CICSConfiguration implements Cloneable {
 
     @UriPath(defaultValue = "commarea", description = "Use channel instead of commarea data structure")
     private CICSDataExchangeType dataExchangeType = COMMAREA;
+
+    @UriPath(defaultValue = "" + ECIRequest.ECI_SYNC, description = "CICS ECI call type. The default value is ECI_SYNC")
+    private int callType = ECIRequest.ECI_SYNC;
 
     public CICSEciBinding getOrCreateEciBinding() {
         if (this.eciBinding == null) {
@@ -333,5 +337,13 @@ public class CICSConfiguration implements Cloneable {
 
     public void setInitialFlow(Boolean initialFlow) {
         this.initialFlow = initialFlow;
+    }
+
+    public int getCallType() {
+        return callType;
+    }
+
+    public void setCallType(int callType) {
+        this.callType = callType;
     }
 }
