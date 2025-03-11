@@ -11,7 +11,7 @@
     "supportLevel": "Stable",
     "groupId": "org.fusesource",
     "artifactId": "camel-cics",
-    "version": "4.8.3-SNAPSHOT",
+    "version": "4.8.5-SNAPSHOT",
     "scheme": "cics",
     "extendsScheme": "",
     "syntax": "cics:\/\/interfaceType\/[dataExchangeType][?options]",
