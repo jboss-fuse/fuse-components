@@ -23,8 +23,7 @@ public class CICSEndpointUriFactory extends org.apache.camel.support.component.E
     private static final Set<String> SECRET_PROPERTY_NAMES;
     private static final Set<String> MULTI_VALUE_PREFIXES;
     static {
-        Set<String> props = new HashSet<>(19);
-        props.add("callType");
+        Set<String> props = new HashSet<>(18);
         props.add("ctgDebug");
         props.add("dataExchangeType");
         props.add("eciBinding");
@@ -66,7 +65,6 @@ public class CICSEndpointUriFactory extends org.apache.camel.support.component.E
 
         uri = buildPathParameter(syntax, uri, "interfaceType", "eci", true, copy);
         uri = buildPathParameter(syntax, uri, "dataExchangeType", "commarea", false, copy);
-        uri = buildPathParameter(syntax, uri, "callType", 1, false, copy);
         uri = buildQueryParameters(uri, copy, encode);
         return uri;
     }
