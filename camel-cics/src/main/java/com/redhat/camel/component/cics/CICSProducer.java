@@ -73,6 +73,12 @@ public class CICSProducer extends DefaultProducer {
 
         ECIRequest request = configuration.getOrCreateEciBinding().toECIRequest(exchange, configuration);
         request.Commarea_Length = 32768;
+
+        //if there is no byte[] in commarea, the commarea_length is set to 0 and requests (channel type) fail
+        if(request.Commarea == null) {
+            request.Commarea = new byte[18];
+        }
+
         CICSGatewayFactory gf = configuration.getOrCreateGatewayFactory();
         try (CICSGateway gw = gf.createGateway()) {
             gw.open();
