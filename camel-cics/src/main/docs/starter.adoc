@@ -24,7 +24,7 @@ The component supports 17 options, which are listed below.
 | Name | Description | Default | Type
 | camel.component.cics.binding      | The Binding instance to transform a Camel Exchange to EciRequest and vice versa.  | | com.redhat.camel.component.cics.CICSEciBinding
 | camel.component.cics.configuration | Configuration. || com.redhat.camel.component.cics.CICSConfiguration
-| camel.component.cics.ctg-debug                 | Enable debug mode on the underlying IBM CGT client. || java.lang.Boolean
+| camel.component.cics.ctg-debug                 | Enable debug mode on the underlying IBM CTG client. || java.lang.Boolean
 | camel.component.cics.eci-timeout               | The ECI timeout value associated with this ECIRequest object. An ECI timeout value of zero indicates that this ECIRequest will not be timed out by CICS Transaction Gateway. An ECI timeout value greater than zero indicates that the ECIRequest may be timed out by CICS Transaction Gateway. ECI timeout can expire before a response is received from CICS. This means that the client does not receive the confirmation from CICS that a unit of work has been backed out or committed. | | java.lang.Short
 | camel.component.cics.enabled  | Whether to enable auto configuration of the cics component. This is enabled by default. | | java.lang.Boolean
 | camel.component.cics.encoding                  |  The transfer encoding of the message.   |  Cp1145   |  java.lang.String

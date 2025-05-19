@@ -21,7 +21,7 @@ public class AbstractCICSContainerizedTest  extends CamelTestSupport {
             new GenericContainer<>("images.paas.redhat.com/fuseqe/ibm-cicstg-container-linux-x86-trial:9.3")
                     .withEnv("LICENSE","accept")
                     .withNetwork(network)
-                    .withNetworkAliases("cgt")
+                    .withNetworkAliases("ctg")
                     .withExposedPorts(2006, 2810)
                     .withCopyFileToContainer(MountableFile.forClasspathResource("ctg.ini"), "/var/cicscli/ctg.ini")
                     .waitingFor(Wait.forLogMessage(".*CTG6512I CICS Transaction Gateway initialization complete.*",1))

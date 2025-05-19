@@ -40,7 +40,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <slf4j-api-version>2.0.12.redhat-00001</slf4j-api-version>
-        <cgtclient-version>9.2</cgtclient-version>
+        <ctgclient-version>9.2</ctgclient-version>
         <camel-version>4.10.3.redhat-00001</camel-version>
         <jdk.version>17</jdk.version>
         <maven.compiler.source>${jdk.version}</maven.compiler.source>
@@ -67,7 +67,7 @@
         <dependency>
             <groupId>com.ibm</groupId>
             <artifactId>ctgclient</artifactId>
-            <version>${cgtclient-version}</version>
+            <version>${ctgclient-version}</version>
             <scope>provided</scope>
         </dependency>
 

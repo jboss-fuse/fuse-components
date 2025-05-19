@@ -83,7 +83,7 @@ public class CICSConfiguration implements Cloneable {
     @UriParam(description = "The full classname of the SSL key ring class or keystore file to be used for the client encrypted connection", label = "advanced, security")
     private String sslKeyring;
 
-    @UriParam(description = "Enable debug mode on the underlying IBM CGT client.", defaultValue = "false")
+    @UriParam(description = "Enable debug mode on the underlying IBM CTG client.", defaultValue = "false")
     private Boolean ctgDebug = Boolean.FALSE;
 
     @Metadata
