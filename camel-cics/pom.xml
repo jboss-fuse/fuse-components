@@ -128,7 +128,7 @@
         </repository>
         <repository>
             <id>QE_CICS</id>
-            <url>https://nexus.fuse-qe.eng.rdu2.redhat.com/repository/ibm-cics-internal</url>
+            <url>https://nexus-camel-qe.apps.int.prod-scale-spoke1-aws-us-east-1.itup.redhat.com/repository/ibm-cics-internal</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -138,7 +138,7 @@
         </repository>
         <repository>
             <id>QE_FUSE_ALL</id>
-            <url>https://nexus.fuse-qe.eng.rdu2.redhat.com/repository/fuse-all</url>
+            <url>https://nexus-camel-qe.apps.int.prod-scale-spoke1-aws-us-east-1.itup.redhat.com/repository/fuse-all</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
