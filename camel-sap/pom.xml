@@ -127,17 +127,17 @@
 			<dependency>
 				<groupId>com.sap.conn.idoc</groupId>
 				<artifactId>sapidoc3</artifactId>
-				<version>3.1.1</version>
-			</dependency>
-			<dependency>
-				<groupId>com.sap.conn.jco</groupId>
-				<artifactId>sapjco3</artifactId>
 				<version>3.1.4</version>
 			</dependency>
 			<dependency>
 				<groupId>com.sap.conn.jco</groupId>
 				<artifactId>sapjco3</artifactId>
-				<version>3.1.4</version>
+				<version>3.1.12</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sap.conn.jco</groupId>
+				<artifactId>sapjco3</artifactId>
+				<version>3.1.12</version>
 				<type>${envType}</type>
 				<classifier>${envClassifier}</classifier>
 				<scope>test</scope>
@@ -396,7 +396,21 @@
 				</os>
 			</activation>
 			<properties>
-				<envClassifier>macosx-x86_64</envClassifier>
+				<envClassifier>osx-x86_64</envClassifier>
+				<envType>dylib</envType>
+				<native.lib.filename>libsapjco3</native.lib.filename>
+			</properties>
+		</profile>
+		<profile>
+			<id>macosx-arm64</id>
+			<activation>
+				<os>
+					<name>mac os x</name>
+					<arch>aarch64</arch>
+				</os>
+			</activation>
+			<properties>
+				<envClassifier>osx-aarch_64</envClassifier>
 				<envType>dylib</envType>
 				<native.lib.filename>libsapjco3</native.lib.filename>
 			</properties>
@@ -523,18 +537,6 @@
 
 	<repositories>
 		<repository>
-			<id>brewroot</id>
-			<name>Brew Repository</name>
-			<url>http://download.eng.bos.redhat.com/brewroot/repos/jb-fuse-6.2-build/latest/maven</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<releases>
-				<enabled>true</enabled>
-				<updatePolicy>never</updatePolicy>
-			</releases>
-		</repository>
-		<repository>
 			<id>fusesource-third-party-internal</id>
 			<url>https://repository.jboss.org/nexus/content/repositories/fs-releases/</url>
 			<layout>default</layout>
@@ -544,11 +546,6 @@
 			<releases>
 				<enabled>true</enabled>
 			</releases>
-		</repository>
-		<repository>
-			<id>RH2</id>
-			<url>http://download.eng.bos.redhat.com/brewroot/repos/jb-fsw-6.2-build/latest/maven</url>
-			<layout>default</layout>
 		</repository>
 	</repositories>
 	<pluginRepositories>
