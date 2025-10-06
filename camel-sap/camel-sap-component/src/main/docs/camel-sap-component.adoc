@@ -92,10 +92,16 @@ Navigate to your project's `lib` directory and save the SAP libraries.
 </dependency>
 ----
 
-. Define the `spring-boot-maven-plugin`.
+ifdef::CQ[]
 
+
+endif::[]
+
+
+
+ifdef::CSB[]
+. Define the maven `spring-boot-maven-plugin`.
 +
-
 .For *local* profile
 [source,xml]
 ----
@@ -234,6 +240,9 @@ The `application-openshift.properties` file is used by *Openshift* profile and t
 ----
 spring.profiles.active=@spring.profiles.active@
 ----
+
+endif::[]
+
 
 == URI format
 
@@ -500,9 +509,7 @@ These configurations must be passed to the component during its initialization.
 
 .Example
 The following example shows how to configure a sample destination data store and a sample server data store in an XML file.
-The
-`sap-configuration` bean (of type
-`SapConnectionConfiguration`) will automatically be injected into any SAP component that is used in this XML file.
+The `sap-configuration` bean (of type `SapConnectionConfiguration`) will automatically be injected into any SAP component that is used in this XML file.
 
 [source,xml,subs="attributes+"]
 ----
@@ -2643,7 +2650,7 @@ The Java DSL for the example route is as follows:
 
 [source,java,subs="attributes+"]
 ----
-<DataFormat jaxb = new JaxbDataFormat("org.fusesource.sap.example.jaxb");
+DataFormat jaxb = new JaxbDataFormat("org.fusesource.sap.example.jaxb");
 
 from("sap-srfc-server:nplserver:BOOK_FLIGHT")
     .unmarshal(jaxb)
