@@ -8,7 +8,7 @@
 :tabs-sync-option:
 :component-header: Only producer is supported
 //Manually maintained attributes
-:camel-spring-boot-name: cics
+:camel-spring-boot-name: sap
 
 The SAP component is a package consisting of ten different SAP components.
 There are remote function call (RFC) components that support the sRFC, tRFC, and qRFC protocols and there are IDoc components that facilitate communication using messages in IDoc format.
