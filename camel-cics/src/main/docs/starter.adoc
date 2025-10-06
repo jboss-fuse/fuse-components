@@ -1,10 +1,9 @@
 
 :starter-artifactid: {artifactid}-starter
 
-
 == Spring Boot Auto-Configuration
 
-When using {shortname} with Spring Boot make sure to use the following Maven dependency to have support for auto configuration:
+When using {shortname} with Spring Boot make sure to use the following Maven dependency to have support for auto-configuration:
 
 [source,xml,subs="+attributes"]
 ----
@@ -15,7 +14,6 @@ When using {shortname} with Spring Boot make sure to use the following Maven dep
   <!-- use the same version as your Camel core version -->
 </dependency>
 ----
-
 
 The component supports 17 options, which are listed below.
 

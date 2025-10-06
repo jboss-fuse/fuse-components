@@ -17,7 +17,7 @@ Because components typically have pre-configured defaults that are commonly used
 
 You can configure components using:
 
-* the Component DSL.
+* the xref:manual::component-dsl.adoc[Component DSL].
 * in a configuration file (`application.properties`, `*.yaml` files, etc).
 * directly in the Java code.
 
@@ -28,10 +28,10 @@ These options help you customize what you want the endpoint to do.
 The options are also categorized into whether the endpoint is used as a consumer (_from_), as a producer (_to_), or  both.
 
 Configuring endpoints is most often done directly in the endpoint URI as _path_ and _query_ parameters.
-You can also use the Endpoint DSL and DataFormat DSL
+You can also use the xref:manual::Endpoint-dsl.adoc[Endpoint DSL] and xref:manual::dataformat-dsl.adoc[DataFormat DSL]
 as a _type safe_ way of configuring endpoints and data formats in Java.
 
-A good practice when configuring options is to use Property Placeholders.
+A good practice when configuring options is to use xref:manual::using-propertyplaceholder.adoc[Property Placeholders].
 
 Property placeholders provide a few benefits:
 
