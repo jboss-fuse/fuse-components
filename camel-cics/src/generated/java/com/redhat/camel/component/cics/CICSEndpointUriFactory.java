@@ -21,7 +21,7 @@ public class CICSEndpointUriFactory extends org.apache.camel.support.component.E
 
     private static final Set<String> PROPERTY_NAMES;
     private static final Set<String> SECRET_PROPERTY_NAMES;
-    private static final Set<String> MULTI_VALUE_PREFIXES;
+    private static final Map<String, String> MULTI_VALUE_PREFIXES;
     static {
         Set<String> props = new HashSet<>(18);
         props.add("ctgDebug");
@@ -48,7 +48,7 @@ public class CICSEndpointUriFactory extends org.apache.camel.support.component.E
         secretProps.add("sslPassword");
         secretProps.add("userId");
         SECRET_PROPERTY_NAMES = Collections.unmodifiableSet(secretProps);
-        MULTI_VALUE_PREFIXES = Collections.emptySet();
+        MULTI_VALUE_PREFIXES = Collections.emptyMap();
     }
 
     @Override
@@ -80,7 +80,7 @@ public class CICSEndpointUriFactory extends org.apache.camel.support.component.E
     }
 
     @Override
-    public Set<String> multiValuePrefixes() {
+    public Map<String, String> multiValuePrefixes() {
         return MULTI_VALUE_PREFIXES;
     }
 
