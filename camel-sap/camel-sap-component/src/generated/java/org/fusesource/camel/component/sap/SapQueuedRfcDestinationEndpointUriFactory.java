@@ -21,7 +21,7 @@ public class SapQueuedRfcDestinationEndpointUriFactory extends org.apache.camel.
 
     private static final Set<String> PROPERTY_NAMES;
     private static final Set<String> SECRET_PROPERTY_NAMES;
-    private static final Map<String, String> MULTI_VALUE_PREFIXES;
+    private static final Set<String> MULTI_VALUE_PREFIXES;
     static {
         Set<String> props = new HashSet<>(6);
         props.add("destination");
@@ -32,7 +32,7 @@ public class SapQueuedRfcDestinationEndpointUriFactory extends org.apache.camel.
         props.add("transacted");
         PROPERTY_NAMES = Collections.unmodifiableSet(props);
         SECRET_PROPERTY_NAMES = Collections.emptySet();
-        MULTI_VALUE_PREFIXES = Collections.emptyMap();
+        MULTI_VALUE_PREFIXES = Collections.emptySet();
     }
 
     @Override
@@ -65,7 +65,7 @@ public class SapQueuedRfcDestinationEndpointUriFactory extends org.apache.camel.
     }
 
     @Override
-    public Map<String, String> multiValuePrefixes() {
+    public Set<String> multiValuePrefixes() {
         return MULTI_VALUE_PREFIXES;
     }
 
