@@ -11,7 +11,7 @@
     "supportLevel": "Stable",
     "groupId": "org.fusesource",
     "artifactId": "camel-sap",
-    "version": "4.18.0-SNAPSHOT",
+    "version": "4.18.1-SNAPSHOT",
     "scheme": "sap-srfc-server",
     "extendsScheme": "",
     "syntax": "sap-srfc-server:server:rfc",
