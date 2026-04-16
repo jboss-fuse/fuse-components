@@ -11,7 +11,7 @@
     "supportLevel": "Stable",
     "groupId": "org.fusesource",
     "artifactId": "camel-sap",
-    "version": "4.18.1-SNAPSHOT",
+    "version": "4.19.0-SNAPSHOT",
     "scheme": "sap-trfc-destination",
     "extendsScheme": "",
     "syntax": "sap-trfc-destination:destination:rfc",
