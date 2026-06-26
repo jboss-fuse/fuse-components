@@ -46,7 +46,7 @@ public enum ServerManager {
 
 	protected static final Map<String, JCoIDocServer> activeServers = new HashMap<String, JCoIDocServer>();
 
-	protected static final File tidStoresLocation = new File(".");
+	protected static final File tidStoresLocation = new File(System.getProperty("org.fusesource.camel.component.sap.tid.store.location", "."));
 
 	protected static final Map<String, JCoCustomRepository> repositories = new HashMap<String, JCoCustomRepository>();
 
