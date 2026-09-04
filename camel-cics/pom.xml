@@ -27,7 +27,7 @@
     <parent>
         <groupId>org.fusesource</groupId>
         <artifactId>camel-fusesource-parent</artifactId>
-        <version>4.18.3-SNAPSHOT</version>
+        <version>4.18.4-SNAPSHOT</version>
     </parent>
 
     <artifactId>camel-cics</artifactId>
@@ -41,7 +41,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <slf4j-api-version>2.0.17</slf4j-api-version>
         <cgtclient-version>9.2</cgtclient-version>
-        <camel-version>4.18.3.redhat-00001</camel-version>
+        <camel-version>4.18.4-SNAPSHOT</camel-version>
         <jdk.version>17</jdk.version>
         <maven.compiler.source>${jdk.version}</maven.compiler.source>
         <maven.compiler.target>${jdk.version}</maven.compiler.target>

@@ -14,12 +14,12 @@
     <parent>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-parent</artifactId>
-        <version>4.18.3.redhat-00001</version>
+        <version>4.18.4-SNAPSHOT</version>
     </parent>
 
     <groupId>org.fusesource</groupId>
     <artifactId>camel-fusesource-parent</artifactId>
-    <version>4.18.3-SNAPSHOT</version>
+    <version>4.18.4-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>JBoss Fuse :: Components </name>
